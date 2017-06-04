@@ -1,0 +1,45 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Guests</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="filter-guest">
+  <ion-grid class="filters">
+    <ion-row>
+      <ion-col width-25>
+        <ion-icon name="ios-remove-circle-outline" (click)="minusAdult()" [hidden]="adults < 2"></ion-icon>
+      </ion-col>
+      <ion-col class="adult" col-6 text-center>{{ adults }} Adults</ion-col>
+      <ion-col width-25 text-right>
+        <ion-icon name="ios-add-circle-outline" (click)="plusAdult()"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row margin-top>
+      <ion-col width-25>
+        <ion-icon name="ios-remove-circle-outline" (click)="minusChildren()" [hidden]="children < 1"></ion-icon>
+      </ion-col>
+      <ion-col col-6 text-center>
+        <div>{{ children }} Children</div>
+        <div class="text-sm">(0-17 years old)</div>
+      </ion-col>
+      <ion-col width-25 text-right>
+        <ion-icon name="ios-add-circle-outline" (click)="plusChildren()"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <!-- submit button -->
+  <button ion-button class="no-round" block no-margin color="primary" (click)="goToSearch()">Done</button>
+</ion-footer>

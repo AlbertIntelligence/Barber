@@ -1,0 +1,15 @@
+page-search-flight,
+.search-flight {
+
+  ion-list {
+    background: none;
+
+    ion-item {
+      margin-bottom: 1.6rem;
+
+      ion-datetime {
+        padding-left: 0;
+      }
+    }
+  }
+}

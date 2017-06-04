@@ -1,0 +1,24 @@
+page-car-detail,
+.car-detail {
+
+  .scroll-content {
+    margin-top: 0 !important;
+  }
+
+  .car {
+    font-size: 1.2rem;
+    line-height: 2rem;
+
+    h5 {
+      font-size: 1.6rem;
+    }
+
+    h6 {
+      font-size: 1.4rem;
+    }
+
+    ion-icon {
+      width: 2rem;
+    }
+  }
+}

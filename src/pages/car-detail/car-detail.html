@@ -1,0 +1,67 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar class="nav-transparent" color="dark">
+    <ion-title>Car Detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class=" common-bg">
+  <img class="full-width" src="{{ shop.thumb }}" alt="">
+  <!-- shop name and infomation-->
+  <div class="border-bottom" padding>
+    <div>
+      <h4 class="pull-left" no-margin>{{ shop.name }}</h4>
+      <h5 class="pull-right" no-margin>{{ shop.price | currency:'USD':true }}</h5>
+      <div class="clear"></div>
+    </div>
+    <div>
+      <span>{{ shop.slogan }}</span>
+      <br/>
+      <span ion-text color="dark">{{ shop.address }}</span>
+    </div>
+  </div>
+
+  <!-- car info -->
+  <div class="car card round" margin padding *ngFor="let car of shop.cars">
+    <div>
+      <div class="pull-left">
+        <h5 no-margin>{{ car.name }}</h5>
+        <span>{{ shop.slogan }}</span>
+      </div>
+      <div class="pull-right" text-right>
+        <h6 no-margin color="car-ion-text color">Daily {{ car.price | currency:'USD':true }}</h6>
+        <span ion-text color="dark">Total {{ car.price * numDays | currency:'USD':true }}</span>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div>
+      <div class="pull-left" margin-top>
+        <div>
+          <ion-icon name="person" color="dark"></ion-icon>
+          <span ion-text color="dark" margin-right>{{ car.passengers }} Passengers</span>
+        </div>
+        <div>
+          <ion-icon name="md-briefcase" color="dark"></ion-icon>
+          <span ion-text color="dark">{{ shop.luggage }} Bags</span>
+        </div>
+        <div>
+          <ion-icon name="md-checkmark" color="dark"></ion-icon>
+          <span ion-text color="dark" *ngIf="car.automatic_transmission">Automatic transmission</span>
+          <span ion-text color="dark" *ngIf="!car.automatic_transmission">Manual transmission</span>
+        </div>
+      </div>
+      <div class="pull-right">
+        <button ion-button color="car-color" (click)="checkout()">Reserve</button>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+</ion-content>

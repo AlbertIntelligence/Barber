@@ -1,0 +1,14 @@
+page-search-trips,
+.search-trips {
+
+  ion-list {
+
+    ion-item {
+      margin-bottom: 1.6rem;
+
+      ion-datetime {
+        padding-left: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="car-color">
+    <ion-title>Checkout</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="checkout-car common-bg">
+  <!--trip information-->
+  <div class="checkout-info card round" padding-sm>
+    <ion-grid>
+      <ion-row>
+        <ion-col width-66>
+          <h5>{{ shop.name }}</h5>
+          <div>
+            <span class="bold">{{ car.name }}</span>
+          </div>
+          <div margin-top>
+            <span ion-text color="dark">{{ dateFrom | date: 'MMM dd, h:mm' }} - {{ dateTo | date: 'MMM dd, h:mm' }}</span>
+            <br/>
+            <span ion-text color="dark">{{ car.address }}</span>
+          </div>
+          <div margin-top>
+
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <span ion-text color="dark">Total with Tax</span>
+          <h5 no-margin>{{ car.price | currency:'USD':true }}</h5>
+          <span ion-text color="dark">Due at pickup</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!--more info-->
+  <div class="card round" margin-top>
+    <ion-item class="no-border">
+      <ion-icon name="contact" item-left></ion-icon>
+      <span>Enter driver details</span>
+    </ion-item>
+  </div>
+
+  <!--submit button-->
+  <button ion-button class="round" color="car-color" margin-top full (click)="send()">SEND</button>
+</ion-content>

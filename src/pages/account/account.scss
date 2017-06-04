@@ -1,0 +1,19 @@
+page-account,
+.account {
+
+  .top-info {
+    background: color($colors, primary);
+
+    .border-bottom {
+      border-color: primary;
+    }
+  }
+
+  // setting style
+  .card {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+}

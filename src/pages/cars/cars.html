@@ -1,0 +1,36 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="car-color">
+    <ion-title>Cars</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="cars">
+  <!--list of car shops-->
+  <div class="car card" *ngFor="let shop of shops" (click)="viewDetail(shop.id)" margin-top>
+    <div class="background" [ngStyle]="{'background-image': 'url(' + shop.thumb + ')'}">
+      <div class="background-filter rlt">
+        <div class="align-bottom" padding-left padding-right>
+          <h6 class="pull-left" ion-text color="white">{{ shop.name }}</h6>
+          <h6 class="pull-right" ion-text color="white">Daily {{ shop.price | currency:'USD':true }}</h6>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+    <div padding>
+      <ion-icon name="person" color="dark"></ion-icon>
+      <span ion-text color="dark" margin-right>{{ shop.passengers_from }}-{{ shop.passengers_to }}</span>
+      <ion-icon name="md-briefcase" color="dark"></ion-icon>
+      <span ion-text color="dark">{{ shop.luggage }}</span>
+      <span class="pull-right" ion-text color="dark">Total {{ shop.price * numDays | currency:'USD':true }}</span>
+    </div>
+  </div>
+</ion-content>

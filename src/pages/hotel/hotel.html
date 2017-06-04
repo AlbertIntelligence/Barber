@@ -1,0 +1,62 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Gallerie photo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+
+  <!--list of hotels-->
+  <ion-grid class="list-hotels">
+    <ion-row *ngFor="let hotel of hotels[0].homeGalery">
+      <ion-col>
+        <div class="hotel-bg" [ngStyle]="{'background-image': 'url(' + hotel+ ')'}"
+             (click)="viewHotel(1)">
+          <div class="bg-filter">
+            <!--
+            <div class="discount" *ngIf="hotel.sale_price">{{ (100 * (1 - hotel.price / hotel.sale_price)).toFixed(0)
+              }}%
+            </div>
+            <div class="bottom-info">
+
+              <div>
+                <div class="pull-left">
+                  <h5 ion-text color="light">{{ hotel.name }}</h5>
+                </div>
+                <div class="pull-right">
+                  <span class="origin-price" *ngIf="hotel.sale_price">{{ hotel.price | currency:'USD':true }}</span>
+                </div>
+                <div class="clear"></div>
+              </div>
+
+              <div>
+                <div class="pull-left">
+                  <ion-badge class="square" color="light">{{ hotel.rating }}</ion-badge>
+                  <span class="rating-label" ion-text color="light"> of 5 - guest rating</span>
+                </div>
+                <div class="pull-right">
+                  <span class="price" *ngIf="!hotel.sale_price"
+                        ion-text color="light">{{ hotel.price | currency:'USD':true }}</span>
+                  <span class="sale-price" *ngIf="hotel.sale_price" ion-text color="light">{{ hotel.sale_price | currency:'USD':true }}</span>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>-->
+
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
