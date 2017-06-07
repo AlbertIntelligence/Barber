@@ -49,33 +49,6 @@ page-home,
       ion-col {
         padding: 0.5rem;
 
-        // large thumb size
-        &:nth-child(5n + 1) {
-          max-width: 100%;
-          flex: 0 0 100%;
-
-          h5 {
-            font-size: 2.2rem;
-          }
-
-          .rating-label {
-            display: inline-block;
-          }
-
-          .origin-price {
-            margin-top: 1.6rem;
-            line-height: 3rem;
-          }
-
-          .hide-lg {
-            display: none;
-          }
-
-          .hide-sm {
-            display: block;
-          }
-        }
-
         .rating-label {
           display: none;
         }
