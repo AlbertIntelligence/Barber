@@ -2,12 +2,12 @@ import {Component} from "@angular/core";
 import {NavController} from "ionic-angular";
 import {HotelService} from "../../services/hotel-service";
 import {HotelDetailPage} from "../hotel-detail/hotel-detail";
-import {SearchHotelPage} from "../search-hotel/search-hotel";
 import {SearchFlightPage} from "../search-flight/search-flight";
 import {SearchCarsPage} from "../search-cars/search-cars";
 import {SearchTripsPage} from "../search-trips/search-trips";
 import {HotelPage} from "../hotel/hotel";
 import {AccountPage} from "../account/account";
+import {UserProfilePage} from "../user-profile/user-profile";
 
 /*
  Generated class for the LoginPage page.
@@ -39,8 +39,8 @@ export class HomePage {
   }
 
   // go to search hotel page
-  searchHotel() {
-    this.nav.push(SearchHotelPage);
+  getTicket() {
+    this.nav.push(UserProfilePage);
   }
 
   // go to search flight page
