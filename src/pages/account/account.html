@@ -7,55 +7,50 @@
 <ion-header class="no-shadow">
 
   <ion-navbar class="no-border" color="primary">
-    <ion-title>Compte</ion-title>
+    <ion-title>Settings</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content class=" common-bg">
+<ion-content class="common-bg">
   <!--top information-->
   <div class="top-info" padding>
-    <div class="border-bottom" padding-top padding-bottom>
-      <h5 ion-text color="white">Lenz Petion</h5>
-      <span ion-text color="white">lenz@codekl.com</span>
+    <div padding-top>
+      <h5 ion-text color="white">John Doe</h5>
+      <span ion-text color="white">johndoe@mail.com</span>
     </div>
   </div>
 
   <!--user settings-->
-  <div padding>
-
-    <ion-list class="card round list-full-border">
+    <ion-item-group style="margin-top: 10px">
+      <ion-item-divider color="bg-color">Notifications</ion-item-divider>
       <ion-item>
         <ion-label>Notification push</ion-label>
-        <ion-toggle></ion-toggle>
+        <ion-toggle color="primary" checked="true"></ion-toggle>
       </ion-item>
-    </ion-list>
 
-
-    <ion-list class="card round list-full-border">
       <ion-item>
-        <ion-label>Notification par email</ion-label>
-        <ion-toggle></ion-toggle>
+        <ion-label>Notification par courriel</ion-label>
+        <ion-toggle color="primary" checked="true"></ion-toggle>
       </ion-item>
-    </ion-list>
 
-    <ion-list class="card round list-full-border">
       <ion-item>
-        <ion-label>Notification par sms</ion-label>
-        <ion-toggle></ion-toggle>
+        <ion-label>Notification par SMS</ion-label>
+        <ion-toggle color="primary" checked="true"></ion-toggle>
       </ion-item>
-    </ion-list>
+    </ion-item-group>
 
-    <span class="bold" ion-text color="dark">Information legal</span>
-    <ion-list class="card round list-full-border">
-      <ion-item>
-        <span>Terme et conditions</span>
-      </ion-item>
-
-    </ion-list>
+    <ion-item-group style="margin-top: 10px">
+      <ion-item-divider color="bg-color">Informations légales</ion-item-divider>
+        <ion-list>
+          <button ion-item>Termes et conditions</button>
+        </ion-list>
+      <ion-item-divider color="bg-color"></ion-item-divider>
+    </ion-item-group>
 
     <!--sign out button-->
-    <button ion-button class="round" color="orange" full (click)="logout()">SE DECONNECTER</button>
-  </div>
+    <div style="padding-left: 10%; padding-right: 10%">
+      <button ion-button class="round" color="orange" full (click)="logout()">SE DECONNECTER</button>
+    </div>
 </ion-content>
