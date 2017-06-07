@@ -5,32 +5,31 @@
     </ion-title>
     <ion-buttons left>
      <button ion-button icon-only>
-      <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
     </button>
   </ion-buttons>
 </ion-navbar>
 </ion-header>
-<ion-content padding="false" class="" style="background-color:white">
+<ion-content padding="false" class="common-bg">
   <div style="">
     <div style="">
-      <!--div [ngStyle]="{'background-image': 'url('../assets/img/bg.jpg')'}"></div-->
-      <img src="../../assets/img/bg.jpg" style="width: 60%; height: 50vw; margin-left: 20%; border-radius: 100%" />
-      <div style="font-size: 20px" text-center>John Doe </div>
+      <div style="display: block; border: 1px solid #C5C5C5; border-radius: 100%; padding: 0">
+        <img color="primary" src="../../assets/img/bg.jpg" style="display: block; margin: auto; border: 3vw solid #009687; width: 70vw; height: 70vw; border-radius: 100%" />
+      </div>
+      <div style="font-size: 20px; margin-top: 10px" text-center>John Doe</div>
       <div style="font-size: 10px" text-center>
-        <ion-icon style="" name="pin"></ion-icon>
+        <ion-icon color="primary" style="" name="pin"></ion-icon>
          Montreal, Canada </div>
-
      </div>
 
      <div>
-      <ion-grid style="margin-top: 10%">
+      <ion-grid style="margin-top: 15%">
         <ion-row>
           <ion-col col-6>
             <ion-row>
               <p style="margin:auto; font-size: 20px"><b>162</b></p>
             </ion-row>
             <ion-row>
-              <p style="margin:auto; font-size: 15px">Current Client</p>
+              <p style="margin:auto; font-size: 10px">CURRENT CLIENT</p>
             </ion-row>
           </ion-col>
           <ion-col col-6>
@@ -38,19 +37,19 @@
               <p style="margin:auto; font-size: 20px"><b>166</b></p>
             </ion-row>
             <ion-row>
-              <p style="margin:auto; font-size: 15px">Your Position</p>
+              <p style="margin:auto; font-size: 10px">YOUR POSITION</p>
             </ion-row>
           </ion-col>
         </ion-row>
       </ion-grid>
 
-      <ion-grid style="margin-top: 5%">
+      <ion-grid style="margin-top: 1%">
         <ion-row>
-          <ion-icon style="margin:auto; font-size: 40px; color: black" name="add-circle"></ion-icon>
+          <ion-icon (click)="getTicketConfirmation()" color="primary" style="margin:auto; font-size: 50px;" name="add-circle"></ion-icon>
         </ion-row>
 
         <ion-row>
-          <p style="margin:auto; font-size: 15px">Take a number</p>
+          <p style="margin:auto; font-size: 10px">TAKE A NUMBER</p>
         </ion-row>
       </ion-grid>
     </div>
