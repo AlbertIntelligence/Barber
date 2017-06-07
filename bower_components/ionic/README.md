@@ -1,37 +1,122 @@
-[![npm version](https://badge.fury.io/js/ionic-angular.svg)](https://badge.fury.io/js/ionic-angular)
-[![Circle CI](https://circleci.com/gh/driftyco/ionic.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/driftyco/ionic)
+[![Circle CI](https://circleci.com/gh/driftyco/ionic.svg?style=svg)](https://circleci.com/gh/driftyco/ionic)
 
-# Ionic
+[![NPM](https://nodei.co/npm/ionic.png?stars&downloads)](https://nodei.co/npm/ionic/)
 
-[Ionic](https://ionicframework.com/) is the open-source mobile app development framework that makes it easy to
-build top quality native and progressive web apps with web technologies.
+Looking for our [documentation](http://ionicframework.com/docs/)?
 
-Ionic is based on [Angular](https://angular.io/) and comes with many significant performance, usability, and
-feature improvements over the past versions.
+# What is Ionic?
 
-See the [Building Apps with Ionic](https://adamdbradley.github.io/building-with-ionic2) slides for a quick
-overview or watch our [Crash Course](https://youtu.be/O2WiI9QrS5s) video for a quick walkthrough on how to get
-started using Ionic.
+[Ionic](http://ionicframework.com/) is the open source HTML5 Mobile Framework for building amazing, cross-platform hybrid native apps and mobile websites with HTML, JavaScript, and CSS. If you know how to build or design websites, you will be able to build a real mobile app with Ionic!
 
-### Getting Started
+We built Ionic because we wanted a framework that focused on building high quality hybrid native apps and mobile web apps using open web technologies we loved. The same technology the world has been using for decades to build websites, desktop applications, and now mobile and tablet apps. We wanted this framework to be obsessive about great design and performance, and work on multiple platforms without changing a thing.
 
-Start a new project by following our quick [Getting Started guide](https://ionicframework.com/getting-started/).
-We would love to hear from you! If you have any feedback or run into issues using our framework, please file
-an [issue](https://github.com/driftyco/ionic/issues/new) on this repository.
+We rejected the idea that web mobile apps had to be clunky, slow, and non-native. We believed that we could bring the best of the web together with the best of the native platforms without sacrificing the power, accessibility, and portability of the open web.
 
-### Contributing
+Above all, we built Ionic to be the easiest way for the next generation of developers to get into mobile and start building apps that compete with the best on the app store, and do it affordably. 
 
-Thanks for your interest in contributing! Read up on our guidelines for
-[contributing](https://github.com/driftyco/ionic/blob/master/.github/CONTRIBUTING.md)
-and then look through our issues with a [help wanted](https://github.com/driftyco/ionic/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22)
-label.
+Today, Ionic powers over 1.5 million mobile apps and websites (and even some desktop apps!), built by small startups up to Fortune 50 companies. Ionic developers come from hundreds of countries around the world, and have helped build a community that boasts hundreds of monthly meetings, conference talks, and workshops; an incredibly active [forum](http://forum.ionicframework.com) and [Theme and Plugin Marketplace](https://market.ionic.io); and some pretty [amazing apps](http://showcase.ionicframework.com/).
 
-### Examples
+## Quick Start
 
-The [Ionic Conference App](https://github.com/driftyco/ionic-conference-app) is a full featured Ionic app.
-It is the perfect starting point for learning and building your own app.
+To start using ionic, you have two options: copy over the built JS and CSS files, or
+use the `ionic` tool ([ionic-cli](https://github.com/driftyco/ionic-cli)) which can be installed through npm (recommended): _(You may need to prefix the command with `sudo` depending on your OS and setup.)_
 
-### Ionic V1
+Additionally, we have a desktop GUI tool that we recently released called [Ionic Lab](http://lab.ionic.io). If you try it, let us know what you think!
 
-The source code for Ionic V1 has been moved to [driftyco/ionic-v1](https://github.com/driftyco/ionic-v1).
-Please open any issues and pull requests related to Ionic V1 on that repository.
+To get started with the CLI flow, fire up your terminal and run:
+
+```bash
+npm install -g ionic
+```
+
+Then, you can start a new ionic project by running:
+
+```bash
+ionic start myproject
+```
+
+### Manual Start
+
+If you'd rather do everything by hand, you can grab all the files for Ionic below:
+
+- Download the latest **stable** release from:
+  * The `release` folder of this repository
+  * Ionic CDN: [Latest Release](http://code.ionicframework.com/)
+  * Using bower: `bower install ionic`
+  * For [Meteor](https://www.meteor.com/) applications: `meteor add driftyco:ionic`
+- Download the **bleeding edge just-from-master release** from:
+  * Ionic CDN: [Nightly Build](http://code.ionicframework.com/#nightly)
+  * Using bower: `bower install driftyco/ionic-bower#master`
+
+Once you have a release, use `js/ionic.js`, `js/ionic-angular.js`, and `css/ionic.css`.
+
+For most cases, you'll need AngularJS as well.  This is bundled in `js/angular/` and `js/angular-ui/`.
+
+## Platform Support
+
+Ionic currently supports Android 4.1 and above, iOS 8 and above, and Windows 10. We continue to monitor market share and adjust our support based on worldwide usage.
+
+## Demos
+
+ - [Ionic Codepen.io Demos](http://codepen.io/ionic/public-list)
+
+
+## Community
+
+* Follow [@ionicframework on Twitter](https://twitter.com/ionicframework)
+* Subscribe to the [Ionic Newsletter](http://ionicframework.com/subscribe/)
+* Have a question that's not a feature request or bug report? [Discuss on the Ionic Forum](http://forum.ionicframework.com/)
+* Read our [Blog](http://blog.ionic.io/)
+* Have a feature request or find a bug? [Submit an issue](http://ionicframework.com/submit-issue/)
+* Join our Community Slack Group! [Ionic Worldwide](http://ionicworldwide.herokuapp.com/)
+* [Ionic Team](http://ionic.io/team)
+
+## Development
+
+* `npm install && npm install -g gulp protractor` to setup
+* (if you wish to run end-to-end tests): `webdriver-manager update --chrome` to install the webdriver.
+* `gulp` or `gulp build` to build
+* `gulp docs` to generate docs (read Documentation below for how to test docs locally).
+* `gulp build --release` to build with minification & strip debugs
+* `gulp watch` to watch and rebuild on change
+* `gulp karma` to test one-time
+* `gulp karma-watch` to test and re-run on source change
+* `gulp snapshot` to test e2e tests locally (run `gulp demos` first to generate e2e tests). Be sure to run `./node_modules/.bin/webdriver-manager update --chrome` to first install the chrome webdriver dependency.
+
+### Documentation
+
+* Documentation is generated into `./../ionic-site`.  To test documentation properly, follow these steps:
+  1. Clone ionic-site into `./../ionic-site`
+    - `git clone git@github.com:driftyco/ionic-site ./../ionic-site`
+  2. Start jekyll, telling it to rebuild whenever the site changes
+    - `cd ./../ionic-site && jekyll serve -w`
+  3. Go back to project root and build the docs
+    - `gulp docs [--doc-version=(versionName|nightly)]`
+  4. Open localhost:4000 and see your changes! Re-run `gulp docs` again whenever you change something, and jekyll will update the site
+
+### Demos / Kitchen Sink
+
+* The demo site is generated into `dist/ionic-demo`. To test the demos, follow these steps:
+  1. Run `gulp demos [--demo-version=(versionName|nightly)]`
+  2. Start an http server from `dist/ionic-demo`:
+    - `cd dist/ionic-demo && python -m SimpleHTTPServer`
+  3. Navigate to `http://localhost:8000/{versionName|nightly}` and use the demos
+  4. Run `gulp demos` again whenever you change the demos
+
+### Commit Conventions
+
+* Uses these [commit conventions](https://github.com/ajoslin/conventional-changelog)
+
+### Pushing New Release of Ionic
+
+- Almost all of the logic for releasing Ionic is done on the Travis server
+- To push a new release:
+  1. Update package.json version to new version
+  2. Generate changelog with `gulp changelog`
+  3. Go through the changelog, and fix any mistakes or clarify any unclear commit messages
+  4. Commit package.json and CHANGELOG.md and push to master
+- Travis will detect that this commit changed the version in package.json and push out all necessary for this new release (tags, release files, site config, ...)
+
+## LICENSE
+
+Ionic is licensed under the MIT Open Source license. For more information, see the LICENSE file in this repository.
