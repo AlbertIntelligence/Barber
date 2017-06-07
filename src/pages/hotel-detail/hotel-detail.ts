@@ -3,6 +3,8 @@ import {NavController, Platform} from "ionic-angular";
 import {HotelService} from "../../services/hotel-service";
 import {ReviewsPage} from "../reviews/reviews";
 import {CheckoutHotelPage} from "../checkout-hotel/checkout-hotel";
+//import "../bower_components/ion-datetime-picker/release/ion-datetime-picker.min.css";
+
 
 declare var google: any;
 /*

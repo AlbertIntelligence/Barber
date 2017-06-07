@@ -23,6 +23,18 @@ export let HOTELS = [
       "assets/img/hotel/thumb/img_5.jpg",
       "assets/img/hotel/thumb/img_6.jpg"
     ],
+    viewMoreGalery: [
+      "assets/img/hotel/thumb/img_1.jpg",
+      "assets/img/hotel/thumb/img_2.jpg",
+      "assets/img/hotel/thumb/img_3.jpg",
+      "assets/img/hotel/thumb/img_4.jpg",
+      "assets/img/hotel/thumb/img_5.jpg",
+      "assets/img/hotel/thumb/img_6.jpg",
+      "assets/img/hotel/thumb/img_5.jpg",
+      "assets/img/hotel/thumb/img_5.jpg",
+      "assets/img/hotel/thumb/img_5.jpg",
+      "assets/img/hotel/thumb/img_5.jpg"
+    ],
     images: [
       "assets/img/hotel/thumb/img_2.jpg",
       "assets/img/hotel/thumb/img_4.jpg",
