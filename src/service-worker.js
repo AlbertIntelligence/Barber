@@ -1,5 +1,5 @@
 // tick this to make the cache invalidate and update
-const CACHE_VERSION = 1;
+/*const CACHE_VERSION = 1;
 const CURRENT_CACHES = {
   'read-through': 'read-through-cache-v' + CACHE_VERSION
 };
@@ -89,4 +89,5 @@ throw error;
 )
 ;
 })
-;
+;*/
+

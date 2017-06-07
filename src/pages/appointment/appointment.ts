@@ -1,7 +1,8 @@
 import {Component} from "@angular/core";
 import {NavController, Platform} from "ionic-angular";
 import {HotelService} from "../../services/hotel-service";
-import {AppointmentPage} from "../appointment/appointment";
+import {CheckoutHotelPage} from "../checkout-hotel/checkout-hotel";
+
 
 declare var google: any;
 /*
@@ -11,18 +12,18 @@ declare var google: any;
  Ionic pages and navigation.
  */
 @Component({
-  selector: 'page-hotel',
-  templateUrl: 'hotel.html'
+  selector: 'page-appointment',
+  templateUrl: 'appointment.html'
 })
-export class HotelPage {
-  // list of hotels
-  public hotels: any;
+export class AppointmentPage {
+  // hotel info
+  public hotel: any;
   // Map
   public map: any;
 
   constructor(public nav: NavController, public hotelService: HotelService, public platform: Platform) {
     // set sample data
-    this.hotels = hotelService.getAll();
+    this.hotel = hotelService.getItem(1);
   }
 
   ionViewDidLoad() {
@@ -30,34 +31,24 @@ export class HotelPage {
     this.initializeMap();
   }
 
-  // view hotel detail
-  viewHotel(hotelId) {
-    this.nav.push(AppointmentPage, {id: hotelId});
-  }
-
   initializeMap() {
-    let latLng = new google.maps.LatLng(this.hotels[0].location.lat, this.hotels[0].location.lon);
+    let latLng = new google.maps.LatLng(this.hotel.location.lat, this.hotel.location.lon);
 
     let mapOptions = {
       center: latLng,
-      zoom: 13,
+      zoom: 16,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       mapTypeControl: false,
       zoomControl: false,
       streetViewControl: false
     }
 
-    this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-    // add markers to map by hotel
-    for (let i = 0; i < this.hotels.length; i++) {
-      let hotel = this.hotels[i];
-      new google.maps.Marker({
-        map: this.map,
-        animation: google.maps.Animation.DROP,
-        position: new google.maps.LatLng(hotel.location.lat, hotel.location.lon)
-      });
-    }
+    this.map = new google.maps.Map(document.getElementById("map-detail"), mapOptions);
+    new google.maps.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      position: this.map.getCenter()
+    });
 
     // refresh map
     setTimeout(() => {
@@ -65,8 +56,18 @@ export class HotelPage {
     }, 300);
   }
 
-  // view all hotels
-  viewHotels() {
-    this.nav.push(HotelPage);
+  // view a room
+  viewRoom(room) {
+    for (let i = 0; i < this.hotel.rooms.length; i++) {
+      this.hotel.rooms[i].active = false;
+    }
+
+    room.active = true;
+  }
+
+
+  // go to checkout page
+  checkout() {
+    this.nav.push(CheckoutHotelPage);
   }
 }

@@ -1,10 +1,7 @@
 import {Component} from "@angular/core";
 import {NavController} from "ionic-angular";
 import {HotelService} from "../../services/hotel-service";
-import {HotelDetailPage} from "../hotel-detail/hotel-detail";
-import {SearchFlightPage} from "../search-flight/search-flight";
-import {SearchCarsPage} from "../search-cars/search-cars";
-import {SearchTripsPage} from "../search-trips/search-trips";
+import {AppointmentPage} from "../appointment/appointment";
 import {HotelPage} from "../hotel/hotel";
 import {AccountPage} from "../account/account";
 import {UserProfilePage} from "../user-profile/user-profile";
@@ -30,7 +27,7 @@ export class HomePage {
 
   // view hotel detail
   viewHotel(hotelId) {
-    this.nav.push(HotelDetailPage, {id: hotelId});
+    this.nav.push(AppointmentPage, {id: hotelId});
   }
 
   // view all hotels
@@ -43,20 +40,7 @@ export class HomePage {
     this.nav.push(UserProfilePage);
   }
 
-  // go to search flight page
-  searchFlight() {
-    this.nav.push(SearchFlightPage);
-  }
 
-  // go to search car page
-  searchCar() {
-    this.nav.push(SearchCarsPage);
-  }
-
-  // go to search trip page
-  searchTrip() {
-    this.nav.push(SearchTripsPage);
-  }
 
   // to go account page
   goToAccount() {
