@@ -35,6 +35,7 @@ import {TabReviewsPage} from "../pages/tab-reviews/tab-reviews";
 import {TabsPage} from "../pages/tabs/tabs";
 import {TripDetailPage} from "../pages/trip-detail/trip-detail";
 import {TripsPage} from "../pages/trips/trips";
+import {UserProfilePage} from "../pages/user-profile/user-profile";
 
 // import services
 // end import services
@@ -72,7 +73,8 @@ import {TripsPage} from "../pages/trips/trips";
     TabReviewsPage,
     TabsPage,
     TripDetailPage,
-    TripsPage
+    TripsPage,
+    UserProfilePage
   ],
   imports: [
     BrowserModule,
@@ -107,7 +109,8 @@ import {TripsPage} from "../pages/trips/trips";
     TabReviewsPage,
     TabsPage,
     TripDetailPage,
-    TripsPage
+    TripsPage,
+    UserProfilePage
   ],
   providers: [
     HotelService,
@@ -117,7 +120,8 @@ import {TripsPage} from "../pages/trips/trips";
     CarService,
     TripService,
     CarService,
-    TripService
+    TripService,
+    UserProfilePage
     /* import services */
   ]
 })
