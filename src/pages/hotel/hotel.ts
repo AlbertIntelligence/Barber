@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {NavController, Platform} from "ionic-angular";
 import {HotelService} from "../../services/hotel-service";
-import {HotelDetailPage} from "../hotel-detail/hotel-detail";
+import {AppointmentPage} from "../appointment/appointment";
 
 declare var google: any;
 /*
@@ -32,7 +32,7 @@ export class HotelPage {
 
   // view hotel detail
   viewHotel(hotelId) {
-    this.nav.push(HotelDetailPage, {id: hotelId});
+    this.nav.push(AppointmentPage, {id: hotelId});
   }
 
   initializeMap() {

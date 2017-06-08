@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar class="nav-transparent" color="dark">
+  <ion-navbar color="primary">
     <ion-title>Mario Perfect Cut</ion-title>
   </ion-navbar>
 
@@ -14,12 +14,15 @@
 
 
 <ion-content class=" light-bg">
+
+  <div padding margin-top>
   <!--slides-->
   <ion-slides class="to-top" pager>
     <ion-slide *ngFor="let image of hotel.images">
       <img src="{{ image }}" alt="">
     </ion-slide>
   </ion-slides>
+  </div>
 
   <!--hotel detail-->
   <div class="primary-bg" padding>
