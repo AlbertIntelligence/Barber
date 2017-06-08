@@ -3,6 +3,7 @@ import {Platform} from "ionic-angular";
 import {StatusBar, Splashscreen} from "ionic-native";
 import {LoginPage} from "../pages/login/login";
 
+
 // import pages
 // end import pages
 
@@ -38,13 +39,13 @@ export class MyApp {
   }
 
   // hide splash screen
-  hideSplashScreen() {
+  /*hideSplashScreen() {
     if (Splashscreen) {
       setTimeout(() => {
         Splashscreen.hide();
       }, 100);
     }
-  }
+  }*/
 }
 
 

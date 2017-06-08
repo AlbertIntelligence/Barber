@@ -1,8 +1,8 @@
 import {Component} from "@angular/core";
 import {NavController, Platform} from "ionic-angular";
 import {HotelService} from "../../services/hotel-service";
-import {ReviewsPage} from "../reviews/reviews";
 import {CheckoutHotelPage} from "../checkout-hotel/checkout-hotel";
+
 
 declare var google: any;
 /*
@@ -12,10 +12,10 @@ declare var google: any;
  Ionic pages and navigation.
  */
 @Component({
-  selector: 'page-hotel-detail',
-  templateUrl: 'hotel-detail.html'
+  selector: 'page-appointment',
+  templateUrl: 'appointment.html'
 })
-export class HotelDetailPage {
+export class AppointmentPage {
   // hotel info
   public hotel: any;
   // Map
@@ -65,10 +65,6 @@ export class HotelDetailPage {
     room.active = true;
   }
 
-  // go to reviews page
-  viewReviews() {
-    this.nav.push(ReviewsPage);
-  }
 
   // go to checkout page
   checkout() {

@@ -15,43 +15,18 @@
 
 <ion-content>
 
+  <div padding margin-top>
+    <ion-badge class="square center"  color="primary">Voir plus de photo</ion-badge>
+    <div class="clear"></div>
+  </div>
 
   <!--list of hotels-->
   <ion-grid class="list-hotels">
-    <ion-row *ngFor="let hotel of hotels[0].homeGalery">
-      <ion-col>
-        <div class="hotel-bg" [ngStyle]="{'background-image': 'url(' + hotel+ ')'}"
-             (click)="viewHotel(1)">
+    <ion-row>
+      <ion-col *ngFor="let hotel of hotels[0].viewMoreGalery" col-6 (click)="viewHotel(1)">
+        <div class="hotel-bg" [ngStyle]="{'background-image': 'url(' + hotel + ')'}">
           <div class="bg-filter">
-            <!--
-            <div class="discount" *ngIf="hotel.sale_price">{{ (100 * (1 - hotel.price / hotel.sale_price)).toFixed(0)
-              }}%
-            </div>
-            <div class="bottom-info">
 
-              <div>
-                <div class="pull-left">
-                  <h5 ion-text color="light">{{ hotel.name }}</h5>
-                </div>
-                <div class="pull-right">
-                  <span class="origin-price" *ngIf="hotel.sale_price">{{ hotel.price | currency:'USD':true }}</span>
-                </div>
-                <div class="clear"></div>
-              </div>
-
-              <div>
-                <div class="pull-left">
-                  <ion-badge class="square" color="light">{{ hotel.rating }}</ion-badge>
-                  <span class="rating-label" ion-text color="light"> of 5 - guest rating</span>
-                </div>
-                <div class="pull-right">
-                  <span class="price" *ngIf="!hotel.sale_price"
-                        ion-text color="light">{{ hotel.price | currency:'USD':true }}</span>
-                  <span class="sale-price" *ngIf="hotel.sale_price" ion-text color="light">{{ hotel.sale_price | currency:'USD':true }}</span>
-                </div>
-                <div class="clear"></div>
-              </div>
-            </div>-->
 
           </div>
         </div>
