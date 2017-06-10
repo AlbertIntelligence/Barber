@@ -4,6 +4,8 @@ import {HotelService} from "../../services/hotel-service";
 import {CheckoutHotelPage} from "../checkout-hotel/checkout-hotel";
 
 
+
+
 declare var google: any;
 /*
  Generated class for the LoginPage page.
@@ -70,4 +72,9 @@ export class AppointmentPage {
   checkout() {
     this.nav.push(CheckoutHotelPage);
   }
+
+  openModal(){
+
+  }
 }
+
