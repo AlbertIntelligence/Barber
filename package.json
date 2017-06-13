@@ -26,6 +26,7 @@
     "bootstrap": "^3.3.7",
     "ionic-angular": "3.3.0",
     "ionic-native": "2.4.1",
+    "ionic2-datepicker": "^0.1.0",
     "ionicons": "3.0.0",
     "moment": "^2.18.1",
     "ngx-bootstrap": "^1.7.1",

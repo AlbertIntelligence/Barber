@@ -14,26 +14,25 @@
 
 
 <ion-content class=" light-bg">
-
-  <div padding margin-top>
-  <!--slides-->
+  <datepicker></datepicker>
+  <!--div padding margin-top>
   <ion-slides class="to-top" pager>
     <ion-slide *ngFor="let image of hotel.images">
       <img src="{{ image }}" alt="">
     </ion-slide>
   </ion-slides>
-  </div>
+</div-->
 
   <!--hotel detail-->
-  <div class="primary-bg" padding>
+  <!--div class="primary-bg" padding>
     <div class="pull-left">
       <span ion-text color="light">BARBER NAME! </span>
     </div>
     <div class="clear"></div>
-  </div>
+  </div-->
 
   <!--price info-->
-  <div class="price-info" padding>
+  <!--div class="price-info" padding>
     <div class="pull-left">
       <span class="price" *ngIf="!hotel.sale_price" ion-text color="light">{{ hotel.price | currency:'USD':true }}</span>
       <span class="sale-price" *ngIf="hotel.sale_price"
@@ -43,31 +42,26 @@
       <button ion-button color="white" (click)="checkout()">Choisie ton barber</button>
     </div>
     <div class="clear"></div>
+  </div-->
+
+  <div style="padding-left: 10%; padding-right: 10%;margin-top:80%">
+    <button ion-button class="round" full color="primary" (click)="openModal()">Réserver</button>
   </div>
 
 
-
   <!--services-->
-  <ion-grid class="border-bottom">
+  <!--ion-grid class="border-bottom">
     <ion-row>
       <ion-col *ngFor="let service of hotel.services" text-center>
         <ion-icon class="text-2x" name="{{ service.icon }}" color="dark"></ion-icon>
         <span class="service-name" ion-text color="dark">{{ service.name }}</span>
       </ion-col>
     </ion-row>
-  </ion-grid>
-
-
-  <button ion-button color="white" (click)="openModal()">open modal</button>
+  </ion-grid-->
 
   <!-- Show map here -->
-  <div id="map-detail"></div>
+  <!--div id="map-detail"></div-->
 
 
 
 </ion-content>
-
-<datepicker></datepicker>
-
-
-

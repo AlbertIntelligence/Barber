@@ -1,27 +1,30 @@
 
-  $calBaseColor: map-get($colors,favorite);
+  $calBaseColor: map-get($colors,bg-color);
   $calLightColor: map-get($colors,favoritelight);
   $calMediumColor: map-get($colors,favoritemedium);
   $calDarkMediumColor: map-get($colors,favoritedarkmedium);
   $calDarkColor: map-get($colors,favoritedark);
   $calLiteColor: map-get($colors,lite);
-  $calSelectedDayColor: map-get($colors,secondary);
-  $calTodayColor: map-get($colors,danger);
-  $calCheckColor: map-get($colors,check);
+  $calSelectedDayColor: map-get($colors,primary);
+  $calTodayColor: map-get($colors,bg-color);
+  $calCheckColor: map-get($colors,bg-color);
   $calTextColor:$calDarkColor;
   $calMonthHeaderBgColor:$calBaseColor;
   $calWeekHeaderBgColor:$calBaseColor;
   $calDayColBgColor: $calBaseColor;
 
   datepicker {
-    height: 100%;
+    height: 40%;
     width: 100%;
   }
   .datepicker {
-    height:100%;
-    width:100%;
+    position: relative;
+    padding-bottom: 0%;
+    height:35%;
+    width:105%;
     margin-top: 56px;
-    background-color: #fff;
+    margin-bottom: -5%;
+    background-color: $calBaseColor;
     ion-scroll:first-child {
       min-height:100px;
       padding:0 !important;
@@ -93,7 +96,7 @@
 
 
       ion-label {
-        margin:13px 0 13px 0 !important;
+        margin:0 0 0 0 !important;
       }
 
       .month-row {
@@ -157,7 +160,7 @@
       }
 
       .bottom-padding {
-        padding-bottom:150px;
+        padding-bottom:0px;
       }
 
     }

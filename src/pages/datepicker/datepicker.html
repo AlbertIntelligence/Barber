@@ -3,24 +3,11 @@
   <!-- ion-scroll contains the header row to display the checkIn, checkout and the weekNames -->
   <ion-scroll class="auto-scroll cal-bg header-row">
     <ion-row class="text-center input-row">
-      <ion-col width-50 [ngClass]="{'selected-input':checkInDate,
+      <ion-col width-100 [ngClass]="{'selected-input':checkInDate,
                         'non-selected-input':focusOnCheckInDate}">
-        <div class="check-text">Check In</div>
+        <div class="check-text">Choisissez le jour</div>
         <div *ngIf="checkInDate" class="check-date">
           {{checkInDate.format('ddd, DD MMM')}}
-        </div>
-        <div *ngIf="!checkInDate" class="check-date">
-          Select a date
-        </div>
-      </ion-col>
-      <ion-col width-50   [ngClass]="{'selected-input':checkOutDate,
-        'non-selected-input':!checkOutDate}">
-        <div class="check-text" >Check Out</div>
-        <div *ngIf="checkOutDate" class="check-date">
-          {{checkOutDate.format('ddd, DD MMM')}}
-        </div>
-        <div *ngIf="!checkOutDate" class="check-date">
-          Select a date
         </div>
       </ion-col>
     </ion-row>
@@ -44,8 +31,8 @@
 
         <div class="day-grid">
           <ion-row class="text-center day-row" *ngFor="let week of monthObj.weeks; let rowIndex = index" >
-            <ion-col class="day-col" *ngFor="let day of week.days; let colIndex = index"
-              (click)="select(monthObj,day,rowIndex)">
+            <ion-col class="day-col" *ngFor="let day of week.days; let colIndex = index">
+              <!--(click)="select(monthObj,day,rowIndex)"-->
 
                 <button ion-button  *ngIf="day"  clear [datespan]="day.id">
                   {{day.displayText}}
@@ -56,8 +43,45 @@
         </div>
       </ion-item>
     </ion-list>
-    <!-- Add Bottom Padding to the list -->
-    <div class="bottom-padding">
-    </div>
   </ion-content>
+
+    <ion-row style="">
+      <ion-col col-3></ion-col>
+      <ion-col col-2>
+        <ion-row style="padding: 5px; cursor: pointer">
+          <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>
+        </ion-row>
+        <ion-row>
+          <p style="padding: 5px; font-size: 20px; margin: auto">11</p>
+        </ion-row>
+        <ion-row style="padding: 5px; cursor: pointer">
+          <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>
+        </ion-row>
+      </ion-col>
+
+      <ion-col col-2>
+        <ion-row style="padding: 5px; cursor: pointer">
+          <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>
+        </ion-row>
+        <ion-row>
+          <p style="padding: 5px; font-size: 20px; margin: auto">:</p>
+        </ion-row>
+        <ion-row style="padding: 5px; cursor: pointer">
+          <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>
+        </ion-row>
+      </ion-col>
+
+      <ion-col col-2>
+        <ion-row style="padding: 5px; cursor: pointer">
+          <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>
+        </ion-row>
+        <ion-row>
+          <p style="padding: 5px; font-size: 20px; margin: auto">00</p>
+        </ion-row>
+        <ion-row style="padding: 5px; cursor: pointer">
+          <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>
+        </ion-row>
+      </ion-col>
+      <ion-col col-3></ion-col>
+    </ion-row>
 </div>

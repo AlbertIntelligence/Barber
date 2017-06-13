@@ -15,7 +15,6 @@ interface DateSelectorInterface {
 export class DateSelectorDirective implements DateSelectorInterface {
   @Input('datespan') id: String;
   constructor(public elemRef:ElementRef,public renderer:Renderer) {
-
   }
 
   getId() {
@@ -76,11 +75,9 @@ export class DatePickerComponent {
   // calendar view
   @ViewChildren(DateSelectorDirective) dateSelectors:QueryList<DateSelectorDirective>;
   constructor(public datePickerService:DatePickerService) {
-    this.weekNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+    this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
     this.checkInDate = this.today.clone();
-
-
   }
 
   // Programmatically set the CSS Classes on the dates displayed in the Calendar View
@@ -261,6 +258,7 @@ export class DatePickerComponent {
   // Hook up into the life cycle method when the component is initialized.
   ngOnInit() {
     let nextMonth = moment();
+    var date = new Date();
     for(let index = 0; index <= NUM_OF_MONTHS; index++) {
       this.init(nextMonth);
       nextMonth = nextMonth.clone().month(nextMonth.month() + 1);
