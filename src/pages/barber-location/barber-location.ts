@@ -2,9 +2,7 @@ import {Component} from "@angular/core";
 import {NavController, Platform} from "ionic-angular";
 import {HotelService} from "../../services/hotel-service";
 import {CheckoutHotelPage} from "../checkout-hotel/checkout-hotel";
-
-
-
+import {BarberLocationModel} from "./BarberLocationModel";
 
 declare var google: any;
 /*
@@ -14,7 +12,7 @@ declare var google: any;
  Ionic pages and navigation.
  */
 @Component({
-  selector: 'barber-location',
+  selector: 'page-barber-location',
   templateUrl: 'barber-location.html'
 })
 export class BarberLocation {
@@ -22,6 +20,7 @@ export class BarberLocation {
   public hotel: any;
   // Map
   public map: any;
+
 
   constructor(public nav: NavController, public hotelService: HotelService, public platform: Platform) {
     // set sample data
@@ -74,4 +73,3 @@ export class BarberLocation {
   }
 
 }
-

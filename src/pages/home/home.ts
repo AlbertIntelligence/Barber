@@ -7,6 +7,7 @@ import {AccountPage} from "../account/account";
 import {UserProfilePage} from "../user-profile/user-profile";
 import {BarberLocation} from "../barber-location/barber-location";
 
+
 /*
  Generated class for the LoginPage page.
 
