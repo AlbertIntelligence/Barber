@@ -14,10 +14,10 @@ declare var google: any;
  Ionic pages and navigation.
  */
 @Component({
-  selector: 'page-appointment',
-  templateUrl: 'appointment.html'
+  selector: 'barber-location',
+  templateUrl: 'barber-location.html'
 })
-export class AppointmentPage {
+export class BarberLocation {
   // hotel info
   public hotel: any;
   // Map
