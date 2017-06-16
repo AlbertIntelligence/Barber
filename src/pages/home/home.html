@@ -35,12 +35,17 @@
     </ion-grid>
   </div>
 
-  <!--list of hotels-->
-  <div padding margin-top>
-    <h5 class="dark pull-left">Quelques images</h5>
-    <ion-badge class="pull-right square" color="primary" (click)="viewHotels()">Voir plus de photo</ion-badge>
-    <div class="clear"></div>
-  </div>
+  <ion-grid class="card">
+    <ion-row>
+      <ion-col style="padding-left: 20px">
+        <ion-badge class="pull-left square" color="primary" (click)="goToBarberLocation()">Ou somme nous?</ion-badge>
+      </ion-col>
+      <ion-col style="padding-right: 20px" >
+        <ion-badge class="pull-right square" color="primary" (click)="viewHotels()">Voir plus de photo</ion-badge>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <ion-grid class="list-hotels">
     <ion-row>
       <ion-col *ngFor="let hotel of hotels[0].homeGalery" col-6 (click)="viewHotel(1)">
