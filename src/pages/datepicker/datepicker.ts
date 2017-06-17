@@ -1,6 +1,7 @@
 import { Component, Directive, Input, ViewChildren, QueryList, ElementRef, Renderer } from '@angular/core';
 import { DatePickerService } from './datepicker.service';
 import moment from 'moment';
+import firebase from 'firebase';
 
 const NUM_OF_DAYS = 7;
 const NUM_OF_MONTHS = 12;
@@ -63,9 +64,11 @@ export class DatePickerComponent {
   public today:any;
   public months:Array<any> = [];
   public slideOptions:any;
-  public checkInDate:any;
-  public checkOutDate:any;
-  public focusOnCheckInDate:Boolean = false;
+  public previousDate:any;
+  public currentDate:any;
+  public currentHour:any;
+  public currentMinutes:any;
+  public focusOnpreviousDate:Boolean = false;
 
   // A Map where key = 'DD-MMM-YYYY' and Value as the ViewChild Reference of the date element displayed in the
   // calendar view
@@ -77,7 +80,64 @@ export class DatePickerComponent {
   constructor(public datePickerService:DatePickerService) {
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
-    this.checkInDate = this.today.clone();
+    this.previousDate = this.today.clone();
+    this.currentHour = this.getFirstHourAvailable();
+    this.currentMinutes = '00';
+  }
+
+  //Get first hour available for an appointment
+  getFirstHourAvailable() {
+    //To be completed
+    return 10;
+  }
+
+  //Get next hour available for an appointment
+  getNextHourAvailable() {
+    //To be completed
+    return this.currentHour + 1;
+  }
+
+  //Get next hour available for an appointment
+  getPreviousHourAvailable() {
+    //To be completed
+    return this.currentHour - 1;
+  }
+
+  //Increase hour value
+  increaseHour() {
+    let nextHour = this.getNextHourAvailable();
+    if (nextHour != null) {
+      this.currentHour = nextHour;
+    } else {
+      //To be completed : Display Plus aucune autre plage horaire disponible.
+    }
+  }
+
+  //Decrease hour value
+  decreaseHour() {
+    let previousHour = this.getPreviousHourAvailable();
+    if (previousHour != null) {
+      this.currentHour = previousHour;
+    } else {
+      //To be completed : Display Plus aucune autre plage horaire disponible.
+    }
+  }
+
+  //Change the minutes value
+  changeMinutes() {
+    if (this.currentMinutes == '00') {
+      this.currentMinutes = '30';
+    } else if (this.currentMinutes == '30') {
+      this.currentMinutes = '00';
+    }
+  }
+
+  writeUserData() {
+    firebase.database().ref('Appointments/').set({
+      appointmentId: 1,
+      userId: 1,
+      date: 'October 13, 2014 11:13'
+    });
   }
 
   // Programmatically set the CSS Classes on the dates displayed in the Calendar View
@@ -113,7 +173,7 @@ export class DatePickerComponent {
       let selectorId = dateSelector.getId();
       let directiveDate = moment(selectorId,FORMAT);
 
-      if(directiveDate.isBefore(this.checkInDate,'day')) {
+      if(directiveDate.isBefore(this.previousDate,'day')) {
         dateSelector.setDisabled();
       } else {
         dateSelector.setEnabled();
@@ -130,14 +190,14 @@ export class DatePickerComponent {
 
       if(directiveDate.isBefore(this.today,'day')) {
         dateSelector.setDisabled();
-      } else if (!directiveDate.isSame(this.checkOutDate,'day')) {
+      } else if (!directiveDate.isSame(this.currentDate,'day')) {
         dateSelector.setEnabled();
       }
-      if(directiveDate.isSame(this.checkInDate,'day')){
+      if(directiveDate.isSame(this.previousDate,'day')){
         dateSelector.setInRange('right');
-      } else if(directiveDate.isAfter(this.checkInDate,'day') && directiveDate.isBefore(this.checkOutDate,'day')) {
+      } else if(directiveDate.isAfter(this.previousDate,'day') && directiveDate.isBefore(this.currentDate,'day')) {
         dateSelector.setInRange('full');
-      } else if(directiveDate.isSame(this.checkOutDate,'day')){
+      } else if(directiveDate.isSame(this.currentDate,'day')){
         dateSelector.setInRange('left');
       }
 
@@ -148,32 +208,35 @@ export class DatePickerComponent {
     let self = this;
     let day = moment(selectedDate.id,FORMAT);
 
-    if((!this.focusOnCheckInDate
-      && day.isBefore(this.checkInDate,'day'))
+    /*if((!this.focusOnpreviousDate
+      && day.isBefore(this.previousDate,'day'))
       || day.isBefore(this.today,'day')
-      || day.isSame(this.checkInDate,'day')) {
+      || day.isSame(this.previousDate,'day')) {
         return;
-    }
+    }*/
 
-    // CheckInDate Is Selected Again
-    if(this.focusOnCheckInDate) {
-      this.clearSelectedDate(this.checkInDate);
-      this.clearSelectedDate(this.checkOutDate);
+    // previousDate Is Selected Again
+    /*if(this.focusOnpreviousDate) {
+      this.clearSelectedDate(this.previousDate);
+      this.clearSelectedDate(this.currentDate);
       this.selectDate(day);
-      this.checkInDate = day;
+      this.previousDate = day;
       setTimeout(() => {
         self.checkInSelected();
       });
-      this.checkOutDate = null;
-      this.focusOnCheckInDate = false;
-    } else { // CheckOutDate is Selected
+      this.currentDate = null;
+      this.focusOnpreviousDate = false;
+    } else { // currentDate is Selected
       this.selectDate(day);
-      this.checkOutDate = day;
-      this.focusOnCheckInDate = true;
+      this.currentDate = day;
+      this.focusOnpreviousDate = true;
       setTimeout(() => {
         self.checkoutSelected();
       });
-    }
+    }*/
+    this.clearSelectedDate(this.previousDate);
+    this.previousDate = day;
+    this.selectDate(day);
   }
 
   setTimeToZero(dateLocal) {
@@ -253,12 +316,9 @@ export class DatePickerComponent {
     });
   }
 
-
-
   // Hook up into the life cycle method when the component is initialized.
   ngOnInit() {
     let nextMonth = moment();
-    var date = new Date();
     for(let index = 0; index <= NUM_OF_MONTHS; index++) {
       this.init(nextMonth);
       nextMonth = nextMonth.clone().month(nextMonth.month() + 1);
@@ -270,7 +330,7 @@ export class DatePickerComponent {
   //Programmatically Set the CSS classes to optimize the performance
   ngAfterViewInit() {
     this.initSelectorMap();
-    this.selectDate(this.checkInDate);
+    this.selectDate(this.previousDate);
     this.selectToday(this.today);
   }
 

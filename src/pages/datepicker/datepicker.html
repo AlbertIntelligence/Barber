@@ -32,9 +32,8 @@
         <div class="day-grid">
           <ion-row class="text-center day-row" *ngFor="let week of monthObj.weeks; let rowIndex = index" >
             <ion-col class="day-col" *ngFor="let day of week.days; let colIndex = index">
-              <!--(click)="select(monthObj,day,rowIndex)"-->
 
-                <button ion-button  *ngIf="day"  clear [datespan]="day.id">
+                <button ion-button  *ngIf="day"  clear [datespan]="day.id" (click)="select(monthObj,day,rowIndex)">
                   {{day.displayText}}
                 </button>
 
@@ -48,13 +47,13 @@
     <ion-row style="">
       <ion-col col-3></ion-col>
       <ion-col col-2>
-        <ion-row style="padding: 5px; cursor: pointer">
+        <ion-row style="padding: 5px; cursor: pointer" (click)="increaseHour()">
           <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>
         </ion-row>
         <ion-row>
-          <p style="padding: 5px; font-size: 20px; margin: auto">11</p>
+          <p style="padding: 5px; font-size: 20px; margin: auto">{{currentHour}}</p>
         </ion-row>
-        <ion-row style="padding: 5px; cursor: pointer">
+        <ion-row style="padding: 5px; cursor: pointer" (click)="decreaseHour()">
           <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>
         </ion-row>
       </ion-col>
@@ -72,16 +71,20 @@
       </ion-col>
 
       <ion-col col-2>
-        <ion-row style="padding: 5px; cursor: pointer">
+        <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">
           <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>
         </ion-row>
         <ion-row>
-          <p style="padding: 5px; font-size: 20px; margin: auto">00</p>
+          <p style="padding: 5px; font-size: 20px; margin: auto">{{currentMinutes}}</p>
         </ion-row>
-        <ion-row style="padding: 5px; cursor: pointer">
+        <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">
           <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>
         </ion-row>
       </ion-col>
       <ion-col col-3></ion-col>
     </ion-row>
+
+    <div style="padding-left: 10%; padding-right: 10%;margin-top:80%">
+      <button ion-button class="round" full color="primary" (click)="writeUserData()">Réserver</button>
+    </div>
 </div>
