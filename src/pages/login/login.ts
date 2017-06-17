@@ -1,13 +1,13 @@
 import {Component} from "@angular/core";
-import {NavController} from "ionic-angular";
+import { NavController, ToastController } from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {RegisterPage} from "../register/register";
-import { User } from '../../providers/user';
+//import { User } from '../../providers/user';
 
-import { TranslateService } from '@ngx-translate/core';
+//import { TranslateService } from '@ngx-translate/core';
 
 import firebase from 'firebase';
-import { Facebook } from '@ionic-native/facebook'
+//import { Facebook } from '@ionic-native/facebook'
 
 
 /*
@@ -27,14 +27,15 @@ export class LoginPage {
   userProfile: any = null;
 
   constructor(public navCtrl: NavController,
-    public user: User,
-    public toastCtrl: ToastController,
-    public translateService: TranslateService,
-    private facebook: Facebook) {
+    //public user: User,
+    public toastCtrl: ToastController)
+    //public translateService: TranslateService
+    //private facebook: Facebook)
+    {
 
-    this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
+    /*this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
       this.signupErrorString = value;
-    })
+    })*/
   }
 
   /*****************************************************************************
@@ -88,7 +89,7 @@ export class LoginPage {
   Date de modification:
   Description: This function logs in the user via his facebook account
   *****************************************************************************/
-  facebookLogin() {
+  /*facebookLogin() {
     this.facebook.login(['email']).then( (response) => {
         const facebookCredential = firebase.auth.FacebookAuthProvider
             .credential(response.authResponse.accessToken);
@@ -103,7 +104,7 @@ export class LoginPage {
         });
 
     }).catch((error) => { console.log(error); });
-  }
+  }*/
 
   /*****************************************************************************
   Function: isLoggedIn
@@ -112,7 +113,7 @@ export class LoginPage {
   Date de modification:
   Description: This function tells if a user is logged in
   *****************************************************************************/
-  isLoggedIn(): boolean {
+  isLoggedIn(): Boolean {
     var user = firebase.auth().currentUser;
 
     if (user) {
