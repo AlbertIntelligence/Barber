@@ -6,6 +6,7 @@ import {HotelPage} from "../hotel/hotel";
 import {AccountPage} from "../account/account";
 import {UserProfilePage} from "../user-profile/user-profile";
 import {BarberLocation} from "../barber-location/barber-location";
+import { GoogleMaps } from '../maps/maps';
 
 
 /*
@@ -52,6 +53,10 @@ export class HomePage {
   // to go account page
   goToBarberLocation() {
     this.nav.push(BarberLocation);
+  }
+
+  goToMaps() {
+    this.nav.push(GoogleMaps);
   }
 
 }

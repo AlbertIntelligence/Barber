@@ -20,7 +20,8 @@ import {RegisterPage} from "../pages/register/register";
 import {UserProfilePage} from "../pages/user-profile/user-profile";
 import { DatePickerComponent, DateSelectorDirective } from '../pages/datepicker/datepicker';
 import { DatePickerService } from '../pages/datepicker/datepicker.service';
-
+import { GoogleMaps } from '../pages/maps/maps';
+import { Geolocation } from '@ionic-native/geolocation';
 
 //import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -52,6 +53,7 @@ const providers = [ DatePickerService ];
     components,
     directives,
     BarberLocation,
+    GoogleMaps,
 
   ],
   imports: [
@@ -72,6 +74,7 @@ const providers = [ DatePickerService ];
     TicketConfirmationPage,
     BarberLocation,
     components,
+    GoogleMaps
 
   ],
   providers: [
@@ -86,6 +89,7 @@ const providers = [ DatePickerService ];
     UserProfilePage,
     TicketConfirmationPage,
     providers,
+    Geolocation,
     /* import services */
   ]
 })

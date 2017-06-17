@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {NavController} from "ionic-angular";
 import {HomePage} from "../home/home";
 import {RegisterPage} from "../register/register";
+import {LoginModel} from "../login/loginModel";
 
 
 /*
@@ -16,7 +17,10 @@ import {RegisterPage} from "../register/register";
 })
 export class LoginPage {
 
-  constructor(public nav: NavController) {
+  public loginModel : any;
+
+  constructor(public nav: NavController ,public LoginModel: LoginModel) {
+    this.loginModel = LoginModel;
   }
 
   // go to register page
@@ -26,6 +30,11 @@ export class LoginPage {
 
   // login and go to home page
   login() {
-    this.nav.setRoot(HomePage);
+
+    if(this.loginModel.loginInterface) {
+      this.nav.setRoot(HomePage);
+    }
   }
+
+
 }
