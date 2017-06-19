@@ -17,7 +17,7 @@ import {AppointmentPage} from "../pages/appointment/appointment";
 import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
 import {UserProfilePage} from "../pages/user-profile/user-profile";
-
+import { Facebook } from '@ionic-native/facebook';
 
 // import services
 // end import services
@@ -67,6 +67,7 @@ import {UserProfilePage} from "../pages/user-profile/user-profile";
     TripService,
     UserProfilePage,
     TicketConfirmationPage,
+    Facebook
     /* import services */
   ]
 })

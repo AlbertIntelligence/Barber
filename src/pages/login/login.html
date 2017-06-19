@@ -36,13 +36,13 @@
     <p text-right ion-text color="light">Mot de passe oublié?</p>
 
     <div>
-      <button ion-button block color="primary" (click)="login()">
+      <button ion-button block color="primary" (click)="createUser('mail@mail.ca', 'password')">
         SE CONNECTER
       </button>
 
       <p text-center ion-text color="light">Ou</p>
 
-      <button ion-button block color="fb-color">
+      <button ion-button block color="fb-color" (click)="facebookLogin()">
         Se connecter avec Facebook
       </button>
     </div>
