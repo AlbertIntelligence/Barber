@@ -48,7 +48,7 @@ const providers = [ DatePickerService ];
     TicketConfirmationPage,
     components,
     directives,
-    BarberLocation,
+    BarberLocation
 
   ],
   imports: [
@@ -68,7 +68,7 @@ const providers = [ DatePickerService ];
     UserProfilePage,
     TicketConfirmationPage,
     BarberLocation,
-    components,
+    components
 
   ],
   providers: [
@@ -82,8 +82,8 @@ const providers = [ DatePickerService ];
     TripService,
     UserProfilePage,
     TicketConfirmationPage,
-    Facebook
-    providers,
+    Facebook,
+    providers
     /* import services */
   ]
 })
