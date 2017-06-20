@@ -18,12 +18,9 @@ import {AppointmentPage} from "../pages/appointment/appointment";
 import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
 import {UserProfilePage} from "../pages/user-profile/user-profile";
+//import { Facebook } from '@ionic-native/facebook';
 import { DatePickerComponent, DateSelectorDirective } from '../pages/datepicker/datepicker';
 import { DatePickerService } from '../pages/datepicker/datepicker.service';
-
-
-//import { SplashScreen } from '@ionic-native/splash-screen';
-
 
 // import services
 // end import services
@@ -51,7 +48,7 @@ const providers = [ DatePickerService ];
     TicketConfirmationPage,
     components,
     directives,
-    BarberLocation,
+    BarberLocation
 
   ],
   imports: [
@@ -71,7 +68,7 @@ const providers = [ DatePickerService ];
     UserProfilePage,
     TicketConfirmationPage,
     BarberLocation,
-    components,
+    components
 
   ],
   providers: [
@@ -85,7 +82,8 @@ const providers = [ DatePickerService ];
     TripService,
     UserProfilePage,
     TicketConfirmationPage,
-    providers,
+    //Facebook,
+    providers
     /* import services */
   ]
 })
