@@ -1,9 +1,7 @@
 import { Component, Directive, Input, ViewChildren, QueryList, ElementRef, Renderer } from '@angular/core';
 import { DatePickerService } from './datepicker.service';
 import moment from 'moment';
-import firebase from 'firebase';
-import { Platform } from 'ionic-angular';
-import { StatusBar } from 'ionic-native';
+import {DatePickerModel} from './DatePickerModel';
 
 const NUM_OF_DAYS = 7;
 const NUM_OF_MONTHS = 12;
@@ -61,16 +59,17 @@ export class DateSelectorDirective implements DateSelectorInterface {
   templateUrl: 'datepicker.html',
 })
 export class DatePickerComponent {
-  public weekNames:Array<String>;
-  public selectedDate:any;
-  public today:any;
-  public months:Array<any> = [];
-  public slideOptions:any;
-  public previousDate:any;
-  public currentDate:any;
-  public currentHour:any;
-  public currentMinutes:any;
-  public focusOnpreviousDate:Boolean = false;
+  private weekNames:Array<String>;
+  private selectedDate:any;
+  private today:any;
+  private months:Array<any> = [];
+  private slideOptions:any;
+  private previousDate:any;
+  private currentDate:any;
+  private currentHour:any;
+  private currentMinutes:any;
+  private focusOnpreviousDate:Boolean = false;
+  private appointments:DatePickerModel = new DatePickerModel();
 
   // A Map where key = 'DD-MMM-YYYY' and Value as the ViewChild Reference of the date element displayed in the
   // calendar view
@@ -79,50 +78,19 @@ export class DatePickerComponent {
   // Get All the  ViewChild References of the date element displayed in the
   // calendar view
   @ViewChildren(DateSelectorDirective) dateSelectors:QueryList<DateSelectorDirective>;
-  constructor(public datePickerService:DatePickerService, public platform: Platform) {
+  constructor(public datePickerService:DatePickerService) {
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
-    this.previousDate = this.today.clone();
-    this.currentHour = this.getFirstHourAvailable();
+    this.currentDate = this.today.clone();
+    this.currentHour = this.appointments.getFirstHourAvailable();
     this.currentMinutes = '00';
-
-    firebase.initializeApp({
-      apiKey: "AIzaSyBShXmN6TIS7xy2Tnr65NkCJbAEXM51g7Q",
-      authDomain: "mpc-app-37f6f.firebaseapp.com",
-      databaseURL: "https://mpc-app-37f6f.firebaseio.com",
-      projectId: "mpc-app-37f6f",
-      storageBucket: "mpc-app-37f6f.appspot.com",
-      messagingSenderId: "351355658098"
-    });
-
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-    });
-  }
-
-  //Get first hour available for an appointment
-  getFirstHourAvailable() {
-    //To be completed
-    return 10;
-  }
-
-  //Get next hour available for an appointment
-  getNextHourAvailable() {
-    //To be completed
-    return this.currentHour + 1;
-  }
-
-  //Get next hour available for an appointment
-  getPreviousHourAvailable() {
-    //To be completed
-    return this.currentHour - 1;
+    var d = new Date("Fri 30 2017");
+    this.disableDate(d);
   }
 
   //Increase hour value
   increaseHour() {
-    let nextHour = this.getNextHourAvailable();
+    let nextHour = this.appointments.getNextHourAvailable();
     if (nextHour != null) {
       this.currentHour = nextHour;
     } else {
@@ -132,7 +100,7 @@ export class DatePickerComponent {
 
   //Decrease hour value
   decreaseHour() {
-    let previousHour = this.getPreviousHourAvailable();
+    let previousHour = this.appointments.getPreviousHourAvailable();
     if (previousHour != null) {
       this.currentHour = previousHour;
     } else {
@@ -150,14 +118,25 @@ export class DatePickerComponent {
   }
 
   //Save appointment in database
-  writeUserData() {
-    var appointments = firebase.database().ref('Appointments/');
-    var apptId = 9;
-    var userId = firebase.auth().currentUser.uid;
-    appointments.child("Appt" + apptId).set({
-      Date: "June 23, 1912",
-      UserId: userId
-    });
+  getAppointment() {
+    var date = this.currentDate.toString().substring(0, 10) + ", " + this.currentHour + " : " + this.currentMinutes;
+    (this.appointments.isAvailable(date)) ? this.appointments.createNew(date) : alert("Réservation impossible !");
+  }
+
+  // Disable date in parameter
+  disableDate(date) {
+    if(date) {
+      let selectorKey = this.getSelectorKey(date);
+      this.dateDirectivesMap.get(selectorKey).setDisabled();
+    }
+  }
+
+  // Enable date in parameter
+  enableDate(date) {
+    if(date) {
+      let selectorKey = this.getSelectorKey(date);
+      this.dateDirectivesMap.get(selectorKey).setEnabled();
+    }
   }
 
   // Programmatically set the CSS Classes on the dates displayed in the Calendar View
@@ -186,6 +165,7 @@ export class DatePickerComponent {
     }
   }
 
+  /*
   // Programmatically set the CSS Classes on the dates displayed in the Calendar View
   checkInSelected() {
     this.dateSelectors.forEach((dateSelector) => {
@@ -222,10 +202,10 @@ export class DatePickerComponent {
       }
 
     });
-  }
+  }*/
 
   select(monthObj,selectedDate,rowIndex) {
-    let self = this;
+    //let self = this;
     let day = moment(selectedDate.id,FORMAT);
 
     /*if((!this.focusOnpreviousDate
@@ -254,8 +234,8 @@ export class DatePickerComponent {
         self.checkoutSelected();
       });
     }*/
-    this.clearSelectedDate(this.previousDate);
-    this.previousDate = day;
+    this.clearSelectedDate(this.currentDate);
+    this.currentDate = day;
     this.selectDate(day);
   }
 
@@ -350,7 +330,7 @@ export class DatePickerComponent {
   //Programmatically Set the CSS classes to optimize the performance
   ngAfterViewInit() {
     this.initSelectorMap();
-    this.selectDate(this.previousDate);
+    this.selectDate(this.currentDate);
     this.selectToday(this.today);
   }
 
