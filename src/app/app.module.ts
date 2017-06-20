@@ -82,7 +82,7 @@ const providers = [ DatePickerService ];
     TripService,
     UserProfilePage,
     TicketConfirmationPage,
-    Facebook,
+    //Facebook,
     providers
     /* import services */
   ]
