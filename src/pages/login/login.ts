@@ -9,7 +9,7 @@ import { NavController, ToastController } from 'ionic-angular';
 import firebase from 'firebase';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+//import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 
 /*
@@ -27,7 +27,7 @@ export class LoginPage {
   // Our translated text strings
   //private signupErrorString: string;
   userProfile: any = null;
-  loginDetails: FacebookLoginResponse;
+  //loginDetails: FacebookLoginResponse;
 
   /*constructor(public navCtrl: NavController,
     //public user: User,
@@ -40,7 +40,7 @@ export class LoginPage {
     })
   }*/
 
-  constructor(public navCtrl: NavController,private facebook: Facebook,public toastCtrl: ToastController,platform: Platform) {
+  constructor(public navCtrl: NavController,public toastCtrl: ToastController,platform: Platform) {
     firebase.initializeApp({
       apiKey: "AIzaSyBShXmN6TIS7xy2Tnr65NkCJbAEXM51g7Q",
       authDomain: "mpc-app-37f6f.firebaseapp.com",
@@ -108,10 +108,10 @@ export class LoginPage {
   Date de modification:
   Description: This function logs in the user via his facebook account
   *****************************************************************************/
-   facebookLogin() {
+   /*facebookLogin() {
      /*this.facebook.login(['', '', 'fataldika@hotmail.com'])
      .then((res: FacebookLoginResponse) => console.log('Logged into Facebook!', res))
-     .catch(e => console.log('Error logging into Facebook', e));*/
+     .catch(e => console.log('Error logging into Facebook', e));
 
      //this.facebook.logEvent(this.facebook.EVENTS.EVENT_NAME_ADDED_TO_CART);
 
@@ -129,7 +129,7 @@ export class LoginPage {
         });
 
     }).catch((error) => { alert("Error : " + error); });
-  }
+  }*/
 
   /*****************************************************************************
   Function: isLoggedIn
