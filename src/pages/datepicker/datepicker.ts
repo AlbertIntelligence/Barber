@@ -2,6 +2,8 @@ import { Component, Directive, Input, ViewChildren, QueryList, ElementRef, Rende
 import { DatePickerService } from './datepicker.service';
 import moment from 'moment';
 import firebase from 'firebase';
+import { Platform } from 'ionic-angular';
+import { StatusBar } from 'ionic-native';
 
 const NUM_OF_DAYS = 7;
 const NUM_OF_MONTHS = 12;
@@ -77,12 +79,27 @@ export class DatePickerComponent {
   // Get All the  ViewChild References of the date element displayed in the
   // calendar view
   @ViewChildren(DateSelectorDirective) dateSelectors:QueryList<DateSelectorDirective>;
-  constructor(public datePickerService:DatePickerService) {
+  constructor(public datePickerService:DatePickerService, public platform: Platform) {
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
     this.previousDate = this.today.clone();
     this.currentHour = this.getFirstHourAvailable();
     this.currentMinutes = '00';
+
+    firebase.initializeApp({
+      apiKey: "AIzaSyBShXmN6TIS7xy2Tnr65NkCJbAEXM51g7Q",
+      authDomain: "mpc-app-37f6f.firebaseapp.com",
+      databaseURL: "https://mpc-app-37f6f.firebaseio.com",
+      projectId: "mpc-app-37f6f",
+      storageBucket: "mpc-app-37f6f.appspot.com",
+      messagingSenderId: "351355658098"
+    });
+
+    platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      StatusBar.styleDefault();
+    });
   }
 
   //Get first hour available for an appointment
@@ -132,11 +149,14 @@ export class DatePickerComponent {
     }
   }
 
+  //Save appointment in database
   writeUserData() {
-    firebase.database().ref('Appointments/').set({
-      appointmentId: 1,
-      userId: 1,
-      date: 'October 13, 2014 11:13'
+    var appointments = firebase.database().ref('Appointments/');
+    var apptId = 9;
+    var userId = firebase.auth().currentUser.uid;
+    appointments.child("Appt" + apptId).set({
+      Date: "June 23, 1912",
+      UserId: userId
     });
   }
 
