@@ -12,12 +12,15 @@ import {AccountPage} from "../pages/account/account";
 import {CheckoutHotelPage} from "../pages/checkout-hotel/checkout-hotel";
 import {TicketConfirmationPage} from "../pages/ticket-confirmation/ticket-confirmation";
 import {HomePage} from "../pages/home/home";
+import {BarberLocation} from "../pages/barber-location/barber-location";
 import {HotelPage} from "../pages/hotel/hotel";
 import {AppointmentPage} from "../pages/appointment/appointment";
 import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
 import {UserProfilePage} from "../pages/user-profile/user-profile";
 import { Facebook } from '@ionic-native/facebook';
+import { DatePickerComponent, DateSelectorDirective } from '../pages/datepicker/datepicker';
+import { DatePickerService } from '../pages/datepicker/datepicker.service';
 
 // import services
 // end import services
@@ -25,6 +28,11 @@ import { Facebook } from '@ionic-native/facebook';
 
 // import pages
 // end import pages
+
+const components = [ DatePickerComponent ];
+const directives = [ DateSelectorDirective ];
+const providers = [ DatePickerService ];
+
 
 @NgModule({
   declarations: [
@@ -38,6 +46,10 @@ import { Facebook } from '@ionic-native/facebook';
     RegisterPage,
     UserProfilePage,
     TicketConfirmationPage,
+    components,
+    directives,
+    BarberLocation,
+
   ],
   imports: [
     BrowserModule,
@@ -55,6 +67,9 @@ import { Facebook } from '@ionic-native/facebook';
     RegisterPage,
     UserProfilePage,
     TicketConfirmationPage,
+    BarberLocation,
+    components,
+
   ],
   providers: [
     HotelService,
@@ -68,6 +83,7 @@ import { Facebook } from '@ionic-native/facebook';
     UserProfilePage,
     TicketConfirmationPage,
     Facebook
+    providers,
     /* import services */
   ]
 })

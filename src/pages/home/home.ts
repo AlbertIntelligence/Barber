@@ -5,6 +5,8 @@ import {AppointmentPage} from "../appointment/appointment";
 import {HotelPage} from "../hotel/hotel";
 import {AccountPage} from "../account/account";
 import {UserProfilePage} from "../user-profile/user-profile";
+import {BarberLocation} from "../barber-location/barber-location";
+
 
 /*
  Generated class for the LoginPage page.
@@ -45,6 +47,11 @@ export class HomePage {
   // to go account page
   goToAccount() {
     this.nav.push(AccountPage);
+  }
+
+  // to go account page
+  goToBarberLocation() {
+    this.nav.push(BarberLocation);
   }
 
 }

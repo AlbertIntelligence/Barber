@@ -1,0 +1,7 @@
+export class HomeModel {
+
+  constructor() {
+
+  }
+
+}
