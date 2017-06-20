@@ -108,27 +108,27 @@ export class LoginPage {
   Date de modification:
   Description: This function logs in the user via his facebook account
   *****************************************************************************/
-   async facebookLogin(): Promise<void> {
-     this.facebook.login(['', '', 'fataldika@hotmail.com'])
+   facebookLogin() {
+     /*this.facebook.login(['', '', 'fataldika@hotmail.com'])
      .then((res: FacebookLoginResponse) => console.log('Logged into Facebook!', res))
-     .catch(e => console.log('Error logging into Facebook', e));
+     .catch(e => console.log('Error logging into Facebook', e));*/
 
      //this.facebook.logEvent(this.facebook.EVENTS.EVENT_NAME_ADDED_TO_CART);
 
-    /*this.facebook.login(['fataldika@hotmail.com']).then( (response) => {
+    this.facebook.login(['']).then( (response) => {
         const facebookCredential = firebase.auth.FacebookAuthProvider
             .credential(response.authResponse.accessToken);
 
         firebase.auth().signInWithCredential(facebookCredential)
         .then((success) => {
-            console.log("Firebase success: " + JSON.stringify(success));
+            alert("Firebase success: " + JSON.stringify(success));
             this.userProfile = success;
         })
         .catch((error) => {
-            console.log("Firebase failure: " + JSON.stringify(error));
+            alert("Firebase failure: " + JSON.stringify(error));
         });
 
-    }).catch((error) => { console.log(error); });*/
+    }).catch((error) => { alert("Error : " + error); });
   }
 
   /*****************************************************************************
