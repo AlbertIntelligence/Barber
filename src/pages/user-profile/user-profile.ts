@@ -22,12 +22,17 @@ export class UserProfilePage {
 
 
   private ticketListener(){
-    const dbRefObject = firebase.database().ref().child('Ticket');
+    const dbRefObject = firebase.database().ref().child('Tickets/currentPosition');
      dbRefObject.on('value' , snap =>  this.ticketObject.position =   snap.val()  );
   }
 
+  private addTicketListener(){
+    const dbRefObject = firebase.database().ref().child('Tickets');
+    dbRefObject.set({currentPosition:this.ticketObject.position +1 });
+  }
+
   private ticketObject = {
-    'position': ''
+    'position': 0
   }
 
 
