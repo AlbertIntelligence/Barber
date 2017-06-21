@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import { NavController, ToastController } from 'ionic-angular';
+import {HomePage} from "../home/home";
 //import {HomePage} from "../home/home";
 //import {RegisterPage} from "../register/register";
 //import { User } from '../../providers/user';
@@ -40,6 +41,7 @@ export class LoginPage {
     })
   }*/
 
+
   constructor(public navCtrl: NavController,public toastCtrl: ToastController,platform: Platform) {
     firebase.initializeApp({
       apiKey: "AIzaSyBShXmN6TIS7xy2Tnr65NkCJbAEXM51g7Q",
@@ -55,6 +57,10 @@ export class LoginPage {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
     });
+  }
+
+  login() {
+    this.navCtrl.setRoot(HomePage);
   }
 
   /*****************************************************************************
