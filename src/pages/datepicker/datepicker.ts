@@ -306,7 +306,8 @@ export class DatePickerComponent {
       let directiveDate = moment(selectorId,FORMAT);
 
       //Programmatically set the CSS Class to disable and enable the dates
-      if(directiveDate.isBefore(this.today,'day')) {
+      //Mario perfect cut is not opened on mondays
+      if(directiveDate.isBefore(this.today,'day') || directiveDate.weekday() == 1) {
         dateSelector.setDisabled();
       } else {
         dateSelector.setEnabled();

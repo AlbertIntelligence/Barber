@@ -6,6 +6,7 @@ export class DatePickerModel {
   private openingHour:any;
   private closingHour:any;
   private businessHours:Array<any> = [];
+  private dataSnapshot:Array<any> = [];
   private platform: Platform = new Platform();
 
   constructor() {
@@ -24,6 +25,7 @@ export class DatePickerModel {
       StatusBar.styleDefault();
     });
 
+    this.updateDataSnapshot();
     this.businessHours = [
       {
         'Day': 'Monday',
@@ -69,6 +71,29 @@ export class DatePickerModel {
     return firebase.auth().currentUser.uid;
   }
 
+  //Get firebase data snapshot
+  /*updateDataSnapshot(data: Array<any>): Array<any> {
+    this.dataSnapshot = data;
+    console.log(this.dataSnapshot);
+    return this.dataSnapshot;
+  }*/
+
+  //Update firebase data snapshot
+  async updateDataSnapshot() {
+    let appointmentsList = new Array<any>();
+    await firebase.database().ref('Appointments/')
+     .once('value').then(function(snapshot) {
+       let appointments = snapshot.val();
+
+       for (var property in appointments) {
+          if (appointments.hasOwnProperty(property)) {
+              appointmentsList.push(appointments[property]);
+          }
+       }
+     });
+     this.dataSnapshot = appointmentsList;
+  }
+
   //Get first hour available for an appointment
   getFirstHourAvailable(date: String) {
     //To be completed
@@ -95,15 +120,15 @@ export class DatePickerModel {
 
   //Tells if the date and hour in parameter is available in db
   isAvailable(date: String, hour: String): Boolean {
-    return true;
+    return (this.dataSnapshot.find(item => item.Date == date && item.Hour == hour) == undefined);
   }
 
   //Create new record in db
   createNew(date: String, hour: String) {
     var appointments = firebase.database().ref('Appointments/');
-    var apptId = 23;
     var userId = firebase.auth().currentUser.uid;
-    appointments.child("Appointment" + apptId).set({
+    var timeStamp = new Date().getTime().toString();
+    appointments.child(timeStamp).set({
       UserId: userId,
       Date: date,
       Hour: hour
@@ -111,8 +136,8 @@ export class DatePickerModel {
   }
 
   //Get all days that are entirely booked
-  getDaysBooked() {
-
+  getDaysBooked(): Array<String> {
+    return [];
   }
 
 
