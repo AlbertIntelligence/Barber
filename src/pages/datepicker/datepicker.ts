@@ -82,15 +82,13 @@ export class DatePickerComponent {
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
     this.currentDate = this.today.clone();
-    this.currentHour = this.appointments.getFirstHourAvailable();
+    this.currentHour = this.appointments.getFirstHourAvailable(this.currentDate);
     this.currentMinutes = '00';
-    var d = new Date("Fri 30 2017");
-    this.disableDate(d);
   }
 
   //Increase hour value
   increaseHour() {
-    let nextHour = this.appointments.getNextHourAvailable();
+    let nextHour = this.appointments.getNextHourAvailable(this.currentDate);
     if (nextHour != null) {
       this.currentHour = nextHour;
     } else {
@@ -100,7 +98,7 @@ export class DatePickerComponent {
 
   //Decrease hour value
   decreaseHour() {
-    let previousHour = this.appointments.getPreviousHourAvailable();
+    let previousHour = this.appointments.getPreviousHourAvailable(this.currentDate);
     if (previousHour != null) {
       this.currentHour = previousHour;
     } else {
@@ -119,24 +117,26 @@ export class DatePickerComponent {
 
   //Save appointment in database
   getAppointment() {
-    var date = this.currentDate.toString().substring(0, 10) + ", " + this.currentHour + " : " + this.currentMinutes;
-    (this.appointments.isAvailable(date)) ? this.appointments.createNew(date) : alert("Réservation impossible !");
+    var day = this.currentDate.toString().substring(8, 10);
+    var month = this.currentDate.toString().substring(4, 7);
+    var year = this.currentDate.toString().substring(11, 15);
+    var date = day + "-" + month + "-" + year;
+    var hour = this.currentHour + " : " + this.currentMinutes;
+    (this.appointments.isAvailable(date, hour)) ? this.appointments.createNew(date, hour) : alert("Réservation impossible !");
   }
 
   // Disable date in parameter
   disableDate(date) {
-    if(date) {
-      let selectorKey = this.getSelectorKey(date);
-      this.dateDirectivesMap.get(selectorKey).setDisabled();
-    }
+    //Date format = "DD-MMM-YYYY"
+    let dayBooked = this.dateSelectors.find(item => item.id === date);
+    dayBooked.setDisabled();
   }
 
   // Enable date in parameter
   enableDate(date) {
-    if(date) {
-      let selectorKey = this.getSelectorKey(date);
-      this.dateDirectivesMap.get(selectorKey).setEnabled();
-    }
+    //Date format = "DD-MMM-YYYY"
+    let dayBooked = this.dateSelectors.find(item => item.id === date);
+    dayBooked.setEnabled();
   }
 
   // Programmatically set the CSS Classes on the dates displayed in the Calendar View
@@ -207,7 +207,6 @@ export class DatePickerComponent {
   select(monthObj,selectedDate,rowIndex) {
     //let self = this;
     let day = moment(selectedDate.id,FORMAT);
-
     /*if((!this.focusOnpreviousDate
       && day.isBefore(this.previousDate,'day'))
       || day.isBefore(this.today,'day')
@@ -305,6 +304,7 @@ export class DatePickerComponent {
       //console.log(dateSelector.getId());
       let selectorId = dateSelector.getId();
       let directiveDate = moment(selectorId,FORMAT);
+
       //Programmatically set the CSS Class to disable and enable the dates
       if(directiveDate.isBefore(this.today,'day')) {
         dateSelector.setDisabled();
@@ -312,7 +312,6 @@ export class DatePickerComponent {
         dateSelector.setEnabled();
       }
       this.populateSelectorMap(dateSelector);
-
     });
   }
 

@@ -3,7 +3,10 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
 export class DatePickerModel {
-  public platform: Platform = new Platform();
+  private openingHour:any;
+  private closingHour:any;
+  private businessHours:Array<any> = [];
+  private platform: Platform = new Platform();
 
   constructor() {
     firebase.initializeApp({
@@ -20,6 +23,45 @@ export class DatePickerModel {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
     });
+
+    this.businessHours = [
+      {
+        'Day': 'Monday',
+        'Opening': null,
+        'Closure': null
+      },
+      {
+        'Day': 'Tuesday',
+        'Opening': 10,
+        'Closure': 18
+      },
+      {
+        'Day': 'Wednesday',
+        'Opening': 10,
+        'Closure': 18
+      },
+      {
+        'Day': 'Thursday',
+        'Opening': 10,
+        'Closure': 21
+      },
+      {
+        'Day': 'Friday',
+        'Opening': 10,
+        'Closure': 21
+      },
+      {
+        'Day': 'Saturday',
+        'Opening': 10,
+        'Closure': 18
+      },
+      {
+        'Day': 'Sunday',
+        'Opening': 10,
+        'Closure': 17
+      }
+    ];
+
   }
 
   //Get the current user id key
@@ -28,37 +70,49 @@ export class DatePickerModel {
   }
 
   //Get first hour available for an appointment
-  getFirstHourAvailable() {
+  getFirstHourAvailable(date: String) {
     //To be completed
     return 10;
   }
 
   //Get next hour available for an appointment
-  getNextHourAvailable() {
+  getNextHourAvailable(date: String) {
     //To be completed
     return 11;
   }
 
   //Get next hour available for an appointment
-  getPreviousHourAvailable() {
+  getPreviousHourAvailable(date: String) {
     //To be completed
     return 9;
   }
 
+  //Get the business hours of the day in parameter
+  getBusinessHours(date: String) {
+    var day = date.toString().substring(0, 3);
+    return this.businessHours.find(item => item.Day.indexOf(day) != -1);
+  }
+
   //Tells if the date and hour in parameter is available in db
-  isAvailable(date: String): Boolean {
-    return false;
+  isAvailable(date: String, hour: String): Boolean {
+    return true;
   }
 
   //Create new record in db
-  createNew(date: String) {
+  createNew(date: String, hour: String) {
     var appointments = firebase.database().ref('Appointments/');
     var apptId = 23;
     var userId = firebase.auth().currentUser.uid;
-    appointments.child("Appt" + apptId).set({
+    appointments.child("Appointment" + apptId).set({
+      UserId: userId,
       Date: date,
-      UserId: userId
+      Hour: hour
     });
+  }
+
+  //Get all days that are entirely booked
+  getDaysBooked() {
+
   }
 
 
