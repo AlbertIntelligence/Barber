@@ -66,10 +66,10 @@ export class DatePickerComponent {
   private slideOptions:any;
   private previousDate:any;
   private currentDate:any;
-  private currentHour:any;
-  private currentMinutes:any;
+  private currentHour:any = "10";
+  private currentMinutes:any = "00";
   private focusOnpreviousDate:Boolean = false;
-  private appointments:DatePickerModel = new DatePickerModel();
+  private appointments:DatePickerModel;
 
   // A Map where key = 'DD-MMM-YYYY' and Value as the ViewChild Reference of the date element displayed in the
   // calendar view
@@ -79,30 +79,42 @@ export class DatePickerComponent {
   // calendar view
   @ViewChildren(DateSelectorDirective) dateSelectors:QueryList<DateSelectorDirective>;
   constructor(public datePickerService:DatePickerService) {
+    this.appointments = new DatePickerModel();
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
     this.currentDate = this.today.clone();
-    this.currentHour = this.appointments.getFirstHourAvailable(this.currentDate);
-    this.currentMinutes = '00';
+    this.setDefaultHour();
   }
 
   //Increase hour value
   increaseHour() {
-    let nextHour = this.appointments.getNextHourAvailable(this.currentDate);
-    if (nextHour != null) {
-      this.currentHour = nextHour;
+    var closingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Closure);
+    if (closingHour >= (parseFloat(this.currentHour) + 1)) {
+      this.currentHour += 1;
+      //check if hour is available
+      var hour = this.currentHour + " : " + this.currentMinutes;
+      if (!this.appointments.isAvailable(this.currentDate.format(FORMAT), hour)) {
+        alert('no');
+        //To be completed : display plage horaire pas disponible
+      }
     } else {
-      //To be completed : Display Plus aucune autre plage horaire disponible.
+      //To be completed : Display Heure de fermeture
     }
   }
 
   //Decrease hour value
   decreaseHour() {
-    let previousHour = this.appointments.getPreviousHourAvailable(this.currentDate);
-    if (previousHour != null) {
-      this.currentHour = previousHour;
+    var openingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Opening);
+    if (openingHour <= (parseFloat(this.currentHour) - 1)) {
+      this.currentHour -= 1;
+      //check if hour is available
+      var hour = this.currentHour + " : " + this.currentMinutes;
+      if (!this.appointments.isAvailable(this.currentDate.format(FORMAT), hour)) {
+        alert('no');
+        //To be completed : display plage horaire pas disponible
+      }
     } else {
-      //To be completed : Display Plus aucune autre plage horaire disponible.
+      //To be completed : Display heure d'ouverture
     }
   }
 
@@ -113,14 +125,24 @@ export class DatePickerComponent {
     } else if (this.currentMinutes == '30') {
       this.currentMinutes = '00';
     }
+
+    //check if hour is available
+    var hour = this.currentHour + " : " + this.currentMinutes;
+    if (!this.appointments.isAvailable(this.currentDate.format(FORMAT), hour)) {
+      alert('no');
+      //To be completed : display plage horaire pas disponible
+    }
+  }
+
+  //Find the first available hour in date selected
+  setDefaultHour() {
+    this.currentHour = this.appointments.getBusinessHours(this.currentDate).Opening;
+    this.currentMinutes = (this.currentHour.toString().length > 2) ? "30" : "00";
   }
 
   //Save appointment in database
   getAppointment() {
-    var day = this.currentDate.toString().substring(8, 10);
-    var month = this.currentDate.toString().substring(4, 7);
-    var year = this.currentDate.toString().substring(11, 15);
-    var date = day + "-" + month + "-" + year;
+    var date = this.currentDate.format(FORMAT);
     var hour = this.currentHour + " : " + this.currentMinutes;
     (this.appointments.isAvailable(date, hour)) ? this.appointments.createNew(date, hour) : alert("Réservation impossible !");
   }

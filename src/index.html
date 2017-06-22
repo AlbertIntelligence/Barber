@@ -12,9 +12,6 @@
   <link rel="manifest" href="assets/manifest.json">
   <meta name="theme-color" content="#4e8ef7">
 
-  <!-- cordova.js required for cordova apps -->
-  <script src="cordova.js"></script>
-
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
   <script>
     // Initialize Firebase
@@ -28,6 +25,9 @@
     };
     firebase.initializeApp(config);
   </script>
+
+  <!-- cordova.js required for cordova apps -->
+  <script src="cordova.js"></script>
   <!-- un-comment this code to enable service worker
   <script>
     if ('serviceWorker' in navigator) {
