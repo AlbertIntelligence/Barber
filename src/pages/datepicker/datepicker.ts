@@ -15,6 +15,7 @@ interface DateSelectorInterface {
 @Directive({ selector: '[datespan]' })
 export class DateSelectorDirective implements DateSelectorInterface {
   @Input('datespan') id: String;
+
   constructor(public elemRef:ElementRef,public renderer:Renderer) {
   }
 
@@ -70,6 +71,7 @@ export class DatePickerComponent {
   private currentMinutes:any = "00";
   private focusOnpreviousDate:Boolean = false;
   private appointments:DatePickerModel;
+  private conflictMessageClasses:any = { 'conflictMessageOn': false, 'conflictMessageOff': true };
 
   // A Map where key = 'DD-MMM-YYYY' and Value as the ViewChild Reference of the date element displayed in the
   // calendar view
@@ -84,37 +86,33 @@ export class DatePickerComponent {
     this.today = moment();
     this.currentDate = this.today.clone();
     this.setDefaultHour();
+    this.disableBookedDays();
+    this.displayConflictMessage();
   }
 
   //Increase hour value
   increaseHour() {
     var closingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Closure);
-    if (closingHour >= (parseFloat(this.currentHour) + 1)) {
+    if (closingHour > (parseFloat(this.currentHour) + 1)) {
       this.currentHour += 1;
       //check if hour is available
-      var hour = this.currentHour + " : " + this.currentMinutes;
-      if (!this.appointments.isAvailable(this.currentDate.format(FORMAT), hour)) {
-        alert('no');
-        //To be completed : display plage horaire pas disponible
-      }
+      this.displayConflictMessage();
     } else {
       //To be completed : Display Heure de fermeture
+      alert('no');
     }
   }
 
   //Decrease hour value
   decreaseHour() {
     var openingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Opening);
-    if (openingHour <= (parseFloat(this.currentHour) - 1)) {
+    if (openingHour < (parseFloat(this.currentHour) - 1)) {
       this.currentHour -= 1;
       //check if hour is available
-      var hour = this.currentHour + " : " + this.currentMinutes;
-      if (!this.appointments.isAvailable(this.currentDate.format(FORMAT), hour)) {
-        alert('no');
-        //To be completed : display plage horaire pas disponible
-      }
+
     } else {
       //To be completed : Display heure d'ouverture
+      alert('no');
     }
   }
 
@@ -127,12 +125,19 @@ export class DatePickerComponent {
     }
 
     //check if hour is available
+    this.displayConflictMessage();
+  }
+
+  //Display the correct message if hour and date is available or not
+  displayConflictMessage () {
     var hour = this.currentHour + " : " + this.currentMinutes;
     if (!this.appointments.isAvailable(this.currentDate.format(FORMAT), hour)) {
-      alert('no');
-      //To be completed : display plage horaire pas disponible
+      this.conflictMessageClasses = { 'conflictMessageOn': true, 'conflictMessageOff': false };
+    } else {
+      this.conflictMessageClasses = { 'conflictMessageOn': false, 'conflictMessageOff': true };
     }
   }
+
 
   //Find the first available hour in date selected
   setDefaultHour() {
@@ -145,6 +150,7 @@ export class DatePickerComponent {
     var date = this.currentDate.format(FORMAT);
     var hour = this.currentHour + " : " + this.currentMinutes;
     (this.appointments.isAvailable(date, hour)) ? this.appointments.createNew(date, hour) : alert("Réservation impossible !");
+    this.disableBookedDays();
   }
 
   // Disable date in parameter
@@ -159,6 +165,15 @@ export class DatePickerComponent {
     //Date format = "DD-MMM-YYYY"
     let dayBooked = this.dateSelectors.find(item => item.id === date);
     dayBooked.setEnabled();
+  }
+
+  //Disable all dates that are full booked
+  disableBookedDays = function () {
+    //Disable days that are full booked
+    var daysBooked = this.appointments.getDaysBooked();
+    for (var i = 0; i < daysBooked.length; i++) {
+      this.disableDate(daysBooked[i]);
+    }
   }
 
   // Programmatically set the CSS Classes on the dates displayed in the Calendar View
@@ -258,6 +273,7 @@ export class DatePickerComponent {
     this.clearSelectedDate(this.currentDate);
     this.currentDate = day;
     this.selectDate(day);
+    this.displayConflictMessage();
   }
 
   setTimeToZero(dateLocal) {

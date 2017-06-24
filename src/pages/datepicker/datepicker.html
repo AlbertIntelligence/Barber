@@ -84,6 +84,10 @@
       <ion-col col-3></ion-col>
     </ion-row>
 
+    <ion-row>
+      <p [ngClass] = "conflictMessageClasses">Cette plage horaire n'est plus disponible.</p>
+    </ion-row>
+
     <div style="padding-left: 10%; padding-right: 10%;margin-top:7%">
       <button ion-button class="round" full color="primary" (click)="getAppointment()">Réserver</button>
     </div>

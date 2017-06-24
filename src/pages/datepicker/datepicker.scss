@@ -164,5 +164,14 @@
       }
 
     }
+  }
 
+  .conflictMessageOn {
+    display: inline;
+    color: red;
+    margin: auto;
+  }
+  .conflictMessageOff {
+    display: none;
+    margin: auto;
   }
