@@ -21,6 +21,7 @@ import {UserProfilePage} from "../pages/user-profile/user-profile";
 //import { Facebook } from '@ionic-native/facebook';
 import { DatePickerComponent, DateSelectorDirective } from '../pages/datepicker/datepicker';
 import { DatePickerService } from '../pages/datepicker/datepicker.service';
+import {Alert} from '../pages/alert/alert';
 
 // import services
 // end import services
@@ -48,12 +49,13 @@ const providers = [ DatePickerService ];
     TicketConfirmationPage,
     components,
     directives,
-    BarberLocation
+    BarberLocation,
+    Alert,
 
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -68,7 +70,10 @@ const providers = [ DatePickerService ];
     UserProfilePage,
     TicketConfirmationPage,
     BarberLocation,
-    components
+    components,
+    Alert
+
+
 
   ],
   providers: [
@@ -82,8 +87,9 @@ const providers = [ DatePickerService ];
     TripService,
     UserProfilePage,
     TicketConfirmationPage,
+    Alert,
     //Facebook,
-    providers
+    providers,
     /* import services */
   ]
 })
