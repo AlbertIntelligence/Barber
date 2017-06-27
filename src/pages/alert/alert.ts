@@ -1,18 +1,25 @@
-import { Component } from "@angular/core";
+ import { Component } from "@angular/core";
 import { AlertController } from "ionic-angular/index";
 import {TicketConfirmationPage} from "../ticket-confirmation/ticket-confirmation";
-import {NavController} from "ionic-angular";
+ import {UserProfilePage} from "../user-profile/user-profile";
+import {NavController,App} from "ionic-angular";
+ import {Injectable} from '@angular/core';
 @Component({
   selector: 'page-alert',
   templateUrl: 'alert.html'
 })
+@Injectable()
 export class Alert {
 
   private nav: NavController;
   private ticketConfirmationPage:TicketConfirmationPage;
+  private userProfile:UserProfilePage;
 
-  constructor(private alertCtrl ?: AlertController ) {
+
+  constructor(private alertCtrl ?: AlertController ,private app?:App) {
+    this.nav = app.getActiveNav();
     this.ticketConfirmationPage = new TicketConfirmationPage();
+    this.userProfile = new UserProfilePage ;
   }
 
   presentAlert() {
@@ -29,15 +36,20 @@ export class Alert {
         },
         {
           text: 'Confirm',
-          handler: data => {
-            console.log('Confirm clicked');
-            //this.nav.push(TicketConfirmationPage).catch(() => {});
+            handler: data => {
+            let navTransition = alert.dismiss();
+              navTransition.then(() => {
+                this.nav.push(TicketConfirmationPage);
+               this.userProfile.checkPayment();
+              });
           }
         }
       ]
     });
     alert.present();
   }
+
+
 
 
 
