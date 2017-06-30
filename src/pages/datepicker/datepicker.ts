@@ -107,7 +107,7 @@ export class DatePickerComponent {
   //Decrease hour value
   decreaseHour() {
     var openingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Opening);
-    if (openingHour < (parseFloat(this.currentHour) - 1)) {
+    if (openingHour <= (parseFloat(this.currentHour) - 1)) {
       this.currentHour = parseInt(this.currentHour) - 1;
       //check if hour is available
       this.verifyAvailibility();
@@ -190,7 +190,6 @@ export class DatePickerComponent {
   selectToday(selectedDate) {
     let selectorKey = this.getSelectorKey(selectedDate);
     this.dateDirectivesMap.get(selectorKey).setToday();
-
   }
 
   // Programmatically set the CSS Classes on the dates displayed in the Calendar View
@@ -201,74 +200,8 @@ export class DatePickerComponent {
     }
   }
 
-  /*
-  // Programmatically set the CSS Classes on the dates displayed in the Calendar View
-  checkInSelected() {
-    this.dateSelectors.forEach((dateSelector) => {
-      //console.log(dateSelector.getId());
-      let selectorId = dateSelector.getId();
-      let directiveDate = moment(selectorId,FORMAT);
-
-      if(directiveDate.isBefore(this.previousDate,'day')) {
-        dateSelector.setDisabled();
-      } else {
-        dateSelector.setEnabled();
-      }
-    });
-  }
-
-  // Programmatically set the CSS Classes on the dates displayed in the Calendar View
-  checkoutSelected() {
-    this.dateSelectors.forEach((dateSelector) => {
-      //console.log(dateSelector.getId());
-      let selectorId = dateSelector.getId();
-      let directiveDate = moment(selectorId,FORMAT);
-
-      if(directiveDate.isBefore(this.today,'day')) {
-        dateSelector.setDisabled();
-      } else if (!directiveDate.isSame(this.currentDate,'day')) {
-        dateSelector.setEnabled();
-      }
-      if(directiveDate.isSame(this.previousDate,'day')){
-        dateSelector.setInRange('right');
-      } else if(directiveDate.isAfter(this.previousDate,'day') && directiveDate.isBefore(this.currentDate,'day')) {
-        dateSelector.setInRange('full');
-      } else if(directiveDate.isSame(this.currentDate,'day')){
-        dateSelector.setInRange('left');
-      }
-
-    });
-  }*/
-
   select(monthObj,selectedDate,rowIndex) {
-    //let self = this;
     let day = moment(selectedDate.id,FORMAT);
-    /*if((!this.focusOnpreviousDate
-      && day.isBefore(this.previousDate,'day'))
-      || day.isBefore(this.today,'day')
-      || day.isSame(this.previousDate,'day')) {
-        return;
-    }*/
-
-    // previousDate Is Selected Again
-    /*if(this.focusOnpreviousDate) {
-      this.clearSelectedDate(this.previousDate);
-      this.clearSelectedDate(this.currentDate);
-      this.selectDate(day);
-      this.previousDate = day;
-      setTimeout(() => {
-        self.checkInSelected();
-      });
-      this.currentDate = null;
-      this.focusOnpreviousDate = false;
-    } else { // currentDate is Selected
-      this.selectDate(day);
-      this.currentDate = day;
-      this.focusOnpreviousDate = true;
-      setTimeout(() => {
-        self.checkoutSelected();
-      });
-    }*/
     this.clearSelectedDate(this.currentDate);
     this.currentDate = day;
     this.selectDate(day);
@@ -340,7 +273,6 @@ export class DatePickerComponent {
   // and populate the ViewChildren in the dateDirectivesMap
   initSelectorMap() {
     this.dateSelectors.forEach((dateSelector) => {
-      //console.log(dateSelector.getId());
       let selectorId = dateSelector.getId();
       let directiveDate = moment(selectorId,FORMAT);
 

@@ -1,31 +1,13 @@
 import firebase from 'firebase';
-import { Platform } from 'ionic-angular';
-import { StatusBar } from 'ionic-native';
 import {DatePickerComponent} from '../datepicker/datepicker';
 
 export class DatePickerModel {
   private businessHours:Array<any> = [];
   private dataSnapshot:Array<any> = [];
-  private platform: Platform = new Platform();
   private controller:DatePickerComponent;
 
   constructor(controller:DatePickerComponent) {
     this.controller = controller;
-    firebase.initializeApp({
-      apiKey: "AIzaSyBShXmN6TIS7xy2Tnr65NkCJbAEXM51g7Q",
-      authDomain: "mpc-app-37f6f.firebaseapp.com",
-      databaseURL: "https://mpc-app-37f6f.firebaseio.com",
-      projectId: "mpc-app-37f6f",
-      storageBucket: "mpc-app-37f6f.appspot.com",
-      messagingSenderId: "351355658098"
-    });
-
-    this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-    });
-
     this.businessHours = [
       {
         'Day': 'Monday',
@@ -63,21 +45,7 @@ export class DatePickerModel {
         'Closure': 17
       }
     ];
-
     this.updateDataSnapshot();
-    //this.updateDataSnapshot();  //Event listener tp database
-    //Event listener on change in database
-    /*let model = this;
-    firebase.database().ref('Appointments/')
-     .on('value', function(snapshot) {
-       let appointments = snapshot.val();
-       model.dataSnapshot = [];
-       for (var property in appointments) {
-          if (appointments.hasOwnProperty(property)) {
-              model.dataSnapshot.push(appointments[property]);
-          }
-       }
-     });*/
   }
 
   //Get the current user id key

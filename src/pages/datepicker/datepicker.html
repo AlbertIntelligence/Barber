@@ -44,7 +44,7 @@
     </ion-list>
   </ion-content>
 
-    <ion-row style="margin-top:5%">
+    <ion-row style="margin-top:2%">
       <ion-col col-3></ion-col>
       <ion-col col-2>
         <ion-row style="padding: 5px; cursor: pointer" (click)="increaseHour()">
@@ -63,7 +63,7 @@
           <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>
         </ion-row>
         <ion-row>
-          <p style="padding: 5px; font-size: 20px; margin: auto">: {{test}}</p>
+          <p style="padding: 5px; font-size: 20px; margin: auto">:</p>
         </ion-row>
         <ion-row style="padding: 5px; cursor: pointer">
           <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>
@@ -88,7 +88,7 @@
       <p [ngClass] = "conflictMessageClasses">{{errorMessage}}</p>
     </ion-row>
 
-    <div style="padding-left: 10%; padding-right: 10%;margin-top:7%">
+    <div style="padding-left: 10%; padding-right: 10%;margin-top:3%">
       <button ion-button class="round" full color="primary" (click)="getAppointment()">Réserver</button>
     </div>
 </div>
