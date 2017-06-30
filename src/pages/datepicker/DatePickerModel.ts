@@ -8,6 +8,15 @@ export class DatePickerModel {
   private platform: Platform = new Platform();
 
   constructor() {
+    firebase.initializeApp({
+      apiKey: "AIzaSyBShXmN6TIS7xy2Tnr65NkCJbAEXM51g7Q",
+      authDomain: "mpc-app-37f6f.firebaseapp.com",
+      databaseURL: "https://mpc-app-37f6f.firebaseio.com",
+      projectId: "mpc-app-37f6f",
+      storageBucket: "mpc-app-37f6f.appspot.com",
+      messagingSenderId: "351355658098"
+    });
+
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -52,8 +61,8 @@ export class DatePickerModel {
       }
     ];
 
-    this.updateDataSnapshot();  //Event listener tp database
-    console.log(this.dataSnapshot);
+    this.updateDataSnapshot();
+    //this.updateDataSnapshot();  //Event listener tp database
     //Event listener on change in database
     /*let model = this;
     firebase.database().ref('Appointments/')
@@ -74,9 +83,9 @@ export class DatePickerModel {
   }
 
   //Update firebase data snapshot
-  async updateDataSnapshot() {
+  updateDataSnapshot() {
     let model = this;
-    await firebase.database().ref('Appointments/')
+    firebase.database().ref('Appointments/')
      .on('value', function(snapshot) {
        let appointments = snapshot.val();
        model.dataSnapshot = [];

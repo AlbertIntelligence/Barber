@@ -71,7 +71,10 @@ export class DatePickerComponent {
   private currentMinutes:any = "00";
   private focusOnpreviousDate:Boolean = false;
   private appointments:DatePickerModel;
+  private errorMessage:String;
   private conflictMessageClasses:any = { 'conflictMessageOn': false, 'conflictMessageOff': true };
+  private openingHour:String;
+  private closingHour:String;
 
   // A Map where key = 'DD-MMM-YYYY' and Value as the ViewChild Reference of the date element displayed in the
   // calendar view
@@ -87,19 +90,21 @@ export class DatePickerComponent {
     this.currentDate = this.today.clone();
     this.setDefaultHour();
     this.disableBookedDays();
-    this.displayConflictMessage();
+    this.openingHour = this.appointments.getBusinessHours(this.currentDate).Opening + "h";
+    this.closingHour = this.appointments.getBusinessHours(this.currentDate).Closure + "h";
+    this.verifyAvailibility();
   }
 
   //Increase hour value
   increaseHour() {
     var closingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Closure);
     if (closingHour > (parseFloat(this.currentHour) + 1)) {
-      this.currentHour += 1;
+      this.currentHour = parseInt(this.currentHour) + 1;
       //check if hour is available
-      this.displayConflictMessage();
+      this.verifyAvailibility();
     } else {
       //To be completed : Display Heure de fermeture
-      alert('no');
+      this.displayConflictMessage("Heures d'ouverture : " + this.openingHour + " - " + this.closingHour);
     }
   }
 
@@ -107,41 +112,40 @@ export class DatePickerComponent {
   decreaseHour() {
     var openingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Opening);
     if (openingHour < (parseFloat(this.currentHour) - 1)) {
-      this.currentHour -= 1;
+      this.currentHour = parseInt(this.currentHour) - 1;
       //check if hour is available
-
+      this.verifyAvailibility();
     } else {
-      //To be completed : Display heure d'ouverture
-      alert('no');
+      //To be completed : Display Heure de fermeture
+      this.displayConflictMessage("Heures d'ouverture : " + this.openingHour + " - " + this.closingHour);
     }
   }
 
   //Change the minutes value
   changeMinutes() {
-    if (this.currentMinutes == '00') {
-      this.currentMinutes = '30';
-    } else if (this.currentMinutes == '30') {
-      this.currentMinutes = '00';
-    }
-
-    //check if hour is available
-    this.displayConflictMessage();
+    this.currentMinutes = (this.currentMinutes == '00') ? '30' : '00';
+    this.verifyAvailibility();
   }
 
   //Display the correct message if hour and date is available or not
-  displayConflictMessage () {
+  displayConflictMessage (errorMessage) {
     var hour = this.currentHour + " : " + this.currentMinutes;
-    if (!this.appointments.isAvailable(this.currentDate.format(FORMAT), hour)) {
-      this.conflictMessageClasses = { 'conflictMessageOn': true, 'conflictMessageOff': false };
-    } else {
-      this.conflictMessageClasses = { 'conflictMessageOn': false, 'conflictMessageOff': true };
-    }
+    this.errorMessage = errorMessage;
+    this.conflictMessageClasses = { 'conflictMessageOn': true, 'conflictMessageOff': false };
   }
 
+  //Check if time selected is available
+  verifyAvailibility () {
+    this.conflictMessageClasses = { 'conflictMessageOn': false, 'conflictMessageOff': true };
+    var hour = this.currentHour + " : " + this.currentMinutes;
+    if (!this.appointments.isAvailable(this.currentDate.format(FORMAT), hour))
+        this.displayConflictMessage("Cette plage horaire n'est plus disponible.");
+  }
 
   //Find the first available hour in date selected
   setDefaultHour() {
-    this.currentHour = this.appointments.getBusinessHours(this.currentDate).Opening;
+    var hour = this.appointments.getBusinessHours(this.currentDate).Opening;
+    this.currentHour = hour.toString().substring(0, 2);
     this.currentMinutes = (this.currentHour.toString().length > 2) ? "30" : "00";
   }
 
@@ -168,7 +172,7 @@ export class DatePickerComponent {
   }
 
   //Disable all dates that are full booked
-  disableBookedDays = function () {
+  disableBookedDays() {
     //Disable days that are full booked
     var daysBooked = this.appointments.getDaysBooked();
     for (var i = 0; i < daysBooked.length; i++) {
@@ -273,7 +277,9 @@ export class DatePickerComponent {
     this.clearSelectedDate(this.currentDate);
     this.currentDate = day;
     this.selectDate(day);
-    this.displayConflictMessage();
+    this.openingHour = this.appointments.getBusinessHours(this.currentDate).Opening + "h";
+    this.closingHour = this.appointments.getBusinessHours(this.currentDate).Closure + "h";
+    this.verifyAvailibility();
   }
 
   setTimeToZero(dateLocal) {
