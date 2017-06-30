@@ -1,13 +1,16 @@
 import firebase from 'firebase';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
+import {DatePickerComponent} from '../datepicker/datepicker';
 
 export class DatePickerModel {
   private businessHours:Array<any> = [];
   private dataSnapshot:Array<any> = [];
   private platform: Platform = new Platform();
+  private controller:DatePickerComponent;
 
-  constructor() {
+  constructor(controller:DatePickerComponent) {
+    this.controller = controller;
     firebase.initializeApp({
       apiKey: "AIzaSyBShXmN6TIS7xy2Tnr65NkCJbAEXM51g7Q",
       authDomain: "mpc-app-37f6f.firebaseapp.com",
@@ -94,6 +97,8 @@ export class DatePickerModel {
               model.dataSnapshot.push(appointments[property]);
           }
        }
+       model.controller.verifyAvailibility();
+       model.controller.disableBookedDays();
      });
   }
 

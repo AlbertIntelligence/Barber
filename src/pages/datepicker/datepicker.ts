@@ -1,5 +1,4 @@
 import { Component, Directive, Input, ViewChildren, QueryList, ElementRef, Renderer } from '@angular/core';
-import { DatePickerService } from './datepicker.service';
 import moment from 'moment';
 import {DatePickerModel} from './DatePickerModel';
 
@@ -64,12 +63,9 @@ export class DatePickerComponent {
   private selectedDate:any;
   private today:any;
   private months:Array<any> = [];
-  private slideOptions:any;
-  private previousDate:any;
   private currentDate:any;
-  private currentHour:any = "10";
+  public currentHour:any = "10";
   private currentMinutes:any = "00";
-  private focusOnpreviousDate:Boolean = false;
   private appointments:DatePickerModel;
   private errorMessage:String;
   private conflictMessageClasses:any = { 'conflictMessageOn': false, 'conflictMessageOff': true };
@@ -83,8 +79,8 @@ export class DatePickerComponent {
   // Get All the  ViewChild References of the date element displayed in the
   // calendar view
   @ViewChildren(DateSelectorDirective) dateSelectors:QueryList<DateSelectorDirective>;
-  constructor(public datePickerService:DatePickerService) {
-    this.appointments = new DatePickerModel();
+  constructor() {
+    this.appointments = new DatePickerModel(this);
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
     this.currentDate = this.today.clone();
@@ -129,7 +125,6 @@ export class DatePickerComponent {
 
   //Display the correct message if hour and date is available or not
   displayConflictMessage (errorMessage) {
-    var hour = this.currentHour + " : " + this.currentMinutes;
     this.errorMessage = errorMessage;
     this.conflictMessageClasses = { 'conflictMessageOn': true, 'conflictMessageOff': false };
   }
@@ -350,8 +345,8 @@ export class DatePickerComponent {
       let directiveDate = moment(selectorId,FORMAT);
 
       //Programmatically set the CSS Class to disable and enable the dates
-      //Mario perfect cut is not opened on mondays
-      if(directiveDate.isBefore(this.today,'day') || directiveDate.weekday() == 1) {
+      //Mario perfect cut is not opened on mondays =  || directiveDate.weekday() == 1
+      if(directiveDate.isBefore(this.today,'day')) {
         dateSelector.setDisabled();
       } else {
         dateSelector.setEnabled();
