@@ -156,7 +156,7 @@ export class DatePickerComponent {
   disableDate(date) {
     //Date format = "DD-MMM-YYYY"
     let dayBooked = this.dateSelectors.find(item => item.id === date);
-    dayBooked.setDisabled();
+    if (typeof dayBooked != "undefined") dayBooked.setDisabled();
   }
 
   // Enable date in parameter

@@ -28,13 +28,8 @@ export class HomePage {
   }
 
   // view hotel detail
-  viewHotel(hotelId) {
-    this.nav.push(AppointmentPage, {id: hotelId});
-  }
-
-  // view all hotels
-  viewHotels() {
-    this.nav.push(HotelPage);
+  getAnAppointment() {
+    this.nav.push(AppointmentPage);
   }
 
   // go to search hotel page
