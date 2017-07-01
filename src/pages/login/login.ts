@@ -8,7 +8,6 @@ import {HomePage} from "../home/home";
 
 import firebase from 'firebase';
 import { Platform } from 'ionic-angular';
-import { StatusBar } from 'ionic-native';
 //import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 
@@ -41,7 +40,7 @@ export class LoginPage {
   }*/
 
   constructor(public navCtrl: NavController,public toastCtrl: ToastController,platform: Platform) {
-    
+
   }
   gotohome() {
     this.navCtrl.push(HomePage);

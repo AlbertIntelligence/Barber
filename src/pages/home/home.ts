@@ -1,8 +1,7 @@
 import {Component} from "@angular/core";
 import {NavController} from "ionic-angular";
 import {HotelService} from "../../services/hotel-service";
-import {AppointmentPage} from "../appointment/appointment";
-import {HotelPage} from "../hotel/hotel";
+import {DatePickerComponent} from "../datepicker/datepicker";
 import {AccountPage} from "../account/account";
 import {UserProfilePage} from "../user-profile/user-profile";
 import {BarberLocation} from "../barber-location/barber-location";
@@ -29,7 +28,7 @@ export class HomePage {
 
   // view hotel detail
   getAnAppointment() {
-    this.nav.push(AppointmentPage);
+    this.nav.push(DatePickerComponent);
   }
 
   // go to search hotel page

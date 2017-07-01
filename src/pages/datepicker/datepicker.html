@@ -1,94 +1,103 @@
+<ion-header>
 
-<div class="datepicker" >
-  <!-- ion-scroll contains the header row to display the checkIn, checkout and the weekNames -->
-  <ion-scroll class="auto-scroll cal-bg header-row">
-    <ion-row class="text-center input-row">
-      <ion-col width-100 [ngClass]="{'selected-input':checkInDate,
-                        'non-selected-input':focusOnCheckInDate}">
-        <div class="check-text">Choisissez le jour</div>
-        <div *ngIf="checkInDate" class="check-date">
-          {{checkInDate.format('ddd, DD MMM')}}
-        </div>
-      </ion-col>
-    </ion-row>
+  <ion-navbar color="primary">
+    <ion-title>Mario Perfect Cut</ion-title>
+  </ion-navbar>
+</ion-header>
 
-    <ion-row class="text-center week-row">
-      <ion-col *ngFor="let weekName of weekNames" style="font-weight: bold">
-        <span>{{weekName}}</span>
-      </ion-col>
-    </ion-row>
-  </ion-scroll>
 
-  <!-- ion-content contains the calendar months displayed in the view -->
-  <ion-content class="auto-scroll cal-bg month-list">
-    <ion-list>
-      <ion-item *ngFor="let monthObj of months">
-        <ion-row class="month-row" >
-          <ion-col width-60 class="text-center">
-            {{monthObj.selectedMonth.format("MMM YYYY")}}
-          </ion-col>
-        </ion-row>
+<ion-content class=" light-bg">
+  <div class="datepicker" >
+    <!-- ion-scroll contains the header row to display the checkIn, checkout and the weekNames -->
+    <ion-scroll class="auto-scroll cal-bg header-row">
+      <ion-row class="text-center input-row">
+        <ion-col width-100 [ngClass]="{'selected-input':checkInDate,
+                          'non-selected-input':focusOnCheckInDate}">
+          <div class="check-text">Choisissez le jour</div>
+          <div *ngIf="checkInDate" class="check-date">
+            {{checkInDate.format('ddd, DD MMM')}}
+          </div>
+        </ion-col>
+      </ion-row>
 
-        <div class="day-grid">
-          <ion-row class="text-center day-row" *ngFor="let week of monthObj.weeks; let rowIndex = index" >
-            <ion-col class="day-col" *ngFor="let day of week.days; let colIndex = index">
+      <ion-row class="text-center week-row">
+        <ion-col *ngFor="let weekName of weekNames" style="font-weight: bold">
+          <span>{{weekName}}</span>
+        </ion-col>
+      </ion-row>
+    </ion-scroll>
 
-                <button ion-button  *ngIf="day"  clear [datespan]="day.id" (click)="select(monthObj,day,rowIndex)">
-                  {{day.displayText}}
-                </button>
-
+    <!-- ion-content contains the calendar months displayed in the view -->
+    <ion-content class="auto-scroll cal-bg month-list">
+      <ion-list>
+        <ion-item *ngFor="let monthObj of months">
+          <ion-row class="month-row" >
+            <ion-col width-60 class="text-center">
+              {{monthObj.selectedMonth.format("MMM YYYY")}}
             </ion-col>
           </ion-row>
-        </div>
-      </ion-item>
-    </ion-list>
-  </ion-content>
 
-    <ion-row style="margin-top:2%">
-      <ion-col col-3></ion-col>
-      <ion-col col-2>
-        <ion-row style="padding: 5px; cursor: pointer" (click)="increaseHour()">
-          <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>
-        </ion-row>
-        <ion-row>
-          <p style="padding: 5px; font-size: 20px; margin: auto">{{currentHour}}</p>
-        </ion-row>
-        <ion-row style="padding: 5px; cursor: pointer" (click)="decreaseHour()">
-          <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>
-        </ion-row>
-      </ion-col>
+          <div class="day-grid">
+            <ion-row class="text-center day-row" *ngFor="let week of monthObj.weeks; let rowIndex = index" >
+              <ion-col class="day-col" *ngFor="let day of week.days; let colIndex = index">
 
-      <ion-col col-2>
-        <ion-row style="padding: 5px; cursor: pointer">
-          <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>
-        </ion-row>
-        <ion-row>
-          <p style="padding: 5px; font-size: 20px; margin: auto">:</p>
-        </ion-row>
-        <ion-row style="padding: 5px; cursor: pointer">
-          <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>
-        </ion-row>
-      </ion-col>
+                  <button ion-button  *ngIf="day"  clear [datespan]="day.id" (click)="select(monthObj,day,rowIndex)">
+                    {{day.displayText}}
+                  </button>
 
-      <ion-col col-2>
-        <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">
-          <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>
-        </ion-row>
-        <ion-row>
-          <p style="padding: 5px; font-size: 20px; margin: auto">{{currentMinutes}}</p>
-        </ion-row>
-        <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">
-          <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>
-        </ion-row>
-      </ion-col>
-      <ion-col col-3></ion-col>
-    </ion-row>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-content>
 
-    <ion-row>
-      <p [ngClass] = "conflictMessageClasses">{{errorMessage}}</p>
-    </ion-row>
+      <ion-row style="margin-top:2%">
+        <ion-col col-3></ion-col>
+        <ion-col col-2>
+          <ion-row style="padding: 5px; cursor: pointer" (click)="increaseHour()">
+            <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>
+          </ion-row>
+          <ion-row>
+            <p style="padding: 5px; font-size: 20px; margin: auto">{{currentHour}}</p>
+          </ion-row>
+          <ion-row style="padding: 5px; cursor: pointer" (click)="decreaseHour()">
+            <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>
+          </ion-row>
+        </ion-col>
 
-    <div style="padding-left: 10%; padding-right: 10%;margin-top:3%">
-      <button ion-button class="round" full color="primary" (click)="getAppointment()">Réserver</button>
-    </div>
-</div>
+        <ion-col col-2>
+          <ion-row style="padding: 5px; cursor: pointer">
+            <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>
+          </ion-row>
+          <ion-row>
+            <p style="padding: 5px; font-size: 20px; margin: auto">:</p>
+          </ion-row>
+          <ion-row style="padding: 5px; cursor: pointer">
+            <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>
+          </ion-row>
+        </ion-col>
+
+        <ion-col col-2>
+          <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">
+            <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>
+          </ion-row>
+          <ion-row>
+            <p style="padding: 5px; font-size: 20px; margin: auto">{{currentMinutes}}</p>
+          </ion-row>
+          <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">
+            <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>
+          </ion-row>
+        </ion-col>
+        <ion-col col-3></ion-col>
+      </ion-row>
+
+      <ion-row>
+        <p [ngClass] = "conflictMessageClasses">{{errorMessage}}</p>
+      </ion-row>
+
+      <div style="padding-left: 10%; padding-right: 10%;margin-top:3%">
+        <button ion-button class="round" full color="primary" (click)="getAppointment()">Réserver</button>
+      </div>
+  </div>
+</ion-content>
