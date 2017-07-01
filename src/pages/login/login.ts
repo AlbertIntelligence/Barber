@@ -1,46 +1,15 @@
 import {Component} from "@angular/core";
 import { NavController, ToastController } from 'ionic-angular';
 import {HomePage} from "../home/home";
-//import {RegisterPage} from "../register/register";
-//import { User } from '../../providers/user';
-
-//import { TranslateService } from '@ngx-translate/core';
-
 import firebase from 'firebase';
-import { Platform } from 'ionic-angular';
-//import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
-
-/*
- Generated class for the LoginPage page.
-
- See http://ionicframework.com/docs/v2/components/#navigation for more info on
- Ionic pages and navigation.
- */
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
 
-  // Our translated text strings
-  //private signupErrorString: string;
-  userProfile: any = null;
-  //loginDetails: FacebookLoginResponse;
-
-  /*constructor(public navCtrl: NavController,
-    //public user: User,
-    public toastCtrl: ToastController,
-    //public translateService: TranslateService
-    private facebook: Facebook)
-    {
-    /*this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
-      this.signupErrorString = value;
-    })
-  }*/
-
-  constructor(public navCtrl: NavController,public toastCtrl: ToastController,platform: Platform) {
-
+  constructor(public navCtrl: NavController) {
   }
   gotohome() {
     this.navCtrl.push(HomePage);
