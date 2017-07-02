@@ -1,6 +1,7 @@
 import { Component, Directive, Input, ViewChildren, QueryList, ElementRef, Renderer } from '@angular/core';
 import moment from 'moment';
 import {DatePickerModel} from './DatePickerModel';
+import { AlertController } from 'ionic-angular';
 
 const NUM_OF_DAYS = 7;
 const NUM_OF_MONTHS = 12;
@@ -64,7 +65,7 @@ export class DatePickerComponent {
   private today:any;
   private months:Array<any> = [];
   private currentDate:any;
-  public currentHour:any = "10";
+  private currentHour:any = "10";
   private currentMinutes:any = "00";
   private appointments:DatePickerModel;
   private errorMessage:String;
@@ -79,16 +80,15 @@ export class DatePickerComponent {
   // Get All the  ViewChild References of the date element displayed in the
   // calendar view
   @ViewChildren(DateSelectorDirective) dateSelectors:QueryList<DateSelectorDirective>;
-  constructor() {
+  constructor(public alertCtrl: AlertController) {
     this.appointments = new DatePickerModel(this);
+    
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
     this.currentDate = this.today.clone();
     this.setDefaultHour();
-    this.disableBookedDays();
     this.openingHour = this.appointments.getBusinessHours(this.currentDate).Opening + "h";
     this.closingHour = this.appointments.getBusinessHours(this.currentDate).Closure + "h";
-    this.verifyAvailibility();
   }
 
   //Increase hour value
@@ -146,8 +146,18 @@ export class DatePickerComponent {
   getAppointment() {
     var date = this.currentDate.format(FORMAT);
     var hour = this.currentHour + " : " + this.currentMinutes;
-    (this.appointments.isAvailable(date, hour)) ? this.appointments.createNew(date, hour) : alert("Réservation impossible !");
+    (this.appointments.isAvailable(date, hour)) ? this.appointments.createNew(date, hour) : this.showAlert();
     this.disableBookedDays();
+  }
+
+  //Display alert when user clicks on get appointment and date/hour is not available
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Réservation impossible !',
+      subTitle: 'Veuillez choisir une autre plage horaire.',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   // Disable date in parameter
@@ -161,12 +171,11 @@ export class DatePickerComponent {
   enableDate(date) {
     //Date format = "DD-MMM-YYYY"
     let dayBooked = this.dateSelectors.find(item => item.id === date);
-    dayBooked.setEnabled();
+    if (typeof dayBooked != "undefined") dayBooked.setEnabled();
   }
 
   //Disable all dates that are full booked
   disableBookedDays() {
-    //Disable days that are full booked
     var daysBooked = this.appointments.getDaysBooked();
     for (var i = 0; i < daysBooked.length; i++) {
       this.disableDate(daysBooked[i]);

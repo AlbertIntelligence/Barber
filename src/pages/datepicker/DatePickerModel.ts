@@ -5,6 +5,7 @@ export class DatePickerModel {
   private businessHours:Array<any> = [];
   private dataSnapshot:Array<any> = [];
   private controller:DatePickerComponent;
+  public x:String = "test";
 
   constructor(controller:DatePickerComponent) {
     this.controller = controller;
@@ -129,6 +130,5 @@ export class DatePickerModel {
 
     return daysBooked;
   }
-
 
 }
