@@ -96,8 +96,7 @@ export class DatePickerComponent {
     var closingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Closure);
     if (closingHour > (parseFloat(this.currentHour) + 1)) {
       this.currentHour = parseInt(this.currentHour) + 1;
-      //check if hour is available
-      this.verifyAvailibility();
+      this.verifyAvailibility();  //check if hour is available
     } else {
       //To be completed : Display Heure de fermeture
       this.displayConflictMessage("Heures d'ouverture : " + this.openingHour + " - " + this.closingHour);
@@ -109,8 +108,7 @@ export class DatePickerComponent {
     var openingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Opening);
     if (openingHour <= (parseFloat(this.currentHour) - 1)) {
       this.currentHour = parseInt(this.currentHour) - 1;
-      //check if hour is available
-      this.verifyAvailibility();
+      this.verifyAvailibility();  //check if hour is available
     } else {
       //To be completed : Display Heure de fermeture
       this.displayConflictMessage("Heures d'ouverture : " + this.openingHour + " - " + this.closingHour);
