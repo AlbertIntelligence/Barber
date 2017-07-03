@@ -48,12 +48,24 @@ export class UserProfilePage {
     dbRefObject.set({currentPosition:this.ticketObject.position +1 });
   }
 
+  public makeTransaction(){
+
+    if( this.checkPayment() == 'yes' ){
+      this.setHiddeDiv(false);
+      console.log("transaction completed");
+    }
+
+    if("sms acti"){}
+    if("sms acti"){}
+    if("sms acti"){}
+
+  }
+
+
   public checkPayment(){
     const dbRefObject = firebase.database().ref().child('Tickets/paymentCompleted');
     dbRefObject.on('value' , snap =>  this.ticketObject.paymentCompleted =   snap.val()  );
-    if(this.ticketObject.paymentCompleted.toString() == 'yes' ){
-      this.setHiddeDiv(false);
-    }
+    return this.ticketObject.paymentCompleted.toString();
   }
 
   private ticketObject = {
@@ -67,3 +79,4 @@ export class UserProfilePage {
   }
 
 }
+

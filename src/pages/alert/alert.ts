@@ -38,7 +38,7 @@ export class Alert {
           text: 'Confirm',
             handler: data => {
               this.nav.push(TicketConfirmationPage);
-              this.userProfile.checkPayment();
+              this.userProfile.makeTransaction();
           }
         }
       ]
