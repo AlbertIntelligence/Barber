@@ -1,14 +1,15 @@
+import { Component } from '@angular/core';
 import firebase from 'firebase';
-import {DatePickerComponent} from '../datepicker/datepicker';
 
+@Component({
+    templateUrl: '../datepicker/datepicker.html',
+})
 export class DatePickerModel {
   private businessHours:Array<any> = [];
   private dataSnapshot:Array<any> = [];
-  private controller:DatePickerComponent;
-  public x:String = "test";
 
-  constructor(controller:DatePickerComponent) {
-    this.controller = controller;
+  constructor() {
+    this.updateDataSnapshot();
     this.businessHours = [
       {
         'Day': 'Monday',
@@ -38,7 +39,7 @@ export class DatePickerModel {
       {
         'Day': 'Saturday',
         'Opening': 10,
-        'Closure': 11
+        'Closure': 18
       },
       {
         'Day': 'Sunday',
@@ -46,7 +47,6 @@ export class DatePickerModel {
         'Closure': 17
       }
     ];
-    this.updateDataSnapshot();
   }
 
   //Get the current user id key
@@ -66,8 +66,6 @@ export class DatePickerModel {
               model.dataSnapshot.push(appointments[property]);
           }
        }
-       model.controller.verifyAvailibility();
-       model.controller.disableBookedDays();
      });
   }
 

@@ -2,6 +2,7 @@ import { Component, Directive, Input, ViewChildren, QueryList, ElementRef, Rende
 import moment from 'moment';
 import {DatePickerModel} from './DatePickerModel';
 import { AlertController } from 'ionic-angular';
+import firebase from 'firebase';
 
 const NUM_OF_DAYS = 7;
 const NUM_OF_MONTHS = 12;
@@ -81,14 +82,14 @@ export class DatePickerComponent {
   // calendar view
   @ViewChildren(DateSelectorDirective) dateSelectors:QueryList<DateSelectorDirective>;
   constructor(public alertCtrl: AlertController) {
-    this.appointments = new DatePickerModel(this);
-    
+    this.appointments = new DatePickerModel();
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
     this.currentDate = this.today.clone();
     this.setDefaultHour();
     this.openingHour = this.appointments.getBusinessHours(this.currentDate).Opening + "h";
     this.closingHour = this.appointments.getBusinessHours(this.currentDate).Closure + "h";
+    this.updateDataSnapshot();
   }
 
   //Increase hour value
@@ -140,6 +141,16 @@ export class DatePickerComponent {
     var hour = this.appointments.getBusinessHours(this.currentDate).Opening;
     this.currentHour = hour.toString().substring(0, 2);
     this.currentMinutes = (this.currentHour.toString().length > 2) ? "30" : "00";
+  }
+
+  //Database event listener
+  updateDataSnapshot() {
+    let controller = this;
+    firebase.database().ref('Appointments/')
+     .on('value', function(snapshot) {
+       controller.verifyAvailibility();
+       controller.appointments.getDaysBooked();
+     });
   }
 
   //Save appointment in database

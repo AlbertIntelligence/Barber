@@ -14,22 +14,17 @@
   $calDayColBgColor: $calBaseColor;
 
   datepicker {
-    height: 40%;
+    height: 50%;
     width: 50%;
   }
   .datepicker {
     position: relative;
     padding-bottom: 0%;
-    height:40%;
-    width:105%;
+    height:50%;
+    width:100%;
     margin-top: 0;
     margin-bottom: -5%;
     background-color: $calBaseColor;
-    ion-scroll:first-child {
-      min-height:100px;
-      padding:0 !important;
-
-    }
 
     ion-grid {
       padding:0;
