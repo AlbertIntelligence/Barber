@@ -17,19 +17,20 @@ import {Alert} from "../alert/alert";
 export class UserProfilePage {
 
 
-  private hiddeDiv:any = true;
+  private hiddenDiv:any;
 
 
 
   constructor(public nav?: NavController, private newAlert?: Alert) {
     this.ticketListener();
+    this.setHiddeDiv(true);
   }
 
   setHiddeDiv(value: any) {
-    this.hiddeDiv = value;
+    this.hiddenDiv = value;
   }
   getHiddeDiv(): any {
-    return this.hiddeDiv;
+    return this.hiddenDiv;
   }
 
   public confirmMessage() {
@@ -51,9 +52,7 @@ export class UserProfilePage {
     const dbRefObject = firebase.database().ref().child('Tickets/paymentCompleted');
     dbRefObject.on('value' , snap =>  this.ticketObject.paymentCompleted =   snap.val()  );
     if(this.ticketObject.paymentCompleted.toString() == 'yes' ){
-      this.hiddeDiv = false;
-      //setTimeout('', 5000);
-      //this.hiddeDiv = true;
+      this.setHiddeDiv(false);
     }
   }
 

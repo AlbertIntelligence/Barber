@@ -37,11 +37,8 @@ export class Alert {
         {
           text: 'Confirm',
             handler: data => {
-            let navTransition = alert.dismiss();
-              navTransition.then(() => {
-                this.nav.push(TicketConfirmationPage);
-               this.userProfile.checkPayment();
-              });
+              this.nav.push(TicketConfirmationPage);
+              this.userProfile.checkPayment();
           }
         }
       ]
