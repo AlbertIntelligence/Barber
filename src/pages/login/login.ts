@@ -9,11 +9,32 @@ import firebase from 'firebase';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController) {
+constructor(public navCtrl: NavController) {
+  // Our translated text strings
+  //private signupErrorString: string;
+  userProfile: any = null;
+  //loginDetails: FacebookLoginResponse;
+
+  /*constructor(public navCtrl: NavController,
+    //public user: User,
+    public toastCtrl: ToastController,
+    //public translateService: TranslateService
+    private facebook: Facebook)
+    {
+    /*this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
+      this.signupErrorString = value;
+    })
+  }*/
+
   }
   gotohome() {
     this.navCtrl.push(HomePage);
   }
+
+  login() {
+    this.navCtrl.setRoot(HomePage);
+  }
+
   /*****************************************************************************
   Function: createUser
   Auteur(s): Koueni Deumeni
