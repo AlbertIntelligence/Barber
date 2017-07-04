@@ -53,6 +53,7 @@ export class UserProfilePage {
     if( this.checkPayment() == 'yes' ){
       this.setHiddeDiv(false);
       console.log("transaction completed");
+
     }
 
     if("sms acti"){}
