@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import { NavController, ToastController } from 'ionic-angular';
 import {HomePage} from "../home/home";
+
 //import {RegisterPage} from "../register/register";
 //import { User } from '../../providers/user';
 
@@ -40,12 +41,18 @@ export class LoginPage {
     })
   }*/
 
+
   constructor(public navCtrl: NavController,public toastCtrl: ToastController,platform: Platform) {
     
   }
   gotohome() {
     this.navCtrl.push(HomePage);
   }
+
+  login() {
+    this.navCtrl.setRoot(HomePage);
+  }
+
   /*****************************************************************************
   Function: createUser
   Auteur(s): Koueni Deumeni
