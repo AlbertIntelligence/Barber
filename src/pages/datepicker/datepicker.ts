@@ -1,6 +1,6 @@
 import { Component, Directive, Input, ViewChildren, QueryList, ElementRef, Renderer } from '@angular/core';
-import { DatePickerService } from './datepicker.service';
 import moment from 'moment';
+import {DatePickerModel} from './DatePickerModel';
 
 const NUM_OF_DAYS = 7;
 const NUM_OF_MONTHS = 12;
@@ -14,6 +14,7 @@ interface DateSelectorInterface {
 @Directive({ selector: '[datespan]' })
 export class DateSelectorDirective implements DateSelectorInterface {
   @Input('datespan') id: String;
+
   constructor(public elemRef:ElementRef,public renderer:Renderer) {
   }
 
@@ -58,14 +59,18 @@ export class DateSelectorDirective implements DateSelectorInterface {
   templateUrl: 'datepicker.html',
 })
 export class DatePickerComponent {
-  public weekNames:Array<String>;
-  public selectedDate:any;
-  public today:any;
-  public months:Array<any> = [];
-  public slideOptions:any;
-  public checkInDate:any;
-  public checkOutDate:any;
-  public focusOnCheckInDate:Boolean = false;
+  private weekNames:Array<String>;
+  private selectedDate:any;
+  private today:any;
+  private months:Array<any> = [];
+  private currentDate:any;
+  public currentHour:any = "10";
+  private currentMinutes:any = "00";
+  private appointments:DatePickerModel;
+  private errorMessage:String;
+  private conflictMessageClasses:any = { 'conflictMessageOn': false, 'conflictMessageOff': true };
+  private openingHour:String;
+  private closingHour:String;
 
   // A Map where key = 'DD-MMM-YYYY' and Value as the ViewChild Reference of the date element displayed in the
   // calendar view
@@ -74,10 +79,100 @@ export class DatePickerComponent {
   // Get All the  ViewChild References of the date element displayed in the
   // calendar view
   @ViewChildren(DateSelectorDirective) dateSelectors:QueryList<DateSelectorDirective>;
-  constructor(public datePickerService:DatePickerService) {
+  constructor() {
+    this.appointments = new DatePickerModel(this);
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
-    this.checkInDate = this.today.clone();
+    this.currentDate = this.today.clone();
+    this.setDefaultHour();
+    this.disableBookedDays();
+    this.openingHour = this.appointments.getBusinessHours(this.currentDate).Opening + "h";
+    this.closingHour = this.appointments.getBusinessHours(this.currentDate).Closure + "h";
+    this.verifyAvailibility();
+  }
+
+  //Increase hour value
+  increaseHour() {
+    var closingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Closure);
+    if (closingHour > (parseFloat(this.currentHour) + 1)) {
+      this.currentHour = parseInt(this.currentHour) + 1;
+      //check if hour is available
+      this.verifyAvailibility();
+    } else {
+      //To be completed : Display Heure de fermeture
+      this.displayConflictMessage("Heures d'ouverture : " + this.openingHour + " - " + this.closingHour);
+    }
+  }
+
+  //Decrease hour value
+  decreaseHour() {
+    var openingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Opening);
+    if (openingHour <= (parseFloat(this.currentHour) - 1)) {
+      this.currentHour = parseInt(this.currentHour) - 1;
+      //check if hour is available
+      this.verifyAvailibility();
+    } else {
+      //To be completed : Display Heure de fermeture
+      this.displayConflictMessage("Heures d'ouverture : " + this.openingHour + " - " + this.closingHour);
+    }
+  }
+
+  //Change the minutes value
+  changeMinutes() {
+    this.currentMinutes = (this.currentMinutes == '00') ? '30' : '00';
+    this.verifyAvailibility();
+  }
+
+  //Display the correct message if hour and date is available or not
+  displayConflictMessage (errorMessage) {
+    this.errorMessage = errorMessage;
+    this.conflictMessageClasses = { 'conflictMessageOn': true, 'conflictMessageOff': false };
+  }
+
+  //Check if time selected is available
+  verifyAvailibility () {
+    this.conflictMessageClasses = { 'conflictMessageOn': false, 'conflictMessageOff': true };
+    var hour = this.currentHour + " : " + this.currentMinutes;
+    if (!this.appointments.isAvailable(this.currentDate.format(FORMAT), hour))
+        this.displayConflictMessage("Cette plage horaire n'est plus disponible.");
+  }
+
+  //Find the first available hour in date selected
+  setDefaultHour() {
+    var hour = this.appointments.getBusinessHours(this.currentDate).Opening;
+    this.currentHour = hour.toString().substring(0, 2);
+    this.currentMinutes = (this.currentHour.toString().length > 2) ? "30" : "00";
+  }
+
+  //Save appointment in database
+  getAppointment() {
+    var date = this.currentDate.format(FORMAT);
+    var hour = this.currentHour + " : " + this.currentMinutes;
+    (this.appointments.isAvailable(date, hour)) ? this.appointments.createNew(date, hour) : alert("Réservation impossible !");
+    this.disableBookedDays();
+  }
+
+  // Disable date in parameter
+  disableDate(date) {
+    //Date format = "DD-MMM-YYYY"
+    let dayBooked = this.dateSelectors.find(item => item.id === date);
+    dayBooked.setDisabled();
+  }
+
+  // Enable date in parameter
+  enableDate(date) {
+    //Date format = "DD-MMM-YYYY"
+    let dayBooked = this.dateSelectors.find(item => item.id === date);
+    dayBooked.setEnabled();
+  }
+
+  //Disable all dates that are full booked
+  disableBookedDays() {
+    //Disable days that are full booked
+    var daysBooked = this.appointments.getDaysBooked();
+    for (var i = 0; i < daysBooked.length; i++) {
+      this.disableDate(daysBooked[i]);
+    }
   }
 
   // Programmatically set the CSS Classes on the dates displayed in the Calendar View
@@ -95,7 +190,6 @@ export class DatePickerComponent {
   selectToday(selectedDate) {
     let selectorKey = this.getSelectorKey(selectedDate);
     this.dateDirectivesMap.get(selectorKey).setToday();
-
   }
 
   // Programmatically set the CSS Classes on the dates displayed in the Calendar View
@@ -106,74 +200,14 @@ export class DatePickerComponent {
     }
   }
 
-  // Programmatically set the CSS Classes on the dates displayed in the Calendar View
-  checkInSelected() {
-    this.dateSelectors.forEach((dateSelector) => {
-      //console.log(dateSelector.getId());
-      let selectorId = dateSelector.getId();
-      let directiveDate = moment(selectorId,FORMAT);
-
-      if(directiveDate.isBefore(this.checkInDate,'day')) {
-        dateSelector.setDisabled();
-      } else {
-        dateSelector.setEnabled();
-      }
-    });
-  }
-
-  // Programmatically set the CSS Classes on the dates displayed in the Calendar View
-  checkoutSelected() {
-    this.dateSelectors.forEach((dateSelector) => {
-      //console.log(dateSelector.getId());
-      let selectorId = dateSelector.getId();
-      let directiveDate = moment(selectorId,FORMAT);
-
-      if(directiveDate.isBefore(this.today,'day')) {
-        dateSelector.setDisabled();
-      } else if (!directiveDate.isSame(this.checkOutDate,'day')) {
-        dateSelector.setEnabled();
-      }
-      if(directiveDate.isSame(this.checkInDate,'day')){
-        dateSelector.setInRange('right');
-      } else if(directiveDate.isAfter(this.checkInDate,'day') && directiveDate.isBefore(this.checkOutDate,'day')) {
-        dateSelector.setInRange('full');
-      } else if(directiveDate.isSame(this.checkOutDate,'day')){
-        dateSelector.setInRange('left');
-      }
-
-    });
-  }
-
   select(monthObj,selectedDate,rowIndex) {
-    let self = this;
     let day = moment(selectedDate.id,FORMAT);
-
-    if((!this.focusOnCheckInDate
-      && day.isBefore(this.checkInDate,'day'))
-      || day.isBefore(this.today,'day')
-      || day.isSame(this.checkInDate,'day')) {
-        return;
-    }
-
-    // CheckInDate Is Selected Again
-    if(this.focusOnCheckInDate) {
-      this.clearSelectedDate(this.checkInDate);
-      this.clearSelectedDate(this.checkOutDate);
-      this.selectDate(day);
-      this.checkInDate = day;
-      setTimeout(() => {
-        self.checkInSelected();
-      });
-      this.checkOutDate = null;
-      this.focusOnCheckInDate = false;
-    } else { // CheckOutDate is Selected
-      this.selectDate(day);
-      this.checkOutDate = day;
-      this.focusOnCheckInDate = true;
-      setTimeout(() => {
-        self.checkoutSelected();
-      });
-    }
+    this.clearSelectedDate(this.currentDate);
+    this.currentDate = day;
+    this.selectDate(day);
+    this.openingHour = this.appointments.getBusinessHours(this.currentDate).Opening + "h";
+    this.closingHour = this.appointments.getBusinessHours(this.currentDate).Closure + "h";
+    this.verifyAvailibility();
   }
 
   setTimeToZero(dateLocal) {
@@ -239,26 +273,23 @@ export class DatePickerComponent {
   // and populate the ViewChildren in the dateDirectivesMap
   initSelectorMap() {
     this.dateSelectors.forEach((dateSelector) => {
-      //console.log(dateSelector.getId());
       let selectorId = dateSelector.getId();
       let directiveDate = moment(selectorId,FORMAT);
+
       //Programmatically set the CSS Class to disable and enable the dates
+      //Mario perfect cut is not opened on mondays =  || directiveDate.weekday() == 1
       if(directiveDate.isBefore(this.today,'day')) {
         dateSelector.setDisabled();
       } else {
         dateSelector.setEnabled();
       }
       this.populateSelectorMap(dateSelector);
-
     });
   }
-
-
 
   // Hook up into the life cycle method when the component is initialized.
   ngOnInit() {
     let nextMonth = moment();
-    var date = new Date();
     for(let index = 0; index <= NUM_OF_MONTHS; index++) {
       this.init(nextMonth);
       nextMonth = nextMonth.clone().month(nextMonth.month() + 1);
@@ -270,7 +301,7 @@ export class DatePickerComponent {
   //Programmatically Set the CSS classes to optimize the performance
   ngAfterViewInit() {
     this.initSelectorMap();
-    this.selectDate(this.checkInDate);
+    this.selectDate(this.currentDate);
     this.selectToday(this.today);
   }
 

@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import { NavController, ToastController } from 'ionic-angular';
 import {HomePage} from "../home/home";
-//import {HomePage} from "../home/home";
+
 //import {RegisterPage} from "../register/register";
 //import { User } from '../../providers/user';
 
@@ -43,20 +43,10 @@ export class LoginPage {
 
 
   constructor(public navCtrl: NavController,public toastCtrl: ToastController,platform: Platform) {
-    firebase.initializeApp({
-      apiKey: "AIzaSyBShXmN6TIS7xy2Tnr65NkCJbAEXM51g7Q",
-      authDomain: "mpc-app-37f6f.firebaseapp.com",
-      databaseURL: "https://mpc-app-37f6f.firebaseio.com",
-      projectId: "mpc-app-37f6f",
-      storageBucket: "mpc-app-37f6f.appspot.com",
-      messagingSenderId: "351355658098"
-    });
-
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-    });
+    
+  }
+  gotohome() {
+    this.navCtrl.push(HomePage);
   }
 
   login() {

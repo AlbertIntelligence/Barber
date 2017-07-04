@@ -22,6 +22,7 @@ import {UserProfilePage} from "../pages/user-profile/user-profile";
 import { DatePickerComponent, DateSelectorDirective } from '../pages/datepicker/datepicker';
 import { DatePickerService } from '../pages/datepicker/datepicker.service';
 import {Alert} from '../pages/alert/alert';
+import * as firebase from "firebase";
 
 // import services
 // end import services
@@ -94,4 +95,14 @@ const providers = [ DatePickerService ];
   ]
 })
 export class AppModule {
+  constructor() {
+    firebase.initializeApp({
+      apiKey: "AIzaSyBShXmN6TIS7xy2Tnr65NkCJbAEXM51g7Q",
+      authDomain: "mpc-app-37f6f.firebaseapp.com",
+      databaseURL: "https://mpc-app-37f6f.firebaseio.com",
+      projectId: "mpc-app-37f6f",
+      storageBucket: "mpc-app-37f6f.appspot.com",
+      messagingSenderId: "351355658098"
+    });
+  }
 }
