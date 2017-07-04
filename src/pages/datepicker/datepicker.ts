@@ -83,11 +83,11 @@ export class DatePickerComponent {
   @ViewChildren(DateSelectorDirective) dateSelectors:QueryList<DateSelectorDirective>;
   constructor(public alertCtrl: AlertController) {
     this.appointments = new DatePickerModel();
-    this.updateDataSnapshot();
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
     this.currentDate = this.today.clone();
     this.setDefaultHour();
+    this.updateDataSnapshot();
     this.openingHour = this.appointments.getBusinessHours(this.currentDate).Opening + "h";
     this.closingHour = this.appointments.getBusinessHours(this.currentDate).Closure + "h";
   }
