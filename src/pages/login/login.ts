@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import { NavController, ToastController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import {HomePage} from "../home/home";
 import firebase from 'firebase';
 
@@ -9,24 +9,10 @@ import firebase from 'firebase';
 })
 export class LoginPage {
 
-constructor(public navCtrl: NavController) {
-  // Our translated text strings
-  //private signupErrorString: string;
-  userProfile: any = null;
-  //loginDetails: FacebookLoginResponse;
-
-  /*constructor(public navCtrl: NavController,
-    //public user: User,
-    public toastCtrl: ToastController,
-    //public translateService: TranslateService
-    private facebook: Facebook)
-    {
-    /*this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
-      this.signupErrorString = value;
-    })
-  }*/
+  constructor(public navCtrl: NavController) {
 
   }
+
   gotohome() {
     this.navCtrl.push(HomePage);
   }
