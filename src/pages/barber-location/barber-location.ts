@@ -2,7 +2,6 @@ import {Component} from "@angular/core";
 import {NavController, Platform} from "ionic-angular";
 import {HotelService} from "../../services/hotel-service";
 import {CheckoutHotelPage} from "../checkout-hotel/checkout-hotel";
-import {BarberLocationModel} from "./BarberLocationModel";
 
 declare var google: any;
 /*

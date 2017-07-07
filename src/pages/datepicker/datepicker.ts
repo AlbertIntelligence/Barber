@@ -1,6 +1,8 @@
 import { Component, Directive, Input, ViewChildren, QueryList, ElementRef, Renderer } from '@angular/core';
 import moment from 'moment';
 import {DatePickerModel} from './DatePickerModel';
+import { AlertController } from 'ionic-angular';
+import firebase from 'firebase';
 
 const NUM_OF_DAYS = 7;
 const NUM_OF_MONTHS = 12;
@@ -64,7 +66,7 @@ export class DatePickerComponent {
   private today:any;
   private months:Array<any> = [];
   private currentDate:any;
-  public currentHour:any = "10";
+  private currentHour:any = "10";
   private currentMinutes:any = "00";
   private appointments:DatePickerModel;
   private errorMessage:String;
@@ -79,16 +81,15 @@ export class DatePickerComponent {
   // Get All the  ViewChild References of the date element displayed in the
   // calendar view
   @ViewChildren(DateSelectorDirective) dateSelectors:QueryList<DateSelectorDirective>;
-  constructor() {
-    this.appointments = new DatePickerModel(this);
+  constructor(public alertCtrl: AlertController) {
+    this.appointments = new DatePickerModel();
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
     this.currentDate = this.today.clone();
     this.setDefaultHour();
-    this.disableBookedDays();
+    this.updateDataSnapshot();
     this.openingHour = this.appointments.getBusinessHours(this.currentDate).Opening + "h";
     this.closingHour = this.appointments.getBusinessHours(this.currentDate).Closure + "h";
-    this.verifyAvailibility();
   }
 
   //Increase hour value
@@ -96,8 +97,7 @@ export class DatePickerComponent {
     var closingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Closure);
     if (closingHour > (parseFloat(this.currentHour) + 1)) {
       this.currentHour = parseInt(this.currentHour) + 1;
-      //check if hour is available
-      this.verifyAvailibility();
+      this.verifyAvailibility();  //check if hour is available
     } else {
       //To be completed : Display Heure de fermeture
       this.displayConflictMessage("Heures d'ouverture : " + this.openingHour + " - " + this.closingHour);
@@ -109,8 +109,7 @@ export class DatePickerComponent {
     var openingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Opening);
     if (openingHour <= (parseFloat(this.currentHour) - 1)) {
       this.currentHour = parseInt(this.currentHour) - 1;
-      //check if hour is available
-      this.verifyAvailibility();
+      this.verifyAvailibility();  //check if hour is available
     } else {
       //To be completed : Display Heure de fermeture
       this.displayConflictMessage("Heures d'ouverture : " + this.openingHour + " - " + this.closingHour);
@@ -144,31 +143,50 @@ export class DatePickerComponent {
     this.currentMinutes = (this.currentHour.toString().length > 2) ? "30" : "00";
   }
 
+  //Database event listener
+  updateDataSnapshot() {
+    let controller = this;
+    firebase.database().ref('Appointments/')
+     .on('value', function(snapshot) {
+       controller.verifyAvailibility();
+       controller.appointments.getDaysBooked();
+     });
+  }
+
   //Save appointment in database
   getAppointment() {
     var date = this.currentDate.format(FORMAT);
     var hour = this.currentHour + " : " + this.currentMinutes;
-    (this.appointments.isAvailable(date, hour)) ? this.appointments.createNew(date, hour) : alert("Réservation impossible !");
+    (this.appointments.isAvailable(date, hour)) ? this.appointments.createNew(date, hour) : this.showAlert();
     this.disableBookedDays();
+  }
+
+  //Display alert when user clicks on get appointment and date/hour is not available
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Réservation impossible !',
+      subTitle: 'Veuillez choisir une autre plage horaire.',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   // Disable date in parameter
   disableDate(date) {
     //Date format = "DD-MMM-YYYY"
     let dayBooked = this.dateSelectors.find(item => item.id === date);
-    dayBooked.setDisabled();
+    if (typeof dayBooked != "undefined") dayBooked.setDisabled();
   }
 
   // Enable date in parameter
   enableDate(date) {
     //Date format = "DD-MMM-YYYY"
     let dayBooked = this.dateSelectors.find(item => item.id === date);
-    dayBooked.setEnabled();
+    if (typeof dayBooked != "undefined") dayBooked.setEnabled();
   }
 
   //Disable all dates that are full booked
   disableBookedDays() {
-    //Disable days that are full booked
     var daysBooked = this.appointments.getDaysBooked();
     for (var i = 0; i < daysBooked.length; i++) {
       this.disableDate(daysBooked[i]);

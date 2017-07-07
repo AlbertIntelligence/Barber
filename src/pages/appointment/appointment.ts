@@ -1,12 +1,4 @@
 import {Component} from "@angular/core";
-import {NavController, Platform} from "ionic-angular";
-import {HotelService} from "../../services/hotel-service";
-import {CheckoutHotelPage} from "../checkout-hotel/checkout-hotel";
-
-
-
-
-declare var google: any;
 /*
  Generated class for the LoginPage page.
 
@@ -18,17 +10,12 @@ declare var google: any;
   templateUrl: 'appointment.html'
 })
 export class AppointmentPage {
-  // hotel info
-  public hotel: any;
-  // Map
-  public map: any;
 
-  constructor(public nav: NavController, public hotelService: HotelService, public platform: Platform) {
-    // set sample data
-    this.hotel = hotelService.getItem(1);
+  constructor() {
+
   }
 
-  ionViewDidLoad() {
+  /*ionViewDidLoad() {
     // init map
     this.initializeMap();
   }
@@ -71,7 +58,6 @@ export class AppointmentPage {
   // go to checkout page
   checkout() {
     this.nav.push(CheckoutHotelPage);
-  }
+  }*/
 
 }
-

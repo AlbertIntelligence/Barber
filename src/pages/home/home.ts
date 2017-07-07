@@ -1,9 +1,9 @@
 import {Component} from "@angular/core";
 import {NavController} from "ionic-angular";
 import {HotelService} from "../../services/hotel-service";
-import {AppointmentPage} from "../appointment/appointment";
-import {HotelPage} from "../hotel/hotel";
+import {DatePickerComponent} from "../datepicker/datepicker";
 import {AccountPage} from "../account/account";
+import {HotelPage} from "../hotel/hotel";
 import {UserProfilePage} from "../user-profile/user-profile";
 import {BarberLocation} from "../barber-location/barber-location";
 
@@ -19,7 +19,7 @@ import {BarberLocation} from "../barber-location/barber-location";
   templateUrl: 'home.html'
 })
 export class HomePage {
-  // list of hotels
+
   public hotels: any;
 
   constructor(public nav: NavController, public hotelService: HotelService) {
@@ -28,13 +28,8 @@ export class HomePage {
   }
 
   // view hotel detail
-  viewHotel(hotelId) {
-    this.nav.push(AppointmentPage, {id: hotelId});
-  }
-
-  // view all hotels
-  viewHotels() {
-    this.nav.push(HotelPage);
+  getAnAppointment() {
+    this.nav.push(DatePickerComponent);
   }
 
   // go to search hotel page
@@ -42,7 +37,10 @@ export class HomePage {
     this.nav.push(UserProfilePage);
   }
 
-
+  // view all hotels
+  viewGallery() {
+    this.nav.push(HotelPage);
+  }
 
   // to go account page
   goToAccount() {
