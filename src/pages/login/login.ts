@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
 import { NavController, ToastController } from 'ionic-angular';
 import {HomePage} from "../home/home";
+import * as $ from 'jquery';
+import { Directive, Input, ViewChildren, QueryList, ElementRef, Renderer } from '@angular/core';
 
 //import {RegisterPage} from "../register/register";
 //import { User } from '../../providers/user';
@@ -19,6 +21,7 @@ import { StatusBar } from 'ionic-native';
  See http://ionicframework.com/docs/v2/components/#navigation for more info on
  Ionic pages and navigation.
  */
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
@@ -42,8 +45,8 @@ export class LoginPage {
   }*/
 
 
-  constructor(public navCtrl: NavController,public toastCtrl: ToastController,platform: Platform) {
-    
+  constructor(public navCtrl: NavController,public toastCtrl: ToastController,platform: Platform,public elemRef:ElementRef,public renderer:Renderer) {
+
   }
   gotohome() {
     this.navCtrl.push(HomePage);
@@ -145,5 +148,18 @@ export class LoginPage {
       return false;
     }
   }
+
+
+  //------------------------------------------THIS IS THE HELPER FUNCTION SECTION----------------------------------------------//
+
+
+  doLogin(){
+    var email = $("#email").text();
+    var password = $("#password").text();
+    console.log(email);
+    console.log(password);
+    console.log(this.loginUser(email,password));
+  }
+
 
 }

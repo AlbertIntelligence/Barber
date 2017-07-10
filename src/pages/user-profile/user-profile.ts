@@ -44,20 +44,39 @@ export class UserProfilePage {
   //------------------------------------------THIS IS THE FIREBASE FUNCTION SECTION----------------------------------------------//
 
 
+  /*****************************************************************************
+   Function: checkPayment
+   Auteur(s): Lenz Petion
+   Date de creation: 2017-06-03
+   Date de modification:
+   Description: This function tells if a user is logged in
+   *****************************************************************************/
   public checkPayment(){
     const dbRefObject = firebase.database().ref().child('Tickets/paymentCompleted');
     dbRefObject.on('value' , snap =>  this.ticketObject.paymentCompleted =   snap.val()  );
     return this.ticketObject.paymentCompleted.toString();
   }
 
-  //This function w
+  /*****************************************************************************
+   Function: checkPayment
+   Auteur(s): Lenz Petion
+   Date de creation: 2017-06-03
+   Date de modification:
+   Description: This function tells if a user is logged in
+   *****************************************************************************/
   public showCurrentClient(){
     const dbRefObject = firebase.database().ref().child('Tickets/currentPosition');
     dbRefObject.on('value' , snap =>  this.ticketObject.currentPosition =   snap.val()  );
 
   }
 
-  //This function  will add 1 to the ticket queu and set new position for teh client
+  /*****************************************************************************
+   Function: checkPayment
+   Auteur(s): Lenz Petion
+   Date de creation: 2017-06-03
+   Date de modification:
+   Description: This function tells if a user is logged in
+   *****************************************************************************/
   private addClientToList(){
     const dbRefObject = firebase.database().ref().child('Tickets');
     dbRefObject.set({currentPosition:this.ticketObject.currentPosition + 1 });
