@@ -27,7 +27,7 @@
           <ion-icon name="md-pricetag" color="green"></ion-icon>
           <span ion-text color="dark">Prendre un ticket</span>
         </ion-col>
-        <ion-col (click)="viewHotel(1)()">
+        <ion-col (click)="getAnAppointment()">
           <ion-icon name="md-calendar" color="flight-color"></ion-icon>
           <span ion-text color="dark">Prendre un rendez vous</span>
         </ion-col>
@@ -41,14 +41,14 @@
         <ion-badge class="pull-left square" color="primary" (click)="goToBarberLocation()">Ou somme nous?</ion-badge>
       </ion-col>
       <ion-col style="padding-right: 20px" >
-        <ion-badge class="pull-right square" color="primary" (click)="viewHotels()">Voir plus de photo</ion-badge>
+        <ion-badge class="pull-right square" color="primary" (click)="viewGallery()">Voir plus de photo</ion-badge>
       </ion-col>
     </ion-row>
   </ion-grid>
 
   <ion-grid class="list-hotels">
     <ion-row>
-      <ion-col *ngFor="let hotel of hotels[0].homeGalery" col-6 (click)="viewHotel(1)">
+      <ion-col *ngFor="let hotel of hotels[0].homeGalery" col-6>
         <div class="hotel-bg" [ngStyle]="{'background-image': 'url(' + hotel + ')'}">
           <div class="bg-filter">
 

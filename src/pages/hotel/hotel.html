@@ -23,7 +23,7 @@
   <!--list of hotels-->
   <ion-grid class="list-hotels">
     <ion-row>
-      <ion-col *ngFor="let hotel of hotels[0].viewMoreGalery" col-6 (click)="viewHotel(1)">
+      <ion-col *ngFor="let hotel of hotels[0].viewMoreGalery" col-6>
         <div class="hotel-bg" [ngStyle]="{'background-image': 'url(' + hotel + ')'}">
           <div class="bg-filter">
 
