@@ -1,13 +1,17 @@
+
+<script>
+  this.hideTicketDiv();
+</script>
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
       Profile
     </ion-title>
     <ion-buttons left>
-     <button ion-button icon-only>
-    </button>
-  </ion-buttons>
-</ion-navbar>
+      <button ion-button icon-only>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 <ion-content padding="false" class="common-bg">
   <div style="">
@@ -18,34 +22,34 @@
       <div style="font-size: 20px; margin-top: 10px" text-center>John Doe</div>
       <div style="font-size: 10px" text-center>
         <ion-icon color="primary" style="" name="pin"></ion-icon>
-         Montreal, Canada </div>
-     </div>
+        Montreal, Canada </div>
+    </div>
 
 
-     <div>
+    <div>
 
-       <div class="animated infinite bounce" [hidden]="hiddenDiv"  >
-      <ion-grid style="margin-top: 15%">
-        <ion-row>
-          <ion-col col-6>
-            <ion-row>
-              <p style="margin:auto; font-size: 20px"><b>{{ticketObject.paymentCompleted}}</b></p>
-            </ion-row>
-            <ion-row>
-              <p style="margin:auto; font-size: 10px">CURRENT CLIENT</p>
-            </ion-row>
-          </ion-col>
-          <ion-col col-6>
-            <ion-row>
-              <p style="margin:auto; font-size: 20px"><b>166</b></p>
-            </ion-row>
-            <ion-row>
-              <p style="margin:auto; font-size: 10px">YOUR POSITION</p>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-       </div>
+      <div id="ticketPosition"  class="animated infinite bounce" >
+        <ion-grid style="margin-top: 15%">
+          <ion-row>
+            <ion-col col-6>
+              <ion-row>
+                <p style="margin:auto; font-size: 20px"><b>{{ticketObject.currentPosition}}</b></p>
+              </ion-row>
+              <ion-row>
+                <p style="margin:auto; font-size: 10px">CURRENT CLIENT</p>
+              </ion-row>
+            </ion-col>
+            <ion-col col-6>
+              <ion-row>
+                <p style="margin:auto; font-size: 20px"><b>{{ticketObject.userPosition}}</b></p>
+              </ion-row>
+              <ion-row>
+                <p style="margin:auto; font-size: 10px">YOUR POSITION</p>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
 
       <ion-grid style="margin-top: 1%">
         <ion-row>

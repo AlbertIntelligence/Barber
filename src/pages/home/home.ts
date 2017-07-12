@@ -6,6 +6,7 @@ import {AccountPage} from "../account/account";
 import {HotelPage} from "../hotel/hotel";
 import {UserProfilePage} from "../user-profile/user-profile";
 import {BarberLocation} from "../barber-location/barber-location";
+import {LoginPage} from "../login/login";
 
 
 /*
@@ -25,6 +26,9 @@ export class HomePage {
   constructor(public nav: NavController, public hotelService: HotelService) {
     // set sample data
     this.hotels = hotelService.getAll();
+    /*if(login.isLoggedIn()){
+      this.nav.push(LoginPage);
+    }*/
   }
 
   // view hotel detail

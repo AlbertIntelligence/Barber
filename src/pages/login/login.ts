@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
 import { NavController } from 'ionic-angular';
 import {HomePage} from "../home/home";
+import * as $ from 'jquery';
+import { Directive, Input, ViewChildren, QueryList, ElementRef, Renderer } from '@angular/core';
 import firebase from 'firebase';
 
 @Component({
@@ -113,5 +115,18 @@ export class LoginPage {
       return false;
     }
   }
+
+
+  //------------------------------------------THIS IS THE HELPER FUNCTION SECTION----------------------------------------------//
+
+
+  doLogin(){
+    var email = $("#email").text();
+    var password = $("#password").text();
+    console.log(email);
+    console.log(password);
+    console.log(this.loginUser(email,password));
+  }
+
 
 }
