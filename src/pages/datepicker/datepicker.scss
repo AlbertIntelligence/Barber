@@ -13,13 +13,9 @@
   $calWeekHeaderBgColor:$calBaseColor;
   $calDayColBgColor: $calBaseColor;
 
-  datepicker {
-    height: 50%;
-    width: 50%;
-  }
   .datepicker {
     position: relative;
-    padding-bottom: 0%;
+    padding: 0;
     height:50%;
     width:100%;
     margin-top: 0;
@@ -68,16 +64,19 @@
 
 
     .week-row {
-      padding-top:6px;
+      width: 110%;
+      left: -5%;
       color:$calDarkMediumColor;
       background-color: $calWeekHeaderBgColor;
-      font-size:15px;
-      padding-left:5px;
-      padding-right:0;
+      font-size:17px;
+      padding-left: 3%;
+      padding-right: 3%;
     }
 
     .month-list {
-
+      position: absolute;
+      width: 110%;
+      left: -5%;
       ion-list {
         .item {
           padding-left:0;
