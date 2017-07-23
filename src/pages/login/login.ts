@@ -10,6 +10,8 @@ import firebase from 'firebase';
   templateUrl: 'login.html'
 })
 export class LoginPage {
+  email: any;
+  password: any;
 
   constructor(public navCtrl: NavController) {
 
@@ -17,10 +19,6 @@ export class LoginPage {
 
   gotohome() {
     this.navCtrl.push(HomePage);
-  }
-
-  login() {
-    this.navCtrl.setRoot(HomePage);
   }
 
   /*****************************************************************************
@@ -41,8 +39,9 @@ export class LoginPage {
   Date de modification:
   Description: This function authentificates an app user
   *****************************************************************************/
-  loginUser(email: string, password: string): firebase.Promise<any> {
-    return firebase.auth().signInWithEmailAndPassword(email, password);
+  loginUser() {
+    firebase.auth().signInWithEmailAndPassword(this.email, this.password);
+    if (this.isLoggedIn()) this.gotohome();
   }
 
   /*****************************************************************************
@@ -106,14 +105,7 @@ export class LoginPage {
   *****************************************************************************/
   isLoggedIn(): Boolean {
     var user = firebase.auth().currentUser;
-
-    if (user) {
-      // User is signed in.
-      return true;
-    } else {
-      // No user is signed in.
-      return false;
-    }
+    return (user != null) ? true : false;
   }
 
 
@@ -123,9 +115,6 @@ export class LoginPage {
   doLogin(){
     var email = $("#email").text();
     var password = $("#password").text();
-    console.log(email);
-    console.log(password);
-    console.log(this.loginUser(email,password));
   }
 
 
