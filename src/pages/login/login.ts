@@ -4,6 +4,7 @@ import {HomePage} from "../home/home";
 import * as $ from 'jquery';
 import { Directive, Input, ViewChildren, QueryList, ElementRef, Renderer } from '@angular/core';
 import firebase from 'firebase';
+import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-login',
@@ -13,12 +14,12 @@ export class LoginPage {
   email: any;
   password: any;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
   }
 
   gotohome() {
-    this.navCtrl.push(HomePage);
+    this.navCtrl.setRoot(HomePage);
   }
 
   /*****************************************************************************
@@ -28,8 +29,8 @@ export class LoginPage {
   Date de modification:
   Description: This function create a new app user in the Firebase DB
   *****************************************************************************/
-  createUser(email: string, password: string): firebase.Promise<any> {
-    return firebase.auth().createUserWithEmailAndPassword(email, password);
+  createUser() {
+
   }
 
   /*****************************************************************************
@@ -40,8 +41,12 @@ export class LoginPage {
   Description: This function authentificates an app user
   *****************************************************************************/
   loginUser() {
-    firebase.auth().signInWithEmailAndPassword(this.email, this.password);
-    if (this.isLoggedIn()) this.gotohome();
+    let loginController = this;
+    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function (data) {
+      if (loginController.isLoggedIn()) loginController.gotohome();
+    }).catch(function (error) {
+      loginController.showAlert('Authentification Impossible !', error.toString().substring(7, error.toString().length));
+    });
   }
 
   /*****************************************************************************
@@ -105,7 +110,23 @@ export class LoginPage {
   *****************************************************************************/
   isLoggedIn(): Boolean {
     var user = firebase.auth().currentUser;
-    return (user != null) ? true : false;
+    return (user != null && user != undefined) ? true : false;
+  }
+
+  /*****************************************************************************
+  Function: showAlert
+  Auteur(s): Koueni Deumeni
+  Date de creation: 2017-07-23
+  Date de modification:
+  Description: This function triggers warning messages
+  *****************************************************************************/
+  showAlert(title, subtitle) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: subtitle,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 
