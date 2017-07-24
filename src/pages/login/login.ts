@@ -5,6 +5,7 @@ import * as $ from 'jquery';
 import { Directive, Input, ViewChildren, QueryList, ElementRef, Renderer } from '@angular/core';
 import firebase from 'firebase';
 import { AlertController } from 'ionic-angular';
+import {CreateUserPage} from "../create-user/create-user";
 
 @Component({
   selector: 'page-login',
@@ -30,7 +31,7 @@ export class LoginPage {
   Description: This function create a new app user in the Firebase DB
   *****************************************************************************/
   createUser() {
-
+    this.navCtrl.push(CreateUserPage);
   }
 
   /*****************************************************************************
@@ -41,6 +42,7 @@ export class LoginPage {
   Description: This function authentificates an app user
   *****************************************************************************/
   loginUser() {
+    this.logoutUser();
     let loginController = this;
     firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function (data) {
       if (loginController.isLoggedIn()) loginController.gotohome();
