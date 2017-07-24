@@ -19,39 +19,39 @@
     </div>
 
     <!-- Login form -->
-    <ion-list class="list-form" padding>
+    <div class="list-form" padding>
 
       <ion-item>
         <ion-label stacked>Email</ion-label>
-        <ion-input #email type="text" color="white"></ion-input>
+        <ion-input [(ngModel)]="email" type="text" color="white"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>Password</ion-label>
-        <ion-input id="password" type="password"></ion-input>
+        <ion-input [(ngModel)]="password" type="password"></ion-input>
       </ion-item>
 
-    </ion-list>
+    </div>
 
     <p text-right ion-text color="light">Mot de passe oublié?</p>
 
     <div>
-      <button ion-button block color="primary" (click)="gotohome()">
+      <button ion-button block color="primary" (click)="loginUser()">
         SE CONNECTER
       </button>
 
       <p text-center ion-text color="light">Ou</p>
 
-      <button ion-button block color="fb-color" (click)="facebookLogin()">
-        Se connecter avec Facebook
+      <button ion-button block color="fb-color" (click)="createUser()">
+        S'INSCRIRE
       </button>
     </div>
 
 
     <!-- Other links -->
-    <div text-center margin-top>
+    <!--div text-center margin-top>
       <span ion-text color="light" (click)="register()">Nouveau ici? Enregistre toi</span>
-    </div>
+    </div!-->
 
   </div>
 </ion-content>

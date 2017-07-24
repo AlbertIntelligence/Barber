@@ -5,7 +5,7 @@ import { AlertController } from 'ionic-angular';
 import firebase from 'firebase';
 
 const NUM_OF_DAYS = 7;
-const NUM_OF_MONTHS = 12;
+const NUM_OF_MONTHS = 1;
 const FORMAT = 'DD-MMM-YYYY';
 
 // Low level primitives to manipulate the css classes of the date elements displayed in the calendar view

@@ -4,22 +4,22 @@ import {HomePage} from "../home/home";
 import * as $ from 'jquery';
 import { Directive, Input, ViewChildren, QueryList, ElementRef, Renderer } from '@angular/core';
 import firebase from 'firebase';
+import { AlertController } from 'ionic-angular';
+import {CreateUserPage} from "../create-user/create-user";
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
+  email: any = "";
+  password: any = "";
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
   }
 
   gotohome() {
-    this.navCtrl.push(HomePage);
-  }
-
-  login() {
     this.navCtrl.setRoot(HomePage);
   }
 
@@ -30,8 +30,8 @@ export class LoginPage {
   Date de modification:
   Description: This function create a new app user in the Firebase DB
   *****************************************************************************/
-  createUser(email: string, password: string): firebase.Promise<any> {
-    return firebase.auth().createUserWithEmailAndPassword(email, password);
+  createUser() {
+    this.navCtrl.push(CreateUserPage);
   }
 
   /*****************************************************************************
@@ -41,8 +41,18 @@ export class LoginPage {
   Date de modification:
   Description: This function authentificates an app user
   *****************************************************************************/
-  loginUser(email: string, password: string): firebase.Promise<any> {
-    return firebase.auth().signInWithEmailAndPassword(email, password);
+  loginUser() {
+    if (this.email.length == 0 || this.password.length == 0) {
+      this.showAlert('Authentification Impossible !', 'Veuillez remplir tous les champs.')
+    } else {
+      this.logoutUser();
+      let loginController = this;
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function (data) {
+        if (loginController.isLoggedIn()) loginController.gotohome();
+      }).catch(function (error) {
+        loginController.showAlert('Authentification Impossible !', error.toString().substring(7, error.toString().length));
+      });
+    }
   }
 
   /*****************************************************************************
@@ -106,14 +116,23 @@ export class LoginPage {
   *****************************************************************************/
   isLoggedIn(): Boolean {
     var user = firebase.auth().currentUser;
+    return (user != null && user != undefined) ? true : false;
+  }
 
-    if (user) {
-      // User is signed in.
-      return true;
-    } else {
-      // No user is signed in.
-      return false;
-    }
+  /*****************************************************************************
+  Function: showAlert
+  Auteur(s): Koueni Deumeni
+  Date de creation: 2017-07-23
+  Date de modification:
+  Description: This function triggers warning messages
+  *****************************************************************************/
+  showAlert(title, subtitle) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: subtitle,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 
@@ -123,9 +142,6 @@ export class LoginPage {
   doLogin(){
     var email = $("#email").text();
     var password = $("#password").text();
-    console.log(email);
-    console.log(password);
-    console.log(this.loginUser(email,password));
   }
 
 
