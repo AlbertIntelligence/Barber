@@ -12,8 +12,8 @@ import {CreateUserPage} from "../create-user/create-user";
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  email: any;
-  password: any;
+  email: any = "";
+  password: any = "";
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
@@ -42,13 +42,17 @@ export class LoginPage {
   Description: This function authentificates an app user
   *****************************************************************************/
   loginUser() {
-    this.logoutUser();
-    let loginController = this;
-    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function (data) {
-      if (loginController.isLoggedIn()) loginController.gotohome();
-    }).catch(function (error) {
-      loginController.showAlert('Authentification Impossible !', error.toString().substring(7, error.toString().length));
-    });
+    if (this.email.length == 0 || this.password.length == 0) {
+      this.showAlert('Authentification Impossible !', 'Veuillez remplir tous les champs.')
+    } else {
+      this.logoutUser();
+      let loginController = this;
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function (data) {
+        if (loginController.isLoggedIn()) loginController.gotohome();
+      }).catch(function (error) {
+        loginController.showAlert('Authentification Impossible !', error.toString().substring(7, error.toString().length));
+      });
+    }
   }
 
   /*****************************************************************************
