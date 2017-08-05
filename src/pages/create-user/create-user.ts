@@ -11,11 +11,11 @@ import firebase from 'firebase';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-create-user',
   templateUrl: 'create-user.html',
 })
+
 export class CreateUserPage {
   email: any = "";
   password: any = "";
@@ -24,22 +24,22 @@ export class CreateUserPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
   }
 
-  ionViewDidLoad() {
-  }
-
   /*****************************************************************************
-  *gotohome function sends user to home page
+  Function: presentAlert
+  Description: Pushes home page
+  Parameters: None
+  Return: None
   *****************************************************************************/
   gotohome() {
     this.navCtrl.setRoot(HomePage);
   }
 
   /*****************************************************************************
-  Function: createUser
-  Auteur(s): Koueni Deumeni
-  Date de creation: 2017-06-03
-  Date de modification:
-  Description: This function create a new app user in the Firebase DB
+  Function: presentAlert
+  Description: Validate entries and create new user in firebase database.
+  Also displays warning registration messages
+  Parameters: None
+  Return: None
   *****************************************************************************/
   createUser() {
     if (this.email.length == 0 || this.password.length == 0 || this.confirmationPassword.length == 0) {
@@ -59,11 +59,10 @@ export class CreateUserPage {
   }
 
   /*****************************************************************************
-  Function: loginUser
-  Auteur(s): Koueni Deumeni
-  Date de creation: 2017-06-03
-  Date de modification:
-  Description: This function authentificates an app user
+  Function: presentAlert
+  Description: Validate the entries with firebase db and logs the user in
+  Parameters: None
+  Return: None
   *****************************************************************************/
   loginUser() {
     this.logoutUser();
@@ -76,33 +75,30 @@ export class CreateUserPage {
   }
 
   /*****************************************************************************
-  Function: signOut
-  Auteur(s): Koueni Deumeni
-  Date de creation: 2017-06-03
-  Date de modification:
-  Description: This function signs out an app user
+  Function: presentAlert
+  Description: Log off the user if logged in
+  Parameters: None
+  Return: None
   *****************************************************************************/
   logoutUser(): firebase.Promise<void> {
     return firebase.auth().signOut();
   }
 
   /*****************************************************************************
-  Function: loginUser
-  Auteur(s): Koueni Deumeni
-  Date de creation: 2017-06-03
-  Date de modification:
-  Description: This function authentificates an app user
+  Function: presentAlert
+  Description: Go to the login page
+  Parameters: None
+  Return: None
   *****************************************************************************/
   gotoLoginPage() {
     this.navCtrl.pop();
   }
 
   /*****************************************************************************
-  Function: isLoggedIn
-  Auteur(s): Koueni Deumeni
-  Date de creation: 2017-07-23
-  Date de modification:
-  Description: This function tells if a user is logged in
+  Function: presentAlert
+  Description: Tells if there is a user logged in
+  Parameters: None
+  Return: True of False
   *****************************************************************************/
   isLoggedIn(): Boolean {
     var user = firebase.auth().currentUser;
@@ -110,11 +106,11 @@ export class CreateUserPage {
   }
 
   /*****************************************************************************
-  Function: showAlert
-  Auteur(s): Koueni Deumeni
-  Date de creation: 2017-07-23
-  Date de modification:
-  Description: This function triggers warning messages
+  Function: presentAlert
+  Description: Display a specific alert using Parameters
+  Parameters: title: The pop-up title
+              subTitle: The pop-up message
+  Return: None
   *****************************************************************************/
   showAlert(title, subtitle) {
     let alert = this.alertCtrl.create({

@@ -38,15 +38,4 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
-  // hide splash screen
-  /*hideSplashScreen() {
-    if (Splashscreen) {
-      setTimeout(() => {
-        Splashscreen.hide();
-      }, 100);
-    }
-  }*/
-
 }
-
-

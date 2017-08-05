@@ -1,12 +1,11 @@
 import {Component} from "@angular/core";
 import {NavController} from "ionic-angular";
-import {HotelService} from "../../services/hotel-service";
-import {DatePickerComponent} from "../datepicker/datepicker";
-import {AccountPage} from "../account/account";
-import {HotelPage} from "../hotel/hotel";
-import {UserProfilePage} from "../user-profile/user-profile";
+import {GalleryService} from "../../services/gallery-service";
+import {GetAnAppointmentPage} from "../getanappointment/getanappointment";
+import {GalleryPage} from "../gallery/gallery";
+import {GetaTicketPage} from "../get-a-ticket/get-a-ticket";
 import {BarberLocation} from "../barber-location/barber-location";
-import {LoginPage} from "../login/login";
+import {SettingsPage} from "../settings/settings";
 
 
 /*
@@ -21,37 +20,59 @@ import {LoginPage} from "../login/login";
 })
 export class HomePage {
 
-  public hotels: any;
+  public pictures: any;
 
-  constructor(public nav: NavController, public hotelService: HotelService) {
+  constructor(public nav: NavController, public galleryService: GalleryService) {
     // set sample data
-    this.hotels = hotelService.getAll();
-    /*if(login.isLoggedIn()){
-      this.nav.push(LoginPage);
-    }*/
+    this.pictures = galleryService.getAll();
   }
 
-  // view hotel detail
+  /*****************************************************************************
+  Function: getAnAppointment
+  Purpose: Pushes Get an appointment page
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   getAnAppointment() {
-    this.nav.push(DatePickerComponent);
+    this.nav.push(GetAnAppointmentPage);
   }
 
-  // go to search hotel page
+  /*****************************************************************************
+  Function: getTicket
+  Purpose: Pushes Get a ticket page
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   getTicket() {
-    this.nav.push(UserProfilePage);
+    this.nav.push(GetaTicketPage);
   }
 
-  // view all hotels
+  /*****************************************************************************
+  Function: viewGallery
+  Purpose: Pushes gallery page
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   viewGallery() {
-    this.nav.push(HotelPage);
+    this.nav.push(GalleryPage);
   }
 
-  // to go account page
-  goToAccount() {
-    this.nav.push(AccountPage);
+  /*****************************************************************************
+  Function: goToSettings
+  Purpose: Pushes settings page
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  goToSettings() {
+    this.nav.push(SettingsPage);
   }
 
-  // to go account page
+  /*****************************************************************************
+  Function: goToBarberLocation
+  Purpose: Pushes barber-location page
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   goToBarberLocation() {
     this.nav.push(BarberLocation);
   }
