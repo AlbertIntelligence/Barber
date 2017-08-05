@@ -13,10 +13,12 @@ import {TicketConfirmationPage} from "../pages/ticket-confirmation/ticket-confir
 import {CreateUserPage} from "../pages/create-user/create-user";
 import {GalleryPage} from "../pages/gallery/gallery";
 import {SettingsPage} from "../pages/settings/settings";
+import { SplashScreen } from '@ionic-native/splash-screen';
 //import { Facebook } from '@ionic-native/facebook';
 import { GetAnAppointmentPage, DateSelectorDirective } from '../pages/getanappointment/getanappointment';
 import {Alert} from '../pages/alert/alert';
 import * as firebase from "firebase";
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
 // import services
 // end import services
@@ -24,6 +26,12 @@ import * as firebase from "firebase";
 
 // import pages
 // end import pages
+
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': 'e3274f53'
+  }
+};
 
 const components = [ GetAnAppointmentPage ];
 const directives = [ DateSelectorDirective ];
@@ -50,6 +58,7 @@ const providers = [ ];
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    CloudModule.forRoot(cloudSettings)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -74,6 +83,7 @@ const providers = [ ];
     GalleryPage,
     SettingsPage,
     Alert,
+    SplashScreen,
     //Facebook,
     providers,
     /* import services */

@@ -15,7 +15,14 @@ import {LoginPage} from "../login/login";
 })
 export class SettingsPage {
 
+  pushNotification: any ;
+  emailNotificaiton: any ;
+  smsNotification : any ;
+
   constructor(public nav: NavController) {
+    this.sendNewPositionPushNotification();
+    this.sendNewPositionSmsNotification();
+    this.sendNewPositionEmailNotification();
   }
 
   /*****************************************************************************
@@ -26,6 +33,29 @@ export class SettingsPage {
   *****************************************************************************/
   logout() {
     this.nav.setRoot(LoginPage);
+  }
+
+  public sendNewPositionPushNotification(){
+    console.log("alert");
+    console.log(this.pushNotification.val);
+    if(this.pushNotification){
+
+    }
+
+  }
+
+  public sendNewPositionSmsNotification(){
+    if(this.smsNotification){
+
+    }
+
+  }
+
+  public sendNewPositionEmailNotification(){
+    if(this.emailNotificaiton){
+
+    }
+
   }
 
 

@@ -16,7 +16,7 @@ export class LoginPage {
   password: any = "";
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
-
+    alert(0);
   }
 
   /*****************************************************************************

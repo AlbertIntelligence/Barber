@@ -21,23 +21,23 @@
       <span ion-text color="white">johndoe@mail.com</span>
     </div>
   </div>
-
+  {{sendNewPositionPushNotification()}}
   <!--user settings-->
     <ion-item-group style="margin-top: 10px">
       <ion-item-divider color="bg-color">Notifications</ion-item-divider>
       <ion-item>
         <ion-label>Notification push</ion-label>
-        <ion-toggle color="primary" checked="true"></ion-toggle>
+        <ion-toggle color="primary" [(ngModel)]="pushNotification" checked="true"></ion-toggle>
       </ion-item>
 
       <ion-item>
         <ion-label>Notification par courriel</ion-label>
-        <ion-toggle color="primary" checked="true"></ion-toggle>
+        <ion-toggle color="primary" [(ngModel)]="emailNotificaiton" checked="true"></ion-toggle>
       </ion-item>
 
       <ion-item>
         <ion-label>Notification par SMS</ion-label>
-        <ion-toggle color="primary" checked="true"></ion-toggle>
+        <ion-toggle color="primary" [(ngModel)]="smsNotification" checked="true"></ion-toggle>
       </ion-item>
     </ion-item-group>
 

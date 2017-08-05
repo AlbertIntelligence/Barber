@@ -1,11 +1,10 @@
 import {Component, ViewChild} from "@angular/core";
 import {Platform} from "ionic-angular";
-import {StatusBar, Splashscreen} from "ionic-native";
+//import {StatusBar, Splashscreen} from "ionic-native";
+import {StatusBar} from "ionic-native";
 import {LoginPage} from "../pages/login/login";
+import { SplashScreen } from '@ionic-native/splash-screen';
 
-
-// import pages
-// end import pages
 
 @Component({
   templateUrl: 'app.html',
@@ -19,11 +18,12 @@ export class MyApp {
 
   public nav: any;
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform,private splashScreen: SplashScreen) {
     this.rootPage = LoginPage;
 
     // show splash screen
-    Splashscreen.show();
+    //Splashscreen.show();
+    this.splashScreen.show();
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
