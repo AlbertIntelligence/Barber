@@ -17,7 +17,7 @@
 
   <div padding margin-top>
   <ion-slides class="to-top" pager>
-    <ion-slide *ngFor="let image of hotel.images">
+    <ion-slide *ngFor="let image of barber.images">
       <img src="{{ image }}" alt="">
     </ion-slide>
   </ion-slides>
@@ -34,8 +34,8 @@
   <!--price info-->
   <div class="price-info" padding>
     <div class="pull-left">
-      <span class="price" *ngIf="!hotel.sale_price" ion-text color="light">{{ hotel.price | currency:'USD':true }}</span>
-      <span class="sale-price" *ngIf="hotel.sale_price"
+      <span class="price" *ngIf="!barber.sale_price" ion-text color="light">{{ barber.price | currency:'USD':true }}</span>
+      <span class="sale-price" *ngIf="barber.sale_price"
             ion-text color="light">20$</span><span ion-text color="light"></span>
     </div>
     <div class="pull-right">
@@ -47,7 +47,7 @@
   <!--services-->
   <ion-grid class="border-bottom">
     <ion-row>
-      <ion-col *ngFor="let service of hotel.services" text-center>
+      <ion-col *ngFor="let service of barber.services" text-center>
         <ion-icon class="text-2x" name="{{ service.icon }}" color="dark"></ion-icon>
         <span class="service-name" ion-text color="dark">{{ service.name }}</span>
       </ion-col>

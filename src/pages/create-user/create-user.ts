@@ -11,7 +11,6 @@ import firebase from 'firebase';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-create-user',
   templateUrl: 'create-user.html',

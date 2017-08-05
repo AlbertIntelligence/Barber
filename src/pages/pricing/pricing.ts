@@ -15,7 +15,7 @@ import {HomePage} from "../home/home";
 })
 export class PricingPage {
   // hotel info
-  public pictures: any;
+  public picture: any;
   // number of nights
   public nights = 1;
   // number of guests
@@ -27,7 +27,7 @@ export class PricingPage {
 
   constructor(public nav: NavController, public galleryService: GalleryService, public toastCtrl: ToastController) {
     // set sample data
-    this.pictures = galleryService.getItem(1);
+    this.picture = galleryService.getItem(1);
   }
 
   /*****************************************************************************
@@ -37,8 +37,6 @@ export class PricingPage {
   Return: None
   *****************************************************************************/
   send() {
-    // send booking info
-
     // show message
     let toast = this.toastCtrl.create({
       message: 'Booking sent',

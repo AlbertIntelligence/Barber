@@ -9,7 +9,10 @@ import {HomePage} from "../pages/home/home";
 import {BarberLocation} from "../pages/barber-location/barber-location";
 import {LoginPage} from "../pages/login/login";
 import {GetaTicketPage} from "../pages/get-a-ticket/get-a-ticket";
+import {TicketConfirmationPage} from "../pages/ticket-confirmation/ticket-confirmation";
 import {CreateUserPage} from "../pages/create-user/create-user";
+import {GalleryPage} from "../pages/gallery/gallery";
+import {SettingsPage} from "../pages/settings/settings";
 //import { Facebook } from '@ionic-native/facebook';
 import { GetAnAppointmentPage, DateSelectorDirective } from '../pages/getanappointment/getanappointment';
 import {Alert} from '../pages/alert/alert';
@@ -34,6 +37,9 @@ const providers = [ ];
     HomePage,
     LoginPage,
     GetaTicketPage,
+    TicketConfirmationPage,
+    GalleryPage,
+    SettingsPage,
     components,
     directives,
     BarberLocation,
@@ -52,6 +58,9 @@ const providers = [ ];
     HomePage,
     LoginPage,
     GetaTicketPage,
+    TicketConfirmationPage,
+    GalleryPage,
+    SettingsPage,
     BarberLocation,
     components,
     Alert,
@@ -61,6 +70,9 @@ const providers = [ ];
     GalleryService,
     BarberService,
     GetaTicketPage,
+    TicketConfirmationPage,
+    GalleryPage,
+    SettingsPage,
     Alert,
     //Facebook,
     providers,
