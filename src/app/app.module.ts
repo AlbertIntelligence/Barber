@@ -2,20 +2,13 @@ import {NgModule} from "@angular/core";
 import {IonicApp, IonicModule} from "ionic-angular";
 import {MyApp} from "./app.component";
 import {BrowserModule} from '@angular/platform-browser';
-import {HotelService} from "../services/hotel-service";
-import {PlaceService} from "../services/place-service";
-import {ActivityService} from "../services/activity-service";
-import {FlightService} from "../services/flight-service";
-import {CarService} from "../services/car-service";
-import {TripService} from "../services/trip-service";
+import {GalleryService} from "../services/gallery-service";
+import {BarberService} from "../services/barber-service";
 import {PricingPage} from "../pages/pricing/pricing";
-import {TicketConfirmationPage} from "../pages/ticket-confirmation/ticket-confirmation";
 import {HomePage} from "../pages/home/home";
 import {BarberLocation} from "../pages/barber-location/barber-location";
-import {HotelPage} from "../pages/hotel/hotel";
 import {LoginPage} from "../pages/login/login";
-import {RegisterPage} from "../pages/register/register";
-import {UserProfilePage} from "../pages/user-profile/user-profile";
+import {GetaTicketPage} from "../pages/get-a-ticket/get-a-ticket";
 import {CreateUserPage} from "../pages/create-user/create-user";
 //import { Facebook } from '@ionic-native/facebook';
 import { GetAnAppointmentPage, DateSelectorDirective } from '../pages/getanappointment/getanappointment';
@@ -39,11 +32,8 @@ const providers = [ ];
     MyApp,
     PricingPage,
     HomePage,
-    HotelPage,
     LoginPage,
-    RegisterPage,
-    UserProfilePage,
-    TicketConfirmationPage,
+    GetaTicketPage,
     components,
     directives,
     BarberLocation,
@@ -60,27 +50,17 @@ const providers = [ ];
     MyApp,
     PricingPage,
     HomePage,
-    HotelPage,
     LoginPage,
-    RegisterPage,
-    UserProfilePage,
-    TicketConfirmationPage,
+    GetaTicketPage,
     BarberLocation,
     components,
     Alert,
     CreateUserPage,
   ],
   providers: [
-    HotelService,
-    PlaceService,
-    ActivityService,
-    FlightService,
-    CarService,
-    TripService,
-    CarService,
-    TripService,
-    UserProfilePage,
-    TicketConfirmationPage,
+    GalleryService,
+    BarberService,
+    GetaTicketPage,
     Alert,
     //Facebook,
     providers,

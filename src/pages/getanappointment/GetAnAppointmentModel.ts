@@ -49,12 +49,22 @@ export class GetAnAppointmentModel {
     ];
   }
 
-  //Get the current user id key
+  /*****************************************************************************
+  Function: getUserId
+  Purpose: Retrieve the user id in db
+  Parameters: None
+  Return: userID (String)
+  *****************************************************************************/
   getUserId(): String {
     return firebase.auth().currentUser.uid;
   }
 
-  //Update firebase data snapshot
+  /*****************************************************************************
+  Function: updateDataSnapshot
+  Purpose: Listener to firebase database. Update model if data changes
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   updateDataSnapshot() {
     let model = this;
     firebase.database().ref('Appointments/')
@@ -69,18 +79,35 @@ export class GetAnAppointmentModel {
      });
   }
 
-  //Get the business hours of the day in parameter
+  /*****************************************************************************
+  Function: getBusinessHours
+  Purpose: Return the business hours of the date in parameter
+  Parameters: date (String): Date we want the business hours
+  Return: None
+  *****************************************************************************/
   getBusinessHours(date: String) {
     var day = date.toString().substring(0, 3);
     return this.businessHours.find(item => item.Day.indexOf(day) != -1);
   }
 
-  //Tells if the date and hour in parameter is available in db
+  /*****************************************************************************
+  Function: isAvailable
+  Purpose: Tells if the date and hour in parameter is available in db
+  Parameters: date (String): date user wants to book
+              hour (String): hour user wants to book
+  Return: None
+  *****************************************************************************/
   isAvailable(date: String, hour: String): Boolean {
     return (this.dataSnapshot.find(item => item.Date == date && item.Hour == hour) == undefined);
   }
 
-  //Create new record in db
+  /*****************************************************************************
+  Function: createNew
+  Purpose: Register a new appointment in db
+  Parameters: date(String): date to be saved
+              hour(String): hour to be saved
+  Return: None
+  *****************************************************************************/
   createNew(date: String, hour: String) {
     var appointments = firebase.database().ref('Appointments/');
     var userId = firebase.auth().currentUser.uid;
@@ -92,7 +119,12 @@ export class GetAnAppointmentModel {
     });
   }
 
-  //Get all days that are entirely booked
+  /*****************************************************************************
+  Function: getDaysBooked
+  Purpose: Return the list of the days that cannot receive a booking anymore
+  Parameters: None
+  Return: daysFullBooked (Array<String>): The list of days fully booked
+  *****************************************************************************/
   getDaysBooked(): Array<String> {
     var days = [];
     var nbAppointments = [];

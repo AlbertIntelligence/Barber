@@ -7,15 +7,13 @@ import * as $ from 'jquery';
 
 
 @Component({
-  selector: 'user-profile',
-  templateUrl: 'user-profile.html'
+  selector: 'get-a-ticket',
+  templateUrl: 'get-a-ticket.html'
 })
-export class UserProfilePage {
+export class GetaTicketPage {
 
 
   private hiddenDiv:any;
-
-
 
   constructor(public nav?: NavController, private newAlert?: Alert) {
     this.showCurrentClient();
@@ -240,4 +238,3 @@ class LinkedList {
     return arr;
   }
 }
-

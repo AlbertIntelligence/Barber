@@ -8,6 +8,9 @@ const NUM_OF_DAYS = 7;
 const NUM_OF_MONTHS = 1;
 const FORMAT = 'DD-MMM-YYYY';
 
+/***************************************************************************************************
+THE SECTION BELOW IS AN IMPORTED LIBRARY
+***************************************************************************************************/
 // Low level primitives to manipulate the css classes of the date elements displayed in the calendar view
 interface DateSelectorInterface {
     getId(): String;
@@ -56,10 +59,15 @@ export class DateSelectorDirective implements DateSelectorInterface {
   }
 }
 
+/***************************************************************************************************
+THE SECTION ABOVE IS AN IMPORTED LIBRARY
+***************************************************************************************************/
+
 @Component({
   selector:'getanappointment',
   templateUrl: 'getanappointment.html',
 })
+
 export class GetAnAppointmentPage {
   private weekNames:Array<String>;
   private selectedDate:any;
@@ -92,7 +100,12 @@ export class GetAnAppointmentPage {
     this.closingHour = this.appointments.getBusinessHours(this.currentDate).Closure + "h";
   }
 
-  //Increase hour value
+  /*****************************************************************************
+  Function: increaseHour
+  Purpose: Increment within the restriction the hour value
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   increaseHour() {
     var closingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Closure);
     if (closingHour > (parseFloat(this.currentHour) + 1)) {
@@ -104,7 +117,12 @@ export class GetAnAppointmentPage {
     }
   }
 
-  //Decrease hour value
+  /*****************************************************************************
+  Function: decreaseHour
+  Purpose: Decrement within the restriction the hour value
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   decreaseHour() {
     var openingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Opening);
     if (openingHour <= (parseFloat(this.currentHour) - 1)) {
@@ -116,19 +134,36 @@ export class GetAnAppointmentPage {
     }
   }
 
-  //Change the minutes value
+  /*****************************************************************************
+  Function: changeMinutes
+  Purpose: Change the minutes value by interval of 30 minutes
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   changeMinutes() {
     this.currentMinutes = (this.currentMinutes == '00') ? '30' : '00';
     this.verifyAvailibility();
   }
 
-  //Display the correct message if hour and date is available or not
+  /*****************************************************************************
+  Function: displayConflictMessage
+  Purpose: Display conflict message to user when the day and hour selected
+           are not available
+  Parameters: errorMessage: The message to be displayed
+  Return: None
+  *****************************************************************************/
   displayConflictMessage (errorMessage) {
     this.errorMessage = errorMessage;
     this.conflictMessageClasses = { 'conflictMessageOn': true, 'conflictMessageOff': false };
   }
 
-  //Check if time selected is available
+  /*****************************************************************************
+  Function: verifyAvailibility
+  Purpose: Check if the day and hour selected is available. If No, trigger
+           error message
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   verifyAvailibility () {
     this.conflictMessageClasses = { 'conflictMessageOn': false, 'conflictMessageOff': true };
     var hour = this.currentHour + " : " + this.currentMinutes;
@@ -136,14 +171,25 @@ export class GetAnAppointmentPage {
         this.displayConflictMessage("Cette plage horaire n'est plus disponible.");
   }
 
-  //Find the first available hour in date selected
+  /*****************************************************************************
+  Function: setDefaultHour
+  Purpose: Set the hour to the Opening hour of the actual day
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   setDefaultHour() {
     var hour = this.appointments.getBusinessHours(this.currentDate).Opening;
     this.currentHour = hour.toString().substring(0, 2);
     this.currentMinutes = (this.currentHour.toString().length > 2) ? "30" : "00";
   }
 
-  //Database event listener
+  /*****************************************************************************
+  Function: updateDataSnapshot
+  Purpose: Listen to the firebase db and triggers controller methods when data
+           changed in firebase db
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   updateDataSnapshot() {
     let controller = this;
     firebase.database().ref('Appointments/')
@@ -153,7 +199,13 @@ export class GetAnAppointmentPage {
      });
   }
 
-  //Save appointment in database
+  /*****************************************************************************
+  Function: getAppointment
+  Purpose: Save the current aay and hour in database. If conflict, display error
+           message
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   getAppointment() {
     var date = this.currentDate.format(FORMAT);
     var hour = this.currentHour + " : " + this.currentMinutes;
@@ -161,7 +213,12 @@ export class GetAnAppointmentPage {
     this.disableBookedDays();
   }
 
-  //Display alert when user clicks on get appointment and date/hour is not available
+  /*****************************************************************************
+  Function: showAlert
+  Purpose: Display a pop-up alert to notify user on reservation conflict
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   showAlert() {
     let alert = this.alertCtrl.create({
       title: 'Réservation impossible !',

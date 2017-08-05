@@ -19,27 +19,31 @@ export class LoginPage {
 
   }
 
+  /*****************************************************************************
+  Function: gotohome
+  Purpose: Pushes Home page
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   gotohome() {
     this.navCtrl.setRoot(HomePage);
   }
 
   /*****************************************************************************
-  Function: createUser
-  Auteur(s): Koueni Deumeni
-  Date de creation: 2017-06-03
-  Date de modification:
-  Description: This function create a new app user in the Firebase DB
+  Function: gotoCreateUser
+  Purpose: Pushes create-user page
+  Parameters: None
+  Return: None
   *****************************************************************************/
-  createUser() {
+  gotoCreateUser() {
     this.navCtrl.push(CreateUserPage);
   }
 
   /*****************************************************************************
   Function: loginUser
-  Auteur(s): Koueni Deumeni
-  Date de creation: 2017-06-03
-  Date de modification:
-  Description: This function authentificates an app user
+  Purpose: Validate the entries and logs the user in.
+  Parameters: None
+  Return: None
   *****************************************************************************/
   loginUser() {
     if (this.email.length == 0 || this.password.length == 0) {
@@ -56,11 +60,10 @@ export class LoginPage {
   }
 
   /*****************************************************************************
-  Function: signOut
-  Auteur(s): Koueni Deumeni
-  Date de creation: 2017-06-03
-  Date de modification:
-  Description: This function signs out an app user
+  Function: logoutUser
+  Purpose: Logs the user out
+  Parameters: None
+  Return: None
   *****************************************************************************/
   logoutUser(): firebase.Promise<void> {
     return firebase.auth().signOut();
@@ -68,10 +71,9 @@ export class LoginPage {
 
   /*****************************************************************************
   Function: resetPassword
-  Auteur(s): Koueni Deumeni
-  Date de creation: 2017-06-03
-  Date de modification:
-  Description: This function rests an app user password
+  Purpose: Allows the user to change his password
+  Parameters: None
+  Return: None
   *****************************************************************************/
   resetPassword(email: string): firebase.Promise<any> {
     return firebase.auth().sendPasswordResetEmail(email);
@@ -109,10 +111,9 @@ export class LoginPage {
 
   /*****************************************************************************
   Function: isLoggedIn
-  Auteur(s): Koueni Deumeni
-  Date de creation: 2017-06-03
-  Date de modification:
-  Description: This function tells if a user is logged in
+  Purpose: Tells if there is a user logged in
+  Parameters: None
+  Return: True or False
   *****************************************************************************/
   isLoggedIn(): Boolean {
     var user = firebase.auth().currentUser;
@@ -121,10 +122,10 @@ export class LoginPage {
 
   /*****************************************************************************
   Function: showAlert
-  Auteur(s): Koueni Deumeni
-  Date de creation: 2017-07-23
-  Date de modification:
-  Description: This function triggers warning messages
+  Purpose: Display warning message on a pop-up
+  Parameters: title: The pop-up title
+              subTitle: The pop-up message
+  Return: None
   *****************************************************************************/
   showAlert(title, subtitle) {
     let alert = this.alertCtrl.create({
@@ -133,15 +134,6 @@ export class LoginPage {
       buttons: ['OK']
     });
     alert.present();
-  }
-
-
-  //------------------------------------------THIS IS THE HELPER FUNCTION SECTION----------------------------------------------//
-
-
-  doLogin(){
-    var email = $("#email").text();
-    var password = $("#password").text();
   }
 
 

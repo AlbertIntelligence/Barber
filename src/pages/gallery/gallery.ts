@@ -15,7 +15,6 @@ export class GalleryPage {
   public pictures: any;
 
   constructor(public galleryService: GalleryService) {
-    // set sample data
     this.pictures = galleryService.getAll();
   }
 }

@@ -1,7 +1,7 @@
  import { Component } from "@angular/core";
 import { AlertController } from "ionic-angular/index";
 import {TicketConfirmationPage} from "../ticket-confirmation/ticket-confirmation";
- import {UserProfilePage} from "../user-profile/user-profile";
+ import {GetaTicketPage} from "../get-a-ticket/get-a-ticket";
 import {NavController,App} from "ionic-angular";
  import {Injectable} from '@angular/core';
 @Component({
@@ -13,15 +13,23 @@ export class Alert {
 
   private nav: NavController;
   private ticketConfirmationPage:TicketConfirmationPage;
-  private userProfile:UserProfilePage;
+  private ticket:GetaTicketPage;
 
-
+  /*****************************************************************************
+  Class constructor
+  *****************************************************************************/
   constructor(private alertCtrl ?: AlertController ,private app?:App) {
     this.nav = app.getActiveNav();
     this.ticketConfirmationPage = new TicketConfirmationPage();
-    this.userProfile = new UserProfilePage ;
+    this.ticket = new GetaTicketPage ;
   }
 
+  /*****************************************************************************
+  Function: presentAlert
+  Description: This function display a warning on pop-up
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   presentAlert() {
     let alert = this.alertCtrl.create({
       title: 'Payment Confirmation',
@@ -38,17 +46,12 @@ export class Alert {
           text: 'Confirm',
             handler: data => {
               this.nav.push(TicketConfirmationPage);
-              this.userProfile.makeTransaction();
+              this.ticket.makeTransaction();
           }
         }
       ]
     });
     alert.present();
   }
-
-
-
-
-
 
 }

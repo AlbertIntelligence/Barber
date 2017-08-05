@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {NavController, Platform} from "ionic-angular";
-import {HotelService} from "../../services/hotel-service";
+import {BarberService} from "../../services/barber-service";
 import {PricingPage} from "../pricing/pricing";
 
 declare var google: any;
@@ -15,24 +15,36 @@ declare var google: any;
   templateUrl: 'barber-location.html'
 })
 export class BarberLocation {
-  // hotel info
-  public hotel: any;
+  // barber info
+  public barber: any;
   // Map
   public map: any;
 
 
-  constructor(public nav: NavController, public hotelService: HotelService, public platform: Platform) {
+  constructor(public nav: NavController, public barberService: BarberService, public platform: Platform) {
     // set sample data
-    this.hotel = hotelService.getItem(1);
+    this.barber = barberService.getItem(1);
   }
 
+  /*****************************************************************************
+  Function: ionViewDidLoad
+  Description: Triggers specific functions when page is loaded
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   ionViewDidLoad() {
     // init map
     this.initializeMap();
   }
 
+  /*****************************************************************************
+  Function: presentAlert
+  Description: Set up the map view
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   initializeMap() {
-    let latLng = new google.maps.LatLng(this.hotel.location.lat, this.hotel.location.lon);
+    let latLng = new google.maps.LatLng(this.barber.location.lat, this.barber.location.lon);
 
     let mapOptions = {
       center: latLng,
@@ -56,17 +68,13 @@ export class BarberLocation {
     }, 300);
   }
 
-  // view a room
-  viewRoom(room) {
-    for (let i = 0; i < this.hotel.rooms.length; i++) {
-      this.hotel.rooms[i].active = false;
-    }
 
-    room.active = true;
-  }
-
-
-  // go to pricing page
+  /*****************************************************************************
+  Function: presentAlert
+  Description: Go to the pricing page
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   goToPricing() {
     this.nav.push(PricingPage);
   }

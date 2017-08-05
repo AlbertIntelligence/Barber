@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {NavController, ToastController} from "ionic-angular";
-import {HotelService} from "../../services/hotel-service";
+import {GalleryService} from "../../services/gallery-service";
 import {HomePage} from "../home/home";
 
 /*
@@ -15,9 +15,7 @@ import {HomePage} from "../home/home";
 })
 export class PricingPage {
   // hotel info
-  public hotel: any;
-  // room info
-  public room: any;
+  public pictures: any;
   // number of nights
   public nights = 1;
   // number of guests
@@ -27,13 +25,17 @@ export class PricingPage {
   // date to
   public dateTo = new Date();
 
-  constructor(public nav: NavController, public hotelService: HotelService, public toastCtrl: ToastController) {
+  constructor(public nav: NavController, public galleryService: GalleryService, public toastCtrl: ToastController) {
     // set sample data
-    this.hotel = hotelService.getItem(1);
-    this.room = this.hotel.rooms[0];
+    this.pictures = galleryService.getItem(1);
   }
 
-  // process send button
+  /*****************************************************************************
+  Function: send
+  Purpose: Quit the current page and display a toast message
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   send() {
     // send booking info
 

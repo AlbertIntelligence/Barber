@@ -18,7 +18,12 @@ export class SettingsPage {
   constructor(public nav: NavController) {
   }
 
-  // logout
+  /*****************************************************************************
+  Function: logout
+  Purpose: Pushes the login page
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   logout() {
     this.nav.setRoot(LoginPage);
   }

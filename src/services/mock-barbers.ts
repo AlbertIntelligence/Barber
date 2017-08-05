@@ -1,4 +1,4 @@
-export let HOTELS = [
+export let BARBERS = [
   {
     id: 1,
     name: "Mario Perfect Cut",
