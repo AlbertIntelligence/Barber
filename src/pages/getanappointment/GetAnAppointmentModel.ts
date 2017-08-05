@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import firebase from 'firebase';
 
 @Component({
-    templateUrl: '../datepicker/datepicker.html',
+    templateUrl: '../getanappointment/getanappointment.html',
 })
-export class DatePickerModel {
+export class GetAnAppointmentModel {
   private businessHours:Array<any> = [];
   private dataSnapshot:Array<any> = [];
 

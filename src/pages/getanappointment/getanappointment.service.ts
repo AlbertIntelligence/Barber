@@ -2,7 +2,7 @@
 import {Injectable} from '@angular/core';
 
 @Injectable()
-export class DatePickerService {
+export class GetAnAppointmentService {
   constructor() {
   }
 

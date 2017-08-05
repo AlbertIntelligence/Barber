@@ -8,20 +8,17 @@ import {ActivityService} from "../services/activity-service";
 import {FlightService} from "../services/flight-service";
 import {CarService} from "../services/car-service";
 import {TripService} from "../services/trip-service";
-import {AccountPage} from "../pages/account/account";
-import {CheckoutHotelPage} from "../pages/checkout-hotel/checkout-hotel";
+import {PricingPage} from "../pages/pricing/pricing";
 import {TicketConfirmationPage} from "../pages/ticket-confirmation/ticket-confirmation";
 import {HomePage} from "../pages/home/home";
 import {BarberLocation} from "../pages/barber-location/barber-location";
 import {HotelPage} from "../pages/hotel/hotel";
-import {AppointmentPage} from "../pages/appointment/appointment";
 import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
 import {UserProfilePage} from "../pages/user-profile/user-profile";
 import {CreateUserPage} from "../pages/create-user/create-user";
 //import { Facebook } from '@ionic-native/facebook';
-import { DatePickerComponent, DateSelectorDirective } from '../pages/datepicker/datepicker';
-import { DatePickerService } from '../pages/datepicker/datepicker.service';
+import { GetAnAppointmentPage, DateSelectorDirective } from '../pages/getanappointment/getanappointment';
 import {Alert} from '../pages/alert/alert';
 import * as firebase from "firebase";
 
@@ -32,19 +29,17 @@ import * as firebase from "firebase";
 // import pages
 // end import pages
 
-const components = [ DatePickerComponent ];
+const components = [ GetAnAppointmentPage ];
 const directives = [ DateSelectorDirective ];
-const providers = [ DatePickerService ];
+const providers = [ ];
 
 
 @NgModule({
   declarations: [
     MyApp,
-    AccountPage,
-    CheckoutHotelPage,
+    PricingPage,
     HomePage,
     HotelPage,
-    AppointmentPage,
     LoginPage,
     RegisterPage,
     UserProfilePage,
@@ -63,11 +58,9 @@ const providers = [ DatePickerService ];
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AccountPage,
-    CheckoutHotelPage,
+    PricingPage,
     HomePage,
     HotelPage,
-    AppointmentPage,
     LoginPage,
     RegisterPage,
     UserProfilePage,

@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {NavController, Platform} from "ionic-angular";
 import {HotelService} from "../../services/hotel-service";
-import {CheckoutHotelPage} from "../checkout-hotel/checkout-hotel";
+import {PricingPage} from "../pricing/pricing";
 
 declare var google: any;
 /*
@@ -66,9 +66,9 @@ export class BarberLocation {
   }
 
 
-  // go to checkout page
-  checkout() {
-    this.nav.push(CheckoutHotelPage);
+  // go to pricing page
+  goToPricing() {
+    this.nav.push(PricingPage);
   }
 
 }

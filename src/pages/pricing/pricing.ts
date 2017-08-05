@@ -10,10 +10,10 @@ import {HomePage} from "../home/home";
  Ionic pages and navigation.
  */
 @Component({
-  selector: 'page-checkout-hotel',
-  templateUrl: 'checkout-hotel.html'
+  selector: 'page-pricing',
+  templateUrl: 'pricing.html'
 })
-export class CheckoutHotelPage {
+export class PricingPage {
   // hotel info
   public hotel: any;
   // room info

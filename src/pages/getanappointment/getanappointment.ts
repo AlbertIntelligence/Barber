@@ -1,6 +1,6 @@
 import { Component, Directive, Input, ViewChildren, QueryList, ElementRef, Renderer } from '@angular/core';
 import moment from 'moment';
-import {DatePickerModel} from './DatePickerModel';
+import {GetAnAppointmentModel} from './GetAnAppointmentModel';
 import { AlertController } from 'ionic-angular';
 import firebase from 'firebase';
 
@@ -57,10 +57,10 @@ export class DateSelectorDirective implements DateSelectorInterface {
 }
 
 @Component({
-  selector:'datepicker',
-  templateUrl: 'datepicker.html',
+  selector:'getanappointment',
+  templateUrl: 'getanappointment.html',
 })
-export class DatePickerComponent {
+export class GetAnAppointmentPage {
   private weekNames:Array<String>;
   private selectedDate:any;
   private today:any;
@@ -68,7 +68,7 @@ export class DatePickerComponent {
   private currentDate:any;
   private currentHour:any = "10";
   private currentMinutes:any = "00";
-  private appointments:DatePickerModel;
+  private appointments:GetAnAppointmentModel;
   private errorMessage:String;
   private conflictMessageClasses:any = { 'conflictMessageOn': false, 'conflictMessageOff': true };
   private openingHour:String;
@@ -82,7 +82,7 @@ export class DatePickerComponent {
   // calendar view
   @ViewChildren(DateSelectorDirective) dateSelectors:QueryList<DateSelectorDirective>;
   constructor(public alertCtrl: AlertController) {
-    this.appointments = new DatePickerModel();
+    this.appointments = new GetAnAppointmentModel();
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
     this.currentDate = this.today.clone();

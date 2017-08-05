@@ -1,12 +1,12 @@
 import {Component} from "@angular/core";
 import {NavController} from "ionic-angular";
 import {HotelService} from "../../services/hotel-service";
-import {DatePickerComponent} from "../datepicker/datepicker";
-import {AccountPage} from "../account/account";
+import {GetAnAppointmentPage} from "../getanappointment/getanappointment";
 import {HotelPage} from "../hotel/hotel";
 import {UserProfilePage} from "../user-profile/user-profile";
 import {BarberLocation} from "../barber-location/barber-location";
 import {LoginPage} from "../login/login";
+import {SettingsPage} from "../settings/settings";
 
 
 /*
@@ -26,9 +26,6 @@ export class HomePage {
   constructor(public nav: NavController, public hotelService: HotelService) {
     // set sample data
     this.hotels = hotelService.getAll();
-    /*if(login.isLoggedIn()){
-      this.nav.push(LoginPage);
-    }*/
   }
 
   // view hotel detail
@@ -47,8 +44,8 @@ export class HomePage {
   }
 
   // to go account page
-  goToAccount() {
-    this.nav.push(AccountPage);
+  goToSettings() {
+    this.nav.push(SettingsPage);
   }
 
   // to go account page

@@ -10,10 +10,10 @@ import {LoginPage} from "../login/login";
  Ionic pages and navigation.
  */
 @Component({
-  selector: 'page-account',
-  templateUrl: 'account.html'
+  selector: 'page-settings',
+  templateUrl: 'settings.html'
 })
-export class AccountPage {
+export class SettingsPage {
 
   constructor(public nav: NavController) {
   }
