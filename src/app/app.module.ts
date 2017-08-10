@@ -11,12 +11,14 @@ import {LoginPage} from "../pages/login/login";
 import {GetaTicketPage} from "../pages/get-a-ticket/get-a-ticket";
 import {TicketConfirmationPage} from "../pages/ticket-confirmation/ticket-confirmation";
 import {CreateUserPage} from "../pages/create-user/create-user";
+import {PhoneNumberPage} from "../pages/phone-number/phone-number";
 import {GalleryPage} from "../pages/gallery/gallery";
 import {SettingsPage} from "../pages/settings/settings";
 //import { Facebook } from '@ionic-native/facebook';
 import { GetAnAppointmentPage, DateSelectorDirective } from '../pages/getanappointment/getanappointment';
 import {Alert} from '../pages/alert/alert';
 import * as firebase from "firebase";
+import { SMS } from '@ionic-native/sms';
 
 // import services
 // end import services
@@ -45,6 +47,7 @@ const providers = [ ];
     BarberLocation,
     Alert,
     CreateUserPage,
+    PhoneNumberPage,
 
   ],
   imports: [
@@ -65,6 +68,7 @@ const providers = [ ];
     components,
     Alert,
     CreateUserPage,
+    PhoneNumberPage,
   ],
   providers: [
     GalleryService,
@@ -74,6 +78,9 @@ const providers = [ ];
     GalleryPage,
     SettingsPage,
     Alert,
+    CreateUserPage,
+    PhoneNumberPage,
+    SMS,
     //Facebook,
     providers,
     /* import services */

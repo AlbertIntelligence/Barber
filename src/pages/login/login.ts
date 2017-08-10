@@ -6,6 +6,7 @@ import { Directive, Input, ViewChildren, QueryList, ElementRef, Renderer } from 
 import firebase from 'firebase';
 import { AlertController } from 'ionic-angular';
 import {CreateUserPage} from "../create-user/create-user";
+import { SMS } from '@ionic-native/sms';
 
 @Component({
   selector: 'page-login',
@@ -15,8 +16,9 @@ export class LoginPage {
   email: any = "";
   password: any = "";
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
-
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, private sms: SMS) {
+    // Send a text message using default options
+    this.sms.send('5145668877', 'Hello world!');
   }
 
   /*****************************************************************************
