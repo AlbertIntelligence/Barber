@@ -1,3 +1,4 @@
+@import url(../assets/flag-icon-css/css/flag-icon.css);
 .ion-ios-add:before {
   content: "\f102";
 }
@@ -78417,13 +78418,25 @@ page-phone-number {
 page-phone-number .header-img {
   position: relative;
   width: 100vw;
-  height: 60vh;
+  height: 70vh;
 }
 
 page-phone-number .img {
+  display: block;
   position: absolute;
-  width: 100%;
+  width: auto;
   height: 100%;
+  padding: 10vw;
+  margin: auto;
+}
+
+page-phone-number .input {
+  border: 0 !important;
+  width: 75%;
+  font-size: 15px;
+  outline: none;
+  padding: 0;
+  padding-left: 2vw;
 }
 
 page-phone-number .login-page {

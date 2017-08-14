@@ -24,11 +24,15 @@
     "@angular/platform-server": "2.4.8",
     "@ionic-native/core": "^3.12.1",
     "@ionic-native/facebook": "^3.12.1",
+    "@ionic-native/keyboard": "^4.1.0",
+    "@ionic-native/native-page-transitions": "^4.1.0",
     "@ionic-native/sms": "^4.1.0",
     "@ionic-native/toast": "^3.12.1",
     "@ionic/cloud-angular": "^0.12.0",
     "@ionic/storage": "2.0.1",
+    "com.telerik.plugins.nativepagetransitions": "^0.6.5",
     "cordova-android": "^6.2.3",
+    "cordova-browser": "^4.1.0",
     "cordova-ios": "^4.4.0",
     "cordova-plugin-console": "^1.0.7",
     "cordova-plugin-device": "^1.1.6",
@@ -71,10 +75,12 @@
       },
       "cordova-plugin-device": {},
       "cordova-plugin-console": {},
-      "ionic-plugin-keyboard": {}
+      "ionic-plugin-keyboard": {},
+      "com.telerik.plugins.nativepagetransitions": {}
     },
     "platforms": [
       "android",
+      "browser",
       "ios"
     ]
   }

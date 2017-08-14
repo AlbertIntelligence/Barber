@@ -6,30 +6,36 @@
 -->
 <ion-content class="">
   <!-- Header image -->
-  <div class="header-img">
+  <ion-row id="headerImg" class="header-img">
 
-    <img src="../../assets/img/bg2.jpg" class="img"/>
+    <img src="../../assets/img/homepageimage.png" class="img"/>
 
-  </div>
+  </ion-row>
+
+  <!-- Title -->
+  <ion-row margin-left style="margin-top: 4vh; margin-bottom: 4vh">
+    <ion-col id="backBtn" style="display:none" col-6><ion-icon (click)="backToHome()" style="font-size: x-large" name="md-arrow-back"></ion-icon></ion-col>
+    <ion-col id="title" col-12 style="padding:0;border:0;margin:0">
+      <div style="color: gray; font-size: 25px">Bienvenue à Barber Me !</div>
+    </ion-col>
+  </ion-row>
+
+  <!-- Sub title -->
+  <ion-row id="subtitle" style="display: none" margin-top margin-bottom margin-left>
+    <div style="color: gray; font-size: 20px">Entrez votre numéro de téléphone</div>
+  </ion-row>
 
   <!-- Input for phone number -->
-  <div>
-    <ion-item padding-top>
-      <ion-label stacked style="text-size: 40px"><h2>Bienvenue à Barber Me !</h2></ion-label>
-      <ion-input padding-top [(ngModel)]="phoneNumber" type="tel" placeholder="Entrez votre numéro de téléphone"></ion-input>
-    </ion-item>
+  <div id="inputBloc" margin-left style="margin-top: 3vh; margin-bottom: 3vh">
+    <span class="flag-icon flag-icon-ca" style="font-size: 5vw; margin-right:1vw"></span>
+    <ion-icon name="md-arrow-dropdown"></ion-icon>
+    <span style="margin-left: 1vw; font-size: 17px">+1</span>
+    <input id="input" (focus)="enterYourPhone()" class="input" [(ngModel)]="phoneNumber" type="tel" placeholder="Entrez votre numéro de téléphone">
   </div>
-
 
   <!-- Link to login page -->
-  <div text-center margin-top>
-    <span ion-text color="black" (click)="gotoLoginPage()">Connecte toi avec ton adresse courriel !</span>
-  </div>
-
-  <!-- User accepts terms of user -->
-  <div margin-top padding-left>
-    <span ion-text color="black" style="font-size: 10px">En continuant, vous acceptez nos termes d'utilisation
-    et notre politique de confidentialité.</span>
-  </div>
+  <ion-row padding-left id="link" style="position:fixed; width: 100%; bottom:2.5vh; border-top: 1px solid #EBEBEB; padding-top: 2.5vh">
+    <span ion-text color="black" style="color:blue">Connecte toi avec ton adresse courriel !</span>
+  </ion-row>
 
 </ion-content>

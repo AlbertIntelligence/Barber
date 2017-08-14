@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {LoginPage} from "../login/login";
 import firebase from 'firebase';
 import $ from 'jquery';
+import { Keyboard } from '@ionic-native/keyboard';
 import 'intl-tel-input';
 
 /**
@@ -18,7 +19,11 @@ import 'intl-tel-input';
 
 export class PhoneNumberPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  loaded:   boolean = false;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              private keyboard: Keyboard) {
+
   }
 
   ngOnInit(): any {
@@ -45,6 +50,53 @@ export class PhoneNumberPage {
   *****************************************************************************/
   gotoLoginPage() {
     this.navCtrl.push(LoginPage);
+  }
+
+  /*****************************************************************************
+  Function: transition
+  Description: Trigger the transition
+  Parameters: none
+  Return: void
+  *****************************************************************************/
+  enterYourPhone() {
+    if (!this.loaded) {
+      $("#headerImg").animate({height: 'toggle'},
+        500);
+
+        $("#link").hide();
+        $("#title").hide();
+        $("#hr").hide();
+        $("#backBtn").show();
+        $("#subtitle").show();
+        $("#input").attr("placeholder", "(514) 555-1234");
+        $("#input").trigger("focus");
+
+        this.loaded = true;
+    } else {
+      this.keyboard.show();
+    }
+  }
+
+  /*****************************************************************************
+  Function: transition
+  Description: Get back to the home page disposition
+  Parameters: none
+  Return: void
+  *****************************************************************************/
+  backToHome() {
+    if (this.loaded) {
+      $("#headerImg").animate({height: 'toggle'},
+        500);
+
+        $("#link").show();
+        $("#title").show();
+        $("#hr").show();
+        $("#backBtn").hide();
+        $("#subtitle").hide();
+        $("#input").attr("placeholder", "Entrez votre numéro de téléphone");
+
+        this.loaded = false;
+    }
   }
 
 }

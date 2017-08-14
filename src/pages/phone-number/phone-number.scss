@@ -3,13 +3,25 @@ page-phone-number {
   .header-img {
     position: relative;
     width: 100vw;
-    height: 60vh;
+    height: 70vh;
   }
 
   .img {
+    display: block;
     position: absolute;
-    width: 100%;
+    width: auto;
     height: 100%;
+    padding: 10vw;
+    margin: auto;
+  }
+
+  .input {
+    border: 0 !important;
+    width: 75%;
+    font-size: 15px;
+    outline: none;
+    padding: 0;
+    padding-left: 2vw;
   }
 
   .login-page {

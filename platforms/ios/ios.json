@@ -55,6 +55,10 @@
                         {
                             "xml": "<feature name=\"Keyboard\"><param name=\"ios-package\" onload=\"true\" value=\"IonicKeyboard\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"NativePageTransitions\"><param name=\"ios-package\" value=\"NativePageTransitions\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -114,6 +118,9 @@
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
         "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+        },
+        "com.telerik.plugins.nativepagetransitions": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         }
     },
@@ -181,6 +188,14 @@
                 "cordova.plugins.Keyboard"
             ],
             "runs": true
+        },
+        {
+            "id": "com.telerik.plugins.nativepagetransitions.NativePageTransitions",
+            "file": "plugins/com.telerik.plugins.nativepagetransitions/www/NativePageTransitions.js",
+            "pluginId": "com.telerik.plugins.nativepagetransitions",
+            "clobbers": [
+                "window.plugins.nativepagetransitions"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -189,6 +204,7 @@
         "cordova-plugin-facebook4": "1.9.1",
         "cordova-plugin-inappbrowser": "1.7.1",
         "cordova-plugin-x-toast": "2.6.0",
-        "ionic-plugin-keyboard": "2.2.1"
+        "ionic-plugin-keyboard": "2.2.1",
+        "com.telerik.plugins.nativepagetransitions": "0.6.5"
     }
 }

@@ -18,6 +18,7 @@ import {SettingsPage} from "../pages/settings/settings";
 import { GetAnAppointmentPage, DateSelectorDirective } from '../pages/getanappointment/getanappointment';
 import {Alert} from '../pages/alert/alert';
 import * as firebase from "firebase";
+import { Keyboard } from '@ionic-native/keyboard';
 import { SMS } from '@ionic-native/sms';
 
 // import services
@@ -80,6 +81,7 @@ const providers = [ ];
     Alert,
     CreateUserPage,
     PhoneNumberPage,
+    Keyboard,
     SMS,
     //Facebook,
     providers,
