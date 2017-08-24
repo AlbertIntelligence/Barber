@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {IonicApp, IonicModule} from "ionic-angular";
+import {IonicApp, IonicModule } from "ionic-angular";
 import {MyApp} from "./app.component";
 import {BrowserModule} from '@angular/platform-browser';
 import {GalleryService} from "../services/gallery-service";
@@ -32,7 +32,6 @@ const components = [ GetAnAppointmentPage ];
 const directives = [ DateSelectorDirective ];
 const providers = [ ];
 
-
 @NgModule({
   declarations: [
     MyApp,
@@ -53,7 +52,10 @@ const providers = [ ];
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      scrollPadding: false,
+      scrollAssist: false
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [

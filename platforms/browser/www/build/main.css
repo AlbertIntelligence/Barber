@@ -1,3 +1,4 @@
+@import url(../assets/flag-icon-css/css/flag-icon.css);
 .ion-ios-add:before {
   content: "\f102";
 }
@@ -78371,205 +78372,73 @@ page-home ion-grid.list-pictures ion-row ion-col .hide-sm,
   display: none;
 }
 
-page-phone-number {
-  /**
-   * we are using flexbox for the layout
-   */
-  /**
-   * logo
-   */
-  /**
-   * customization of "what's your number and don't worry.."
-   */
-  /**
-   * display the country selector and the phone number input
-   * next to each other on the same line
-   */
-  /**
-   * The confirmation code input is taking the full width
-   */
-  /**
-   * use a ligth shadow when tapping on the country selector button
-   */
-  /**
-   * customization of the forms
-   */
-  /**
-   * Down arrow next to the country selector button
-   */
-  /**
-   * Customization of the input placeholder
-   */
-  /**
-   * The green icon appears when the phone number is valid
-   */
-  /**
-   * Position the button to right side of the form
-   */
-  /**
-   * Country selector: reduce the default height of a ionic item
-   */
-  /**
-   * Platform specific, to be have the best rendering on each platform
-   */
+page-phone-number .content {
+  overflow: hidden !important;
 }
 
 page-phone-number .header-img {
   position: relative;
   width: 100vw;
-  height: 70vh;
+  height: 62.7vh;
+  padding: 0;
+  margin: 0;
 }
 
 page-phone-number .img {
+  display: block;
   position: absolute;
   width: 100%;
   height: 100%;
-}
-
-page-phone-number .login-page {
-  background: url(../img/login.jpg);
-  background-size: cover;
-  background-color: black;
-  color: white;
-}
-
-page-phone-number .login-page .login-container {
-  height: 100%;
-  width: 100%;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  text-align: center;
-  padding: 20px;
-  text-align: left;
-}
-
-page-phone-number .login-top img {
-  display: block;
-  margin: 20px auto 40px;
-  width: 40px;
-}
-
-page-phone-number .login-top h3 {
-  color: white;
-}
-
-page-phone-number .login-top p {
-  margin: 0 auto 16px;
-  color: #DDD;
-}
-
-page-phone-number .login-top label {
-  display: inline-block;
-  padding-left: 0;
-  background-color: transparent;
-  border: none;
+  padding: 0;
   margin: auto;
 }
 
-page-phone-number .login-top label.item-country-code {
-  width: 70px;
-  text-align: center;
+page-phone-number .input {
+  border: 0 !important;
+  width: 75%;
+  font-size: 22px;
+  outline: none;
+  padding: 0;
+  padding-left: 2vw;
+  margin-left: 1vw;
+  font-family: "Times New Roman", Times, serif;
 }
 
-page-phone-number .login-top label.item-phonenumber {
-  width: calc(100% - 74px);
+page-phone-number .main {
+  display: block;
+  position: relative;
+  padding-top: 4vh;
+  padding-left: 7vw;
+  padding-right: 7vw;
+  height: 26vh;
 }
 
-page-phone-number .login-top label.item-code {
-  width: 100%;
-}
-
-page-phone-number .login-top label.item-country-code.activated {
-  border-color: none;
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-page-phone-number .login-top .countrycode,
-page-phone-number .login-top .item-code input,
-page-phone-number .login-top .item-phonenumber input {
-  font-size: 140%;
-  height: 34px;
-  line-height: 34px;
-  letter-spacing: 2px;
-  color: #fff;
-  border-bottom: 1px solid #888;
-}
-
-page-phone-number .login-top .item-phonenumber input {
-  padding-left: 4px;
-}
-
-page-phone-number .login-top .item-code input {
-  text-align: center;
-  padding-right: 0;
-}
-
-page-phone-number .login-top .countrycode .arrow-down {
+page-phone-number .title {
   display: inline-block;
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #888;
-  margin-left: 2px;
+  position: relative;
+  margin-top: 1.8vh;
+  font-family: "Times New Roman", Times, serif;
 }
 
-page-phone-number .login-top .item-code input::-webkit-input-placeholder,
-page-phone-number .login-top .item-phonenumber input::-webkit-input-placeholder {
-  letter-spacing: 0;
-  font-size: 16px;
+page-phone-number .subtitle {
+  display: none;
+  position: relative;
+  font-family: "Times New Roman", Times, serif;
 }
 
-page-phone-number .login-top .item-phonenumber .icon {
-  opacity: 0;
-  transition: .25s opacity;
-  color: #5CDC54;
-  font-size: 18px;
-  right: -12px;
+page-phone-number .phoneNumber {
+  position: relative;
+  margin-top: 5vh;
+  padding-bottom: 10px;
 }
 
-page-phone-number .login-top .item-phonenumber .icon.phonenumber-valid {
-  opacity: 1;
-}
-
-page-phone-number .login-top .button {
-  font-weight: 500;
-  width: 100px;
-  float: right;
-  margin-top: 16px;
-}
-
-page-phone-number .login-text-not-received a,
-page-phone-number .login-disclaimer a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-page-phone-number .item-country {
-  padding: 8px 16px;
-}
-
-page-phone-number .platform-android .login-action-sheet .action-sheet .button {
-  font-size: 15px;
-  padding-left: 20px;
-}
-
-page-phone-number .platform-cordova.platform-ios .login-top .countrycode,
-page-phone-number .platform-cordova.platform-ios .login-top .item-code input,
-page-phone-number .platform-cordova.platform-ios .login-top .item-phonenumber input {
-  line-height: 28px;
-}
-
-page-phone-number .platform-cordova.platform-ios .login-top .item-phonenumber .icon.phonenumber-valid {
-  padding-bottom: 6px;
+page-phone-number .footer {
+  position: relative;
+  padding-left: 7vw;
+  padding-right: 7vw;
+  font-family: "Times New Roman", Times, serif;
+  border-top: 1px solid #EBEBEB;
+  height: 11.3vh;
 }
 
 page-pricing .bg-filter,

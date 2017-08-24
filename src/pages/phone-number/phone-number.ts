@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {LoginPage} from "../login/login";
-import firebase from 'firebase';
-import $ from 'jquery';
+import * as $ from 'jquery';
 import { Keyboard } from '@ionic-native/keyboard';
 import 'intl-tel-input';
+import { Platform } from 'ionic-angular';
 
 /**
  * Generated class for the CreateUserPage page.
@@ -19,31 +19,19 @@ import 'intl-tel-input';
 
 export class PhoneNumberPage {
 
-  loaded:   boolean = false;
+  loaded: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private keyboard: Keyboard) {
+              private keyboard: Keyboard, public platform: Platform) {
 
   }
 
   ngOnInit(): any {
-    let telInput = $("#elemtId");
-    let output = $("#output");
-
-    telInput.intlTelInput();
-    // listen to "keyup", but also "change" to update when the user selects a country
-    telInput.on("keyup change", function() {
-      var intlNumber = telInput.intlTelInput("getNumber");
-      if (intlNumber) {
-        output.text("International: " + intlNumber);
-      } else {
-        output.text("Please enter a number below");
-      }
-    });
+    this.setFooter();
   }
 
   /*****************************************************************************
-  Function: presentAlert
+  Function: gotoLoginPage
   Description: Go to the login page
   Parameters: None
   Return: None
@@ -52,16 +40,18 @@ export class PhoneNumberPage {
     this.navCtrl.push(LoginPage);
   }
 
+
+
   /*****************************************************************************
-  Function: transition
+  Function: enterYourPhone
   Description: Trigger the transition
-  Parameters: none
+  Parameters: event
   Return: void
   *****************************************************************************/
   enterYourPhone() {
+    this.keyboard.disableScroll(true);
     if (!this.loaded) {
-      $("#headerImg").animate({height: 'toggle'},
-        500);
+      $("#headerImg").animate({height: 'toggle'}, 500);
 
         $("#link").hide();
         $("#title").hide();
@@ -70,7 +60,8 @@ export class PhoneNumberPage {
         $("#subtitle").show();
         $("#input").attr("placeholder", "(514) 555-1234");
         $("#input").trigger("focus");
-
+        $("#inputBloc").css('border-bottom', '2px solid black');
+        $("#titleBlock").css('margin-top', '32vh');
         this.loaded = true;
     } else {
       this.keyboard.show();
@@ -78,24 +69,38 @@ export class PhoneNumberPage {
   }
 
   /*****************************************************************************
-  Function: transition
+  Function: backToHome
   Description: Get back to the home page disposition
   Parameters: none
   Return: void
   *****************************************************************************/
   backToHome() {
     if (this.loaded) {
-      $("#headerImg").animate({height: 'toggle'},
-        500);
+      this.keyboard.close();
+      $("#headerImg").animate({height: 'toggle'}, 500);
 
         $("#link").show();
         $("#title").show();
         $("#hr").show();
         $("#backBtn").hide();
         $("#subtitle").hide();
-        $("#input").attr("placeholder", "Entrez votre numéro de téléphone");
+        $("#input").attr("placeholder", "Numéro de téléphone");
+        $("#inputBloc").css('border-bottom', '0');
+        $("#titleBlock").css('margin-top', '0');
 
         this.loaded = false;
+    }
+  }
+
+  /*****************************************************************************
+  Function: setFooter
+  Description: Set the footer dimensions for iOS
+  Parameters: none
+  Return: void
+  *****************************************************************************/
+  setFooter() {
+    if (this.platform.is('ios')) {
+      $("#link").height("7.5vh");
     }
   }
 
