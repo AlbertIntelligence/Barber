@@ -16,7 +16,7 @@
   <ion-row class="main">
     <!-- Title -->
     <ion-row class="title" id="titleBlock">
-      <ion-col id="backBtn" style="display:none;padding:0;margin:0" col-6><ion-icon (click)="backToHome()" style="font-size: 7.5vw; color: gray;padding:0;margin:0" name="md-arrow-back"></ion-icon></ion-col>
+      <ion-col id="backBtn" style="display:none;padding:0;margin:0" col-6><ion-icon (click)="backToHome()" style="font-size: 12vw; color: gray;padding:0;margin:0" name="arrow-round-back"></ion-icon></ion-col>
       <ion-col id="title" col-12 style="padding:0;border:0;margin:0">
         <div style="color: gray; font-size: 30px">Bienvenue à Barber Me !</div>
       </ion-col>
@@ -44,5 +44,7 @@
   <ion-row class="footer" id="link">
     <span (click)="gotoLoginPage()" ion-text color="black" style="color:blue; margin-top: auto; margin-bottom: auto; font-size: 19px">Connecte toi avec ton adresse courriel</span>
   </ion-row>
+
+  <button id="nextBtn" ion-button class="btn-circle btn-xl"><ion-icon ios="ios-arrow-round-forward" md="md-arrow-round-forward" style="color: white"></ion-icon></button>
 
 </ion-content>

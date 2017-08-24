@@ -27,7 +27,7 @@ export class PhoneNumberPage {
   }
 
   ngOnInit(): any {
-    this.setFooter();
+    this.setHeaderFooter();
   }
 
   /*****************************************************************************
@@ -51,20 +51,18 @@ export class PhoneNumberPage {
   enterYourPhone() {
     this.keyboard.disableScroll(true);
     if (!this.loaded) {
-      $("#headerImg").animate({height: 'toggle'}, 500);
-
+        this.loaded = true;
+        $("#input").blur();
+        $("#headerImg").animate({height: 'toggle'}, 500);
         $("#link").hide();
         $("#title").hide();
         $("#hr").hide();
         $("#backBtn").show();
         $("#subtitle").show();
         $("#input").attr("placeholder", "(514) 555-1234");
-        $("#input").trigger("focus");
         $("#inputBloc").css('border-bottom', '2px solid black');
-        $("#titleBlock").css('margin-top', '32vh');
-        this.loaded = true;
-    } else {
-      this.keyboard.show();
+        $("#nextBtn").show();
+        //$("#input").focus();
     }
   }
 
@@ -75,18 +73,20 @@ export class PhoneNumberPage {
   Return: void
   *****************************************************************************/
   backToHome() {
+    this.keyboard.disableScroll(true);
     if (this.loaded) {
-      this.keyboard.close();
-      $("#headerImg").animate({height: 'toggle'}, 500);
-
-        $("#link").show();
-        $("#title").show();
-        $("#hr").show();
-        $("#backBtn").hide();
-        $("#subtitle").hide();
-        $("#input").attr("placeholder", "Numéro de téléphone");
-        $("#inputBloc").css('border-bottom', '0');
-        $("#titleBlock").css('margin-top', '0');
+        $("#input").blur();
+        setTimeout(function(){
+          $("#link").show();
+          $("#title").show();
+          $("#hr").show();
+          $("#backBtn").hide();
+          $("#subtitle").hide();
+          $("#nextBtn").hide();
+          $("#input").attr("placeholder", "Numéro de téléphone");
+          $("#inputBloc").css('border-bottom', '0');
+          $("#headerImg").animate({height: 'toggle'}, 500);
+        }, 10);
 
         this.loaded = false;
     }
@@ -98,9 +98,10 @@ export class PhoneNumberPage {
   Parameters: none
   Return: void
   *****************************************************************************/
-  setFooter() {
+  setHeaderFooter() {
     if (this.platform.is('ios')) {
-      $("#link").height("7.5vh");
+      $(".header-img").height("61.7vh");
+      $("#link").height("8.5vh");
     }
   }
 

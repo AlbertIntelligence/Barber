@@ -54,7 +54,8 @@ const providers = [ ];
     BrowserModule,
     IonicModule.forRoot(MyApp,{
       scrollPadding: false,
-      scrollAssist: false
+      scrollAssist: false,
+      autoFocusAssist: false
     }),
   ],
   bootstrap: [IonicApp],
