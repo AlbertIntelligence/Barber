@@ -40,6 +40,9 @@
     <feature name="Keyboard">
         <param name="ios-package" onload="true" value="IonicKeyboard" />
     </feature>
+    <feature name="NativePageTransitions">
+        <param name="ios-package" value="NativePageTransitions" />
+    </feature>
     <name>CodeKL_Barber</name>
     <description>An awesome CodeKL Barber App.</description>
     <author email="help@codekl.com" href="http://codekl.com/">CKL Group Inc.</author>
@@ -73,4 +76,5 @@
     <preference name="FadeSplashScreen" value="false" />
     <preference name="FadeSplashScreenDuration" value="0" />
     <preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF" />
+    <preference name="orientation" value="portrait" />
 </widget>

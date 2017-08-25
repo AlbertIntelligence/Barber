@@ -1,5 +1,8 @@
 {
   "name": "CodeKL_Barber",
-  "app_id": "7c7d82e5",
-  "type": "ionic-angular"
+  "app_id": "e3274f53",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }

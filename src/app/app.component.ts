@@ -1,7 +1,7 @@
 import {Component, ViewChild} from "@angular/core";
 import {Platform} from "ionic-angular";
 import {StatusBar, Splashscreen} from "ionic-native";
-import {LoginPage} from "../pages/login/login";
+import {PhoneNumberPage} from "../pages/phone-number/phone-number";
 
 
 // import pages
@@ -20,7 +20,7 @@ export class MyApp {
   public nav: any;
 
   constructor(public platform: Platform) {
-    this.rootPage = LoginPage;
+    this.rootPage = PhoneNumberPage;
 
     // show splash screen
     Splashscreen.show();

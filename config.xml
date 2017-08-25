@@ -27,18 +27,21 @@
     <preference name="FadeSplashScreen" value="false" />
     <preference name="FadeSplashScreenDuration" value="0" />
     <preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF" />
+    <preference name="orientation" value="portrait" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
     <engine name="android" spec="^6.2.3" />
+    <engine name="browser" spec="^4.1.0" />
     <engine name="ios" spec="^4.4.0" />
+    <plugin name="com.telerik.plugins.nativepagetransitions" spec="^0.6.5" />
     <plugin name="cordova-plugin-console" spec="^1.0.7" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
-    <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
-    <plugin name="cordova-plugin-x-toast" spec="^2.6.0" />
-    <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="318855111853318" />
         <variable name="APP_NAME" value="MPC Mobile App" />
     </plugin>
+    <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
+    <plugin name="cordova-plugin-x-toast" spec="^2.6.0" />
+    <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
 </widget>

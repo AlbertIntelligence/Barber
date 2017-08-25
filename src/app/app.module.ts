@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {IonicApp, IonicModule} from "ionic-angular";
+import {IonicApp, IonicModule } from "ionic-angular";
 import {MyApp} from "./app.component";
 import {BrowserModule} from '@angular/platform-browser';
 import {GalleryService} from "../services/gallery-service";
@@ -11,12 +11,15 @@ import {LoginPage} from "../pages/login/login";
 import {GetaTicketPage} from "../pages/get-a-ticket/get-a-ticket";
 import {TicketConfirmationPage} from "../pages/ticket-confirmation/ticket-confirmation";
 import {CreateUserPage} from "../pages/create-user/create-user";
+import {PhoneNumberPage} from "../pages/phone-number/phone-number";
 import {GalleryPage} from "../pages/gallery/gallery";
 import {SettingsPage} from "../pages/settings/settings";
 //import { Facebook } from '@ionic-native/facebook';
 import { GetAnAppointmentPage, DateSelectorDirective } from '../pages/getanappointment/getanappointment';
 import {Alert} from '../pages/alert/alert';
 import * as firebase from "firebase";
+import { Keyboard } from '@ionic-native/keyboard';
+import { SMS } from '@ionic-native/sms';
 
 // import services
 // end import services
@@ -28,7 +31,6 @@ import * as firebase from "firebase";
 const components = [ GetAnAppointmentPage ];
 const directives = [ DateSelectorDirective ];
 const providers = [ ];
-
 
 @NgModule({
   declarations: [
@@ -45,11 +47,16 @@ const providers = [ ];
     BarberLocation,
     Alert,
     CreateUserPage,
+    PhoneNumberPage,
 
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      scrollPadding: false,
+      scrollAssist: false,
+      autoFocusAssist: false
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,6 +72,7 @@ const providers = [ ];
     components,
     Alert,
     CreateUserPage,
+    PhoneNumberPage,
   ],
   providers: [
     GalleryService,
@@ -74,6 +82,10 @@ const providers = [ ];
     GalleryPage,
     SettingsPage,
     Alert,
+    CreateUserPage,
+    PhoneNumberPage,
+    Keyboard,
+    SMS,
     //Facebook,
     providers,
     /* import services */
