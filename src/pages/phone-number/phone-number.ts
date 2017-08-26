@@ -49,20 +49,25 @@ export class PhoneNumberPage {
   Return: void
   *****************************************************************************/
   enterYourPhone() {
-    this.keyboard.disableScroll(true);
     if (!this.loaded) {
         this.loaded = true;
         $("#input").blur();
-        $("#headerImg").animate({height: 'toggle'}, 500);
-        $("#link").hide();
-        $("#title").hide();
-        $("#hr").hide();
-        $("#backBtn").show();
-        $("#subtitle").show();
+        $("#main").addClass('translateUp');
+        $("#link").addClass('hidden').removeClass('visible');
+        $("#title").addClass('moveDownTitle');
+        $("#inputBloc").addClass('moveDownInput');
+        $("#title").css('font-size', '4.7vw');
+        $("#backBtn").css('margin-top', '2vh');
+        $("#title").text("Entrez votre numéro de téléphone");
+        $("#hr").addClass('hidden').removeClass('visible');
         $("#input").attr("placeholder", "(514) 555-1234");
-        $("#inputBloc").css('border-bottom', '2px solid black');
-        $("#nextBtn").show();
-        //$("#input").focus();
+
+        setTimeout(() => {
+          $("#backBtn").removeClass('hidden').addClass('visible');
+          $("#nextBtn").removeClass('hidden').addClass('visible');
+          $("#input").trigger('focus');
+          $("#inputBloc").css('border-bottom', '2px solid black');
+        }, 1000);
     }
   }
 
@@ -73,10 +78,9 @@ export class PhoneNumberPage {
   Return: void
   *****************************************************************************/
   backToHome() {
-    this.keyboard.disableScroll(true);
     if (this.loaded) {
         $("#input").blur();
-        setTimeout(function(){
+        setTimeout(() => {
           $("#link").show();
           $("#title").show();
           $("#hr").show();
