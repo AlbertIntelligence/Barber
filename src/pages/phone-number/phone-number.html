@@ -31,6 +31,34 @@
       <span style="font-size: 19px; font-family: Verdana, Geneva, sans-serif; margin: auto; padding: auto;">+1</span>
       <input id="input" (focus)="enterYourPhone()" class="input" [(ngModel)]="phoneNumber" type="tel" placeholder="Numéro de téléphone">
     </ion-row>
+
+    <!-- Enter 4 digit -->
+    <ion-row class="digitTitle" id="digitTitle">
+      <div>Entrez le code à 4 chiffres qui vous a été envoyé à </div>
+    </ion-row>
+
+    <!-- Input for phone number -->
+    <ion-row id="digitBloc" class="digitBloc">
+      <ion-grid>
+        <ion-row>
+          <ion-col id="digit1" col-2 style="margin-right:10px">
+            <svg style="margin-left:auto; margin-right:auto;" height="40" width="40">
+              <circle style="border:1px solid yellow; margin-left:auto; margin-right:auto" cx="20" cy="20" r="10" stroke-width="3" fill="black" />
+            </svg>
+          </ion-col>
+          <ion-col id="digit2" col-2 style="margin-right:10px">
+
+          </ion-col>
+          <ion-col id="digit3" col-2 style="margin-right:10px">
+
+          </ion-col>
+          <ion-col id="digit4" col-2 style="margin-right:10pxs">
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-row>
+
   </ion-row>
 
   <!-- Link to login page -->
@@ -38,6 +66,6 @@
     <span (click)="gotoLoginPage()" ion-text color="black" style="margin-top: auto; margin-bottom: auto;">Connecte toi avec ton adresse courriel</span>
   </ion-row>
 
-  <button id="nextBtn" ion-button class="btn-circle btn-xl hidden"><ion-icon ios="ios-arrow-round-forward" md="md-arrow-round-forward" class="nextIcon"></ion-icon></button>
+  <button id="nextBtn" (click)="goToPin()" ion-button class="btn-circle btn-xl hidden"><ion-icon ios="ios-arrow-round-forward" md="md-arrow-round-forward" class="nextIcon"></ion-icon></button>
 
 </ion-content>

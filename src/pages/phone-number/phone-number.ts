@@ -20,10 +20,10 @@ import { Platform } from 'ionic-angular';
 export class PhoneNumberPage {
 
   loaded: boolean = false;
+  currentView: String = "home";
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private keyboard: Keyboard, public platform: Platform) {
-
+     private keyboard: Keyboard, public platform: Platform) {
   }
 
   ngOnInit(): any {
@@ -37,7 +37,8 @@ export class PhoneNumberPage {
   Return: None
   *****************************************************************************/
   gotoLoginPage() {
-    this.navCtrl.push(LoginPage);
+    this.keyboard.disableScroll(true);
+    //this.navCtrl.push(LoginPage);
   }
 
 
@@ -52,7 +53,8 @@ export class PhoneNumberPage {
     if (!this.loaded) {
         this.loaded = true;
         $("#input").blur();
-        $("#main").addClass('translateUp');
+        $("#main").css('height', '100vh');
+        $("#main").removeClass('translateDown').addClass('translateUp');
         $("#link").addClass('hidden').removeClass('visible');
         $("#title").addClass('moveDownTitle');
         $("#inputBloc").addClass('moveDownInput');
@@ -65,9 +67,9 @@ export class PhoneNumberPage {
         setTimeout(() => {
           $("#backBtn").removeClass('hidden').addClass('visible');
           $("#nextBtn").removeClass('hidden').addClass('visible');
-          $("#input").trigger('focus');
           $("#inputBloc").css('border-bottom', '2px solid black');
         }, 1000);
+        this.currentView = "phoneNumber";
     }
   }
 
@@ -78,22 +80,50 @@ export class PhoneNumberPage {
   Return: void
   *****************************************************************************/
   backToHome() {
-    if (this.loaded) {
-        $("#input").blur();
-        setTimeout(() => {
-          $("#link").show();
-          $("#title").show();
-          $("#hr").show();
-          $("#backBtn").hide();
-          $("#subtitle").hide();
-          $("#nextBtn").hide();
-          $("#input").attr("placeholder", "Numéro de téléphone");
-          $("#inputBloc").css('border-bottom', '0');
-          $("#headerImg").animate({height: 'toggle'}, 500);
-        }, 10);
-
+    if (this.loaded && this.currentView == "phoneNumber") {
         this.loaded = false;
+        $("#main").removeClass('translateUp').addClass('translateDown');
+        $("#title").removeClass('moveDownTitle');
+        $("#inputBloc").removeClass('moveDownInput');
+        $("#title").css('font-size', '5.5vw');
+        $("#backBtn").css('margin-top', '0');
+        $("#title").text("Coiffez vous avec Barber Me");
+        $("#hr").removeClass('hidden').addClass('visible');
+        $("#backBtn").addClass('hidden').removeClass('visible');
+        $("#nextBtn").addClass('hidden').removeClass('visible');
+        $("#inputBloc").css('border', '0');
+        $("#input").attr("placeholder", "Numéro de téléphone");
+        setTimeout(() => {
+          $("#main").css('height', 'auto');
+          $("#link").removeClass('hidden').addClass('visible');
+        }, 1000);
+        this.currentView = "home";
+    } else if (this.currentView == "4-digit") {
+      $("#digitTitle").removeClass('translateLeft').addClass('translateRight');
+      $("#title").removeClass('translateTitleLeft').addClass('translateTitleRight');
+      $("#digitBloc").removeClass('translateLeft').addClass('translateRight');
+      $("#inputBloc").removeClass('translatePhoneLeft').addClass('translatePhoneRight');
+      this.currentView = "phoneNumber";
     }
+  }
+
+  /*****************************************************************************
+  Function: goToPin
+  Description: Show the 4 digit PIN features
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  goToPin() {
+    this.currentView = "4-digit";
+    $("#digitTitle").removeClass('translateRight').addClass('translateLeft');
+    $("#title").removeClass('translateRight').addClass('translateTitleLeft');
+    $("#digitBloc").removeClass('translateRight').addClass('translateLeft');
+    $("#inputBloc").removeClass('translateRight').addClass('translatePhoneLeft');
+
+    $("#digit1").css('border-bottom', '2px solid black');
+    $("#digit2").css('border-bottom', '2px solid #F2F2F2');
+    $("#digit3").css('border-bottom', '2px solid #F2F2F2');
+    $("#digit4").css('border-bottom', '2px solid #F2F2F2');
   }
 
   /*****************************************************************************

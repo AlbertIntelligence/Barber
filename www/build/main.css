@@ -78421,12 +78421,19 @@ page-phone-number .translateUp {
   -webkit-transform: translate(0px, -62vh);
 }
 
+page-phone-number .translateDown {
+  background-color: white;
+  z-index: 10px;
+  height: 100vh;
+  -webkit-transform: translate(0px, 0px);
+}
+
 page-phone-number .moveDownTitle {
   -webkit-transform: translate(0px, 10vh);
 }
 
 page-phone-number .moveDownInput {
-  -webkit-transform: translate(0px, 13vh);
+  -webkit-transform: translate(0px, 14vh);
 }
 
 page-phone-number .fadeIn {
@@ -78533,9 +78540,70 @@ page-phone-number .btn-circle.btn-xl {
   box-shadow: 1px 1px 30px 1px #888888;
 }
 
-page-phone-number .btn-circle.btn-xl:hover {
+page-phone-number .btn-circle.btn-xl:active {
   background-color: black;
   color: white;
+}
+
+page-phone-number .digitTitle {
+  position: absolute;
+  left: 100vw;
+  top: 19%;
+  width: 100%;
+  padding-left: 7vw;
+  font-size: 4.7vw;
+  -webkit-transition: -webkit-transform 750ms;
+}
+
+page-phone-number .digitBloc {
+  position: absolute;
+  left: 100vw;
+  top: 30%;
+  width: 100%;
+  padding-left: 7vw;
+  -webkit-transition: -webkit-transform 750ms;
+}
+
+page-phone-number .translateLeft {
+  background-color: white;
+  z-index: 10px;
+  -webkit-transform: translate(-100vw, 0px);
+  transition-timing-function: cubic-bezier(0.1, 0.1, 0.1, 1);
+}
+
+page-phone-number .translateTitleLeft {
+  background-color: white;
+  z-index: 10px;
+  -webkit-transform: translate(-100vw, 10vh);
+  transition-timing-function: cubic-bezier(0.1, 0.1, 0.1, 1);
+}
+
+page-phone-number .translatePhoneLeft {
+  background-color: white;
+  z-index: 10px;
+  -webkit-transform: translate(-100vw, 14vh);
+  transition-timing-function: cubic-bezier(0.1, 0.1, 0.1, 1);
+}
+
+page-phone-number .translateRight {
+  background-color: white;
+  z-index: 10px;
+  -webkit-transform: translate(0px, 0px);
+  transition-timing-function: cubic-bezier(0.1, 0.1, 0.1, 1);
+}
+
+page-phone-number .translateTitleRight {
+  background-color: white;
+  z-index: 10px;
+  -webkit-transform: translate(0px, 10vh);
+  transition-timing-function: cubic-bezier(0.1, 0.1, 0.1, 1);
+}
+
+page-phone-number .translatePhoneRight {
+  background-color: white;
+  z-index: 10px;
+  -webkit-transform: translate(0px, 14vh);
+  transition-timing-function: cubic-bezier(0.1, 0.1, 0.1, 1);
 }
 
 page-pricing .bg-filter,
