@@ -61,7 +61,7 @@ export class PhoneNumberPage {
         $("#link").removeClass('visible').addClass('hidden');
         this.translate($("#title"), "0px", "10vh");
         this.translate($("#inputBloc"), "0px", "14vh");
-        $("#title").css('font-size', '4.7vw');
+        $("#title").css('font-size', '5vw');
         $("#backBtn").css('margin-top', '2vh');
         $("#title").text("Entrez votre numéro de téléphone");
         $("#hr").removeClass('visible').addClass('hidden');
@@ -141,6 +141,15 @@ export class PhoneNumberPage {
       this.translate($("#passwordInput"), "-100vw", "0px");
       this.currentView = "password";
     }
+
+    //back to the name view
+    else if (this.currentView == "paymentMethod") {
+      this.translate($("#paymentTitle"), "0px", "0px");
+      this.translate($("#nameTitle"), "-100vw", "0px");
+      this.translate($("#paymentList"), "0px", "0px");
+      this.translate($("#nameInput"), "-100vw", "0px");
+      this.currentView = "name";
+    }
   }
 
   /*****************************************************************************
@@ -195,6 +204,15 @@ export class PhoneNumberPage {
         this.translate($("#nameInput"), "-100vw", "0px");
         this.translate($("#passwordInput"), "-200vw", "0px");
         break;
+
+        //Go to enter select payment method
+        case "name":
+          this.currentView = "paymentMethod";
+          this.translate($("#paymentTitle"), "-100vw", "0px");
+          this.translate($("#nameTitle"), "-200vw", "0px");
+          this.translate($("#paymentList"), "-100vw", "0px");
+          this.translate($("#nameInput"), "-200vw", "0px");
+          break;
 
       default:
     }

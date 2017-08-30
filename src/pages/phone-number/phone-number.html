@@ -99,6 +99,20 @@
       </ion-grid>
     </ion-row>
 
+    <!-- Select your payment method -->
+    <ion-row class="digitTitle" id="paymentTitle">
+      <div>Sélectionnez votre moyen de paiement préféré</div>
+    </ion-row>
+
+    <!-- List of payment methods -->
+    <ion-list id="paymentList" class="digitBloc" style="padding:0">
+      <ion-item (click)="selectCreditCard()" style="padding:0">
+        <ion-icon name="card" style="margin-left:7vw; margin-right:5vw"></ion-icon>
+          Carte de crédit
+        <ion-icon name="arrow-forward" style="position:absolute; right:5vw"></ion-icon>
+      </ion-item>
+    </ion-list>
+
   </ion-row>
 
   <!-- Link to login page -->
