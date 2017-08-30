@@ -37,8 +37,7 @@ export class PhoneNumberPage {
   Return: None
   *****************************************************************************/
   gotoLoginPage() {
-    this.keyboard.disableScroll(true);
-    //this.navCtrl.push(LoginPage);
+    this.navCtrl.push(LoginPage);
   }
 
 
@@ -50,20 +49,23 @@ export class PhoneNumberPage {
   Return: void
   *****************************************************************************/
   enterYourPhone() {
+    //When focus on input, load phone number view if not already loaded
     if (!this.loaded) {
         this.loaded = true;
         $("#input").blur();
+        $("#main").css('background-color', 'white');
         $("#main").css('height', '100vh');
-        $("#main").removeClass('translateDown').addClass('translateUp');
-        $("#link").addClass('hidden').removeClass('visible');
-        $("#title").addClass('moveDownTitle');
-        $("#inputBloc").addClass('moveDownInput');
+        this.translate($("#main"), "0px", "-62vh");
+        $("#link").removeClass('visible').addClass('hidden');
+        this.translate($("#title"), "0px", "10vh");
+        this.translate($("#inputBloc"), "0px", "14vh");
         $("#title").css('font-size', '4.7vw');
         $("#backBtn").css('margin-top', '2vh');
         $("#title").text("Entrez votre numéro de téléphone");
-        $("#hr").addClass('hidden').removeClass('visible');
+        $("#hr").removeClass('visible').addClass('hidden');
         $("#input").attr("placeholder", "(514) 555-1234");
 
+        //Animation slow
         setTimeout(() => {
           $("#backBtn").removeClass('hidden').addClass('visible');
           $("#nextBtn").removeClass('hidden').addClass('visible');
@@ -79,12 +81,13 @@ export class PhoneNumberPage {
   Parameters: none
   Return: void
   *****************************************************************************/
-  backToHome() {
+  goBack() {
+    //back to the home view
     if (this.loaded && this.currentView == "phoneNumber") {
         this.loaded = false;
-        $("#main").removeClass('translateUp').addClass('translateDown');
-        $("#title").removeClass('moveDownTitle');
-        $("#inputBloc").removeClass('moveDownInput');
+        this.translate($("#title"), "0px", "0px");
+        this.translate($("#inputBloc"), "0px", "0px");
+        this.translate($("#main"), "0px", "0px");
         $("#title").css('font-size', '5.5vw');
         $("#backBtn").css('margin-top', '0');
         $("#title").text("Coiffez vous avec Barber Me");
@@ -93,17 +96,30 @@ export class PhoneNumberPage {
         $("#nextBtn").addClass('hidden').removeClass('visible');
         $("#inputBloc").css('border', '0');
         $("#input").attr("placeholder", "Numéro de téléphone");
+
         setTimeout(() => {
           $("#main").css('height', 'auto');
           $("#link").removeClass('hidden').addClass('visible');
         }, 1000);
         this.currentView = "home";
-    } else if (this.currentView == "4-digit") {
-      $("#digitTitle").removeClass('translateLeft').addClass('translateRight');
-      $("#title").removeClass('translateTitleLeft').addClass('translateTitleRight');
-      $("#digitBloc").removeClass('translateLeft').addClass('translateRight');
-      $("#inputBloc").removeClass('translatePhoneLeft').addClass('translatePhoneRight');
+    }
+
+    //back to the phone number view
+    else if (this.currentView == "4-digit") {
+      this.translate($("#digitTitle"), "0px", "0px");
+      this.translate($("#title"), "0px", "10vh");
+      this.translate($("#digitBloc"), "0px", "0px");
+      this.translate($("#inputBloc"), "0px", "14vh");
       this.currentView = "phoneNumber";
+    }
+
+    //back to the 4-digit PIN view
+    else if (this.currentView == "name") {
+      this.translate($("#nameTitle"), "0px", "0px");
+      this.translate($("#digitTitle"), "-100vw", "0px");
+      this.translate($("#nameInput"), "0px", "0px");
+      this.translate($("#digitBloc"), "-100vw", "0px");
+      this.currentView = "4-digit";
     }
   }
 
@@ -113,17 +129,46 @@ export class PhoneNumberPage {
   Parameters: None
   Return: None
   *****************************************************************************/
-  goToPin() {
-    this.currentView = "4-digit";
-    $("#digitTitle").removeClass('translateRight').addClass('translateLeft');
-    $("#title").removeClass('translateRight').addClass('translateTitleLeft');
-    $("#digitBloc").removeClass('translateRight').addClass('translateLeft');
-    $("#inputBloc").removeClass('translateRight').addClass('translatePhoneLeft');
+  goToNext() {
+    switch (this.currentView) {
+      //Go to enter your view
+      case "phoneNumber":
+        this.currentView = "4-digit";
+        this.translate($("#digitTitle"), "-100vw", "0px");
+        this.translate($("#title"), "-100vw", "10vh");
+        this.translate($("#digitBloc"), "-100vw", "0px");
+        this.translate($("#inputBloc"), "-100vw", "14vh");
 
-    $("#digit1").css('border-bottom', '2px solid black');
-    $("#digit2").css('border-bottom', '2px solid #F2F2F2');
-    $("#digit3").css('border-bottom', '2px solid #F2F2F2');
-    $("#digit4").css('border-bottom', '2px solid #F2F2F2');
+        $("#digit1").css('border-bottom', '2px solid black');
+        $("#digit2").css('border-bottom', '2px solid #F2F2F2');
+        $("#digit3").css('border-bottom', '2px solid #F2F2F2');
+        $("#digit4").css('border-bottom', '2px solid #F2F2F2');
+        break;
+
+        //Go to enter your name view
+      case "4-digit":
+        this.currentView = "name";
+        $("#firstName").css('border-bottom', '2px solid black');
+        $("#lastName").css('border-bottom', '2px solid #F2F2F2');
+        this.translate($("#nameTitle"), "-100vw", "0px");
+        this.translate($("#digitTitle"), "-200vw", "0px");
+        this.translate($("#nameInput"), "-100vw", "0px");
+        this.translate($("#digitBloc"), "-200vw", "0px");
+        break;
+
+      default:
+    }
+  }
+
+  /*****************************************************************************
+  Function: translate
+  Description: Move the obj in parameter by the others parameters
+  Parameters: obj : div element, dx: final x position, dy: final y position
+  Return: void
+  *****************************************************************************/
+  translate(obj, dx, dy) {
+    $(obj).css('-webkit-transform', 'translate('+ dx +','+ dy +')');
+    $(obj).css('transition-timing-function', 'cubic-bezier(.1,.1,.1,1)');
   }
 
   /*****************************************************************************
