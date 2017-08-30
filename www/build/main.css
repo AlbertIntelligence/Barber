@@ -78548,8 +78548,29 @@ page-phone-number .digitBloc {
   left: 100vw;
   top: 30%;
   width: 100%;
+  margin-top: 2vh;
+  padding-top: 0vh;
   padding-left: 7vw;
+  padding-right: 7vw;
+  padding-bottom: 10px;
   -webkit-transition: -webkit-transform 750ms;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+page-phone-number .inputBloc {
+  position: absolute;
+  left: 107vw;
+  top: 30%;
+  width: 86%;
+  font-size: 19px;
+  outline: none;
+  margin-top: 6vh;
+  padding-top: 0vh;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 10px;
+  -webkit-transition: -webkit-transform 750ms;
+  font-family: Verdana, Geneva, sans-serif;
 }
 
 page-pricing .bg-filter,

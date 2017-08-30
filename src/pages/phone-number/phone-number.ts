@@ -40,8 +40,6 @@ export class PhoneNumberPage {
     this.navCtrl.push(LoginPage);
   }
 
-
-
   /*****************************************************************************
   Function: enterYourPhone
   Description: Trigger the transition
@@ -55,7 +53,11 @@ export class PhoneNumberPage {
         $("#input").blur();
         $("#main").css('background-color', 'white');
         $("#main").css('height', '100vh');
-        this.translate($("#main"), "0px", "-62vh");
+        if (this.platform.is('ios')) {
+          this.translate($("#main"), "0px", "-62vh");
+        } else {
+          this.translate($("#main"), "0px", "-64.5vh");
+        }
         $("#link").removeClass('visible').addClass('hidden');
         this.translate($("#title"), "0px", "10vh");
         this.translate($("#inputBloc"), "0px", "14vh");
@@ -114,12 +116,30 @@ export class PhoneNumberPage {
     }
 
     //back to the 4-digit PIN view
-    else if (this.currentView == "name") {
-      this.translate($("#nameTitle"), "0px", "0px");
+    else if (this.currentView == "email") {
+      this.translate($("#emailTitle"), "0px", "0px");
       this.translate($("#digitTitle"), "-100vw", "0px");
-      this.translate($("#nameInput"), "0px", "0px");
+      this.translate($("#emailInput"), "0px", "0px");
       this.translate($("#digitBloc"), "-100vw", "0px");
       this.currentView = "4-digit";
+    }
+
+    //back to the email view
+    else if (this.currentView == "password") {
+      this.translate($("#passwordTitle"), "0px", "0px");
+      this.translate($("#emailTitle"), "-100vw", "0px");
+      this.translate($("#passwordInput"), "0px", "0px");
+      this.translate($("#emailInput"), "-100vw", "0px");
+      this.currentView = "email";
+    }
+
+    //back to the password view
+    else if (this.currentView == "name") {
+      this.translate($("#nameTitle"), "0px", "0px");
+      this.translate($("#passwordTitle"), "-100vw", "0px");
+      this.translate($("#nameInput"), "0px", "0px");
+      this.translate($("#passwordInput"), "-100vw", "0px");
+      this.currentView = "password";
     }
   }
 
@@ -145,15 +165,35 @@ export class PhoneNumberPage {
         $("#digit4").css('border-bottom', '2px solid #F2F2F2');
         break;
 
-        //Go to enter your name view
+      //Go to enter your name email
       case "4-digit":
+        this.currentView = "email";
+        $("#emailInput").css('border-bottom', '2px solid black');
+        this.translate($("#emailTitle"), "-100vw", "0px");
+        this.translate($("#digitTitle"), "-200vw", "0px");
+        this.translate($("#emailInput"), "-100vw", "0px");
+        this.translate($("#digitBloc"), "-200vw", "0px");
+        break;
+
+      //Go to enter your name password
+      case "email":
+        this.currentView = "password";
+        $("#passwordInput").css('border-bottom', '2px solid black');
+        this.translate($("#passwordTitle"), "-100vw", "0px");
+        this.translate($("#emailTitle"), "-200vw", "0px");
+        this.translate($("#passwordInput"), "-100vw", "0px");
+        this.translate($("#emailInput"), "-200vw", "0px");
+        break;
+
+      //Go to enter your name view
+      case "password":
         this.currentView = "name";
         $("#firstName").css('border-bottom', '2px solid black');
         $("#lastName").css('border-bottom', '2px solid #F2F2F2');
         this.translate($("#nameTitle"), "-100vw", "0px");
-        this.translate($("#digitTitle"), "-200vw", "0px");
+        this.translate($("#passwordTitle"), "-200vw", "0px");
         this.translate($("#nameInput"), "-100vw", "0px");
-        this.translate($("#digitBloc"), "-200vw", "0px");
+        this.translate($("#passwordInput"), "-200vw", "0px");
         break;
 
       default:

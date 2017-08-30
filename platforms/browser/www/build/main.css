@@ -78404,6 +78404,15 @@ page-phone-number .input {
   font-family: Verdana, Geneva, sans-serif;
 }
 
+page-phone-number .nameInput {
+  border: 0 !important;
+  width: 75%;
+  font-size: 19px;
+  outline: none;
+  padding: 0;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
 page-phone-number .main {
   display: block;
   position: relative;
@@ -78411,29 +78420,8 @@ page-phone-number .main {
   padding-left: 7vw;
   padding-right: 7vw;
   -webkit-transition: -webkit-transform 750ms;
+  background-color: white;
   transition-timing-function: cubic-bezier(0.1, 0.1, 0.1, 1);
-}
-
-page-phone-number .translateUp {
-  background-color: white;
-  z-index: 10px;
-  height: 100vh;
-  -webkit-transform: translate(0px, -62vh);
-}
-
-page-phone-number .translateDown {
-  background-color: white;
-  z-index: 10px;
-  height: 100vh;
-  -webkit-transform: translate(0px, 0px);
-}
-
-page-phone-number .moveDownTitle {
-  -webkit-transform: translate(0px, 10vh);
-}
-
-page-phone-number .moveDownInput {
-  -webkit-transform: translate(0px, 14vh);
 }
 
 page-phone-number .fadeIn {
@@ -78562,48 +78550,6 @@ page-phone-number .digitBloc {
   width: 100%;
   padding-left: 7vw;
   -webkit-transition: -webkit-transform 750ms;
-}
-
-page-phone-number .translateLeft {
-  background-color: white;
-  z-index: 10px;
-  -webkit-transform: translate(-100vw, 0px);
-  transition-timing-function: cubic-bezier(0.1, 0.1, 0.1, 1);
-}
-
-page-phone-number .translateTitleLeft {
-  background-color: white;
-  z-index: 10px;
-  -webkit-transform: translate(-100vw, 10vh);
-  transition-timing-function: cubic-bezier(0.1, 0.1, 0.1, 1);
-}
-
-page-phone-number .translatePhoneLeft {
-  background-color: white;
-  z-index: 10px;
-  -webkit-transform: translate(-100vw, 14vh);
-  transition-timing-function: cubic-bezier(0.1, 0.1, 0.1, 1);
-}
-
-page-phone-number .translateRight {
-  background-color: white;
-  z-index: 10px;
-  -webkit-transform: translate(0px, 0px);
-  transition-timing-function: cubic-bezier(0.1, 0.1, 0.1, 1);
-}
-
-page-phone-number .translateTitleRight {
-  background-color: white;
-  z-index: 10px;
-  -webkit-transform: translate(0px, 10vh);
-  transition-timing-function: cubic-bezier(0.1, 0.1, 0.1, 1);
-}
-
-page-phone-number .translatePhoneRight {
-  background-color: white;
-  z-index: 10px;
-  -webkit-transform: translate(0px, 14vh);
-  transition-timing-function: cubic-bezier(0.1, 0.1, 0.1, 1);
 }
 
 page-pricing .bg-filter,

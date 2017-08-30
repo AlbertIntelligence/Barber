@@ -29,7 +29,7 @@ page-phone-number {
     padding: 0;
     padding-left: 1.5vw;
     margin-left: 1vw;
-    font-family: Verdana, Geneva, sans-serif
+    font-family: Verdana, Geneva, sans-serif;
   }
 
   .nameInput {
@@ -38,7 +38,7 @@ page-phone-number {
     font-size: 19px;
     outline: none;
     padding: 0;
-    font-family: Verdana, Geneva, sans-serif
+    font-family: Verdana, Geneva, sans-serif;
   }
 
   .main {
@@ -174,8 +174,30 @@ page-phone-number {
     left: 100vw;
     top: 30%;
     width: 100%;
+    margin-top: 2vh;
+    padding-top: 0vh;
     padding-left: 7vw;
+    padding-right: 7vw;
+    padding-bottom: 10px;
     -webkit-transition: -webkit-transform 750ms;
+    font-family: Verdana, Geneva, sans-serif;
+  }
+
+  //email, password
+  .inputBloc {
+    position: absolute;
+    left: 107vw;
+    top: 30%;
+    width: 86%;
+    font-size: 19px;
+    outline: none;
+    margin-top: 6vh;
+    padding-top: 0vh;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    -webkit-transition: -webkit-transform 750ms;
+    font-family: Verdana, Geneva, sans-serif;
   }
 
 }
