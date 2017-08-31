@@ -27,7 +27,7 @@
     <!-- Input for phone number -->
     <ion-row id="inputBloc" class="phoneNumber">
       <span class="flag-icon flag-icon-ca" style="font-size: 5vw; margin-right:1vw;"></span>
-      <ion-icon name="md-arrow-dropdown" style="color: gray; margin: auto; padding: auto; amrgin-right: 10px"></ion-icon>
+      <ion-icon name="md-arrow-dropdown" style="color: gray; margin: auto; padding: auto;"></ion-icon>
       <span style="font-size: 19px; font-family: Verdana, Geneva, sans-serif; margin: auto; padding: auto;">+1</span>
       <input id="input" (focus)="enterYourPhone()" class="input" [(ngModel)]="phoneNumber" type="tel" placeholder="Numéro de téléphone">
     </ion-row>
@@ -112,6 +112,55 @@
         <ion-icon name="arrow-forward" style="position:absolute; right:5vw"></ion-icon>
       </ion-item>
     </ion-list>
+
+    <!-- Enter your credit card -->
+    <ion-row class="digitTitle" id="creditCardTitle" style="top: 10%">
+      <div>Ajouter la carte</div>
+    </ion-row>
+
+    <!-- Inputs for credit card -->
+
+
+    <ion-row id="creditCartInputs" class="digitBloc" style="top: 15%; padding-right: 3vw">
+      <!-- Credit card name -->
+      <!--ion-row><ion-label color="#F2F2F2" stacked></ion-label></ion-row!-->
+      <ion-row style="padding:auto; margin:auto; margin-left:0; margin-top:30px">
+        <ion-icon style="font-size:8vw; margin-right: 15px" name="contact"></ion-icon>
+        <input class="input" type="text" placeholder="Nom sur la carte">
+      </ion-row>
+
+      <!-- Credit card number -->
+      <!--ion-row style="margin-top: 50px"><ion-label color="#F2F2F2" stacked></ion-label></ion-row!-->
+      <ion-row style="padding:auto; margin:auto; margin-left:0; margin-top: 50px">
+        <ion-icon name="card" style="font-size:8vw; margin-right: 15px"></ion-icon>
+        <input class="input" type="number" style="width:80%" placeholder="Numéro de carte">
+      </ion-row>
+
+      <!-- Exp date / CVV -->
+      <ion-grid style="margin:0; margin-top:50px; padding:0">
+        <ion-row style="margin:0; padding:0">
+          <ion-col col-5 style="margin-left:0px; padding-left:0">
+            <input class="nameInput" style="width:100%" type="text" placeholder="Date d'exp.">
+          </ion-col>
+
+          <ion-col col-5 style="margin-left:10px">
+            <input class="nameInput" style="width:100%" type="text" placeholder="CVV">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-label color="#F2F2F2" style="width: 100vw; margin-top: 40px" stacked>Pays</ion-label>
+      <ion-row style="padding:0; margin:0; margin-left:0; width: 100vw">
+        <span class="flag-icon flag-icon-ca" style="font-size: 5vw; margin-right:2vw;"></span>
+        <div style="font-size: 5vw; font-family: Verdana, Geneva, sans-serif; margin: auto; padding: auto; width: 60vw">Canada</div>
+        <ion-icon name="md-arrow-dropdown" style="font-size:8vw; color: gray; margin: auto; padding: auto"></ion-icon>
+      </ion-row>
+
+      <ion-row style="padding:auto; margin:auto; margin-left:0; padding-left:0; margin-top:50px">
+        <input class="input" style="width:100%; padding-left:0; margin-left:0" type="text" placeholder="Code postal">
+      </ion-row>
+
+    </ion-row>
 
   </ion-row>
 

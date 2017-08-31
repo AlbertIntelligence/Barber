@@ -214,6 +214,15 @@ export class PhoneNumberPage {
           this.translate($("#nameInput"), "-200vw", "0px");
           break;
 
+          //Go to credit card form
+          case "paymentMethod":
+            this.currentView = "creditCardForm";
+            this.translate($("#creditCardTitle"), "-100vw", "0px");
+            this.translate($("#paymentTitle"), "-200vw", "0px");
+            this.translate($("#creditCartInputs"), "-100vw", "0px");
+            this.translate($("#paymentList"), "-200vw", "0px");
+            break;
+
       default:
     }
   }
