@@ -5,6 +5,7 @@
   Ionic pages and navigation.
 -->
 <div no-bounce ion-fixed class="content" style="margin:0; padding:0">
+  <div id="recaptcha-container"></div>
   <!-- Header image -->
   <ion-row id="headerImg" class="header-img">
 
@@ -129,7 +130,7 @@
       <!--ion-row style="margin-top: 50px"><ion-label color="#F2F2F2" stacked></ion-label></ion-row!-->
       <ion-row id="cardNumber" style="padding:auto; margin:auto; margin-left:0; margin-top: 50px">
         <ion-icon name="card" style="font-size:8vw; margin-right: 15px"></ion-icon>
-        <input maxlength="16" class="input" type="number" style="width:85%" placeholder="Numéro de carte">
+        <input maxlength="16" class="input" type="tel" style="width:85%" placeholder="Numéro de carte">
       </ion-row>
 
       <!-- Exp date / CVV -->

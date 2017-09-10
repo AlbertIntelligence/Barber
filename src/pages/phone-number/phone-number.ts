@@ -5,7 +5,7 @@ import * as $ from 'jquery';
 import { Keyboard } from '@ionic-native/keyboard';
 import { Platform } from 'ionic-angular';
 import { HostListener } from '@angular/core';
-
+import firebase from 'firebase';
 
 /**
  * Generated class for the CreateUserPage page.
@@ -24,6 +24,7 @@ export class PhoneNumberPage {
   currentView: String = "home";
   pinIsFull: boolean = false;
   canGoToNext: boolean = true;
+  public recaptchaVerifier:firebase.auth.RecaptchaVerifier;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
      private keyboard: Keyboard, public platform: Platform) {
@@ -32,6 +33,10 @@ export class PhoneNumberPage {
 
   ngOnInit(): any {
     this.setHeaderFooter();
+  }
+
+  ionViewDidLoad() {
+    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
   }
 
   @HostListener('document:keyup', ['$event'])
@@ -330,15 +335,15 @@ export class PhoneNumberPage {
           $("#digit2").css('border-bottom', '2px solid #F2F2F2');
           $("#digit3").css('border-bottom', '2px solid #F2F2F2');
           $("#digit4").css('border-bottom', '2px solid #F2F2F2');
+          this.signInWithPhoneNumber();
         } else {
           $("#input").parent().css('border-bottom', '2px solid red');
-            $("#input").focus();
+          $("#input").focus();
         }
         break;
 
       //Go to enter your name email
       case "4-digit":
-        var email = $("#emailInput").children().eq(0).val();
         if ($("#digit1").children().eq(0).val().length == 1 &&
             $("#digit2").children().eq(0).val().length == 1 &&
             $("#digit3").children().eq(0).val().length == 1 &&
@@ -452,6 +457,22 @@ export class PhoneNumberPage {
   selectCreditCard () {
     this.goToNext();
   }
+
+  signInWithPhoneNumber(){
+    const appVerifier = this.recaptchaVerifier;
+    const phoneNumberString = "+" + "15145668877";
+
+    firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
+      .then( confirmationResult => {
+        // SMS sent. Prompt user to type the code from the message, then sign the
+        // user in with confirmationResult.confirm(code).
+        console.log("Sent");
+      })
+      .catch(function (error) {
+        console.error("SMS not sent", error);
+      });
+  }
+
   /*****************************************************************************
   Function: translate
   Description: Move the obj in parameter by the others parameters
