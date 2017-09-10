@@ -28,9 +28,9 @@
 		66B65835E98640309CB469E3 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = A28C0DD65C8E4E539D861797 /* Toast+UIView.m */; };
 		0BA40A1ABC424690A805C90A /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DEF9BAEAD764D29B38800B2 /* Toast.m */; };
 		393B56833E5C42AFA38E35FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD9203D62284CEBB5DBD7DC /* QuartzCore.framework */; };
-		7860AEF93DF84694AE683075 /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B6C974BC54E40A298E6B5 /* IonicKeyboard.m */; };
 		638C267549B54994AA87338D /* NativePageTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C819AE92B34B6694BE7996 /* NativePageTransitions.m */; };
 		C4EBBC961B5944A3905FBAC5 /* AppDelegate+nativepagetransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = A43D428237C94228BB17ECF0 /* AppDelegate+nativepagetransitions.m */; };
+		D396171A6A6E423282BEF409 /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CB5D30B754391AB32F59F /* IonicKeyboard.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,12 +89,12 @@
 		939D2977E45E47459FEB1F3C /* Toast+UIView.h */ = {isa = PBXFileReference; name = "Toast+UIView.h"; path = "cordova-plugin-x-toast/Toast+UIView.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		5419B4EFFC4A4492B72D9D2C /* Toast.h */ = {isa = PBXFileReference; name = "Toast.h"; path = "cordova-plugin-x-toast/Toast.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		7BD9203D62284CEBB5DBD7DC /* QuartzCore.framework */ = {isa = PBXFileReference; name = "QuartzCore.framework"; path = "System/Library/Frameworks/QuartzCore.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		3C2B6C974BC54E40A298E6B5 /* IonicKeyboard.m */ = {isa = PBXFileReference; name = "IonicKeyboard.m"; path = "ionic-plugin-keyboard/IonicKeyboard.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
-		B6C1FA6B6B98440AB5B4F757 /* IonicKeyboard.h */ = {isa = PBXFileReference; name = "IonicKeyboard.h"; path = "ionic-plugin-keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		20C819AE92B34B6694BE7996 /* NativePageTransitions.m */ = {isa = PBXFileReference; name = "NativePageTransitions.m"; path = "com.telerik.plugins.nativepagetransitions/NativePageTransitions.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		A43D428237C94228BB17ECF0 /* AppDelegate+nativepagetransitions.m */ = {isa = PBXFileReference; name = "AppDelegate+nativepagetransitions.m"; path = "com.telerik.plugins.nativepagetransitions/AppDelegate+nativepagetransitions.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		6B974853F2374D10BB6554A2 /* NativePageTransitions.h */ = {isa = PBXFileReference; name = "NativePageTransitions.h"; path = "com.telerik.plugins.nativepagetransitions/NativePageTransitions.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		0B586AA9BE5C4202BE963CBF /* AppDelegate+nativepagetransitions.h */ = {isa = PBXFileReference; name = "AppDelegate+nativepagetransitions.h"; path = "com.telerik.plugins.nativepagetransitions/AppDelegate+nativepagetransitions.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		5B0CB5D30B754391AB32F59F /* IonicKeyboard.m */ = {isa = PBXFileReference; name = "IonicKeyboard.m"; path = "ionic-plugin-keyboard/IonicKeyboard.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		696EABE8DC7D4FA4A3CC924F /* IonicKeyboard.h */ = {isa = PBXFileReference; name = "IonicKeyboard.h"; path = "ionic-plugin-keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,12 +222,12 @@
 				9DEF9BAEAD764D29B38800B2 /* Toast.m */,
 				939D2977E45E47459FEB1F3C /* Toast+UIView.h */,
 				5419B4EFFC4A4492B72D9D2C /* Toast.h */,
-				3C2B6C974BC54E40A298E6B5 /* IonicKeyboard.m */,
-				B6C1FA6B6B98440AB5B4F757 /* IonicKeyboard.h */,
 				20C819AE92B34B6694BE7996 /* NativePageTransitions.m */,
 				A43D428237C94228BB17ECF0 /* AppDelegate+nativepagetransitions.m */,
 				6B974853F2374D10BB6554A2 /* NativePageTransitions.h */,
 				0B586AA9BE5C4202BE963CBF /* AppDelegate+nativepagetransitions.h */,
+				5B0CB5D30B754391AB32F59F /* IonicKeyboard.m */,
+				696EABE8DC7D4FA4A3CC924F /* IonicKeyboard.h */,
 			);
 			name = Plugins;
 			path = "CodeKL_Barber/Plugins";
@@ -346,9 +346,9 @@
 				62D662210AAB4C58945F6E65 /* CDVInAppBrowser.m in Sources */,
 				66B65835E98640309CB469E3 /* Toast+UIView.m in Sources */,
 				0BA40A1ABC424690A805C90A /* Toast.m in Sources */,
-				7860AEF93DF84694AE683075 /* IonicKeyboard.m in Sources */,
 				638C267549B54994AA87338D /* NativePageTransitions.m in Sources */,
 				C4EBBC961B5944A3905FBAC5 /* AppDelegate+nativepagetransitions.m in Sources */,
+				D396171A6A6E423282BEF409 /* IonicKeyboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

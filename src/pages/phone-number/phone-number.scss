@@ -2,12 +2,18 @@ page-phone-number {
 
   .content {
     overflow: hidden !important;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    background-color: white;
   }
 
   .header-img {
     position: relative;
+    top: 0;
+    left: 0;
     width: 100vw;
-    height: 64vh;
+    height: 64vw;
     padding: 0;
     margin: 0;
   }
@@ -30,7 +36,27 @@ page-phone-number {
     padding-left: 1.5vw;
     margin-left: 1vw;
     font-family: Verdana, Geneva, sans-serif;
+    transition: 0.2s ease all;
   }
+/*
+  input:focus ~ .floating-label,
+  input:not(:focus):valid ~ .floating-label{
+    top: 0px;
+    bottom: 10px;
+    left: 0px;
+    font-size: 11px;
+    opacity: 1;
+  }
+*/
+  .floating-label {
+    position: absolute;
+    pointer-events: none;
+    left: 0px;
+    bottom: 10px;
+    font-family: Verdana, Geneva, sans-serif;
+    transition: 0.2s ease all;
+  }
+
 
   .nameInput {
     border: 0 !important;
@@ -66,21 +92,22 @@ page-phone-number {
     -webkit-transition: opacity 1s ease-in-out;
     }
 
-    .backbtn {
-      display: inline-block;
-      position: relative;
-      margin: 0;
-      padding: 0;
-    }
+  .backbtn {
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
 
   .title {
     display: inline-block;
     position: relative;
     text-align: left;
+    left:0;
     margin: 0;
     padding: 0;
     color: black;
-    font-size: 5.5vw;
+    font-size: 5.75vw;
     font-family: Verdana, Geneva, sans-serif;
     -webkit-transition: -webkit-transform 750ms;
   }
@@ -95,7 +122,7 @@ page-phone-number {
 
   .footer {
     position: relative;
-    margin-top: 4vh;
+    margin-top: 5vh;
     padding-left: 7vw;
     padding-right: 7vw;
     font-family: Verdana, Geneva, sans-serif;
@@ -110,22 +137,22 @@ page-phone-number {
     transition: opacity 1s linear;
   }
   .hidden {
-      visibility: hidden;
-      opacity: 0;
-      transition: visibility 0s 1s, opacity 1s linear;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 1s, opacity 1s linear;
   }
 
   .btn-circle {
-  position: fixed;
-  right: 5vw;
-  bottom: 3vh;
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px;
+    position: fixed;
+    right: 5vw;
+    bottom: 3vh;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
   }
   .btn-circle.btn-lg {
     position: fixed;
@@ -174,9 +201,9 @@ page-phone-number {
   .digitBloc {
     position: absolute;
     left: 100vw;
-    top: 30%;
+    top: 25%;
     width: 100%;
-    margin-top: 2vh;
+    margin-top: 8vh;
     padding-top: 0vh;
     padding-left: 7vw;
     padding-right: 7vw;

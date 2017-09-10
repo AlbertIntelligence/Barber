@@ -78372,14 +78372,33 @@ page-home ion-grid.list-pictures ion-row ion-col .hide-sm,
   display: none;
 }
 
+page-phone-number {
+  /*
+  input:focus ~ .floating-label,
+  input:not(:focus):valid ~ .floating-label{
+    top: 0px;
+    bottom: 10px;
+    left: 0px;
+    font-size: 11px;
+    opacity: 1;
+  }
+*/
+}
+
 page-phone-number .content {
   overflow: hidden !important;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  background-color: white;
 }
 
 page-phone-number .header-img {
   position: relative;
+  top: 0;
+  left: 0;
   width: 100vw;
-  height: 64vh;
+  height: 64vw;
   padding: 0;
   margin: 0;
 }
@@ -78402,6 +78421,16 @@ page-phone-number .input {
   padding-left: 1.5vw;
   margin-left: 1vw;
   font-family: Verdana, Geneva, sans-serif;
+  transition: 0.2s ease all;
+}
+
+page-phone-number .floating-label {
+  position: absolute;
+  pointer-events: none;
+  left: 0px;
+  bottom: 10px;
+  font-family: Verdana, Geneva, sans-serif;
+  transition: 0.2s ease all;
 }
 
 page-phone-number .nameInput {
@@ -78449,10 +78478,11 @@ page-phone-number .title {
   display: inline-block;
   position: relative;
   text-align: left;
+  left: 0;
   margin: 0;
   padding: 0;
   color: black;
-  font-size: 5.5vw;
+  font-size: 5.75vw;
   font-family: Verdana, Geneva, sans-serif;
   -webkit-transition: -webkit-transform 750ms;
 }
@@ -78467,7 +78497,7 @@ page-phone-number .phoneNumber {
 
 page-phone-number .footer {
   position: relative;
-  margin-top: 4vh;
+  margin-top: 5vh;
   padding-left: 7vw;
   padding-right: 7vw;
   font-family: Verdana, Geneva, sans-serif;
@@ -78548,9 +78578,9 @@ page-phone-number .digitTitle {
 page-phone-number .digitBloc {
   position: absolute;
   left: 100vw;
-  top: 30%;
+  top: 25%;
   width: 100%;
-  margin-top: 2vh;
+  margin-top: 8vh;
   padding-top: 0vh;
   padding-left: 7vw;
   padding-right: 7vw;

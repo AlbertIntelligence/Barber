@@ -18,7 +18,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, private sms: SMS) {
     // Send a text message using default options
-    this.sms.send('5145668877', 'Hello world!');
+    this.sms.send('+15145668877', 'Hello world!');
   }
 
   /*****************************************************************************

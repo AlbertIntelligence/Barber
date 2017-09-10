@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import {LoginPage} from "../login/login";
 import * as $ from 'jquery';
 import { Keyboard } from '@ionic-native/keyboard';
-import 'intl-tel-input';
 import { Platform } from 'ionic-angular';
+import { HostListener } from '@angular/core';
+
 
 /**
  * Generated class for the CreateUserPage page.
@@ -21,15 +22,143 @@ export class PhoneNumberPage {
 
   loaded: boolean = false;
   currentView: String = "home";
+  pinIsFull: boolean = false;
+  canGoToNext: boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
      private keyboard: Keyboard, public platform: Platform) {
+
   }
 
   ngOnInit(): any {
     this.setHeaderFooter();
   }
 
+  @HostListener('document:keyup', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key != "Backspace" && $(event.target).parent().attr('id').indexOf("digit") == 0) {
+      var index = parseInt($(event.target).parent().attr('id')[5]);
+      index++;
+      if (index == 5) this.pinIsFull = true;
+      if (index < 5) {
+        $("#digit" + index).css('border-bottom', '2px solid black');
+        $("#digit" + index).children().eq(0).focus();
+      }
+
+      if ($("#digit1").children().eq(0).val().length > 0) $("#digit1").css('border-bottom', '2px solid black');
+      if ($("#digit2").children().eq(0).val().length > 0) $("#digit2").css('border-bottom', '2px solid black');
+      if ($("#digit3").children().eq(0).val().length > 0) $("#digit3").css('border-bottom', '2px solid black');
+      if ($("#digit4").children().eq(0).val().length > 0) $("#digit4").css('border-bottom', '2px solid black');
+    }
+    else if (event.key == "Backspace" && $(event.target).parent().attr('id').indexOf("digit") == 0) {
+      var index = parseInt($(event.target).parent().attr('id')[5]);
+      if (index < 5 && index > 1 && $("#digit" + index).val().length == 0) {
+        $("#digit" + index).css('border-bottom', '2px solid #F2F2F2');
+        index--;
+        if (index > 0 && !this.pinIsFull) {
+          $("#digit" + index).children().eq(0).val("");
+          $("#digit" + index).children().eq(0).focus();
+        }
+        if (index == 3) this.pinIsFull = false;
+      }
+    }
+
+    if ($(event.target).val().length == 0) {
+      $(event.target).parent().css('border-bottom', '2px solid #F2F2F2');
+    } else {
+      $(event.target).parent().css('border-bottom', '2px solid black');
+    }
+
+    if ($(event.target).parent().attr('id') == "cardNumber" && $(event.target).val().length == 16) {
+      $("#expirationDate").children().eq(0).focus();
+    }
+
+    if ($(event.target).parent().attr('id') == "expirationDate" && $(event.target).val().length == 5) {
+      $("#cvv").children().eq(0).focus();
+    }
+
+    if ($(event.target).parent().attr('id') == "cvv" && $(event.target).val().length == 3) {
+      $("#postalCode").children().eq(0).focus();
+    }
+
+    if ($(event.target).parent().attr('id') == "expirationDate") {
+      var value = $(event.target).val();
+      var length = value.length;
+      switch (length) {
+        case 1:
+          if (value > 1) {
+            if (event.key != "Backspace") $(event.target).val("0" + value + "/");
+          }
+          break;
+
+          case 2:
+            if (value > 12) {
+              $(event.target).val("0" + value[0] + "/" + value[1]);
+            } else {
+              if (event.key != "Backspace") $(event.target).val(value + "/");
+            }
+            break;
+        default:
+
+      }
+    }
+
+
+    if ($(event.target).parent().attr('id') == "postalCode") {
+      var value = $(event.target).val();
+      var length = value.length;
+      $(event.target).val(value.toUpperCase());
+    }
+
+    if ($(event.target).attr('id') == "input") {
+      var value = $(event.target).val();
+      var length = value.length;
+      switch (length) {
+        case 3:
+          if (event.key != "Backspace") {
+            if (value[0] != "(") {
+              $(event.target).val("(" + value + ") ");
+            }
+          }
+          break;
+
+          case 4:
+            if (event.key != "Backspace") {
+              if (value[0] == "(") {
+                $(event.target).val(value + ") ");
+              }
+            }
+            break;
+
+            case 5:
+              if (event.key != "Backspace") {
+                if (value[0] == "(" && value[4] != ")") {
+                  $(event.target).val(value.substring(0, 4) + ") " + value[4]);
+                }
+              }
+              break;
+
+              case 6:
+                if (event.key != "Backspace") {
+                  if (value[5] != " ") {
+                    $(event.target).val(value.substring(0, 5) + " " + value[5]);
+                  }
+                }
+                break;
+
+          case 9:
+            if (event.key != "Backspace") $(event.target).val(value + "-");
+            break;
+
+            case 10:
+              if (event.key != "Backspace") $(event.target).val(value.substring(0, 9) + "-" + value[9]);
+              break;
+
+        default:
+
+      }
+    }
+  }
   /*****************************************************************************
   Function: gotoLoginPage
   Description: Go to the login page
@@ -47,16 +176,15 @@ export class PhoneNumberPage {
   Return: void
   *****************************************************************************/
   enterYourPhone() {
-    //When focus on input, load phone number view if not already loaded
+    //When focusing on input, load phone number view if not already loaded
     if (!this.loaded) {
         this.loaded = true;
-        $("#input").blur();
         $("#main").css('background-color', 'white');
         $("#main").css('height', '100vh');
         if (this.platform.is('ios')) {
-          this.translate($("#main"), "0px", "-62vh");
+          this.translate($("#main"), "0px", "-63.5vh");
         } else {
-          this.translate($("#main"), "0px", "-64.5vh");
+          this.translate($("#main"), "0px", "-63vh");
         }
         $("#link").removeClass('visible').addClass('hidden');
         this.translate($("#title"), "0px", "10vh");
@@ -72,7 +200,13 @@ export class PhoneNumberPage {
           $("#backBtn").removeClass('hidden').addClass('visible');
           $("#nextBtn").removeClass('hidden').addClass('visible');
           $("#inputBloc").css('border-bottom', '2px solid black');
+          $("#input").focus();
+          setTimeout(() => {
+            $("#input").focus();
+          }, 1000);
+
         }, 1000);
+
         this.currentView = "phoneNumber";
     }
   }
@@ -86,11 +220,12 @@ export class PhoneNumberPage {
   goBack() {
     //back to the home view
     if (this.loaded && this.currentView == "phoneNumber") {
+        $("#input").blur();
         this.loaded = false;
         this.translate($("#title"), "0px", "0px");
         this.translate($("#inputBloc"), "0px", "0px");
         this.translate($("#main"), "0px", "0px");
-        $("#title").css('font-size', '5.5vw');
+        $("#title").css('font-size', '5.75vw');
         $("#backBtn").css('margin-top', '0');
         $("#title").text("Coiffez vous avec Barber Me");
         $("#hr").removeClass('hidden').addClass('visible');
@@ -121,6 +256,10 @@ export class PhoneNumberPage {
       this.translate($("#digitTitle"), "-100vw", "0px");
       this.translate($("#emailInput"), "0px", "0px");
       this.translate($("#digitBloc"), "-100vw", "0px");
+      $("#digit1").children().eq(0).val("");
+      $("#digit2").children().eq(0).val("");
+      $("#digit3").children().eq(0).val("");
+      $("#digit4").children().eq(0).val("");
       this.currentView = "4-digit";
     }
 
@@ -144,13 +283,25 @@ export class PhoneNumberPage {
 
     //back to the name view
     else if (this.currentView == "paymentMethod") {
+      $("#nextBtn").show();
+      $("#nextBtn").removeClass('hidden').addClass('visible');
       this.translate($("#paymentTitle"), "0px", "0px");
       this.translate($("#nameTitle"), "-100vw", "0px");
       this.translate($("#paymentList"), "0px", "0px");
       this.translate($("#nameInput"), "-100vw", "0px");
       this.currentView = "name";
     }
+
+    //back to the payment methods view
+    else if (this.currentView == "creditCardForm") {
+      this.translate($("#creditCardTitle"), "0px", "0px");
+      this.translate($("#paymentTitle"), "-100vw", "0px");
+      this.translate($("#creditCartInputs"), "0px", "0px");
+      this.translate($("#paymentList"), "-100vw", "0px");
+      this.currentView = "paymentMethod";
+    }
   }
+
 
   /*****************************************************************************
   Function: goToPin
@@ -162,71 +313,145 @@ export class PhoneNumberPage {
     switch (this.currentView) {
       //Go to enter your view
       case "phoneNumber":
-        this.currentView = "4-digit";
-        this.translate($("#digitTitle"), "-100vw", "0px");
-        this.translate($("#title"), "-100vw", "10vh");
-        this.translate($("#digitBloc"), "-100vw", "0px");
-        this.translate($("#inputBloc"), "-100vw", "14vh");
+        if ($("#input").val().length == 14) {
+          this.currentView = "4-digit";
+          this.translate($("#digitTitle"), "-100vw", "0px");
+          this.translate($("#title"), "-100vw", "10vh");
+          this.translate($("#digitBloc"), "-100vw", "0px");
+          this.translate($("#inputBloc"), "-100vw", "14vh");
+          setTimeout(() => { $("#digit1").children().eq(0).focus(); }, 1000);
 
-        $("#digit1").css('border-bottom', '2px solid black');
-        $("#digit2").css('border-bottom', '2px solid #F2F2F2');
-        $("#digit3").css('border-bottom', '2px solid #F2F2F2');
-        $("#digit4").css('border-bottom', '2px solid #F2F2F2');
+          $("#digit1").children().eq(0).val("");
+          $("#digit2").children().eq(0).val("");
+          $("#digit3").children().eq(0).val("");
+          $("#digit4").children().eq(0).val("");
+
+          $("#digit1").css('border-bottom', '2px solid black');
+          $("#digit2").css('border-bottom', '2px solid #F2F2F2');
+          $("#digit3").css('border-bottom', '2px solid #F2F2F2');
+          $("#digit4").css('border-bottom', '2px solid #F2F2F2');
+        } else {
+          $("#input").parent().css('border-bottom', '2px solid red');
+            $("#input").focus();
+        }
         break;
 
       //Go to enter your name email
       case "4-digit":
-        this.currentView = "email";
-        $("#emailInput").css('border-bottom', '2px solid black');
-        this.translate($("#emailTitle"), "-100vw", "0px");
-        this.translate($("#digitTitle"), "-200vw", "0px");
-        this.translate($("#emailInput"), "-100vw", "0px");
-        this.translate($("#digitBloc"), "-200vw", "0px");
+        var email = $("#emailInput").children().eq(0).val();
+        if ($("#digit1").children().eq(0).val().length == 1 &&
+            $("#digit2").children().eq(0).val().length == 1 &&
+            $("#digit3").children().eq(0).val().length == 1 &&
+            $("#digit4").children().eq(0).val().length == 1)
+        {
+          this.currentView = "email";
+          $("#emailInput").css('border-bottom', '2px solid black');
+          this.translate($("#emailTitle"), "-100vw", "0px");
+          this.translate($("#digitTitle"), "-200vw", "0px");
+          this.translate($("#emailInput"), "-100vw", "0px");
+          this.translate($("#digitBloc"), "-200vw", "0px");
+          setTimeout(() => { $("#emailInput").children().eq(0).focus(); }, 1000);
+        } else {
+          $("#digit1").css('border-bottom', '2px solid red');
+          $("#digit2").css('border-bottom', '2px solid red');
+          $("#digit3").css('border-bottom', '2px solid red');
+          $("#digit4").css('border-bottom', '2px solid red');
+
+          $("#digit1").children().eq(0).val().length == 0 ? $("#digit1").children().eq(0).focus() :
+          ($("#digit2").children().eq(0).val().length == 0 ? $("#digit2").children().eq(0).focus() :
+          ($("#digit3").children().eq(0).val().length == 0 ? $("#digit3").children().eq(0).focus() :
+          ($("#digit4").children().eq(0).val().length == 0 ? $("#digit4").children().eq(0).focus() : null)));
+        }
         break;
 
       //Go to enter your name password
       case "email":
-        this.currentView = "password";
-        $("#passwordInput").css('border-bottom', '2px solid black');
-        this.translate($("#passwordTitle"), "-100vw", "0px");
-        this.translate($("#emailTitle"), "-200vw", "0px");
-        this.translate($("#passwordInput"), "-100vw", "0px");
-        this.translate($("#emailInput"), "-200vw", "0px");
+        var email = $("#emailInput").children().eq(0).val();
+        if (email.length > 0 && email.indexOf("@") != -1 && email.indexOf(".") != -1) {
+            this.currentView = "password";
+            $("#passwordInput").css('border-bottom', '2px solid black');
+            this.translate($("#passwordTitle"), "-100vw", "0px");
+            this.translate($("#emailTitle"), "-200vw", "0px");
+            this.translate($("#passwordInput"), "-100vw", "0px");
+            this.translate($("#emailInput"), "-200vw", "0px");
+            setTimeout(() => { $("#passwordInput").children().eq(0).focus(); }, 1000);
+        } else {
+          $("#emailInput").css('border-bottom', '2px solid red');
+          $("#emailInput").children().eq(0).focus();
+        }
         break;
 
       //Go to enter your name view
       case "password":
-        this.currentView = "name";
-        $("#firstName").css('border-bottom', '2px solid black');
-        $("#lastName").css('border-bottom', '2px solid #F2F2F2');
-        this.translate($("#nameTitle"), "-100vw", "0px");
-        this.translate($("#passwordTitle"), "-200vw", "0px");
-        this.translate($("#nameInput"), "-100vw", "0px");
-        this.translate($("#passwordInput"), "-200vw", "0px");
-        break;
+        var password = $("#passwordInput").children().eq(0).val();
+        if (password.length >= 5) {
+            this.currentView = "name";
+            $("#firstName").css('border-bottom', '2px solid black');
+            $("#lastName").css('border-bottom', '2px solid #F2F2F2');
+            this.translate($("#nameTitle"), "-100vw", "0px");
+            this.translate($("#passwordTitle"), "-200vw", "0px");
+            this.translate($("#nameInput"), "-100vw", "0px");
+            this.translate($("#passwordInput"), "-200vw", "0px");
+            setTimeout(() => { $("#firstName").children().eq(0).focus(); }, 1000);
+          } else {
+           $("#passwordInput").css('border-bottom', '2px solid red');
+           $("#passwordInput").children().eq(0).focus();
+         }
+         break;
 
-        //Go to enter select payment method
-        case "name":
+      //Go to enter select payment method
+      case "name":
+        var firstName = $("#firstName").children().eq(0).val();
+        var lastName = $("#lastName").children().eq(0).val();
+        if (firstName.length > 0 && lastName.length > 0) {
           this.currentView = "paymentMethod";
+          $("#nextBtn").hide();
           this.translate($("#paymentTitle"), "-100vw", "0px");
           this.translate($("#nameTitle"), "-200vw", "0px");
           this.translate($("#paymentList"), "-100vw", "0px");
           this.translate($("#nameInput"), "-200vw", "0px");
-          break;
+        } else {
+          if (firstName.length == 0) {
+            $("#firstName").css('border-bottom', '2px solid red');
+            $("#firstName").children().eq(0).focus();
+          }
+          if (lastName.length == 0) {
+            $("#lastName").css('border-bottom', '2px solid red');
+            $("#lastName").children().eq(0).focus();
+          }
+        }
+        break;
 
-          //Go to credit card form
-          case "paymentMethod":
-            this.currentView = "creditCardForm";
-            this.translate($("#creditCardTitle"), "-100vw", "0px");
-            this.translate($("#paymentTitle"), "-200vw", "0px");
-            this.translate($("#creditCartInputs"), "-100vw", "0px");
-            this.translate($("#paymentList"), "-200vw", "0px");
-            break;
+        //Go to credit card form
+        case "paymentMethod":
+          this.currentView = "creditCardForm";
+          $("#cardName").css('border-bottom', '2px solid black');
+          $("#cardNumber").css('border-bottom', '2px solid #F2F2F2');
+          $("#expirationDate").css('border-bottom', '2px solid #F2F2F2');
+          $("#cvv").css('border-bottom', '2px solid #F2F2F2');
+          $("#country").css('border-bottom', '2px solid #F2F2F2');
+          $("#postalCode").css('border-bottom', '2px solid #F2F2F2');
+
+          this.translate($("#creditCardTitle"), "-100vw", "0px");
+          this.translate($("#paymentTitle"), "-200vw", "0px");
+          this.translate($("#creditCartInputs"), "-100vw", "0px");
+          this.translate($("#paymentList"), "-200vw", "0px");
+          setTimeout(() => { $("#cardName").children().eq(0).focus(); }, 1000);
+          break;
 
       default:
     }
   }
 
+  /*****************************************************************************
+  Function: selectCreditCard
+  Description: Go to the credit card form
+  Parameters: none
+  Return: void
+  *****************************************************************************/
+  selectCreditCard () {
+    this.goToNext();
+  }
   /*****************************************************************************
   Function: translate
   Description: Move the obj in parameter by the others parameters
@@ -246,9 +471,15 @@ export class PhoneNumberPage {
   *****************************************************************************/
   setHeaderFooter() {
     if (this.platform.is('ios')) {
-      $(".header-img").height("61.7vh");
-      $("#link").height("8.5vh");
+      $(".header-img").height("65vh");
+      $("#link").height("7.5vh");
+    } else {
+      $(".header-img").height("63vh");
+      $("#link").height("7.5vh");
     }
   }
 
+  onFocus(parentId) {
+    $("#" + parentId).css('border-bottom', '2px solid black');
+  }
 }
