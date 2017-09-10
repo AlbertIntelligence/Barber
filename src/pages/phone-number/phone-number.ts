@@ -6,6 +6,7 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { Platform } from 'ionic-angular';
 import { HostListener } from '@angular/core';
 import firebase from 'firebase';
+import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the CreateUserPage page.
@@ -20,14 +21,15 @@ import firebase from 'firebase';
 
 export class PhoneNumberPage {
 
-  loaded: boolean = false;
-  currentView: String = "home";
-  pinIsFull: boolean = false;
-  canGoToNext: boolean = true;
+  private loaded: boolean = false;
+  private currentView: String = "home";
+  private pinIsFull: boolean = false;
+  private canGoToNext: boolean = true;
   public recaptchaVerifier:firebase.auth.RecaptchaVerifier;
+  private smsConfirmation: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-     private keyboard: Keyboard, public platform: Platform) {
+     private keyboard: Keyboard, public platform: Platform, public alertCtrl: AlertController) {
 
   }
 
@@ -44,8 +46,8 @@ export class PhoneNumberPage {
     if (event.key != "Backspace" && $(event.target).parent().attr('id').indexOf("digit") == 0) {
       var index = parseInt($(event.target).parent().attr('id')[5]);
       index++;
-      if (index == 5) this.pinIsFull = true;
-      if (index < 5) {
+      if (index == 7) this.pinIsFull = true;
+      if (index < 7) {
         $("#digit" + index).css('border-bottom', '2px solid black');
         $("#digit" + index).children().eq(0).focus();
       }
@@ -54,17 +56,19 @@ export class PhoneNumberPage {
       if ($("#digit2").children().eq(0).val().length > 0) $("#digit2").css('border-bottom', '2px solid black');
       if ($("#digit3").children().eq(0).val().length > 0) $("#digit3").css('border-bottom', '2px solid black');
       if ($("#digit4").children().eq(0).val().length > 0) $("#digit4").css('border-bottom', '2px solid black');
+      if ($("#digit5").children().eq(0).val().length > 0) $("#digit6").css('border-bottom', '2px solid black');
+      if ($("#digit5").children().eq(0).val().length > 0) $("#digit6").css('border-bottom', '2px solid black');
     }
     else if (event.key == "Backspace" && $(event.target).parent().attr('id').indexOf("digit") == 0) {
       var index = parseInt($(event.target).parent().attr('id')[5]);
-      if (index < 5 && index > 1 && $("#digit" + index).val().length == 0) {
+      if (index < 7 && index > 1 && $("#digit" + index).val().length == 0) {
         $("#digit" + index).css('border-bottom', '2px solid #F2F2F2');
         index--;
         if (index > 0 && !this.pinIsFull) {
           $("#digit" + index).children().eq(0).val("");
           $("#digit" + index).children().eq(0).focus();
         }
-        if (index == 3) this.pinIsFull = false;
+        if (index == 5) this.pinIsFull = false;
       }
     }
 
@@ -247,7 +251,7 @@ export class PhoneNumberPage {
     }
 
     //back to the phone number view
-    else if (this.currentView == "4-digit") {
+    else if (this.currentView == "6-digit") {
       this.translate($("#digitTitle"), "0px", "0px");
       this.translate($("#title"), "0px", "10vh");
       this.translate($("#digitBloc"), "0px", "0px");
@@ -255,7 +259,7 @@ export class PhoneNumberPage {
       this.currentView = "phoneNumber";
     }
 
-    //back to the 4-digit PIN view
+    //back to the 6-digit PIN view
     else if (this.currentView == "email") {
       this.translate($("#emailTitle"), "0px", "0px");
       this.translate($("#digitTitle"), "-100vw", "0px");
@@ -265,7 +269,9 @@ export class PhoneNumberPage {
       $("#digit2").children().eq(0).val("");
       $("#digit3").children().eq(0).val("");
       $("#digit4").children().eq(0).val("");
-      this.currentView = "4-digit";
+      $("#digit5").children().eq(0).val("");
+      $("#digit6").children().eq(0).val("");
+      this.currentView = "6-digit";
     }
 
     //back to the email view
@@ -319,7 +325,7 @@ export class PhoneNumberPage {
       //Go to enter your view
       case "phoneNumber":
         if ($("#input").val().length == 14) {
-          this.currentView = "4-digit";
+          this.currentView = "6-digit";
           this.translate($("#digitTitle"), "-100vw", "0px");
           this.translate($("#title"), "-100vw", "10vh");
           this.translate($("#digitBloc"), "-100vw", "0px");
@@ -330,11 +336,16 @@ export class PhoneNumberPage {
           $("#digit2").children().eq(0).val("");
           $("#digit3").children().eq(0).val("");
           $("#digit4").children().eq(0).val("");
+          $("#digit5").children().eq(0).val("");
+          $("#digit6").children().eq(0).val("");
 
           $("#digit1").css('border-bottom', '2px solid black');
           $("#digit2").css('border-bottom', '2px solid #F2F2F2');
           $("#digit3").css('border-bottom', '2px solid #F2F2F2');
           $("#digit4").css('border-bottom', '2px solid #F2F2F2');
+          $("#digit5").css('border-bottom', '2px solid #F2F2F2');
+          $("#digit6").css('border-bottom', '2px solid #F2F2F2');
+
           this.signInWithPhoneNumber();
         } else {
           $("#input").parent().css('border-bottom', '2px solid red');
@@ -343,29 +354,29 @@ export class PhoneNumberPage {
         break;
 
       //Go to enter your name email
-      case "4-digit":
+      case "6-digit":
         if ($("#digit1").children().eq(0).val().length == 1 &&
             $("#digit2").children().eq(0).val().length == 1 &&
             $("#digit3").children().eq(0).val().length == 1 &&
-            $("#digit4").children().eq(0).val().length == 1)
+            $("#digit4").children().eq(0).val().length == 1 &&
+            $("#digit5").children().eq(0).val().length == 1 &&
+            $("#digit6").children().eq(0).val().length == 1)
         {
-          this.currentView = "email";
-          $("#emailInput").css('border-bottom', '2px solid black');
-          this.translate($("#emailTitle"), "-100vw", "0px");
-          this.translate($("#digitTitle"), "-200vw", "0px");
-          this.translate($("#emailInput"), "-100vw", "0px");
-          this.translate($("#digitBloc"), "-200vw", "0px");
-          setTimeout(() => { $("#emailInput").children().eq(0).focus(); }, 1000);
+          this.confirmSmsCode();
         } else {
           $("#digit1").css('border-bottom', '2px solid red');
           $("#digit2").css('border-bottom', '2px solid red');
           $("#digit3").css('border-bottom', '2px solid red');
           $("#digit4").css('border-bottom', '2px solid red');
+          $("#digit5").css('border-bottom', '2px solid red');
+          $("#digit6").css('border-bottom', '2px solid red');
 
           $("#digit1").children().eq(0).val().length == 0 ? $("#digit1").children().eq(0).focus() :
           ($("#digit2").children().eq(0).val().length == 0 ? $("#digit2").children().eq(0).focus() :
           ($("#digit3").children().eq(0).val().length == 0 ? $("#digit3").children().eq(0).focus() :
-          ($("#digit4").children().eq(0).val().length == 0 ? $("#digit4").children().eq(0).focus() : null)));
+          ($("#digit4").children().eq(0).val().length == 0 ? $("#digit4").children().eq(0).focus() :
+          ($("#digit5").children().eq(0).val().length == 0 ? $("#digit5").children().eq(0).focus() :
+          ($("#digit6").children().eq(0).val().length == 0 ? $("#digit6").children().eq(0).focus() : null)))));
         }
         break;
 
@@ -458,19 +469,67 @@ export class PhoneNumberPage {
     this.goToNext();
   }
 
-  signInWithPhoneNumber(){
-    const appVerifier = this.recaptchaVerifier;
-    const phoneNumberString = "+" + "15145668877";
+  /*****************************************************************************
+  Function: signInWithPhoneNumber
+  Description: Sign in user with his phone number
+  Parameters: none
+  Return: void
+  *****************************************************************************/
+  signInWithPhoneNumber() {
+    //const appVerifier = this.recaptchaVerifier;
+    const appVerifier = new firebase.auth.RecaptchaVerifier('nextBtn', {'size': 'invisible'});
+    var value = $("#input").val();
+    const phoneNumberString = "+1" + value.substring(1, 4) + value.substring(6, 9) + value.substring(10, 14);
 
     firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
       .then( confirmationResult => {
         // SMS sent. Prompt user to type the code from the message, then sign the
         // user in with confirmationResult.confirm(code).
-        console.log("Sent");
+        this.smsConfirmation = confirmationResult;
       })
       .catch(function (error) {
         console.error("SMS not sent", error);
       });
+  }
+
+  /*****************************************************************************
+  Function: confirmSmsPin
+  Description: sms 6-digit code confirmation
+  Parameters: none
+  Return: void
+  *****************************************************************************/
+  confirmSmsCode() {
+    var confirmationCode = "";
+    for (var i = 1; i < 7; i++) {
+      confirmationCode += $("#digit" + i).children().eq(0).val();
+    }
+    let controller = this;
+
+    this.smsConfirmation.confirm(confirmationCode)
+    .then(function (result) {
+      // User signed in successfully.
+      controller.currentView = "email";
+      $("#emailInput").css('border-bottom', '2px solid black');
+      controller.translate($("#emailTitle"), "-100vw", "0px");
+      controller.translate($("#digitTitle"), "-200vw", "0px");
+      controller.translate($("#emailInput"), "-100vw", "0px");
+      controller.translate($("#digitBloc"), "-200vw", "0px");
+      setTimeout(() => { $("#emailInput").children().eq(0).focus(); }, 1000);
+    }).catch(function (error) {
+      // User couldn't sign in (bad verification code?)
+      $("#digit1").css('border-bottom', '2px solid red');
+      $("#digit2").css('border-bottom', '2px solid red');
+      $("#digit3").css('border-bottom', '2px solid red');
+      $("#digit4").css('border-bottom', '2px solid red');
+      $("#digit5").css('border-bottom', '2px solid red');
+      $("#digit6").css('border-bottom', '2px solid red');
+
+      $("#digit6").children().eq(0).focus();
+      if (error.message.indexOf("The SMS code has expired") != -1) {
+        controller.goBack();
+        controller.showAlert("Confirmation Impossible !", "Le code SMS a expiré. Re-envoyez le code de vérification pour réessayer.");
+      }
+    });
   }
 
   /*****************************************************************************
@@ -482,6 +541,21 @@ export class PhoneNumberPage {
   translate(obj, dx, dy) {
     $(obj).css('-webkit-transform', 'translate('+ dx +','+ dy +')');
     $(obj).css('transition-timing-function', 'cubic-bezier(.1,.1,.1,1)');
+  }
+
+  /*****************************************************************************
+  Function: showAlert
+  Purpose: Display a pop-up alert to error messages
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  showAlert(title, text) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   /*****************************************************************************
