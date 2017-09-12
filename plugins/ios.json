@@ -24,10 +24,10 @@
         "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
-        "ionic-plugin-keyboard": {
+        "com.telerik.plugins.nativepagetransitions": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
-        "com.telerik.plugins.nativepagetransitions": {
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         }
     },

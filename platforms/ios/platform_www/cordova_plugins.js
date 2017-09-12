@@ -55,6 +55,14 @@ module.exports = [
         "pluginId": "cordova-plugin-x-toast"
     },
     {
+        "id": "com.telerik.plugins.nativepagetransitions.NativePageTransitions",
+        "file": "plugins/com.telerik.plugins.nativepagetransitions/www/NativePageTransitions.js",
+        "pluginId": "com.telerik.plugins.nativepagetransitions",
+        "clobbers": [
+            "window.plugins.nativepagetransitions"
+        ]
+    },
+    {
         "id": "ionic-plugin-keyboard.keyboard",
         "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
         "pluginId": "ionic-plugin-keyboard",
@@ -62,14 +70,6 @@ module.exports = [
             "cordova.plugins.Keyboard"
         ],
         "runs": true
-    },
-    {
-        "id": "com.telerik.plugins.nativepagetransitions.NativePageTransitions",
-        "file": "plugins/com.telerik.plugins.nativepagetransitions/www/NativePageTransitions.js",
-        "pluginId": "com.telerik.plugins.nativepagetransitions",
-        "clobbers": [
-            "window.plugins.nativepagetransitions"
-        ]
     }
 ];
 module.exports.metadata = 
@@ -80,8 +80,8 @@ module.exports.metadata =
     "cordova-plugin-facebook4": "1.9.1",
     "cordova-plugin-inappbrowser": "1.7.1",
     "cordova-plugin-x-toast": "2.6.0",
-    "ionic-plugin-keyboard": "2.2.1",
-    "com.telerik.plugins.nativepagetransitions": "0.6.5"
+    "com.telerik.plugins.nativepagetransitions": "0.6.5",
+    "ionic-plugin-keyboard": "2.2.1"
 };
 // BOTTOM OF METADATA
 });

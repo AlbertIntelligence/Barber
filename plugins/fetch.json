@@ -42,18 +42,18 @@
         "is_top_level": true,
         "variables": {}
     },
-    "ionic-plugin-keyboard": {
-        "source": {
-            "type": "registry",
-            "id": "ionic-plugin-keyboard@^2.2.1"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "com.telerik.plugins.nativepagetransitions": {
         "source": {
             "type": "registry",
             "id": "com.telerik.plugins.nativepagetransitions"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "ionic-plugin-keyboard": {
+        "source": {
+            "type": "registry",
+            "id": "ionic-plugin-keyboard"
         },
         "is_top_level": true,
         "variables": {}

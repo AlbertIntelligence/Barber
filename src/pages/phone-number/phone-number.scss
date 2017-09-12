@@ -2,12 +2,18 @@ page-phone-number {
 
   .content {
     overflow: hidden !important;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    background-color: white;
   }
 
   .header-img {
     position: relative;
+    top: 0;
+    left: 0;
     width: 100vw;
-    height: 64vh;
+    height: 64vw;
     padding: 0;
     margin: 0;
   }
@@ -24,86 +30,203 @@ page-phone-number {
   .input {
     border: 0 !important;
     width: 75%;
-    font-size: 22px;
+    font-size: 19px;
     outline: none;
     padding: 0;
-    padding-left: 2vw;
+    padding-left: 1.5vw;
     margin-left: 1vw;
-    font-family: "Times New Roman", Times, serif;
+    font-family: Verdana, Geneva, sans-serif;
+    transition: 0.2s ease all;
+  }
+/*
+  input:focus ~ .floating-label,
+  input:not(:focus):valid ~ .floating-label{
+    top: 0px;
+    bottom: 10px;
+    left: 0px;
+    font-size: 11px;
+    opacity: 1;
+  }
+*/
+  .floating-label {
+    position: absolute;
+    pointer-events: none;
+    left: 0px;
+    bottom: 10px;
+    font-family: Verdana, Geneva, sans-serif;
+    transition: 0.2s ease all;
+  }
+
+
+  .nameInput {
+    border: 0 !important;
+    width: 75%;
+    font-size: 19px;
+    outline: none;
+    padding: 0;
+    font-family: Verdana, Geneva, sans-serif;
   }
 
   .main {
     display: block;
     position: relative;
-    padding-top: 4vh;
+    padding-top: 0;
     padding-left: 7vw;
     padding-right: 7vw;
-    height: 26vh;
+    -webkit-transition: -webkit-transform 750ms;
+    background-color: white;
+    transition-timing-function: cubic-bezier(.1,.1,.1,1);
+  }
+
+  .fadeIn {
+   opacity: 1;
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+   }
+
+   .fadeOut {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+    }
+
+  .backbtn {
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    padding: 0;
   }
 
   .title {
     display: inline-block;
     position: relative;
-    margin-top: 1.8vh;
-    font-family: "Times New Roman", Times, serif;
-  }
-
-  .subtitle {
-    display: none;
-    position: relative;
-    font-family: "Times New Roman", Times, serif;
+    text-align: left;
+    left:0;
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-size: 5.75vw;
+    font-family: Verdana, Geneva, sans-serif;
+    -webkit-transition: -webkit-transform 750ms;
   }
 
   .phoneNumber {
     position: relative;
-    margin-top: 5vh;
+    margin-top: 6vh;
+    padding-top: 0vh;
     padding-bottom: 10px;
+    -webkit-transition: -webkit-transform 750ms;
   }
 
   .footer {
     position: relative;
+    margin-top: 5vh;
     padding-left: 7vw;
     padding-right: 7vw;
-    font-family: "Times New Roman", Times, serif;
+    font-family: Verdana, Geneva, sans-serif;
     border-top: 1px solid #EBEBEB;
     height: 10vh;
+    color:blue;
+    font-size: 4vw;
+  }
+
+  .visible {
+    opacity: 1;
+    transition: opacity 1s linear;
+  }
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 1s, opacity 1s linear;
   }
 
   .btn-circle {
-  position: fixed;
-  right: 5vw;
-  bottom: 3vh;
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px;
-}
-.btn-circle.btn-lg {
-  position: fixed;
-  right: 5vw;
-  bottom: 3vh;
-  width: 50px;
-  height: 50px;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 25px;
-}
-.btn-circle.btn-xl {
-  position: fixed;
-  display: none;
-  right: 5vw;
-  bottom: 3vh;
-  width: 20vw;
-  height: 20vw;
-  padding: 5vw 7vw;
-  font-size: 15vw;
-  line-height: 1.33;
-  border-radius: 10vw;
-  background-color: black;
-}
+    position: fixed;
+    right: 5vw;
+    bottom: 3vh;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+  }
+  .btn-circle.btn-lg {
+    position: fixed;
+    right: 5vw;
+    top: 50vh;
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+  }
+  .btn-circle.btn-xl {
+    position: fixed;
+    right: 5vw;
+    top: 50vh;
+    width: 20vw;
+    height: 20vw;
+    padding: 5vw 7vw;
+    font-size: 15vw;
+    line-height: 1.33;
+    border-radius: 10vw;
+    background-color: white;
+    color: black;
+    box-shadow: 1px 1px 30px 1px #888888;
+  }
+
+  .btn-circle.btn-xl:active {
+    background-color: black;
+    color: white;
+  }
+
+  //4 digit PIN section
+  .digitTitle {
+    position: absolute;
+    left: 100vw;
+    top: 19%;
+    width: 100%;
+    padding-left: 7vw;
+    padding-right: 5vw;
+    font-size: 5vw;
+    -webkit-transition: -webkit-transform 750ms;
+    font-family: Verdana, Geneva, sans-serif;
+  }
+
+  .digitBloc {
+    position: absolute;
+    left: 100vw;
+    top: 25%;
+    width: 100%;
+    margin-top: 8vh;
+    padding-top: 0vh;
+    padding-left: 7vw;
+    padding-right: 7vw;
+    padding-bottom: 10px;
+    -webkit-transition: -webkit-transform 750ms;
+    font-family: Verdana, Geneva, sans-serif;
+  }
+
+  //email, password
+  .inputBloc {
+    position: absolute;
+    left: 107vw;
+    top: 30%;
+    width: 86%;
+    font-size: 19px;
+    outline: none;
+    margin-top: 6vh;
+    padding-top: 0vh;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    -webkit-transition: -webkit-transform 750ms;
+    font-family: Verdana, Geneva, sans-serif;
+  }
 
 }

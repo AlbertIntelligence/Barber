@@ -37,11 +37,11 @@
     <feature name="Toast">
         <param name="ios-package" value="Toast" />
     </feature>
-    <feature name="Keyboard">
-        <param name="ios-package" onload="true" value="IonicKeyboard" />
-    </feature>
     <feature name="NativePageTransitions">
         <param name="ios-package" value="NativePageTransitions" />
+    </feature>
+    <feature name="Keyboard">
+        <param name="ios-package" onload="true" value="IonicKeyboard" />
     </feature>
     <name>CodeKL_Barber</name>
     <description>An awesome CodeKL Barber App.</description>

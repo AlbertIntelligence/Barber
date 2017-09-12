@@ -2,6 +2,7 @@ import {Component, ViewChild} from "@angular/core";
 import {Platform} from "ionic-angular";
 import {StatusBar, Splashscreen} from "ionic-native";
 import {PhoneNumberPage} from "../pages/phone-number/phone-number";
+import { Keyboard } from '@ionic-native/keyboard';
 
 
 // import pages
@@ -19,7 +20,7 @@ export class MyApp {
 
   public nav: any;
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, private keyboard: Keyboard) {
     this.rootPage = PhoneNumberPage;
 
     // show splash screen
@@ -29,6 +30,8 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
+
+      this.keyboard.disableScroll(true);
     });
   }
 
