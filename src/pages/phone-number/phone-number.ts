@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import {LoginPage} from "../login/login";
+import {HomePage} from "../home/home";
 import * as $ from 'jquery';
 import { Keyboard } from '@ionic-native/keyboard';
 import { Platform } from 'ionic-angular';
@@ -24,7 +24,6 @@ export class PhoneNumberPage {
   private loaded: boolean = false;
   private currentView: String = "home";
   private pinIsFull: boolean = false;
-  private canGoToNext: boolean = true;
   public recaptchaVerifier:firebase.auth.RecaptchaVerifier;
   private smsConfirmation: any;
 
@@ -168,14 +167,15 @@ export class PhoneNumberPage {
       }
     }
   }
+
   /*****************************************************************************
-  Function: gotoLoginPage
-  Description: Go to the login page
+  Function: gotohome
+  Purpose: Pushes Home page
   Parameters: None
   Return: None
   *****************************************************************************/
-  gotoLoginPage() {
-    this.navCtrl.push(LoginPage);
+  gotohome() {
+    this.navCtrl.setRoot(HomePage);
   }
 
   /*****************************************************************************
@@ -409,6 +409,7 @@ export class PhoneNumberPage {
             this.translate($("#nameInput"), "-100vw", "0px");
             this.translate($("#passwordInput"), "-200vw", "0px");
             setTimeout(() => { $("#firstName").children().eq(0).focus(); }, 1000);
+            this.linkWithEmailAuth();
           } else {
            $("#passwordInput").css('border-bottom', '2px solid red');
            $("#passwordInput").children().eq(0).focus();
@@ -438,22 +439,22 @@ export class PhoneNumberPage {
         }
         break;
 
-        //Go to credit card form
-        case "paymentMethod":
-          this.currentView = "creditCardForm";
-          $("#cardName").css('border-bottom', '2px solid black');
-          $("#cardNumber").css('border-bottom', '2px solid #F2F2F2');
-          $("#expirationDate").css('border-bottom', '2px solid #F2F2F2');
-          $("#cvv").css('border-bottom', '2px solid #F2F2F2');
-          $("#country").css('border-bottom', '2px solid #F2F2F2');
-          $("#postalCode").css('border-bottom', '2px solid #F2F2F2');
+      //Go to credit card form
+      case "paymentMethod":
+        this.currentView = "creditCardForm";
+        $("#cardName").css('border-bottom', '2px solid black');
+        $("#cardNumber").css('border-bottom', '2px solid #F2F2F2');
+        $("#expirationDate").css('border-bottom', '2px solid #F2F2F2');
+        $("#cvv").css('border-bottom', '2px solid #F2F2F2');
+        $("#country").css('border-bottom', '2px solid #F2F2F2');
+        $("#postalCode").css('border-bottom', '2px solid #F2F2F2');
 
-          this.translate($("#creditCardTitle"), "-100vw", "0px");
-          this.translate($("#paymentTitle"), "-200vw", "0px");
-          this.translate($("#creditCartInputs"), "-100vw", "0px");
-          this.translate($("#paymentList"), "-200vw", "0px");
-          setTimeout(() => { $("#cardName").children().eq(0).focus(); }, 1000);
-          break;
+        this.translate($("#creditCardTitle"), "-100vw", "0px");
+        this.translate($("#paymentTitle"), "-200vw", "0px");
+        this.translate($("#creditCartInputs"), "-100vw", "0px");
+        this.translate($("#paymentList"), "-200vw", "0px");
+        setTimeout(() => { $("#cardName").children().eq(0).focus(); }, 1000);
+        break;
 
       default:
     }
@@ -508,13 +509,18 @@ export class PhoneNumberPage {
     this.smsConfirmation.confirm(confirmationCode)
     .then(function (result) {
       // User signed in successfully.
-      controller.currentView = "email";
-      $("#emailInput").css('border-bottom', '2px solid black');
-      controller.translate($("#emailTitle"), "-100vw", "0px");
-      controller.translate($("#digitTitle"), "-200vw", "0px");
-      controller.translate($("#emailInput"), "-100vw", "0px");
-      controller.translate($("#digitBloc"), "-200vw", "0px");
-      setTimeout(() => { $("#emailInput").children().eq(0).focus(); }, 1000);
+      if (result.user) {
+        controller.gotohome();
+      } else {
+        controller.currentView = "email";
+        $("#emailInput").css('border-bottom', '2px solid black');
+        controller.translate($("#emailTitle"), "-100vw", "0px");
+        controller.translate($("#digitTitle"), "-200vw", "0px");
+        controller.translate($("#emailInput"), "-100vw", "0px");
+        controller.translate($("#digitBloc"), "-200vw", "0px");
+        setTimeout(() => { $("#emailInput").children().eq(0).focus(); }, 1000);
+      }
+
     }).catch(function (error) {
       // User couldn't sign in (bad verification code?)
       $("#digit1").css('border-bottom', '2px solid red');
@@ -556,6 +562,50 @@ export class PhoneNumberPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  /*****************************************************************************
+  Function: loginUser
+  Purpose: Validate the entries and logs the user in.
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  /*loginUser() {
+    var email = "";
+    var password = "";
+    if (email.length == 0 || password.length == 0) {
+      this.showAlert('Authentification Impossible !', 'Veuillez remplir tous les champs.')
+    } else {
+      this.logoutUser();
+      let loginController = this;
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function (data) {
+        if (loginController.isLoggedIn()) loginController.gotohome();
+      }).catch(function (error) {
+        loginController.showAlert('Authentification Impossible !', error.toString().substring(7, error.toString().length));
+      });
+    }
+  }*/
+
+  /*****************************************************************************
+  Function:   Function: presentAlert
+  Description: Link user phone auth with email auth
+  Also displays warning registration messages
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  linkWithEmailAuth() {
+    var email = $("#emailInput").children().eq(0).val();
+    var password = $("#passwordInput").children().eq(0).val();
+    if (email.length == 0 || password.length == 0) {
+    } else {
+      let loginController = this;
+      var credential = firebase.auth.EmailAuthProvider.credential(email, password);
+      firebase.auth().currentUser.linkWithCredential(credential).then(function(user) {
+        console.log("Account linking success", user);
+      }, function(error) {
+        console.log("Account linking error", error);
+      });
+    }
   }
 
   /*****************************************************************************
