@@ -27,6 +27,7 @@ export class PhoneNumberPage {
   private pinIsFull: boolean = false;
   public recaptchaVerifier:firebase.auth.RecaptchaVerifier;
   private smsConfirmation: any;
+  private userAccounts:Array<any> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
      private keyboard: Keyboard, public platform: Platform, public alertCtrl: AlertController) {
@@ -506,6 +507,7 @@ export class PhoneNumberPage {
   *****************************************************************************/
   confirmSmsCode() {
     var confirmationCode = "";
+    this.updateUserAccounts();
     for (var i = 1; i < 7; i++) {
       confirmationCode += $("#digit" + i).children().eq(0).val();
     }
@@ -514,7 +516,7 @@ export class PhoneNumberPage {
     this.smsConfirmation.confirm(confirmationCode)
     .then(function (result) {
       // User signed in successfully.
-      if (result.user) {
+      if (result.user && controller.alreadyExists()) {
         controller.gotohome();
       } else {
         controller.currentView = "email";
@@ -553,12 +555,48 @@ export class PhoneNumberPage {
   createNewUser() {
     var users = firebase.database().ref('Users/');
     var userId = firebase.auth().currentUser.uid;
+    var value = $("#input").val();
+    const phoneNumberString = "+1" + value.substring(1, 4) + value.substring(6, 9) + value.substring(10, 14);
     users.child(userId).set({
       UserId: userId,
       Date: Date(),
       firstName: $("#firstName").children().eq(0).val(),
-      lastName: $("#lastName").children().eq(0).val()
+      lastName: $("#lastName").children().eq(0).val(),
+      email: $("#emailInput").children().eq(0).val(),
+      phoneNumber: phoneNumberString
     });
+  }
+
+  /*****************************************************************************
+  Function: alreadyExists
+  Purpose: Tells is the user already exists by using phone number
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  alreadyExists() {
+    var value = $("#input").val();
+    const phoneNumberString = "+1" + value.substring(1, 4) + value.substring(6, 9) + value.substring(10, 14);
+    return (this.userAccounts.find(item => item.phoneNumber == phoneNumberString) != undefined);
+  }
+
+  /*****************************************************************************
+  Function: getUserAccounts
+  Purpose: Fetch user accounts from db
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  updateUserAccounts() {
+    let controller = this;
+    firebase.database().ref('Users/')
+     .on('value', function(snapshot) {
+       let users = snapshot.val();
+       controller.userAccounts = [];
+       for (var property in users) {
+          if (users.hasOwnProperty(property)) {
+              controller.userAccounts.push(users[property]);
+          }
+       }
+     });
   }
 
   /*****************************************************************************
@@ -588,28 +626,6 @@ export class PhoneNumberPage {
   }
 
   /*****************************************************************************
-  Function: loginUser
-  Purpose: Validate the entries and logs the user in.
-  Parameters: None
-  Return: None
-  *****************************************************************************/
-  /*loginUser() {
-    var email = "";
-    var password = "";
-    if (email.length == 0 || password.length == 0) {
-      this.showAlert('Authentification Impossible !', 'Veuillez remplir tous les champs.')
-    } else {
-      this.logoutUser();
-      let loginController = this;
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function (data) {
-        if (loginController.isLoggedIn()) loginController.gotohome();
-      }).catch(function (error) {
-        loginController.showAlert('Authentification Impossible !', error.toString().substring(7, error.toString().length));
-      });
-    }
-  }*/
-
-  /*****************************************************************************
   Function:   Function: presentAlert
   Description: Link user phone auth with email auth
   Also displays warning registration messages
@@ -621,7 +637,6 @@ export class PhoneNumberPage {
     var password = $("#passwordInput").children().eq(0).val();
     if (email.length == 0 || password.length == 0) {
     } else {
-      let loginController = this;
       var credential = firebase.auth.EmailAuthProvider.credential(email, password);
       firebase.auth().currentUser.linkWithCredential(credential).then(function(user) {
         console.log("Account linking success", user);
