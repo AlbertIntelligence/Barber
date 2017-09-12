@@ -7,6 +7,7 @@ import { Platform } from 'ionic-angular';
 import { HostListener } from '@angular/core';
 import firebase from 'firebase';
 import { AlertController } from 'ionic-angular';
+import {LoginPage} from "../login/login";
 
 /**
  * Generated class for the CreateUserPage page.
@@ -176,6 +177,9 @@ export class PhoneNumberPage {
   *****************************************************************************/
   gotohome() {
     this.navCtrl.setRoot(HomePage);
+  }
+  gotoLoginPage() {
+    this.navCtrl.push(LoginPage);
   }
 
   /*****************************************************************************
@@ -427,6 +431,7 @@ export class PhoneNumberPage {
           this.translate($("#nameTitle"), "-200vw", "0px");
           this.translate($("#paymentList"), "-100vw", "0px");
           this.translate($("#nameInput"), "-200vw", "0px");
+          this.createNewUser();
         } else {
           if (firstName.length == 0) {
             $("#firstName").css('border-bottom', '2px solid red');
@@ -535,6 +540,24 @@ export class PhoneNumberPage {
         controller.goBack();
         controller.showAlert("Confirmation Impossible !", "Le code SMS a expiré. Re-envoyez le code de vérification pour réessayer.");
       }
+    });
+  }
+
+  /*****************************************************************************
+  Function: createNewUser
+  Purpose: Create a new user account in db
+  Parameters: date(String): date to be saved
+              hour(String): hour to be saved
+  Return: None
+  *****************************************************************************/
+  createNewUser() {
+    var users = firebase.database().ref('Users/');
+    var userId = firebase.auth().currentUser.uid;
+    users.child(userId).set({
+      UserId: userId,
+      Date: Date(),
+      firstName: $("#firstName").children().eq(0).val(),
+      lastName: $("#lastName").children().eq(0).val()
     });
   }
 

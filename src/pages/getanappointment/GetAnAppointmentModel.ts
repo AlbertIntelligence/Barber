@@ -87,7 +87,18 @@ export class GetAnAppointmentModel {
   *****************************************************************************/
   getBusinessHours(date: String) {
     var day = date.toString().substring(0, 3);
-    return this.businessHours.find(item => item.Day.indexOf(day) != -1);
+    var currentDate = this.businessHours.find(item => item.Day.indexOf(day) != -1)
+    if (currentDate.Opening != null) {
+      return currentDate;
+    } else {
+      do {
+        var index = this.businessHours.findIndex(item => item.Day.indexOf(day) != -1);
+        index++;
+        day = this.businessHours[index].Day.substring(0, 3);
+        console.log(this.businessHours[index]);
+      } while (this.businessHours[index].Opening == null)
+      return this.businessHours[index];
+    }
   }
 
   /*****************************************************************************
