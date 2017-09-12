@@ -12,6 +12,11 @@ export class GetAnAppointmentModel {
     this.updateDataSnapshot();
     this.businessHours = [
       {
+        'Day': 'Sunday',
+        'Opening': 10,
+        'Closure': 17
+      },
+      {
         'Day': 'Monday',
         'Opening': null,
         'Closure': null
@@ -40,11 +45,6 @@ export class GetAnAppointmentModel {
         'Day': 'Saturday',
         'Opening': 10,
         'Closure': 18
-      },
-      {
-        'Day': 'Sunday',
-        'Opening': 10,
-        'Closure': 17
       }
     ];
   }
@@ -87,18 +87,17 @@ export class GetAnAppointmentModel {
   *****************************************************************************/
   getBusinessHours(date: String) {
     var day = date.toString().substring(0, 3);
-    var currentDate = this.businessHours.find(item => item.Day.indexOf(day) != -1)
-    if (currentDate.Opening != null) {
-      return currentDate;
-    } else {
-      do {
-        var index = this.businessHours.findIndex(item => item.Day.indexOf(day) != -1);
-        index++;
-        day = this.businessHours[index].Day.substring(0, 3);
-        console.log(this.businessHours[index]);
-      } while (this.businessHours[index].Opening == null)
-      return this.businessHours[index];
-    }
+    return this.businessHours.find(item => item.Day.indexOf(day) != -1);
+  }
+
+  /*****************************************************************************
+  Function: getBusinessHours
+  Purpose: Return the business hours of the date in parameter
+  Parameters: date (String): Date we want the business hours
+  Return: None
+  *****************************************************************************/
+  getAllBusinessHours(): Array<any> {
+    return this.businessHours;
   }
 
   /*****************************************************************************

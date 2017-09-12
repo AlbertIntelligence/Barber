@@ -93,7 +93,7 @@ export class GetAnAppointmentPage {
     this.appointments = new GetAnAppointmentModel();
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
-    this.currentDate = this.today.clone();
+    this.currentDate = this.today.clone(); console.log(this.currentDate);
     this.setDefaultHour();
     this.updateDataSnapshot();
     this.openingHour = this.appointments.getBusinessHours(this.currentDate).Opening + "h";
@@ -214,6 +214,19 @@ export class GetAnAppointmentPage {
   }
 
   /*****************************************************************************
+  Function: disableClosingDates
+  Purpose: Hide date when barber shop is closed
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  disableClosingDates() {
+    var daysBooked = this.appointments.getDaysBooked();
+    for (var i = 0; i < daysBooked.length; i++) {
+      this.disableDate(daysBooked[i]);
+    }
+  }
+
+  /*****************************************************************************
   Function: showAlert
   Purpose: Display a pop-up alert to notify user on reservation conflict
   Parameters: None
@@ -259,6 +272,7 @@ export class GetAnAppointmentPage {
   selectDate(selectedDate) {
     let selectorKey = this.getSelectorKey(selectedDate);
     this.dateDirectivesMap.get(selectorKey).setSelected();
+    this.setDefaultHour();
   }
 
   // Programmatically set the CSS Classes on the dates displayed in the Calendar View
@@ -351,13 +365,22 @@ export class GetAnAppointmentPage {
       let selectorId = dateSelector.getId();
       let directiveDate = moment(selectorId,FORMAT);
 
+      var allBusinessHours = this.appointments.getAllBusinessHours();
+      var daysToBeDisabled = [];
+      for (var i = 0; i < allBusinessHours.length; i++) {
+        if (allBusinessHours[i].Opening == null) daysToBeDisabled.push(i);
+      }
+
       //Programmatically set the CSS Class to disable and enable the dates
       //Mario perfect cut is not opened on mondays =  || directiveDate.weekday() == 1
-      if(directiveDate.isBefore(this.today,'day')) {
+      if(directiveDate.isBefore(this.today,'day') || daysToBeDisabled.indexOf(directiveDate.day()) != -1) {
         dateSelector.setDisabled();
       } else {
         dateSelector.setEnabled();
       }
+
+
+
       this.populateSelectorMap(dateSelector);
     });
   }
@@ -376,8 +399,8 @@ export class GetAnAppointmentPage {
   //Programmatically Set the CSS classes to optimize the performance
   ngAfterViewInit() {
     this.initSelectorMap();
-    this.selectDate(this.currentDate);
-    this.selectToday(this.today);
+    //this.selectDate(this.currentDate);
+    //this.selectToday(this.today);
   }
 
 }
