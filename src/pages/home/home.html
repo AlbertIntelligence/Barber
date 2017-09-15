@@ -41,16 +41,16 @@
         <ion-badge class="pull-left square" color="primary" (click)="goToBarberLocation()">Ou somme nous?</ion-badge>
       </ion-col>
       <ion-col  >
-        <ion-badge class="pull-right square" color="primary" (click)="viewGallery()">Voir plus de photo</ion-badge>
+        <ion-badge class="pull-right square" color="primary" (click)="viewGallery()">Gallery photo</ion-badge>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-grid class="card" >
+  <ion-grid style="margin-bottom:5%;margin-top:5%;" class="card" >
     <ion-row>
       <ion-col text-center style="padding-top: 20px;" col-12>
         <ion-row>
-        <ion-icon name="md-calendar" color="flight-color"></ion-icon>
+        <ion-icon name="people" style ="font-size: 50px;" color="flight-color"></ion-icon>
         </ion-row>
         <ion-row>
         <span text-center ion-text color="dark" style="font-size: 30px">Nombre de client en attente</span>
@@ -62,16 +62,16 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid class="card" >
-    <ion-row>
-      <ion-col text-center style="padding-top: 20px;" col-12>
-        <ion-row>
-          <ion-icon name="md-calendar" color="flight-color"></ion-icon>
+  <ion-grid text-center class="card">
+    <ion-row center>
+      <ion-col center style="padding-top: 20px;align-content: center;" col-12>
+        <ion-row center>
+          <ion-icon  style ="font-size: 50px;" name="people" color="flight-color"></ion-icon>
         </ion-row>
-        <ion-row>
-          <span text-center ion-text color="dark" style="font-size: 30px">Nombre de reservation en attente</span>
+        <ion-row center>
+          <span ion-text color="dark" style="font-size: 30px">Nombre de reservation en attente</span>
         </ion-row>
-        <ion-row>
+        <ion-row center>
           <span ion-text color="dark" style="font-weight: bold;font-size: 30px">{{numberClientWaitingReservation}}</span>
         </ion-row>
       </ion-col>

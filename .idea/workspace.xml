@@ -2,345 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ac39335-a8e3-4bfe-baf0-8294b260e880" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/gulp/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/gulp/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/gulp/index.d.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/gulp/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/node/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/node/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/node/index.d.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/node/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/orchestrator/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/orchestrator/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/orchestrator/index.d.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/orchestrator/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/q/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/q/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/q/index.d.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/q/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/vinyl/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/vinyl/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/vinyl/index.d.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/@types/vinyl/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/.npmignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/livereload.d.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/livereload.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/package-lock.json.3939097828" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/.bin/ionic" afterPath="$PROJECT_DIR$/node_modules/.bin/ionic" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/.bin/node-sass" afterPath="$PROJECT_DIR$/node_modules/.bin/node-sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/@ionic/app-scripts/node_modules/.bin/node-sass" afterPath="$PROJECT_DIR$/node_modules/@ionic/app-scripts/node_modules/.bin/node-sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/CHANGELOG.md" afterPath="$PROJECT_DIR$/node_modules/ionic/CHANGELOG.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/README.md" afterPath="$PROJECT_DIR$/node_modules/ionic/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/bin/ionic" afterPath="$PROJECT_DIR$/node_modules/ionic/bin/ionic" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/build.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/build.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/build.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/build.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/config/get.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/config/get.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/config/get.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/config/get.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/config/index.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/config/index.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/config/index.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/config/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/config/set.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/config/set.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/config/set.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/config/set.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/base.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/base.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/base.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/base.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/build.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/build.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/build.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/build.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/compile.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/compile.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/compile.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/compile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/emulate.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/emulate.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/emulate.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/emulate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/index.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/index.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/index.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/platform.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/platform.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/platform.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/platform.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/plugin.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/plugin.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/plugin.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/prepare.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/prepare.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/prepare.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/prepare.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/resources.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/resources.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/resources.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/resources.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/run.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/run.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/run.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/cordova/run.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/daemon.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/daemon.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/daemon.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/daemon.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/docs.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/docs.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/docs.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/docs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/generate.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/generate.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/generate.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/generate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/git/clone.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/git/clone.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/git/clone.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/git/clone.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/git/index.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/git/index.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/git/index.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/git/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/git/remote.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/git/remote.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/git/remote.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/git/remote.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/help.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/help.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/help.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/help.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/index.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/index.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/index.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/info.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/info.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/info.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/info.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ionitron.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ionitron.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ionitron.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ionitron.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/link.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/link.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/link.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/link.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/login.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/login.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/login.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/logout.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/logout.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/logout.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/logout.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/monitoring/index.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/monitoring/index.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/monitoring/index.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/monitoring/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/monitoring/syncmaps.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/monitoring/syncmaps.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/monitoring/syncmaps.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/monitoring/syncmaps.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/build.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/build.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/build.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/build.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/download.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/download.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/download.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/download.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/index.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/index.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/index.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/info.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/info.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/info.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/info.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/list.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/list.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/list.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/package/list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/serve.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/serve.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/serve.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/serve.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/share.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/share.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/share.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/share.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/signup.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/signup.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/signup.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/signup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/add.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/add.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/add.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/add.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/base.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/base.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/base.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/base.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/delete.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/delete.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/delete.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/delete.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/generate.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/generate.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/generate.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/generate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/index.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/index.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/index.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/list.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/list.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/list.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/setup.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/setup.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/setup.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/setup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/use.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/use.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/use.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/ssh/use.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/start.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/start.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/start.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/start.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/state.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/state.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/state.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/state.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/telemetry.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/telemetry.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/telemetry.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/telemetry.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/upload.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/upload.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/upload.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/upload.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/version.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/version.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/commands/version.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/commands/version.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/index.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/index.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/dist/index.js" afterPath="$PROJECT_DIR$/node_modules/ionic/dist/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/CHANGELOG.md" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/CHANGELOG.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/README.md" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/assets/ionic1/lab/index.html" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/assets/ionic1/lab/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/assets/ionic1/lab/static/css/style.css" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/assets/ionic1/lab/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/assets/ionic1/lab/static/js/lab.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/assets/ionic1/lab/static/js/lab.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/bootstrap.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/bootstrap.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/bootstrap.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/build.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/build.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/build.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/build.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/config/get.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/config/get.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/config/get.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/config/get.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/config/set.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/config/set.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/config/set.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/config/set.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/serve.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/serve.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/serve.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/commands/serve.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/definitions.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/definitions.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/definitions.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/definitions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/guards.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/guards.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/guards.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/guards.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/index.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/index.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/index.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/android.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/android.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/android.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/android.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/app.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/app.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/app.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/backends.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/backends.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/backends.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/backends.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/command.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/command.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/command.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/command.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/config.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/config.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/config.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/config.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/config.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/config.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/project.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/project.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/project.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/project.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/resources.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/resources.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/resources.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/resources.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/utils.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/utils.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/utils.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/cordova/utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/daemon.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/daemon.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/daemon.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/daemon.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/deploy.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/deploy.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/deploy.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/deploy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/diff.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/diff.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/diff.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/diff.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/environment.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/environment.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/environment.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/environment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/errors.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/errors.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/errors.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/errors.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/events.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/events.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/events.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/events.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/gulp.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/gulp.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/gulp.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/gulp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/help.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/help.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/help.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/help.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/hooks.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/hooks.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/hooks.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/hooks.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/http.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/http.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/http.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/http.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/init.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/init.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/init.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/build.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/build.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/build.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/build.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/generate.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/generate.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/generate.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/generate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/serve.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/serve.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/serve.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/serve.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/utils.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/utils.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/utils.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic-angular/utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic1/serve.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic1/serve.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic1/serve.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic1/serve.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic1/utils.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic1/utils.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic1/utils.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionic1/utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionitron.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionitron.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionitron.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ionitron.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/namespace.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/namespace.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/namespace.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/namespace.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/package.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/package.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/package.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/package.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/plugins.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/plugins.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/plugins.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/plugins.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/project.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/project.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/project.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/project.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/prompts.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/prompts.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/prompts.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/prompts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/security.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/security.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/security.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/security.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/serve.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/serve.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/serve.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/serve.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/session.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/session.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/session.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/session.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/shell.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/shell.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/shell.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/shell.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ssh-config.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ssh-config.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ssh-config.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ssh-config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ssh.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ssh.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ssh.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/ssh.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/start.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/start.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/start.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/start.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/telemetry.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/telemetry.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/telemetry.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/telemetry.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/upload.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/upload.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/upload.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/upload.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/archive.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/archive.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/archive.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/archive.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/array.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/array.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/array.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/array.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/aws.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/aws.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/aws.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/aws.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/command.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/command.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/command.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/command.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/format.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/format.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/format.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/format.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/fs.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/fs.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/fs.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/fs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/http.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/http.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/http.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/http.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/logger.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/logger.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/logger.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/logger.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/network.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/network.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/network.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/network.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/npm.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/npm.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/npm.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/npm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/promise.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/promise.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/promise.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/promise.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/shell.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/shell.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/shell.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/shell.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/string.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/string.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/string.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/string.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/task.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/task.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/task.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/task.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/uuid.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/uuid.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/uuid.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/utils/uuid.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/validators.d.ts" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/validators.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/validators.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/lib/validators.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/package.json" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/@ionic/cli-utils/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/form-data/License" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/form-data/License" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/form-data/README.md" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/form-data/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/form-data/lib/browser.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/form-data/lib/browser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/form-data/lib/form_data.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/form-data/lib/form_data.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/form-data/lib/populate.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/form-data/lib/populate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/form-data/package.json" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/form-data/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/README.md" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/inquirer.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/inquirer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/objects/choice.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/objects/choice.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/objects/choices.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/objects/choices.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/objects/separator.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/objects/separator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/base.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/base.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/checkbox.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/checkbox.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/confirm.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/confirm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/editor.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/editor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/expand.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/expand.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/input.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/input.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/list.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/password.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/password.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/rawlist.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/prompts/rawlist.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/ui/baseUI.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/ui/baseUI.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/ui/bottom-bar.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/ui/bottom-bar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/ui/prompt.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/ui/prompt.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/utils/events.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/utils/events.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/utils/paginator.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/utils/paginator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/utils/readline.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/utils/readline.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/utils/screen-manager.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/utils/screen-manager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/utils/utils.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/lib/utils/utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/package.json" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/inquirer/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-db/HISTORY.md" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-db/HISTORY.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-db/LICENSE" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-db/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-db/README.md" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-db/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-db/db.json" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-db/db.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-db/index.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-db/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-db/package.json" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-db/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-types/HISTORY.md" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-types/HISTORY.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-types/LICENSE" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-types/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-types/README.md" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-types/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-types/index.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-types/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-types/package.json" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/mime-types/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/.bin/mime" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/.bin/mime" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/LICENSE" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/README.md" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/build/build.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/build/build.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/build/test.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/build/test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/cli.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/cli.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/mime.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/mime.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/package.json" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/types.json" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/superagent/node_modules/mime/types.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/supports-color/browser.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/supports-color/browser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/supports-color/index.js" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/supports-color/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/supports-color/license" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/supports-color/license" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/supports-color/package.json" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/supports-color/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/node_modules/supports-color/readme.md" afterPath="$PROJECT_DIR$/node_modules/ionic/node_modules/supports-color/readme.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ionic/package.json" afterPath="$PROJECT_DIR$/node_modules/ionic/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ssh-config/.eslintrc" afterPath="$PROJECT_DIR$/node_modules/ssh-config/.eslintrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ssh-config/.npmignore" afterPath="$PROJECT_DIR$/node_modules/ssh-config/.npmignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ssh-config/.travis.yml" afterPath="$PROJECT_DIR$/node_modules/ssh-config/.travis.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ssh-config/History.md" afterPath="$PROJECT_DIR$/node_modules/ssh-config/History.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ssh-config/Readme.md" afterPath="$PROJECT_DIR$/node_modules/ssh-config/Readme.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ssh-config/index.js" afterPath="$PROJECT_DIR$/node_modules/ssh-config/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ssh-config/lib/glob.js" afterPath="$PROJECT_DIR$/node_modules/ssh-config/lib/glob.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ssh-config/package.json" afterPath="$PROJECT_DIR$/node_modules/ssh-config/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.xml" afterPath="$PROJECT_DIR$/config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/AndroidManifest.xml" afterPath="$PROJECT_DIR$/platforms/android/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/android.json" afterPath="$PROJECT_DIR$/platforms/android/android.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/build/main.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/build/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/build/main.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/build/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/build/main.js.map" afterPath="$PROJECT_DIR$/platforms/android/assets/www/build/main.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/index.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/values/facebookconnect.xml" afterPath="$PROJECT_DIR$/platforms/android/res/values/facebookconnect.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/values/strings.xml" afterPath="$PROJECT_DIR$/platforms/android/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" afterPath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/browser.json" afterPath="$PROJECT_DIR$/platforms/browser/browser.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/config.xml" afterPath="$PROJECT_DIR$/platforms/browser/config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/build/main.css" afterPath="$PROJECT_DIR$/platforms/browser/www/build/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/build/main.js" afterPath="$PROJECT_DIR$/platforms/browser/www/build/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/build/main.js.map" afterPath="$PROJECT_DIR$/platforms/browser/www/build/main.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/config.xml" afterPath="$PROJECT_DIR$/platforms/browser/www/config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/index.html" afterPath="$PROJECT_DIR$/platforms/browser/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/CodeKL_Barber/CodeKL_Barber-Info.plist" afterPath="$PROJECT_DIR$/platforms/ios/CodeKL_Barber/CodeKL_Barber-Info.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/CodeKL_Barber/Images.xcassets/LaunchStoryboard.imageset/Contents.json" afterPath="$PROJECT_DIR$/platforms/ios/CodeKL_Barber/Images.xcassets/LaunchStoryboard.imageset/Contents.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/CodeKL_Barber/config.xml" afterPath="$PROJECT_DIR$/platforms/ios/CodeKL_Barber/config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/ios.json" afterPath="$PROJECT_DIR$/platforms/ios/ios.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/index.html" afterPath="$PROJECT_DIR$/platforms/ios/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html" afterPath="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts" afterPath="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/home/home.html" afterPath="$PROJECT_DIR$/src/pages/home/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/home/home.ts" afterPath="$PROJECT_DIR$/src/pages/home/home.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/build/main.css" afterPath="$PROJECT_DIR$/www/build/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/home/home.scss" afterPath="$PROJECT_DIR$/src/pages/home/home.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/build/main.js" afterPath="$PROJECT_DIR$/www/build/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/build/main.js.map" afterPath="$PROJECT_DIR$/www/build/main.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -354,16 +45,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/home/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="74" column="112" lean-forward="false" selection-start-line="74" selection-start-column="112" selection-end-line="74" selection-end-column="112" />
+            <state relative-caret-position="119">
+              <caret line="66" column="69" lean-forward="false" selection-start-line="66" selection-start-column="69" selection-end-line="66" selection-end-column="69" />
               <folding>
+                <element signature="n#style#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-icon#0;n#ion-row#0;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#ion-row#1;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#ion-row#2;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-icon#0;n#ion-row#0;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#ion-row#1;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#ion-row#2;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
               </folding>
@@ -374,7 +68,7 @@
       <file leaf-file-name="home.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/home/home.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1598">
+            <state relative-caret-position="374">
               <caret line="103" column="41" lean-forward="false" selection-start-line="103" selection-start-column="11" selection-end-line="103" selection-end-column="41" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
@@ -383,11 +77,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="get-a-ticket.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="get-a-ticket.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="32" />
+            <state relative-caret-position="323">
+              <caret line="31" column="29" lean-forward="false" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="get-a-ticket.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="21" column="84" lean-forward="false" selection-start-line="21" selection-start-column="84" selection-end-line="21" selection-end-column="84" />
               <folding />
             </state>
           </provider>
@@ -406,9 +112,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts" />
         <option value="$PROJECT_DIR$/src/pages/home/home.ts" />
+        <option value="$PROJECT_DIR$/src/pages/home/home.scss" />
         <option value="$PROJECT_DIR$/src/pages/home/home.html" />
+        <option value="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html" />
+        <option value="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts" />
       </list>
     </option>
   </component>
@@ -476,13 +184,6 @@
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="home" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Barber" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Barber" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="ticket-confirmation" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -523,12 +224,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1505424789615</updated>
-      <workItem from="1505424800139" duration="6047000" />
+      <workItem from="1505424800139" duration="10289000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6047000" />
+    <option name="totallyTimeSpent" value="10289000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="522" y="92" width="1398" height="928" extended-state="0" />
@@ -589,25 +290,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html">
+    <entry file="file://$PROJECT_DIR$/src/pages/getanappointment/getanappointment.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="35" column="59" lean-forward="true" selection-start-line="35" selection-start-column="59" selection-end-line="35" selection-end-column="91" />
+        <state relative-caret-position="-1122">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#107#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/getanappointment/GetAnAppointmentModel.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="123" column="5" lean-forward="false" selection-start-line="123" selection-start-column="4" selection-end-line="123" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/home/home.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts">
+    <entry file="file://$PROJECT_DIR$/src/pages/home/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="32" />
+        <state relative-caret-position="119">
+          <caret line="66" column="69" lean-forward="false" selection-start-line="66" selection-start-column="69" selection-end-line="66" selection-end-column="69" />
+          <folding>
+            <element signature="n#style#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-icon#0;n#ion-row#0;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#ion-row#1;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#ion-row#2;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-icon#0;n#ion-row#0;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#ion-row#1;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#ion-row#2;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="21" column="84" lean-forward="false" selection-start-line="21" selection-start-column="84" selection-end-line="21" selection-end-column="84" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/home/home.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1598">
+        <state relative-caret-position="374">
           <caret line="103" column="41" lean-forward="false" selection-start-line="103" selection-start-column="11" selection-end-line="103" selection-end-column="41" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
@@ -615,17 +354,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/home/home.html">
+    <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="74" column="112" lean-forward="false" selection-start-line="74" selection-start-column="112" selection-end-line="74" selection-end-column="112" />
+        <state relative-caret-position="323">
+          <caret line="31" column="29" lean-forward="false" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
           <folding>
-            <element signature="n#style#0;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#ion-row#1;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#ion-row#2;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#ion-row#1;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#ion-row#2;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>

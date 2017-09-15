@@ -14,14 +14,24 @@ export class GetaTicketPage {
 
 
   private hiddenDiv:any;
+  private userInfo:any;
 
   constructor(public nav?: NavController, private newAlert?: Alert) {
     this.showCurrentClient();
+    this.getUserInfo();
   }
+
 
   ionViewDidLoad() {
     this.hideTicketDiv();
   }
+
+  public getUserInfo(){
+    var userId = firebase.auth().currentUser.uid;
+    const userInfo = firebase.database().ref("Users/"+userId+"/");
+    this.userInfo = userInfo;
+  }
+
 
 
   public makeTransaction(){
