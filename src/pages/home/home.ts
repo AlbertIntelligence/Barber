@@ -6,6 +6,7 @@ import {GalleryPage} from "../gallery/gallery";
 import {GetaTicketPage} from "../get-a-ticket/get-a-ticket";
 import {BarberLocation} from "../barber-location/barber-location";
 import {SettingsPage} from "../settings/settings";
+import firebase from 'firebase';
 
 
 /*
@@ -21,10 +22,15 @@ import {SettingsPage} from "../settings/settings";
 export class HomePage {
 
   public pictures: any;
+  public numberClientWaitingTicketList = 0;
+  public numberClientWaitingReservation= 0;
+
 
   constructor(public nav: NavController, public galleryService: GalleryService) {
     // set sample data
     this.pictures = galleryService.getAll();
+    this.ClientWaiting();
+    this.TotalReservation();
   }
 
   /*****************************************************************************
@@ -75,6 +81,28 @@ export class HomePage {
   *****************************************************************************/
   goToBarberLocation() {
     this.nav.push(BarberLocation);
+  }
+
+  ClientWaiting() {
+    const listOfUsers = firebase.database().ref('TicketList/Users/');
+    listOfUsers.on('value', function(snapshot) {
+      var numberClientWaitingTicketList = 0;
+      snapshot.forEach(function(childSnapshot) {
+        numberClientWaitingTicketList++;
+      }.bind(this));
+      this.numberClientWaitingTicketList = numberClientWaitingTicketList
+    }.bind(this));
+  }
+
+  TotalReservation() {
+    const listOfUsers = firebase.database().ref('Appointments/Users/');
+    listOfUsers.on('value', function(snapshot) {
+      var numberClientWaitingReservation = 0;
+      snapshot.forEach(function(childSnapshot) {
+        numberClientWaitingReservation++;
+      }.bind(this));
+      this.numberClientWaitingReservation = numberClientWaitingReservation
+    }.bind(this));
   }
 
 }
