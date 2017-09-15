@@ -14,7 +14,12 @@ export class GetaTicketPage {
 
 
   private hiddenDiv:any;
-  private userInfo:any;
+  private userInfoFirstName:any;
+  private userInfoLastName:any;
+  private userInfoEmailName:any;
+  private userInfoPhoneNumber:any;
+  private userInfoUserId:any;
+  private userInfoRegistrationDate:any;
 
   constructor(public nav?: NavController, private newAlert?: Alert) {
     this.showCurrentClient();
@@ -29,7 +34,14 @@ export class GetaTicketPage {
   public getUserInfo(){
     var userId = firebase.auth().currentUser.uid;
     const userInfo = firebase.database().ref("Users/"+userId+"/");
-    this.userInfo = userInfo;
+    var userData;
+    userInfo.on('value' , snap =>  userData =   snap.val()  );
+    this.userInfoFirstName = userData.firstName;
+    this.userInfoLastName = userData.lastName;
+    this.userInfoEmailName = userData.email;
+    this.userInfoPhoneNumber = userData.phoneNumber;
+    this.userInfoUserId = userId;
+    this.userInfoRegistrationDate = userData.Date;
   }
 
 
