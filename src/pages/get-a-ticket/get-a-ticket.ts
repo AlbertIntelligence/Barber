@@ -67,7 +67,7 @@ export class GetaTicketPage {
    Description: This function tells if a user is logged in
    *****************************************************************************/
   public getCurrentClient(){
-    const dbRefObject = firebase.database().ref('TicketList/Users/').firstChild;
+    const dbRefObject = firebase.database().ref('TicketList/Users/');
     dbRefObject.on('value' , snap =>  this.currentPosition =   snap.val()  );
 
   }
