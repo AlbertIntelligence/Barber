@@ -47,6 +47,12 @@ export class GetaTicketPage {
   //------------------------------------------THIS IS THE FIREBASE FUNCTION SECTION----------------------------------------------//
 
   public getUserInfo(){
+    //initilize those empty string to make compiler happy
+    var firstName ="";
+    var lastName ="";
+    var email ="";
+    var phoneNumber ="";
+    var Date ="";
     var userData;
     var userId = firebase.auth().currentUser.uid;
     const userInfo = firebase.database().ref("Users/"+userId+"/");
