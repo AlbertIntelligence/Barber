@@ -14,37 +14,24 @@ export class GetaTicketPage {
 
 
   private hiddenDiv:any;
-  private userInfoFirstName:any;
-  private userInfoLastName:any;
-  private userInfoEmailName:any;
-  private userInfoPhoneNumber:any;
-  private userInfoUserId:any;
-  private userInfoRegistrationDate:any;
+  public userInfoFirstName:any;
+  public userInfoLastName:any;
+  public userInfoEmailName:any;
+  public userInfoPhoneNumber:any;
+  public userInfoUserId:any;
+  public userInfoRegistrationDate:any;
+  public currentPosition:20;
+  public userPosition:any
+  public paymentCompleted:any
 
   constructor(public nav?: NavController, private newAlert?: Alert) {
-    this.showCurrentClient();
+    this.getCurrentClient();
     this.getUserInfo();
   }
-
 
   ionViewDidLoad() {
     this.hideTicketDiv();
   }
-
-  public getUserInfo(){
-    var userId = firebase.auth().currentUser.uid;
-    const userInfo = firebase.database().ref("Users/"+userId+"/");
-    var userData;
-    userInfo.on('value' , snap =>  userData =   snap.val()  );
-    this.userInfoFirstName = userData.firstName;
-    this.userInfoLastName = userData.lastName;
-    this.userInfoEmailName = userData.email;
-    this.userInfoPhoneNumber = userData.phoneNumber;
-    this.userInfoUserId = userId;
-    this.userInfoRegistrationDate = userData.Date;
-  }
-
-
 
   public makeTransaction(){
 
@@ -54,27 +41,22 @@ export class GetaTicketPage {
       this.TicketDiv();
     }
 
-    if("sms acti"){}
-    if("sms acti"){}
-    if("sms acti"){}
-
   }
 
 
   //------------------------------------------THIS IS THE FIREBASE FUNCTION SECTION----------------------------------------------//
 
-
-  /*****************************************************************************
-   Function: checkPayment
-   Auteur(s): Lenz Petion
-   Date de creation: 2017-06-03
-   Date de modification:
-   Description: This function tells if a user is logged in
-   *****************************************************************************/
-  public checkPayment(){
-    const dbRefObject = firebase.database().ref().child('Tickets/paymentCompleted');
-    dbRefObject.on('value' , snap =>  this.ticketObject.paymentCompleted =   snap.val()  );
-    return this.ticketObject.paymentCompleted.toString();
+  public getUserInfo(){
+    var userData;
+    var userId = firebase.auth().currentUser.uid;
+    const userInfo = firebase.database().ref("Users/"+userId+"/");
+    userInfo.on('value' , snap =>  userData =   snap.val()  );
+    this.userInfoFirstName = userData.firstName;
+    this.userInfoLastName = userData.lastName;
+    this.userInfoEmailName = userData.email;
+    this.userInfoPhoneNumber = userData.phoneNumber;
+    this.userInfoUserId = userId;
+    this.userInfoRegistrationDate = userData.Date;
   }
 
   /*****************************************************************************
@@ -84,9 +66,9 @@ export class GetaTicketPage {
    Date de modification:
    Description: This function tells if a user is logged in
    *****************************************************************************/
-  public showCurrentClient(){
-    const dbRefObject = firebase.database().ref('TicketList/Users/');
-    dbRefObject.on('value' , snap =>  this.ticketObject.currentPosition =   snap.val()  );
+  public getCurrentClient(){
+    const dbRefObject = firebase.database().ref('TicketList/Users/').firstChild;
+    dbRefObject.on('value' , snap =>  this.currentPosition =   snap.val()  );
 
   }
 
@@ -98,18 +80,16 @@ export class GetaTicketPage {
    Description: This function tells if a user is logged in
    *****************************************************************************/
   private addClientToList(){
-    const dbRefObject = firebase.database().ref().child('Tickets');
-    dbRefObject.set({currentPosition:this.ticketObject.currentPosition + 1 });
+    const dbRefObject = firebase.database().ref().child('TicketsList/Users/');
+    dbRefObject.set({currentPosition:this.currentPosition + 1 });
   }
 
 
 
-  //------------------------------------------THIS IS THE OBJECT  SECTION----------------------------------------------//
-  private ticketObject = {
-    'currentPosition': 0,
-    'userPosition': 0,
-    'paymentCompleted':''
-  }
+
+
+
+
 
   //------------------------------------------THIS IS THE HELPER FUNCTION SECTION----------------------------------------------//
   setHiddeDiv(value: any) {
