@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18e0a697-649c-47cf-87ba-f412d7bb9cb8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/barber-location/barber-location.html" afterPath="$PROJECT_DIR$/src/pages/barber-location/barber-location.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/home/home.html" afterPath="$PROJECT_DIR$/src/pages/home/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/home/home.ts" afterPath="$PROJECT_DIR$/src/pages/home/home.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/build/main.js" afterPath="$PROJECT_DIR$/www/build/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/build/main.js.map" afterPath="$PROJECT_DIR$/www/build/main.js.map" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,86 +20,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="barber-location.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/barber-location/barber-location.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-grid#0;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-icon#0;n#ion-col#0;n#ion-row#0;n#ion-grid#0;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#ion-col#1;n#ion-row#0;n#ion-grid#0;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-icon#0;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#ion-col#1;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-icon#0;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#ion-col#1;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-icon#0;n#ion-col#0;n#ion-row#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#ion-col#1;n#ion-row#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-grid#4;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-icon#0;n#ion-col#0;n#ion-row#0;n#ion-grid#4;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#ion-col#1;n#ion-row#0;n#ion-grid#4;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-grid#5;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-icon#0;n#ion-col#0;n#ion-row#0;n#ion-grid#5;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#ion-col#1;n#ion-row#0;n#ion-grid#5;n#ion-content#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/settings/settings.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="25" column="3" lean-forward="false" selection-start-line="25" selection-start-column="3" selection-end-line="41" selection-end-column="21" />
-              <folding>
-                <element signature="n#style#0;n#ion-item-group#0;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#ion-content#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/home/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="40" column="96" lean-forward="false" selection-start-line="40" selection-start-column="96" selection-end-line="40" selection-end-column="96" />
+            <state relative-caret-position="401">
+              <caret line="88" column="60" lean-forward="false" selection-start-line="88" selection-start-column="60" selection-end-line="88" selection-end-column="60" />
               <folding>
+                <element signature="n#style#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#ion-icon#0;n#ion-row#0;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#ion-row#1;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#ion-row#2;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#ion-icon#0;n#ion-row#0;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#ion-row#1;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#ion-row#2;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-col#0;n#ion-row#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-label#0;n#ion-col#0;n#ion-row#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-col#0;n#ion-row#1;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-label#0;n#ion-col#0;n#ion-row#1;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="barber-location.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/barber-location/barber-location.ts">
+      <file leaf-file-name="home.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/home/home.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="50" column="14" lean-forward="false" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="get-a-ticket.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="21" lean-forward="true" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="26" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="408">
+              <caret line="111" column="88" lean-forward="false" selection-start-line="111" selection-start-column="88" selection-end-line="111" selection-end-column="88" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -107,8 +57,8 @@
       <file leaf-file-name="get-a-ticket.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="56" column="2" lean-forward="false" selection-start-line="56" selection-start-column="2" selection-end-line="56" selection-end-column="2" />
+            <state relative-caret-position="118">
+              <caret line="76" column="4" lean-forward="false" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="77" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -126,6 +76,7 @@
       <find>makeTransactionv</find>
       <find>makeTransaction</find>
       <find>paymentCompleted</find>
+      <find>photo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -134,7 +85,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pages/home/home.ts" />
         <option value="$PROJECT_DIR$/src/pages/home/home.scss" />
         <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html" />
@@ -143,6 +93,7 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/pages/barber-location/barber-location.html" />
         <option value="$PROJECT_DIR$/src/pages/home/home.html" />
+        <option value="$PROJECT_DIR$/src/pages/home/home.ts" />
       </list>
     </option>
   </component>
@@ -215,6 +166,13 @@
               <item name="Barber" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="get-a-ticket" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Barber" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Barber" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="home" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -273,7 +231,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23980000" />
+    <option name="totallyTimeSpent" value="25610000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="730" extended-state="0" />
@@ -325,12 +283,19 @@
         <state relative-caret-position="915">
           <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding>
+            <element signature="n#style#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#ion-icon#0;n#ion-row#0;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#ion-row#1;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#ion-row#2;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#ion-icon#0;n#ion-row#0;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#ion-row#1;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#ion-row#2;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-col#0;n#ion-row#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-label#0;n#ion-col#0;n#ion-row#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-col#0;n#ion-row#1;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-label#0;n#ion-col#0;n#ion-row#1;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -484,14 +449,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/home/home.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/app.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -516,33 +473,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/barber-location/barber-location.ts">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="50" column="14" lean-forward="false" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="21" lean-forward="true" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="56" column="2" lean-forward="false" selection-start-line="56" selection-start-column="2" selection-end-line="56" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -554,14 +489,6 @@
             <element signature="n#style#0;n#ion-item-group#0;n#ion-content#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#ion-content#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -593,18 +520,63 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/barber-location/barber-location.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="50" column="14" lean-forward="false" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/home/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="40" column="96" lean-forward="false" selection-start-line="40" selection-start-column="96" selection-end-line="40" selection-end-column="96" />
+        <state relative-caret-position="401">
+          <caret line="88" column="60" lean-forward="false" selection-start-line="88" selection-start-column="60" selection-end-line="88" selection-end-column="60" />
           <folding>
+            <element signature="n#style#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#ion-icon#0;n#ion-row#0;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#ion-row#1;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#ion-row#2;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#ion-icon#0;n#ion-row#0;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#ion-row#1;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#ion-row#2;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-col#0;n#ion-row#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-label#0;n#ion-col#0;n#ion-row#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-col#0;n#ion-row#1;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-label#0;n#ion-col#0;n#ion-row#1;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="25" column="10" lean-forward="true" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="76" column="4" lean-forward="false" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/home/home.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="111" column="88" lean-forward="false" selection-start-line="111" selection-start-column="88" selection-end-line="111" selection-end-column="88" />
+          <folding />
         </state>
       </provider>
     </entry>

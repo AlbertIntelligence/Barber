@@ -24,6 +24,7 @@ export class HomePage {
   public pictures: any;
   public numberClientWaitingTicketList = 0;
   public numberClientWaitingReservation= 0;
+  public directMessages:any;
 
 
   constructor(public nav: NavController, public galleryService: GalleryService) {
@@ -31,6 +32,7 @@ export class HomePage {
     this.pictures = galleryService.getAll();
     this.ClientWaiting();
     this.TotalReservation();
+    this.DirectMessages();
   }
 
   /*****************************************************************************
@@ -103,6 +105,11 @@ export class HomePage {
       }.bind(this));
       this.numberClientWaitingReservation = numberClientWaitingReservation
     }.bind(this));
+  }
+
+  DirectMessages() {
+    const liveMessages = firebase.database().ref('Messages/live/');
+    liveMessages.on('value' , snap =>  this.directMessages =   snap.val()  ).bind(this);
   }
 
 }
