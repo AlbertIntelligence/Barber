@@ -14,19 +14,23 @@ export class GetaTicketPage {
 
 
   private hiddenDiv:any;
+  public startTransaction:any;
   public userInfoFirstName:any;
   public userInfoLastName:any;
   public userInfoEmailName:any;
   public userInfoPhoneNumber:any;
   public userInfoUserId:any;
   public userInfoRegistrationDate:any;
-  public currentPosition:20;
-  public userPosition:any
-  public paymentCompleted:any
+  public currentPosition:any;
+  public lastPosition:any;
+  public userPosition:any;
+  private dataSnapshot:Array<any> = [];
 
-  constructor(public nav?: NavController, private newAlert?: Alert) {
+  constructor(public nav?: NavController, private newAlert?: Alert,public ticketConfirmation?:TicketConfirmationPage) {
     this.getCurrentClient();
+    this.getLastClient();
     this.getUserInfo();
+    this.updateDataSnapshot();
   }
 
   ionViewDidLoad() {
@@ -35,10 +39,14 @@ export class GetaTicketPage {
 
   public makeTransaction(){
 
-    if( true ){
-      // this.addClientToList()
-      this.setHiddeDiv(false);
-      this.TicketDiv();
+    if( this.startTransaction ) {
+      if(this.isAvailable()) {
+        this.addClientToList();
+        this.setHiddeDiv(false);
+        this.TicketDiv();
+      }
+      else
+        alert("Vous ne pouvez pas prendre plus d'un ticket");
     }
 
   }
@@ -74,8 +82,34 @@ export class GetaTicketPage {
    *****************************************************************************/
   public getCurrentClient(){
     const dbRefObject = firebase.database().ref('TicketList/Users/');
-    dbRefObject.on('value' , snap =>  this.currentPosition =   snap.val()  );
+    dbRefObject.limitToFirst(1).on('value', function(snapshot) {
+      const ids = [];
+      snapshot.forEach(function(childSnapshot) {
+        const id = childSnapshot.key
+        ids.push(id);
+      }.bind(this));
+      this.currentPosition = ids;
+    }.bind(this));
+  }
 
+  /*****************************************************************************
+   Function: checkPayment
+   Auteur(s): Lenz Petion
+   Date de creation: 2017-06-03
+   Date de modification:
+   Description: This function tells if a user is logged in
+   *****************************************************************************/
+  public getLastClient(){
+    const dbRefObject = firebase.database().ref('TicketList/Users/');
+    dbRefObject.on('value', function(snapshot) {
+      const ids = [];
+      snapshot.forEach(function(childSnapshot) {
+        const id = childSnapshot.key
+        ids.pop();
+        ids.push(id);
+      }.bind(this));
+      this.lastPosition = ids;
+    }.bind(this));
   }
 
   /*****************************************************************************
@@ -86,8 +120,38 @@ export class GetaTicketPage {
    Description: This function tells if a user is logged in
    *****************************************************************************/
   private addClientToList(){
-    const dbRefObject = firebase.database().ref().child('TicketsList/Users/');
-    dbRefObject.set({currentPosition:this.currentPosition + 1 });
+    const dbRefObject = firebase.database().ref().child('TicketList/Users/');
+    this.userPosition = Number(this.lastPosition) +1;
+    var uPosition = this.userPosition;
+    this.ticketConfirmation = uPosition;
+    dbRefObject.child(uPosition).set(
+ {
+        "firstName" : this.userInfoFirstName,
+        "lastName": this.userInfoLastName,
+        "email":this.userInfoEmailName,
+        "phoneNumber":this.userInfoPhoneNumber,
+        "uid":this.userInfoUserId
+       }
+       );
+  }
+
+  updateDataSnapshot() {
+    let model = this;
+    firebase.database().ref('TicketList/Users/')
+      .on('value', function(snapshot) {
+        let tickets = snapshot.val();
+        model.dataSnapshot = [];
+        for (var property in tickets) {
+          if (tickets.hasOwnProperty(property)) {
+            model.dataSnapshot.push(tickets[property]);
+          }
+        }
+      });
+  }
+
+  isAvailable(): Boolean {
+    var userId = firebase.auth().currentUser.uid;
+    return (this.dataSnapshot.find(item => item.uid == userId) == undefined);
   }
 
 
@@ -96,8 +160,10 @@ export class GetaTicketPage {
 
 
 
-
   //------------------------------------------THIS IS THE HELPER FUNCTION SECTION----------------------------------------------//
+
+
+
   setHiddeDiv(value: any) {
     this.hiddenDiv = value;
   }
@@ -133,116 +199,4 @@ export class GetaTicketPage {
 
 }
 
-//------------------------------------------THIS IS THE Algorithm  SECTION----------------------------------------------//
 
-class LinkedListItem {
-  value: any;
-  next: LinkedListItem;
-
-  constructor(val) {
-    this.value = val;
-    this.next = null;
-  }
-}
-
-class LinkedList {
-  private head: LinkedListItem;
-  constructor(item: LinkedListItem) {
-    this.head = item;
-  }
-
-  // Adds the element at a specific position inside the linked list
-  insert(val, previousItem: LinkedListItem) {
-    let newItem: LinkedListItem = new LinkedListItem(val);
-    let currentItem: LinkedListItem = this.head;
-
-    if (!currentItem) {
-      this.head = newItem;
-    } else {
-      while (true) {
-        if (currentItem === previousItem) {
-          let tempNextItem = previousItem.next;
-          currentItem.next = newItem;
-          newItem.next = tempNextItem;
-          break;
-        } else {
-          currentItem = currentItem.next;
-        }
-      }
-    }
-  }
-
-  // Adds the element at the end of the linked list
-  append(val) {
-    let currentItem: LinkedListItem = this.head;
-    let newItem = new LinkedListItem(val);
-
-    if (!currentItem) {
-      this.head = newItem;
-    } else {
-      while (true) {
-        if (currentItem.next) {
-          currentItem = currentItem.next;
-        } else {
-          currentItem.next = newItem;
-          break;
-        }
-      }
-    }
-  }
-
-  // Add the element at the beginning of the linked list
-  prepend(val) {
-    let newItem = new LinkedListItem(val);
-    let oldHead = this.head;
-
-    this.head = newItem;
-    newItem.next = oldHead;
-  }
-
-  delete(val) {
-    var currentItem = this.head;
-
-    if (!currentItem) {
-      return;
-    }
-
-    if (currentItem.value === val) {
-      this.head = currentItem.next;
-    } else {
-      var previous = null;
-
-      while (true) {
-        if (currentItem.value === val) {
-          if (currentItem.next) { // special case for last element
-            previous.next = currentItem.next;
-          } else {
-            previous.next = null;
-          }
-          currentItem = null; // avoid memory leaks
-          break;
-        } else {
-          previous = currentItem;
-          currentItem = currentItem.next;
-        }
-      }
-    }
-  }
-
-  showInArray() {
-    let arr = [];
-    let currentItem = this.head;
-
-    while (true) {
-      arr.push(currentItem.value);
-
-      if (currentItem.next) {
-        currentItem = currentItem.next;
-      } else {
-        break;
-      }
-    }
-
-    return arr;
-  }
-}

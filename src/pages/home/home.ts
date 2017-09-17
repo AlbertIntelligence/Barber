@@ -7,6 +7,7 @@ import {GetaTicketPage} from "../get-a-ticket/get-a-ticket";
 import {BarberLocation} from "../barber-location/barber-location";
 import {SettingsPage} from "../settings/settings";
 import firebase from 'firebase';
+import {ProgressBarComponent} from "../progress-bar/progress-bar";
 
 
 /*
@@ -27,7 +28,7 @@ export class HomePage {
   public directMessages:any;
 
 
-  constructor(public nav: NavController, public galleryService: GalleryService) {
+  constructor(public nav: NavController, public galleryService: GalleryService ,public progress:ProgressBarComponent) {
     // set sample data
     this.pictures = galleryService.getAll();
     this.ClientWaiting();

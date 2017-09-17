@@ -29,20 +29,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 let GetaTicketPage = class GetaTicketPage {
-    constructor(nav, newAlert) {
+    constructor(nav, newAlert, ticketConfirmation) {
         this.nav = nav;
         this.newAlert = newAlert;
+        this.ticketConfirmation = ticketConfirmation;
+        this.dataSnapshot = [];
         this.getCurrentClient();
+        this.getLastClient();
         this.getUserInfo();
+        this.updateDataSnapshot();
     }
     ionViewDidLoad() {
         this.hideTicketDiv();
     }
     makeTransaction() {
-        if (true) {
-            // this.addClientToList()
-            this.setHiddeDiv(false);
-            this.TicketDiv();
+        if (this.startTransaction) {
+            if (this.isAvailable()) {
+                this.addClientToList();
+                this.setHiddeDiv(false);
+                this.TicketDiv();
+            }
+            else
+                alert("Vous ne pouvez pas prendre plus d'un ticket");
         }
     }
     //------------------------------------------THIS IS THE FIREBASE FUNCTION SECTION----------------------------------------------//
@@ -73,7 +81,33 @@ let GetaTicketPage = class GetaTicketPage {
      *****************************************************************************/
     getCurrentClient() {
         const dbRefObject = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref('TicketList/Users/');
-        dbRefObject.on('value', snap => this.currentPosition = snap.val());
+        dbRefObject.limitToFirst(1).on('value', function (snapshot) {
+            const ids = [];
+            snapshot.forEach(function (childSnapshot) {
+                const id = childSnapshot.key;
+                ids.push(id);
+            }.bind(this));
+            this.currentPosition = ids;
+        }.bind(this));
+    }
+    /*****************************************************************************
+     Function: checkPayment
+     Auteur(s): Lenz Petion
+     Date de creation: 2017-06-03
+     Date de modification:
+     Description: This function tells if a user is logged in
+     *****************************************************************************/
+    getLastClient() {
+        const dbRefObject = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref('TicketList/Users/');
+        dbRefObject.on('value', function (snapshot) {
+            const ids = [];
+            snapshot.forEach(function (childSnapshot) {
+                const id = childSnapshot.key;
+                ids.pop();
+                ids.push(id);
+            }.bind(this));
+            this.lastPosition = ids;
+        }.bind(this));
     }
     /*****************************************************************************
      Function: checkPayment
@@ -83,8 +117,34 @@ let GetaTicketPage = class GetaTicketPage {
      Description: This function tells if a user is logged in
      *****************************************************************************/
     addClientToList() {
-        const dbRefObject = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref().child('TicketsList/Users/');
-        dbRefObject.set({ currentPosition: this.currentPosition + 1 });
+        const dbRefObject = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref().child('TicketList/Users/');
+        this.userPosition = Number(this.lastPosition) + 1;
+        var uPosition = this.userPosition;
+        this.ticketConfirmation = uPosition;
+        dbRefObject.child(uPosition).set({
+            "firstName": this.userInfoFirstName,
+            "lastName": this.userInfoLastName,
+            "email": this.userInfoEmailName,
+            "phoneNumber": this.userInfoPhoneNumber,
+            "uid": this.userInfoUserId
+        });
+    }
+    updateDataSnapshot() {
+        let model = this;
+        __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref('TicketList/Users/')
+            .on('value', function (snapshot) {
+            let tickets = snapshot.val();
+            model.dataSnapshot = [];
+            for (var property in tickets) {
+                if (tickets.hasOwnProperty(property)) {
+                    model.dataSnapshot.push(tickets[property]);
+                }
+            }
+        });
+    }
+    isAvailable() {
+        var userId = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.auth().currentUser.uid;
+        return (this.dataSnapshot.find(item => item.uid == userId) == undefined);
     }
     //------------------------------------------THIS IS THE HELPER FUNCTION SECTION----------------------------------------------//
     setHiddeDiv(value) {
@@ -117,112 +177,12 @@ let GetaTicketPage = class GetaTicketPage {
 };
 GetaTicketPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'get-a-ticket',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/get-a-ticket/get-a-ticket.html"*/'\n<script>\n  this.hideTicketDiv();\n</script>\n<ion-header>\n  <ion-navbar color="primary">\n    <ion-title>\n      Profile\n    </ion-title>\n    <ion-buttons left>\n      <button ion-button icon-only>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content padding="false" class="common-bg">\n  <div style="">\n    <div style="">\n      <div style="display: block; border: 1px solid #C5C5C5; border-radius: 100%; padding: 0">\n        <img color="primary" src="../../assets/img/bg.jpg" style="display: block; margin: auto; border: 3vw solid #009687; width: 70vw; height: 70vw; border-radius: 100%" />\n      </div>\n      <div style="font-size: 20px; margin-top: 10px" text-center>{{userInfoFirstName + " " + userInfoLastName }}</div>\n      <div style="font-size: 10px" text-center>\n        <ion-icon color="primary" style="" name="pin"></ion-icon>\n        Montreal, Canada </div>\n    </div>\n\n\n    <div>\n\n      <div id="ticketPosition"  class="animated infinite bounce" >\n        <ion-grid style="margin-top: 15%">\n          <ion-row>\n            <ion-col col-6>\n              <ion-row>\n                <p style="margin:auto; font-size: 20px"><b>{{currentPosition}}</b></p>\n              </ion-row>\n              <ion-row>\n                <p style="margin:auto; font-size: 10px">CURRENT CLIENT</p>\n              </ion-row>\n            </ion-col>\n            <ion-col col-6>\n              <ion-row>\n                <p style="margin:auto; font-size: 20px"><b>{{userPosition}}</b></p>\n              </ion-row>\n              <ion-row>\n                <p style="margin:auto; font-size: 10px">YOUR POSITION</p>\n              </ion-row>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </div>\n\n      <ion-grid style="margin-top: 1%">\n        <ion-row>\n          <ion-icon (click)="confirmMessage()" color="primary" style="margin:auto; font-size: 50px;" name="add-circle"></ion-icon>\n        </ion-row>\n\n        <ion-row>\n          <p style="margin:auto; font-size: 10px">TAKE A NUMBER</p>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/get-a-ticket/get-a-ticket.html"*/
+        selector: 'get-a-ticket',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/get-a-ticket/get-a-ticket.html"*/'\n<script>\n  this.hideTicketDiv();\n</script>\n<ion-header>\n  <ion-navbar color="primary">\n    <ion-title>\n      Prendre un ticket\n    </ion-title>\n    <ion-buttons left>\n      <button ion-button icon-only>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content padding="false" class="common-bg">\n  <div style="">\n    <div style="">\n      <div style="display: block; border: 1px solid #C5C5C5; border-radius: 100%; padding: 0">\n        <img color="primary" src="../../assets/img/bg.jpg" style="display: block; margin: auto; border: 3vw solid #009687; width: 70vw; height: 70vw; border-radius: 100%" />\n      </div>\n      <div style="font-size: 20px; margin-top: 10px" text-center>{{userInfoFirstName + " " + userInfoLastName }}</div>\n      <div style="font-size: 10px" text-center>\n        <ion-icon color="primary" style="" name="pin"></ion-icon>\n        Montreal, Canada</div>\n    </div>\n\n\n    <div>\n\n      <div id="ticketPosition"  class="animated infinite bounce" >\n        <ion-grid style="margin-top: 15%">\n          <ion-row>\n            <ion-col col-6>\n              <ion-row>\n                <p style="margin:auto; font-size: 20px"><b>{{currentPosition}}</b></p>\n              </ion-row>\n              <ion-row>\n                <p style="margin:auto; font-size: 10px">CLIENT ACTUELE</p>\n              </ion-row>\n            </ion-col>\n            <ion-col col-6>\n              <ion-row>\n                <p style="margin:auto; font-size: 20px"><b>{{userPosition}}</b></p>\n              </ion-row>\n              <ion-row>\n                <p style="margin:auto; font-size: 10px">VOTRE POSITION</p>\n              </ion-row>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </div>\n\n      <ion-grid style="margin-top: 1%">\n        <ion-row>\n          <ion-icon (click)="confirmMessage()" color="primary" style="margin:auto; font-size: 50px;" name="add-circle"></ion-icon>\n        </ion-row>\n\n        <ion-row>\n          <p style="margin:auto; font-size: 10px">PRENDRE UN NUMERO</p>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/get-a-ticket/get-a-ticket.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_4__alert_alert__["a" /* Alert */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__alert_alert__["a" /* Alert */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__alert_alert__["a" /* Alert */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ticket_confirmation_ticket_confirmation__["a" /* TicketConfirmationPage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ticket_confirmation_ticket_confirmation__["a" /* TicketConfirmationPage */]) === "function" && _c || Object])
 ], GetaTicketPage);
 
-//------------------------------------------THIS IS THE Algorithm  SECTION----------------------------------------------//
-class LinkedListItem {
-    constructor(val) {
-        this.value = val;
-        this.next = null;
-    }
-}
-class LinkedList {
-    constructor(item) {
-        this.head = item;
-    }
-    // Adds the element at a specific position inside the linked list
-    insert(val, previousItem) {
-        let newItem = new LinkedListItem(val);
-        let currentItem = this.head;
-        if (!currentItem) {
-            this.head = newItem;
-        }
-        else {
-            while (true) {
-                if (currentItem === previousItem) {
-                    let tempNextItem = previousItem.next;
-                    currentItem.next = newItem;
-                    newItem.next = tempNextItem;
-                    break;
-                }
-                else {
-                    currentItem = currentItem.next;
-                }
-            }
-        }
-    }
-    // Adds the element at the end of the linked list
-    append(val) {
-        let currentItem = this.head;
-        let newItem = new LinkedListItem(val);
-        if (!currentItem) {
-            this.head = newItem;
-        }
-        else {
-            while (true) {
-                if (currentItem.next) {
-                    currentItem = currentItem.next;
-                }
-                else {
-                    currentItem.next = newItem;
-                    break;
-                }
-            }
-        }
-    }
-    // Add the element at the beginning of the linked list
-    prepend(val) {
-        let newItem = new LinkedListItem(val);
-        let oldHead = this.head;
-        this.head = newItem;
-        newItem.next = oldHead;
-    }
-    delete(val) {
-        var currentItem = this.head;
-        if (!currentItem) {
-            return;
-        }
-        if (currentItem.value === val) {
-            this.head = currentItem.next;
-        }
-        else {
-            var previous = null;
-            while (true) {
-                if (currentItem.value === val) {
-                    if (currentItem.next) {
-                        previous.next = currentItem.next;
-                    }
-                    else {
-                        previous.next = null;
-                    }
-                    currentItem = null; // avoid memory leaks
-                    break;
-                }
-                else {
-                    previous = currentItem;
-                    currentItem = currentItem.next;
-                }
-            }
-        }
-    }
-    showInArray() {
-        let arr = [];
-        let currentItem = this.head;
-        while (true) {
-            arr.push(currentItem.value);
-            if (currentItem.next) {
-                currentItem = currentItem.next;
-            }
-            else {
-                break;
-            }
-        }
-        return arr;
-    }
-}
+var _a, _b, _c;
 //# sourceMappingURL=get-a-ticket.js.map
 
 /***/ }),
@@ -249,7 +209,7 @@ let TicketConfirmationPage = class TicketConfirmationPage {
 };
 TicketConfirmationPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'ticket-confirmation',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/ticket-confirmation/ticket-confirmation.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-title>\n      Confirmation\n    </ion-title>\n    <ion-buttons left>\n     <button ion-button icon-only>\n    </button>\n  </ion-buttons>\n</ion-navbar>\n</ion-header>\n<ion-content padding="false" class="primary-bg" color="white">\n  <ion-row>\n    <ion-icon color="primary" style="margin:auto; margin-top: 15vh; font-size: 70vw; color: white" name="ios-checkmark-circle-outline"></ion-icon>\n  </ion-row>\n  <ion-row>\n    <div style="font-size: 20px; margin: auto; margin-top: 10px; color: white" text-center>Reservation completed !</div>\n  </ion-row>\n  <ion-row>\n    <div style="font-size: 20px; margin: auto; margin-top: 10px; color: white" text-center>Your position is 166</div>\n  </ion-row>\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/ticket-confirmation/ticket-confirmation.html"*/
+        selector: 'ticket-confirmation',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/ticket-confirmation/ticket-confirmation.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-title>\n      Confirmation\n    </ion-title>\n    <ion-buttons left>\n     <button ion-button icon-only>\n    </button>\n  </ion-buttons>\n</ion-navbar>\n</ion-header>\n<ion-content padding="false" class="primary-bg" color="white">\n  <ion-row>\n    <ion-icon color="primary" style="margin:auto; margin-top: 15vh; font-size: 70vw; color: white" name="ios-checkmark-circle-outline"></ion-icon>\n  </ion-row>\n  <ion-row>\n    <div style="font-size: 20px; margin: auto; margin-top: 10px; color: white" text-center>Reservation completed !</div>\n  </ion-row>\n  <ion-row>\n    <div style="font-size: 20px; margin: auto; margin-top: 10px; color: white" text-center>You have {{userPosition}} in front you.</div>\n  </ion-row>\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/ticket-confirmation/ticket-confirmation.html"*/
     })
 ], TicketConfirmationPage);
 
@@ -1098,7 +1058,7 @@ PhoneNumberPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__GetAnAppointmentModel__ = __webpack_require__(853);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__GetAnAppointmentModel__ = __webpack_require__(854);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
@@ -1542,20 +1502,53 @@ let Alert = class Alert {
     *****************************************************************************/
     presentAlert() {
         let alert = this.alertCtrl.create({
-            title: 'Payment Confirmation',
-            message: 'You will be charged 3$ on you credit card !',
+            title: 'Confirmation de ticket',
+            message: "Oui, j'accepte les Termes et Conditions de BarberMe",
             buttons: [
                 {
-                    text: 'Cancel',
+                    text: 'Canceler',
                     role: 'cancel',
                     handler: data => {
                         console.log('Cancel clicked');
+                        this.ticket.startTransaction = false;
                     }
                 },
                 {
-                    text: 'Confirm',
+                    text: 'Confirmer',
                     handler: data => {
                         this.nav.push(__WEBPACK_IMPORTED_MODULE_2__ticket_confirmation_ticket_confirmation__["a" /* TicketConfirmationPage */]);
+                        this.ticket.startTransaction = true;
+                        this.ticket.makeTransaction();
+                    }
+                }
+            ]
+        });
+        alert.present();
+    }
+    /*****************************************************************************
+     Function: presentAlert
+     Description: This function display a warning on pop-up
+     Parameters: None
+     Return: None
+     *****************************************************************************/
+    ticketExist() {
+        let alert = this.alertCtrl.create({
+            title: 'Confirmation de ticket',
+            message: "Oui, j'accepte les Termes et Conditions de BarberMe",
+            buttons: [
+                {
+                    text: 'Canceler',
+                    role: 'cancel',
+                    handler: data => {
+                        console.log('Cancel clicked');
+                        this.ticket.startTransaction = false;
+                    }
+                },
+                {
+                    text: 'Confirmer',
+                    handler: data => {
+                        this.nav.push(__WEBPACK_IMPORTED_MODULE_2__ticket_confirmation_ticket_confirmation__["a" /* TicketConfirmationPage */]);
+                        this.ticket.startTransaction = true;
                         this.ticket.makeTransaction();
                     }
                 }
@@ -1569,9 +1562,10 @@ Alert = __decorate([
         selector: 'page-alert',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/alert/alert.html"*/'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <title>Title</title>\n</head>\n<body>\n\n</body>\n</html>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/alert/alert.html"*/
     }),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_index__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["b" /* App */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular_index__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular_index__["a" /* AlertController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["b" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["b" /* App */]) === "function" && _b || Object])
 ], Alert);
 
+var _a, _b;
 //# sourceMappingURL=alert.js.map
 
 /***/ }),
@@ -1676,7 +1670,7 @@ BarberLocation = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BarberService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_barbers__ = __webpack_require__(881);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_barbers__ = __webpack_require__(882);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1984,13 +1978,49 @@ CreateUserPage = __decorate([
 
 /***/ }),
 
-/***/ 537:
+/***/ 535:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProgressBarComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+let ProgressBarComponent = class ProgressBarComponent {
+    constructor() {
+        this.progress = 100;
+    }
+};
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])('progress'),
+    __metadata("design:type", Object)
+], ProgressBarComponent.prototype, "progress", void 0);
+ProgressBarComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+        selector: 'page-progress-bar',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/progress-bar/progress-bar.html"*/'<div class="progress-outer">\n  <div class="progress-inner" [style.width]="progress + \'%\'">\n    {{progress}}%\n  </div>\n</div>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/progress-bar/progress-bar.html"*/
+    }),
+    __metadata("design:paramtypes", [])
+], ProgressBarComponent);
+
+//# sourceMappingURL=progress-bar.js.map
+
+/***/ }),
+
+/***/ 538:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(538);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(542);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(539);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(543);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1998,14 +2028,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 542:
+/***/ 543:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__(578);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__(579);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_gallery_service__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_barber_service__ = __webpack_require__(531);
@@ -2019,12 +2049,13 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_phone_number_phone_number__ = __webpack_require__(399);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_gallery_gallery__ = __webpack_require__(527);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_settings_settings__ = __webpack_require__(533);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_getanappointment_getanappointment__ = __webpack_require__(400);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_alert_alert__ = __webpack_require__(528);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_firebase__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_keyboard__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_sms__ = __webpack_require__(885);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_progress_bar_progress_bar__ = __webpack_require__(535);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_getanappointment_getanappointment__ = __webpack_require__(400);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_alert_alert__ = __webpack_require__(528);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_firebase__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_keyboard__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_sms__ = __webpack_require__(886);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2034,6 +2065,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2061,12 +2093,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // end import services
 // import pages
 // end import pages
-const components = [__WEBPACK_IMPORTED_MODULE_16__pages_getanappointment_getanappointment__["b" /* GetAnAppointmentPage */]];
-const directives = [__WEBPACK_IMPORTED_MODULE_16__pages_getanappointment_getanappointment__["a" /* DateSelectorDirective */]];
+const components = [__WEBPACK_IMPORTED_MODULE_17__pages_getanappointment_getanappointment__["b" /* GetAnAppointmentPage */]];
+const directives = [__WEBPACK_IMPORTED_MODULE_17__pages_getanappointment_getanappointment__["a" /* DateSelectorDirective */]];
 const providers = [];
 let AppModule = class AppModule {
     constructor() {
-        __WEBPACK_IMPORTED_MODULE_18_firebase__["initializeApp"]({
+        __WEBPACK_IMPORTED_MODULE_19_firebase__["initializeApp"]({
             apiKey: "AIzaSyBShXmN6TIS7xy2Tnr65NkCJbAEXM51g7Q",
             authDomain: "mpc-app-37f6f.firebaseapp.com",
             databaseURL: "https://mpc-app-37f6f.firebaseio.com",
@@ -2090,9 +2122,10 @@ AppModule = __decorate([
             components,
             directives,
             __WEBPACK_IMPORTED_MODULE_8__pages_barber_location_barber_location__["a" /* BarberLocation */],
-            __WEBPACK_IMPORTED_MODULE_17__pages_alert_alert__["a" /* Alert */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_alert_alert__["a" /* Alert */],
             __WEBPACK_IMPORTED_MODULE_12__pages_create_user_create_user__["a" /* CreateUserPage */],
             __WEBPACK_IMPORTED_MODULE_13__pages_phone_number_phone_number__["a" /* PhoneNumberPage */],
+            __WEBPACK_IMPORTED_MODULE_16__pages_progress_bar_progress_bar__["a" /* ProgressBarComponent */],
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["a" /* BrowserModule */],
@@ -2114,7 +2147,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_15__pages_settings_settings__["a" /* SettingsPage */],
             __WEBPACK_IMPORTED_MODULE_8__pages_barber_location_barber_location__["a" /* BarberLocation */],
             components,
-            __WEBPACK_IMPORTED_MODULE_17__pages_alert_alert__["a" /* Alert */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_alert_alert__["a" /* Alert */],
             __WEBPACK_IMPORTED_MODULE_12__pages_create_user_create_user__["a" /* CreateUserPage */],
             __WEBPACK_IMPORTED_MODULE_13__pages_phone_number_phone_number__["a" /* PhoneNumberPage */],
         ],
@@ -2125,13 +2158,15 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_11__pages_ticket_confirmation_ticket_confirmation__["a" /* TicketConfirmationPage */],
             __WEBPACK_IMPORTED_MODULE_14__pages_gallery_gallery__["a" /* GalleryPage */],
             __WEBPACK_IMPORTED_MODULE_15__pages_settings_settings__["a" /* SettingsPage */],
-            __WEBPACK_IMPORTED_MODULE_17__pages_alert_alert__["a" /* Alert */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_alert_alert__["a" /* Alert */],
             __WEBPACK_IMPORTED_MODULE_12__pages_create_user_create_user__["a" /* CreateUserPage */],
             __WEBPACK_IMPORTED_MODULE_13__pages_phone_number_phone_number__["a" /* PhoneNumberPage */],
-            __WEBPACK_IMPORTED_MODULE_19__ionic_native_keyboard__["a" /* Keyboard */],
-            __WEBPACK_IMPORTED_MODULE_20__ionic_native_sms__["a" /* SMS */],
+            __WEBPACK_IMPORTED_MODULE_20__ionic_native_keyboard__["a" /* Keyboard */],
+            __WEBPACK_IMPORTED_MODULE_21__ionic_native_sms__["a" /* SMS */],
             //Facebook,
             providers,
+            __WEBPACK_IMPORTED_MODULE_16__pages_progress_bar_progress_bar__["a" /* ProgressBarComponent */]
+            /* import services */
         ]
     }),
     __metadata("design:paramtypes", [])
@@ -2141,14 +2176,14 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 578:
+/***/ 579:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_native__ = __webpack_require__(579);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_native__ = __webpack_require__(580);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_phone_number_phone_number__ = __webpack_require__(399);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__ = __webpack_require__(151);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2215,6 +2250,7 @@ MyApp = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__settings_settings__ = __webpack_require__(533);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__progress_bar_progress_bar__ = __webpack_require__(535);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2233,6 +2269,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /*
  Generated class for the LoginPage page.
 
@@ -2240,9 +2277,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  Ionic pages and navigation.
  */
 let HomePage = class HomePage {
-    constructor(nav, galleryService) {
+    constructor(nav, galleryService, progress) {
         this.nav = nav;
         this.galleryService = galleryService;
+        this.progress = progress;
         this.numberClientWaitingTicketList = 0;
         this.numberClientWaitingReservation = 0;
         // set sample data
@@ -2319,19 +2357,15 @@ let HomePage = class HomePage {
     DirectMessages() {
         const liveMessages = __WEBPACK_IMPORTED_MODULE_8_firebase___default.a.database().ref('Messages/live/');
         liveMessages.on('value', snap => this.directMessages = snap.val()).bind(this);
-        /*liveMessages.on('value', function(snapshot) {
-          this.directMessages = snapshot[0];
-        }.bind(this));*/
     }
 };
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/home/home.html"*/'<!--\n  Generated template for the ProfilePage page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header class="no-shadow">\n\n  <ion-navbar class="no-border" color="primary">\n    <ion-title>ACCUEIL</ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="goToSettings()">\n        <ion-icon name="more"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n\n\n<ion-content class=" common-bg">\n  <!--list menu on the top-->\n  <div class="top-menu common-bg">\n    <ion-grid class="card">\n      <ion-row>\n        <ion-col (click)="getTicket()">\n          <ion-icon name="md-pricetag" color="green"></ion-icon>\n          <span ion-text color="dark">Prendre un ticket</span>\n        </ion-col>\n        <ion-col (click)="getAnAppointment()">\n          <ion-icon name="md-calendar" color="flight-color"></ion-icon>\n          <span ion-text color="dark">Prendre un rendez vous</span>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>\n\n  <ion-grid class="card">\n    <ion-row>\n      <ion-col>\n        <ion-badge class="center square" color="primary" (click)="goToBarberLocation()">Contacts</ion-badge>\n      </ion-col>\n      <ion-col  >\n        <ion-badge class="center square" color="primary" (click)="viewGallery()">Photos</ion-badge>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid style="margin-bottom:5%;margin-top:5%;" class="card" >\n    <ion-row>\n      <ion-col text-center style="padding-top: 20px;" col-12>\n        <ion-row>\n        <ion-icon name="people" style ="font-size: 50px;margin:0 auto;" color="flight-color"></ion-icon>\n        </ion-row>\n        <ion-row>\n        <span text-center ion-text color="dark" style="font-size: 30px;margin:0 auto;">Nombre de client en attente</span>\n        </ion-row>\n        <ion-row>\n        <span ion-text color="dark" style="font-weight: bold;font-size: 30px;margin:0 auto;">{{numberClientWaitingTicketList}}</span>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid text-center class="card">\n    <ion-row center>\n      <ion-col center style="padding-top: 20px;align-content: center;" col-12>\n        <ion-row center>\n          <ion-icon  style ="font-size: 50px;margin:0 auto;" name="people" color="flight-color"></ion-icon>\n        </ion-row>\n        <ion-row center>\n          <span ion-text color="dark" style="font-size: 30px;margin:0 auto;">Nombre de reservation en attente</span>\n        </ion-row>\n        <ion-row center>\n          <span ion-text color="dark" style="font-weight: bold;font-size: 30px;margin:0 auto;">{{numberClientWaitingReservation}}</span>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid  style="margin-top:2%;" text-center class="card">\n    <ion-row center>\n      <ion-col center style="align-content: center;" col-12>\n        <ion-label style="font-size: 20px;font-weight: bold;">Messages en direct:</ion-label>\n      </ion-col>\n    </ion-row>\n    <ion-row center>\n      <ion-col center style="align-content: center;" col-12>\n        <ion-label style="font-size: 20px;">{{directMessages}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/home/home.html"*/'<!--\n  Generated template for the ProfilePage page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header class="no-shadow">\n\n  <ion-navbar class="no-border" color="primary">\n    <ion-title>ACCUEIL</ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="goToSettings()">\n        <ion-icon name="more"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n\n\n<ion-content class=" common-bg">\n  <!--list menu on the top-->\n  <div class="top-menu common-bg">\n    <ion-grid class="card">\n      <ion-row>\n        <ion-col (click)="getTicket()">\n          <ion-icon name="md-pricetag" color="green"></ion-icon>\n          <span ion-text color="dark">Prendre un ticket</span>\n        </ion-col>\n        <ion-col (click)="getAnAppointment()">\n          <ion-icon name="md-calendar" color="flight-color"></ion-icon>\n          <span ion-text color="dark">Prendre un rendez vous</span>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>\n\n  <ion-grid class="card">\n    <ion-row>\n      <ion-col>\n        <ion-badge class="center square" color="primary" (click)="goToBarberLocation()">Contacts</ion-badge>\n      </ion-col>\n      <ion-col  >\n        <ion-badge class="center square" color="primary" (click)="viewGallery()">Photos</ion-badge>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid style="margin-bottom:5%;margin-top:5%;" class="card" >\n    <ion-row>\n      <ion-col col-1>\n        <ion-icon name="people" style ="font-size: 30px;" color="flight-color"></ion-icon>\n      </ion-col>\n      <ion-col  col-11>\n        <span ion-text color="dark" style="font-size: 30px;">Client devant vous: <span style="font-weight: bold">{{numberClientWaitingTicketList}}</span></span>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col col-1>\n        <ion-icon name="clock" style ="font-size: 30px;" color="flight-color"></ion-icon>\n      </ion-col>\n      <ion-col  col-11>\n        <span ion-text color="dark" style="font-size: 30px;">Temps estimer: <span style="font-weight: bold">30 </span>minute</span>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n  <ion-grid text-center class="card">\n    <ion-row center>\n      <ion-col center style="padding-top: 20px;align-content: center;" col-12>\n        <ion-row center>\n          <ion-icon  style ="font-size: 50px;margin:0 auto;" name="people" color="flight-color"></ion-icon>\n        </ion-row>\n        <ion-row center>\n          <span ion-text color="dark" style="font-size: 30px;margin:0 auto;">Heure de votre reservation</span>\n        </ion-row>\n        <ion-row center>\n          <span ion-text color="dark" style="font-weight: bold;font-size: 30px;margin:0 auto;">21-SEP-2017 10 : 00</span>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid  style="margin-top:5%;" text-center class="card">\n    <ion-row center>\n      <ion-col center style="align-content: center;" col-12>\n        <ion-label style="font-size: 20px;font-weight: bold;">Messages en direct:</ion-label>\n      </ion-col>\n    </ion-row>\n    <ion-row center>\n      <ion-col center style="align-content: center;" col-12>\n        <ion-label style="font-size: 20px;">{{directMessages}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_gallery_service__["a" /* GalleryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_gallery_service__["a" /* GalleryService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_gallery_service__["a" /* GalleryService */], __WEBPACK_IMPORTED_MODULE_9__progress_bar_progress_bar__["a" /* ProgressBarComponent */]])
 ], HomePage);
 
-var _a, _b;
 //# sourceMappingURL=home.js.map
 
 /***/ }),
@@ -2342,7 +2376,7 @@ var _a, _b;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GalleryService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_pictures__ = __webpack_require__(850);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_pictures__ = __webpack_require__(851);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2382,7 +2416,7 @@ GalleryService = __decorate([
 
 /***/ }),
 
-/***/ 850:
+/***/ 851:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2672,7 +2706,7 @@ let PICTURES = [
 
 /***/ }),
 
-/***/ 852:
+/***/ 853:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -2921,11 +2955,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 852;
+webpackContext.id = 853;
 
 /***/ }),
 
-/***/ 853:
+/***/ 854:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3117,7 +3151,7 @@ GetAnAppointmentModel = __decorate([
 
 /***/ }),
 
-/***/ 881:
+/***/ 882:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3407,5 +3441,5 @@ let BARBERS = [
 
 /***/ })
 
-},[537]);
+},[538]);
 //# sourceMappingURL=main.js.map

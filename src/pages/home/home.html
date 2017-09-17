@@ -48,19 +48,23 @@
 
   <ion-grid style="margin-bottom:5%;margin-top:5%;" class="card" >
     <ion-row>
-      <ion-col text-center style="padding-top: 20px;" col-12>
-        <ion-row>
-        <ion-icon name="people" style ="font-size: 50px;margin:0 auto;" color="flight-color"></ion-icon>
-        </ion-row>
-        <ion-row>
-        <span text-center ion-text color="dark" style="font-size: 30px;margin:0 auto;">Nombre de client en attente</span>
-        </ion-row>
-        <ion-row>
-        <span ion-text color="dark" style="font-weight: bold;font-size: 30px;margin:0 auto;">{{numberClientWaitingTicketList}}</span>
-        </ion-row>
+      <ion-col col-1>
+        <ion-icon name="people" style ="font-size: 30px;" color="flight-color"></ion-icon>
+      </ion-col>
+      <ion-col  col-11>
+        <span ion-text color="dark" style="font-size: 30px;">Client devant vous: <span style="font-weight: bold">{{numberClientWaitingTicketList}}</span></span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-1>
+        <ion-icon name="clock" style ="font-size: 30px;" color="flight-color"></ion-icon>
+      </ion-col>
+      <ion-col  col-11>
+        <span ion-text color="dark" style="font-size: 30px;">Temps estimer: <span style="font-weight: bold">30 </span>minute</span>
       </ion-col>
     </ion-row>
   </ion-grid>
+
 
   <ion-grid text-center class="card">
     <ion-row center>
@@ -69,16 +73,16 @@
           <ion-icon  style ="font-size: 50px;margin:0 auto;" name="people" color="flight-color"></ion-icon>
         </ion-row>
         <ion-row center>
-          <span ion-text color="dark" style="font-size: 30px;margin:0 auto;">Nombre de reservation en attente</span>
+          <span ion-text color="dark" style="font-size: 30px;margin:0 auto;">Heure de votre reservation</span>
         </ion-row>
         <ion-row center>
-          <span ion-text color="dark" style="font-weight: bold;font-size: 30px;margin:0 auto;">{{numberClientWaitingReservation}}</span>
+          <span ion-text color="dark" style="font-weight: bold;font-size: 30px;margin:0 auto;">21-SEP-2017 10 : 00</span>
         </ion-row>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-grid  style="margin-top:2%;" text-center class="card">
+  <ion-grid  style="margin-top:5%;" text-center class="card">
     <ion-row center>
       <ion-col center style="align-content: center;" col-12>
         <ion-label style="font-size: 20px;font-weight: bold;">Messages en direct:</ion-label>

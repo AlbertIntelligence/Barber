@@ -14,6 +14,7 @@ import {CreateUserPage} from "../pages/create-user/create-user";
 import {PhoneNumberPage} from "../pages/phone-number/phone-number";
 import {GalleryPage} from "../pages/gallery/gallery";
 import {SettingsPage} from "../pages/settings/settings";
+import {ProgressBarComponent} from "../pages/progress-bar/progress-bar";
 //import { Facebook } from '@ionic-native/facebook';
 import { GetAnAppointmentPage, DateSelectorDirective } from '../pages/getanappointment/getanappointment';
 import {Alert} from '../pages/alert/alert';
@@ -48,6 +49,7 @@ const providers = [ ];
     Alert,
     CreateUserPage,
     PhoneNumberPage,
+    ProgressBarComponent,
 
   ],
   imports: [
@@ -88,6 +90,7 @@ const providers = [ ];
     SMS,
     //Facebook,
     providers,
+    ProgressBarComponent
     /* import services */
   ]
 })

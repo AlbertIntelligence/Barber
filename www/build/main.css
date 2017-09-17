@@ -79120,6 +79120,26 @@ page-pricing .bg-filter,
   justify-content: center;
 }
 
+page-progress-bar .progress-outer {
+  width: 96%;
+  margin: 10px 2%;
+  padding: 3px;
+  text-align: center;
+  background-color: #f4f4f4;
+  border: 1px solid #dcdcdc;
+  color: #fff;
+  border-radius: 20px;
+}
+
+page-progress-bar .progress-inner {
+  min-width: 15%;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 5px;
+  border-radius: 20px;
+  background-color: #009687;
+}
+
 page-settings .top-info,
 .account .top-info {
   background: #009687;
