@@ -43,6 +43,10 @@
                         {
                             "xml": "<access origin=\"https://*.akamaihd.net\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"CordovaStripe\"><param name=\"browser-package\" value=\"CordovaStripe\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -71,6 +75,9 @@
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
         "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+        },
+        "cordova-plugin-stripe": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         }
     },
@@ -142,6 +149,20 @@
                 "cordova.plugins.Keyboard"
             ],
             "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-stripe/www/CordovaStripe.js",
+            "id": "cordova-plugin-stripe.stripe",
+            "pluginId": "cordova-plugin-stripe",
+            "clobbers": [
+                "cordova.plugins.stripe"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-stripe/src/browser/CordovaStripe.js",
+            "id": "cordova-plugin-stripe.CordovaStripe",
+            "pluginId": "cordova-plugin-stripe",
+            "runs": true
         }
     ],
     "plugin_metadata": {
@@ -151,6 +172,7 @@
         "cordova-plugin-facebook4": "1.9.1",
         "cordova-plugin-inappbrowser": "1.7.1",
         "cordova-plugin-x-toast": "2.6.0",
-        "ionic-plugin-keyboard": "2.2.1"
+        "ionic-plugin-keyboard": "2.2.1",
+        "cordova-plugin-stripe": "1.5.3"
     }
 }

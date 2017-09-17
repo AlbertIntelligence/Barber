@@ -119,7 +119,7 @@ export class GetAnAppointmentModel {
   Return: None
   *****************************************************************************/
   createNew(date: String, hour: String) {
-    var appointments = firebase.database().ref('Appointments/Users');
+    var appointments = firebase.database().ref('Appointments/');
     var userId = firebase.auth().currentUser.uid;
     var timeStamp = new Date().getTime().toString();
     appointments.child(timeStamp).set({

@@ -29,6 +29,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+        },
+        "cordova-plugin-stripe": {
+            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         }
     },
     "dependent_plugins": {}

@@ -70,6 +70,14 @@ module.exports = [
             "cordova.plugins.Keyboard"
         ],
         "runs": true
+    },
+    {
+        "id": "cordova-plugin-stripe.stripe",
+        "file": "plugins/cordova-plugin-stripe/www/CordovaStripe.js",
+        "pluginId": "cordova-plugin-stripe",
+        "clobbers": [
+            "cordova.plugins.stripe"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -81,7 +89,8 @@ module.exports.metadata =
     "cordova-plugin-inappbrowser": "1.7.1",
     "cordova-plugin-x-toast": "2.6.0",
     "com.telerik.plugins.nativepagetransitions": "0.6.5",
-    "ionic-plugin-keyboard": "2.2.1"
+    "ionic-plugin-keyboard": "2.2.1",
+    "cordova-plugin-stripe": "1.5.3"
 };
 // BOTTOM OF METADATA
 });

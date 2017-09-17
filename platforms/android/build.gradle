@@ -250,6 +250,7 @@ dependencies {
     debugCompile(project(path: "CordovaLib", configuration: "debug"))
     releaseCompile(project(path: "CordovaLib", configuration: "release"))
     compile "com.facebook.android:facebook-android-sdk:4.+"
+    compile "com.stripe:stripe-android:4.1.2"
     // SUB-PROJECT DEPENDENCIES END
 }
 

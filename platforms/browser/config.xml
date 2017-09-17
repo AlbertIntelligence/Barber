@@ -14,6 +14,9 @@
     <access origin="https://api.facebook.com" />
     <access origin="https://*.fbcdn.net" />
     <access origin="https://*.akamaihd.net" />
+    <feature name="CordovaStripe">
+        <param name="browser-package" value="CordovaStripe" />
+    </feature>
     <name>CodeKL_Barber</name>
     <description>An awesome CodeKL Barber App.</description>
     <author email="help@codekl.com" href="http://codekl.com/">CKL Group Inc.</author>
@@ -25,6 +28,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="http://192.168.153.1:8100" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
@@ -35,4 +39,5 @@
     <preference name="FadeSplashScreenDuration" value="0" />
     <preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF" />
     <preference name="orientation" value="portrait" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
 </widget>

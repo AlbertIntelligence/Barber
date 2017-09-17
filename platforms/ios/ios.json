@@ -59,6 +59,10 @@
                         {
                             "xml": "<feature name=\"Keyboard\"><param name=\"ios-package\" onload=\"true\" value=\"IonicKeyboard\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"CordovaStripe\"><param name=\"ios-package\" value=\"CordovaStripe\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -121,6 +125,9 @@
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
         "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+        },
+        "cordova-plugin-stripe": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         }
     },
@@ -196,6 +203,14 @@
                 "cordova.plugins.Keyboard"
             ],
             "runs": true
+        },
+        {
+            "id": "cordova-plugin-stripe.stripe",
+            "file": "plugins/cordova-plugin-stripe/www/CordovaStripe.js",
+            "pluginId": "cordova-plugin-stripe",
+            "clobbers": [
+                "cordova.plugins.stripe"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -205,6 +220,7 @@
         "cordova-plugin-inappbrowser": "1.7.1",
         "cordova-plugin-x-toast": "2.6.0",
         "com.telerik.plugins.nativepagetransitions": "0.6.5",
-        "ionic-plugin-keyboard": "2.2.1"
+        "ionic-plugin-keyboard": "2.2.1",
+        "cordova-plugin-stripe": "1.5.3"
     }
 }

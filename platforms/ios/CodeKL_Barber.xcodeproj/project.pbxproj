@@ -31,6 +31,8 @@
 		638C267549B54994AA87338D /* NativePageTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C819AE92B34B6694BE7996 /* NativePageTransitions.m */; };
 		C4EBBC961B5944A3905FBAC5 /* AppDelegate+nativepagetransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = A43D428237C94228BB17ECF0 /* AppDelegate+nativepagetransitions.m */; };
 		D396171A6A6E423282BEF409 /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CB5D30B754391AB32F59F /* IonicKeyboard.m */; };
+		748E3EC3AAF94CEEB6F52233 /* CordovaStripe.m in Sources */ = {isa = PBXBuildFile; fileRef = 09EAA9D1E8294969A2C63E9F /* CordovaStripe.m */; };
+		36B726E5F1854E3AA7F5F66E /* Stripe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4973F77B5D2A4B2DBF5919D8 /* Stripe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,9 @@
 		0B586AA9BE5C4202BE963CBF /* AppDelegate+nativepagetransitions.h */ = {isa = PBXFileReference; name = "AppDelegate+nativepagetransitions.h"; path = "com.telerik.plugins.nativepagetransitions/AppDelegate+nativepagetransitions.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		5B0CB5D30B754391AB32F59F /* IonicKeyboard.m */ = {isa = PBXFileReference; name = "IonicKeyboard.m"; path = "ionic-plugin-keyboard/IonicKeyboard.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		696EABE8DC7D4FA4A3CC924F /* IonicKeyboard.h */ = {isa = PBXFileReference; name = "IonicKeyboard.h"; path = "ionic-plugin-keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		09EAA9D1E8294969A2C63E9F /* CordovaStripe.m */ = {isa = PBXFileReference; name = "CordovaStripe.m"; path = "cordova-plugin-stripe/CordovaStripe.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		7E34DE7594D04BA0824A5350 /* CordovaStripe.h */ = {isa = PBXFileReference; name = "CordovaStripe.h"; path = "cordova-plugin-stripe/CordovaStripe.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		4973F77B5D2A4B2DBF5919D8 /* Stripe.framework */ = {isa = PBXFileReference; name = "Stripe.framework"; path = "CodeKL_Barber/Plugins/cordova-plugin-stripe/Stripe.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +114,7 @@
 				CB8C2CCA9A0745E2AF23DB06 /* FBSDKLoginKit.framework in Frameworks */,
 				00C03CE31CE645759D174F9B /* FBSDKShareKit.framework in Frameworks */,
 				393B56833E5C42AFA38E35FE /* QuartzCore.framework in Frameworks */,
+				36B726E5F1854E3AA7F5F66E /* Stripe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +191,7 @@
 				21DADD72E9A2422EB93A3D5F /* FBSDKLoginKit.framework */,
 				87D06F9B4A344F409719C8CE /* FBSDKShareKit.framework */,
 				7BD9203D62284CEBB5DBD7DC /* QuartzCore.framework */,
+				4973F77B5D2A4B2DBF5919D8 /* Stripe.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -228,6 +235,8 @@
 				0B586AA9BE5C4202BE963CBF /* AppDelegate+nativepagetransitions.h */,
 				5B0CB5D30B754391AB32F59F /* IonicKeyboard.m */,
 				696EABE8DC7D4FA4A3CC924F /* IonicKeyboard.h */,
+				09EAA9D1E8294969A2C63E9F /* CordovaStripe.m */,
+				7E34DE7594D04BA0824A5350 /* CordovaStripe.h */,
 			);
 			name = Plugins;
 			path = "CodeKL_Barber/Plugins";
@@ -349,6 +358,7 @@
 				638C267549B54994AA87338D /* NativePageTransitions.m in Sources */,
 				C4EBBC961B5944A3905FBAC5 /* AppDelegate+nativepagetransitions.m in Sources */,
 				D396171A6A6E423282BEF409 /* IonicKeyboard.m in Sources */,
+				748E3EC3AAF94CEEB6F52233 /* CordovaStripe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +400,11 @@
 					"\"CodeKL_Barber/Plugins/cordova-plugin-facebook4\"",
 					"\"CodeKL_Barber/Plugins/cordova-plugin-facebook4\"",
 					"\"CodeKL_Barber/Plugins/cordova-plugin-facebook4\"",
+					"\"CodeKL_Barber/Plugins/cordova-plugin-stripe\"",
+					"\"CodeKL_Barber/Plugins/cordova-plugin-stripe\"",
+					"\"CodeKL_Barber/Plugins/cordova-plugin-stripe\"",
+					"\"CodeKL_Barber/Plugins/cordova-plugin-stripe\"",
+					"\"CodeKL_Barber/Plugins/cordova-plugin-stripe\"",
 				);
 			};
 			name = Debug;
@@ -419,6 +434,11 @@
 					"\"CodeKL_Barber/Plugins/cordova-plugin-facebook4\"",
 					"\"CodeKL_Barber/Plugins/cordova-plugin-facebook4\"",
 					"\"CodeKL_Barber/Plugins/cordova-plugin-facebook4\"",
+					"\"CodeKL_Barber/Plugins/cordova-plugin-stripe\"",
+					"\"CodeKL_Barber/Plugins/cordova-plugin-stripe\"",
+					"\"CodeKL_Barber/Plugins/cordova-plugin-stripe\"",
+					"\"CodeKL_Barber/Plugins/cordova-plugin-stripe\"",
+					"\"CodeKL_Barber/Plugins/cordova-plugin-stripe\"",
 				);
 			};
 			name = Release;

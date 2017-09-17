@@ -8,6 +8,8 @@ import { HostListener } from '@angular/core';
 import firebase from 'firebase';
 import { AlertController } from 'ionic-angular';
 import {LoginPage} from "../login/login";
+import { Stripe } from '@ionic-native/stripe';
+import { Http, Headers } from '@angular/http';
 
 /**
  * Generated class for the CreateUserPage page.
@@ -28,9 +30,12 @@ export class PhoneNumberPage {
   public recaptchaVerifier:firebase.auth.RecaptchaVerifier;
   private smsConfirmation: any;
   private userAccounts:Array<any> = [];
+  private cardToken:any;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-     private keyboard: Keyboard, public platform: Platform, public alertCtrl: AlertController) {
+     private keyboard: Keyboard, public platform: Platform, public alertCtrl: AlertController,
+     public stripe: Stripe, public http: Http) {
 
   }
 
@@ -222,6 +227,7 @@ export class PhoneNumberPage {
         }, 1000);
 
         this.currentView = "phoneNumber";
+        this.pay();
     }
   }
 
@@ -432,7 +438,6 @@ export class PhoneNumberPage {
           this.translate($("#nameTitle"), "-200vw", "0px");
           this.translate($("#paymentList"), "-100vw", "0px");
           this.translate($("#nameInput"), "-200vw", "0px");
-          this.createNewUser();
         } else {
           if (firstName.length == 0) {
             $("#firstName").css('border-bottom', '2px solid red');
@@ -553,9 +558,23 @@ export class PhoneNumberPage {
   Return: None
   *****************************************************************************/
   createNewUser() {
+    var cardNumber = $("#cardNumber").children().eq(0).val().toString();
+    var month = parseInt($("#expirationDate").children().eq(0).val().substring(0, 2));
+    var year = parseInt('20' + $("#expirationDate").children().eq(0).val().substring(3, 5));
+    var cvc = $("#cvv").children().eq(0).val().toString();
+
+    cardinfo: any = {
+      number: cardNumber,
+      expMonth: month,
+      expYear: year,
+      cvc: cvc
+    }
+    this.getCreditCardToken(cardinfo);
+
     var users = firebase.database().ref('Users/');
     var userId = firebase.auth().currentUser.uid;
     var value = $("#input").val();
+    var token = this.cardToken;
     const phoneNumberString = "+1" + value.substring(1, 4) + value.substring(6, 9) + value.substring(10, 14);
     users.child(userId).set({
       UserId: userId,
@@ -563,7 +582,8 @@ export class PhoneNumberPage {
       firstName: $("#firstName").children().eq(0).val(),
       lastName: $("#lastName").children().eq(0).val(),
       email: $("#emailInput").children().eq(0).val(),
-      phoneNumber: phoneNumberString
+      phoneNumber: phoneNumberString,
+      cardToken: token
     });
   }
 
@@ -580,7 +600,7 @@ export class PhoneNumberPage {
   }
 
   /*****************************************************************************
-  Function: getUserAccounts
+  Function: updateUserAccounts
   Purpose: Fetch user accounts from db
   Parameters: None
   Return: None
@@ -639,9 +659,9 @@ export class PhoneNumberPage {
     } else {
       var credential = firebase.auth.EmailAuthProvider.credential(email, password);
       firebase.auth().currentUser.linkWithCredential(credential).then(function(user) {
-        console.log("Account linking success", user);
+        console.log("Account linking success: ", user);
       }, function(error) {
-        console.log("Account linking error", error);
+        console.log("Account linking error: ", error);
       });
     }
   }
@@ -661,6 +681,32 @@ export class PhoneNumberPage {
       $("#link").height("7.5vh");
     }
   }
+
+  /*****************************************************************************
+  Function: proceedPayment
+  Description: Proceed to the user payment via stripe
+  Parameters: none
+  Return: void
+  *****************************************************************************/
+  getCreditCardToken(cardinfo) {
+    this.stripe.setPublishableKey('pk_test_0Ghlv6GvobZIFI0SyNuDglPL');
+    this.stripe.createCardToken(cardinfo).then((token) => {
+      this.cardToken = token;
+      /*var data = 'stripetoken=' + token + '&amount=50';
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/x-www-form-urlencoded')
+      this.http.post('http://192.168.27.1:3333/processpay', data, { headers: headers }).subscribe((res) => {
+        if (res.json().success) {
+          console.log('transaction Successfull!!');
+        } else {
+          console.log('transaction failed!!');
+        }
+      });*/
+    }).catch((error) => {
+        console.log(error);
+    });
+  }
+
 
   onFocus(parentId) {
     $("#" + parentId).css('border-bottom', '2px solid black');
