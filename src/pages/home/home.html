@@ -37,24 +37,60 @@
 
   <ion-grid class="card">
     <ion-row>
-      <ion-col style="padding-left: 20px">
-        <ion-badge class="pull-left square" color="primary" (click)="goToBarberLocation()">Ou somme nous?</ion-badge>
+      <ion-col>
+        <ion-badge class="center square" color="primary" (click)="goToBarberLocation()">Contacts</ion-badge>
       </ion-col>
-      <ion-col style="padding-right: 20px" >
-        <ion-badge class="pull-right square" color="primary" (click)="viewGallery()">Voir plus de photo</ion-badge>
+      <ion-col  >
+        <ion-badge class="center square" color="primary" (click)="viewGallery()">Photos</ion-badge>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-grid class="list-pictures">
+  <ion-grid style="margin-bottom:5%;margin-top:5%;" class="card" >
     <ion-row>
-      <ion-col *ngFor="let picture of pictures[0].homeGalery" col-6>
-        <div class="hotel-bg" [ngStyle]="{'background-image': 'url(' + picture + ')'}">
-          <div class="bg-filter">
+      <ion-col col-1>
+        <ion-icon name="people" style ="font-size: 30px;" color="flight-color"></ion-icon>
+      </ion-col>
+      <ion-col  col-11>
+        <span ion-text color="dark" style="font-size: 30px;">Client devant vous: <span style="font-weight: bold">{{numberClientWaitingTicketList}}</span></span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-1>
+        <ion-icon name="clock" style ="font-size: 30px;" color="flight-color"></ion-icon>
+      </ion-col>
+      <ion-col  col-11>
+        <span ion-text color="dark" style="font-size: 30px;">Temps estimer: <span style="font-weight: bold">30 </span>minute</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 
-          </div>
-        </div>
+  <ion-grid text-center class="card">
+    <ion-row center>
+      <ion-col center style="padding-top: 20px;align-content: center;" col-12>
+        <ion-row center>
+          <ion-icon  style ="font-size: 50px;margin:0 auto;" name="people" color="flight-color"></ion-icon>
+        </ion-row>
+        <ion-row center>
+          <span ion-text color="dark" style="font-size: 30px;margin:0 auto;">Heure de votre reservation</span>
+        </ion-row>
+        <ion-row center>
+          <span ion-text color="dark" style="font-weight: bold;font-size: 30px;margin:0 auto;">21-SEP-2017 10 : 00</span>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid  style="margin-top:5%;" text-center class="card">
+    <ion-row center>
+      <ion-col center style="align-content: center;" col-12>
+        <ion-label style="font-size: 20px;font-weight: bold;">Messages en direct:</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row center>
+      <ion-col center style="align-content: center;" col-12>
+        <ion-label style="font-size: 20px;">{{directMessages}}</ion-label>
       </ion-col>
     </ion-row>
   </ion-grid>

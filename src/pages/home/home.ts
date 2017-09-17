@@ -6,6 +6,8 @@ import {GalleryPage} from "../gallery/gallery";
 import {GetaTicketPage} from "../get-a-ticket/get-a-ticket";
 import {BarberLocation} from "../barber-location/barber-location";
 import {SettingsPage} from "../settings/settings";
+import firebase from 'firebase';
+import {ProgressBarComponent} from "../progress-bar/progress-bar";
 
 
 /*
@@ -21,10 +23,17 @@ import {SettingsPage} from "../settings/settings";
 export class HomePage {
 
   public pictures: any;
+  public numberClientWaitingTicketList = 0;
+  public numberClientWaitingReservation= 0;
+  public directMessages:any;
 
-  constructor(public nav: NavController, public galleryService: GalleryService) {
+
+  constructor(public nav: NavController, public galleryService: GalleryService ,public progress:ProgressBarComponent) {
     // set sample data
     this.pictures = galleryService.getAll();
+    this.ClientWaiting();
+    this.TotalReservation();
+    this.DirectMessages();
   }
 
   /*****************************************************************************
@@ -75,6 +84,33 @@ export class HomePage {
   *****************************************************************************/
   goToBarberLocation() {
     this.nav.push(BarberLocation);
+  }
+
+  ClientWaiting() {
+    const listOfUsers = firebase.database().ref('TicketList/Users/');
+    listOfUsers.on('value', function(snapshot) {
+      var numberClientWaitingTicketList = 0;
+      snapshot.forEach(function(childSnapshot) {
+        numberClientWaitingTicketList++;
+      }.bind(this));
+      this.numberClientWaitingTicketList = numberClientWaitingTicketList
+    }.bind(this));
+  }
+
+  TotalReservation() {
+    const listOfUsers = firebase.database().ref('Appointments/Users/');
+    listOfUsers.on('value', function(snapshot) {
+      var numberClientWaitingReservation = 0;
+      snapshot.forEach(function(childSnapshot) {
+        numberClientWaitingReservation++;
+      }.bind(this));
+      this.numberClientWaitingReservation = numberClientWaitingReservation
+    }.bind(this));
+  }
+
+  DirectMessages() {
+    const liveMessages = firebase.database().ref('Messages/live/');
+    liveMessages.on('value' , snap =>  this.directMessages =   snap.val()  ).bind(this);
   }
 
 }

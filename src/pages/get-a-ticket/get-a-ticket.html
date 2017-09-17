@@ -5,7 +5,7 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      Profile
+      Prendre un ticket
     </ion-title>
     <ion-buttons left>
       <button ion-button icon-only>
@@ -19,10 +19,10 @@
       <div style="display: block; border: 1px solid #C5C5C5; border-radius: 100%; padding: 0">
         <img color="primary" src="../../assets/img/bg.jpg" style="display: block; margin: auto; border: 3vw solid #009687; width: 70vw; height: 70vw; border-radius: 100%" />
       </div>
-      <div style="font-size: 20px; margin-top: 10px" text-center>John Doe</div>
+      <div style="font-size: 20px; margin-top: 10px" text-center>{{userInfoFirstName + " " + userInfoLastName }}</div>
       <div style="font-size: 10px" text-center>
         <ion-icon color="primary" style="" name="pin"></ion-icon>
-        Montreal, Canada </div>
+        Montreal, Canada</div>
     </div>
 
 
@@ -33,18 +33,18 @@
           <ion-row>
             <ion-col col-6>
               <ion-row>
-                <p style="margin:auto; font-size: 20px"><b>{{ticketObject.currentPosition}}</b></p>
+                <p style="margin:auto; font-size: 20px"><b>{{currentPosition}}</b></p>
               </ion-row>
               <ion-row>
-                <p style="margin:auto; font-size: 10px">CURRENT CLIENT</p>
+                <p style="margin:auto; font-size: 10px">CLIENT ACTUELE</p>
               </ion-row>
             </ion-col>
             <ion-col col-6>
               <ion-row>
-                <p style="margin:auto; font-size: 20px"><b>{{ticketObject.userPosition}}</b></p>
+                <p style="margin:auto; font-size: 20px"><b>{{userPosition}}</b></p>
               </ion-row>
               <ion-row>
-                <p style="margin:auto; font-size: 10px">YOUR POSITION</p>
+                <p style="margin:auto; font-size: 10px">VOTRE POSITION</p>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -57,7 +57,7 @@
         </ion-row>
 
         <ion-row>
-          <p style="margin:auto; font-size: 10px">TAKE A NUMBER</p>
+          <p style="margin:auto; font-size: 10px">PRENDRE UN NUMERO</p>
         </ion-row>
       </ion-grid>
     </div>

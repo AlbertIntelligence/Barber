@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Mario Perfect Cut</ion-title>
+    <ion-title>Contactez Mario Perfect Cut</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,48 +15,83 @@
 
 <ion-content class=" light-bg">
 
-  <div padding margin-top>
-  <ion-slides class="to-top" pager>
-    <ion-slide *ngFor="let image of barber.images">
-      <img src="{{ image }}" alt="">
-    </ion-slide>
-  </ion-slides>
-</div>
+  <!-- Show map here -->
+  <div style="height: 40vh;" id="map-detail"></div>
 
-  <!--Barber detail-->
-  <div class="primary-bg" padding>
-    <div class="pull-left">
-      <span ion-text color="light">BARBER NAME! </span>
-    </div>
-    <div class="clear"></div>
-  </div>
 
-  <!--price info-->
-  <div class="price-info" padding>
-    <div class="pull-left">
-      <span class="price" *ngIf="!barber.sale_price" ion-text color="light">{{ barber.price | currency:'USD':true }}</span>
-      <span class="sale-price" *ngIf="barber.sale_price"
-            ion-text color="light">20$</span><span ion-text color="light"></span>
-    </div>
-    <div class="pull-right">
-      <button ion-button color="white" (click)="goToPricing()">Choisie ton barber</button>
-    </div>
-    <div class="clear"></div>
-  </div>
+
 
   <!--services-->
-  <ion-grid class="border-bottom">
+  <ion-grid style="height: 10vh;" class="border-bottom">
     <ion-row>
-      <ion-col *ngFor="let service of barber.services" text-center>
-        <ion-icon class="text-2x" name="{{ service.icon }}" color="dark"></ion-icon>
-        <span class="service-name" ion-text color="dark">{{ service.name }}</span>
+      <ion-col col-1 text-left>
+        <ion-icon style="padding-top: 16px" class="text-2x" name="pin"  color="dark"></ion-icon>
+      </ion-col>
+      <ion-col col-11 text-left>
+        <span class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 22px" ion-text color="dark">1536 Boulevard Curé-Labelle #185</span>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <!-- Show map here -->
-  <div id="map-detail"></div>
+  <!--services-->
+  <ion-grid style="height: 10vh;" class="border-bottom">
+    <ion-row>
+      <ion-col col-1 text-left>
+        <ion-icon style="padding-top: 20px" class="text-2x" name="globe"  color="dark"></ion-icon>
+      </ion-col>
+      <ion-col col-11 text-left>
+        <a href="http://www.marioperfectcutbarbershop.com/" class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 20px" ion-text color="dark">marioperfectcutbarbershop.com</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
+  <!--services-->
+  <ion-grid  style="height: 10vh;" class="border-bottom">
+    <ion-row>
+      <ion-col col-1 text-left>
+        <ion-icon style="padding-top: 20px" class="text-2x" name="call"  color="dark"></ion-icon>
+      </ion-col>
+      <ion-col col-11 text-left>
+        <a href="tel:514-996-4730" class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 22px" ion-text color="dark">514-996-4730</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--services-->
+  <ion-grid  style="height: 10vh;" class="border-bottom">
+    <ion-row>
+      <ion-col col-1 text-left>
+        <ion-icon style="padding-top: 20px" class="" name="mail"  color="dark"></ion-icon>
+      </ion-col>
+      <ion-col col-11 text-left>
+        <a href="mailto:marioperfectcutbarbershop@gmail.com" class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 20px" ion-text color="dark">marioperfectcutbarbershop@gmail.com</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--services-->
+  <ion-grid  style="height: 10vh;" class="border-bottom">
+    <ion-row>
+      <ion-col col-1 text-left>
+        <ion-icon style="padding-top: 18px" class="text-2x" name="logo-instagram"  color="dark"></ion-icon>
+      </ion-col>
+      <ion-col col-11 text-left>
+        <a href="http://www.instagram.com/marioperfectcut" class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 22px" ion-text color="dark">instagram.com/marioperfectcut</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--services-->
+  <ion-grid  style="height: 10vh;" class="border-bottom">
+    <ion-row>
+      <ion-col col-1 text-left>
+        <ion-icon style="padding-top: 18px" class="text-2x" name="logo-facebook"  color="dark"></ion-icon>
+      </ion-col>
+      <ion-col col-11 text-left>
+        <a href="http://www.facebook.com/MarioPerfectCutBarberShop" class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 22px" ion-text color="dark">facebook.com/MarioPerfectCutBarberShop</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 
 </ion-content>

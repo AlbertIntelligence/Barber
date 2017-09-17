@@ -32,21 +32,47 @@ export class Alert {
   *****************************************************************************/
   presentAlert() {
     let alert = this.alertCtrl.create({
-      title: 'Payment Confirmation',
-      message: 'You will be charged 3$ on you credit card !',
+      title: 'Confirmation de ticket',
+      message: "Oui, j'accepte les Termes et Conditions de BarberMe",
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Canceler',
           role: 'cancel',
           handler: data => {
             console.log('Cancel clicked');
+            this.ticket.startTransaction=false;
           }
         },
         {
-          text: 'Confirm',
+          text: 'Confirmer',
             handler: data => {
               this.nav.push(TicketConfirmationPage);
+              this.ticket.startTransaction=true;
               this.ticket.makeTransaction();
+
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  /*****************************************************************************
+   Function: presentAlert
+   Description: This function display a warning on pop-up
+   Parameters: None
+   Return: None
+   *****************************************************************************/
+  ticketExist() {
+    let alert = this.alertCtrl.create({
+      title: 'Tu a deja un ticket.',
+      message: "Vous ne pouvez prendre plus d'un ticket.",
+      buttons: [
+        {
+          text: 'Ok',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
           }
         }
       ]
