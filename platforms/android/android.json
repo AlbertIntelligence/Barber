@@ -45,10 +45,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Toast\"><param name=\"android-package\" value=\"nl.xservices.plugins.Toast\" /></feature>",
                             "count": 1
                         },
@@ -58,6 +54,10 @@
                         },
                         {
                             "xml": "<feature name=\"CordovaStripe\"><param name=\"android-package\" value=\"com.zyramedia.cordova.stripe.CordovaStripe\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -112,9 +112,6 @@
             "APP_NAME": "MPC Mobile App",
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
-        },
         "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
@@ -122,6 +119,9 @@
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
         "cordova-plugin-stripe": {
+            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+        },
+        "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         }
     },
@@ -149,15 +149,6 @@
             "pluginId": "cordova-plugin-facebook4",
             "clobbers": [
                 "facebookConnectPlugin"
-            ]
-        },
-        {
-            "id": "cordova-plugin-inappbrowser.inappbrowser",
-            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-            "pluginId": "cordova-plugin-inappbrowser",
-            "clobbers": [
-                "cordova.InAppBrowser.open",
-                "window.open"
             ]
         },
         {
@@ -189,6 +180,15 @@
             "clobbers": [
                 "cordova.plugins.stripe"
             ]
+        },
+        {
+            "id": "cordova-plugin-inappbrowser.inappbrowser",
+            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+            "pluginId": "cordova-plugin-inappbrowser",
+            "clobbers": [
+                "cordova.InAppBrowser.open",
+                "window.open"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -196,9 +196,9 @@
         "cordova-plugin-console": "1.0.7",
         "cordova-plugin-device": "1.1.6",
         "cordova-plugin-facebook4": "1.9.1",
-        "cordova-plugin-inappbrowser": "1.7.1",
         "cordova-plugin-x-toast": "2.6.0",
         "ionic-plugin-keyboard": "2.2.1",
-        "cordova-plugin-stripe": "1.5.3"
+        "cordova-plugin-stripe": "1.5.3",
+        "cordova-plugin-inappbrowser": "1.7.1"
     }
 }

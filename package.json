@@ -25,6 +25,7 @@
         "@angular/platform-server": "2.4.8",
         "@ionic-native/core": "^3.12.1",
         "@ionic-native/facebook": "^3.12.1",
+        "@ionic-native/in-app-browser": "^4.2.1",
         "@ionic-native/keyboard": "^4.2.1",
         "@ionic-native/native-page-transitions": "^4.1.0",
         "@ionic-native/sms": "^4.1.0",
@@ -32,6 +33,7 @@
         "@ionic-native/toast": "^3.12.1",
         "@ionic/cloud-angular": "^0.12.0",
         "@ionic/storage": "2.0.1",
+        "@types/grecaptcha": "^2.0.33",
         "body-parser": "^1.18.1",
         "com.telerik.plugins.nativepagetransitions": "^0.6.5",
         "cordova-android": "^6.2.3",
@@ -45,7 +47,7 @@
         "cordova-plugin-x-toast": "^2.6.0",
         "cors": "^2.8.4",
         "express": "^4.15.4",
-        "firebase": "^4.1.2",
+        "firebase": "^4.3.1",
         "intl-tel-input": "^12.0.1",
         "ionic-angular": "3.3.0",
         "ionic-native": "^2.4.1",
@@ -75,7 +77,6 @@
     "cordova": {
         "plugins": {
             "cordova-plugin-x-toast": {},
-            "cordova-plugin-inappbrowser": {},
             "cordova-plugin-facebook4": {
                 "APP_ID": "318855111853318",
                 "APP_NAME": "MPC Mobile App"
@@ -84,7 +85,8 @@
             "cordova-plugin-console": {},
             "com.telerik.plugins.nativepagetransitions": {},
             "ionic-plugin-keyboard": {},
-            "cordova-plugin-stripe": {}
+            "cordova-plugin-stripe": {},
+            "cordova-plugin-inappbrowser": {}
         },
         "platforms": [
             "android",

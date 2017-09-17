@@ -227,7 +227,6 @@ export class PhoneNumberPage {
         }, 1000);
 
         this.currentView = "phoneNumber";
-        this.pay();
     }
   }
 
@@ -488,9 +487,10 @@ export class PhoneNumberPage {
   Return: void
   *****************************************************************************/
   signInWithPhoneNumber() {
-    //const appVerifier = this.recaptchaVerifier;
-    const appVerifier = new firebase.auth.RecaptchaVerifier('nextBtn', {'size': 'invisible'});
+    const appVerifier = this.recaptchaVerifier;
+    //const appVerifier = new firebase.auth.RecaptchaVerifier('nextBtn', {'size': 'invisible'});
     var value = $("#input").val();
+    appVerifier.verify();
     const phoneNumberString = "+1" + value.substring(1, 4) + value.substring(6, 9) + value.substring(10, 14);
 
     firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
@@ -500,6 +500,7 @@ export class PhoneNumberPage {
         this.smsConfirmation = confirmationResult;
       })
       .catch(function (error) {
+        alert(error);
         console.error("SMS not sent", error);
       });
   }
@@ -563,7 +564,7 @@ export class PhoneNumberPage {
     var year = parseInt('20' + $("#expirationDate").children().eq(0).val().substring(3, 5));
     var cvc = $("#cvv").children().eq(0).val().toString();
 
-    cardinfo: any = {
+    var cardinfo = {
       number: cardNumber,
       expMonth: month,
       expYear: year,

@@ -68,9 +68,6 @@
             "APP_NAME": "MPC Mobile App",
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
-        },
         "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
@@ -78,6 +75,9 @@
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
         "cordova-plugin-stripe": {
+            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+        },
+        "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         }
     },
@@ -114,21 +114,6 @@
             ]
         },
         {
-            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-            "id": "cordova-plugin-inappbrowser.inappbrowser",
-            "pluginId": "cordova-plugin-inappbrowser",
-            "clobbers": [
-                "cordova.InAppBrowser.open",
-                "window.open"
-            ]
-        },
-        {
-            "file": "plugins/cordova-plugin-inappbrowser/src/browser/InAppBrowserProxy.js",
-            "id": "cordova-plugin-inappbrowser.InAppBrowserProxy",
-            "pluginId": "cordova-plugin-inappbrowser",
-            "runs": true
-        },
-        {
             "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
             "id": "cordova-plugin-x-toast.Toast",
             "pluginId": "cordova-plugin-x-toast",
@@ -163,6 +148,21 @@
             "id": "cordova-plugin-stripe.CordovaStripe",
             "pluginId": "cordova-plugin-stripe",
             "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+            "id": "cordova-plugin-inappbrowser.inappbrowser",
+            "pluginId": "cordova-plugin-inappbrowser",
+            "clobbers": [
+                "cordova.InAppBrowser.open",
+                "window.open"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-inappbrowser/src/browser/InAppBrowserProxy.js",
+            "id": "cordova-plugin-inappbrowser.InAppBrowserProxy",
+            "pluginId": "cordova-plugin-inappbrowser",
+            "runs": true
         }
     ],
     "plugin_metadata": {
@@ -170,9 +170,9 @@
         "cordova-plugin-console": "1.0.7",
         "cordova-plugin-device": "1.1.6",
         "cordova-plugin-facebook4": "1.9.1",
-        "cordova-plugin-inappbrowser": "1.7.1",
         "cordova-plugin-x-toast": "2.6.0",
         "ionic-plugin-keyboard": "2.2.1",
-        "cordova-plugin-stripe": "1.5.3"
+        "cordova-plugin-stripe": "1.5.3",
+        "cordova-plugin-inappbrowser": "1.7.1"
     }
 }

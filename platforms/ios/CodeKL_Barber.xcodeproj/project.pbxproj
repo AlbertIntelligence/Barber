@@ -24,7 +24,6 @@
 		A08458FBE2AF4483A05E9C9B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB18346419594420B0AFDB9C /* FBSDKCoreKit.framework */; };
 		CB8C2CCA9A0745E2AF23DB06 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21DADD72E9A2422EB93A3D5F /* FBSDKLoginKit.framework */; };
 		00C03CE31CE645759D174F9B /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D06F9B4A344F409719C8CE /* FBSDKShareKit.framework */; };
-		62D662210AAB4C58945F6E65 /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = DC472FF79E354A6298BB5627 /* CDVInAppBrowser.m */; };
 		66B65835E98640309CB469E3 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = A28C0DD65C8E4E539D861797 /* Toast+UIView.m */; };
 		0BA40A1ABC424690A805C90A /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DEF9BAEAD764D29B38800B2 /* Toast.m */; };
 		393B56833E5C42AFA38E35FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD9203D62284CEBB5DBD7DC /* QuartzCore.framework */; };
@@ -33,6 +32,7 @@
 		D396171A6A6E423282BEF409 /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CB5D30B754391AB32F59F /* IonicKeyboard.m */; };
 		748E3EC3AAF94CEEB6F52233 /* CordovaStripe.m in Sources */ = {isa = PBXBuildFile; fileRef = 09EAA9D1E8294969A2C63E9F /* CordovaStripe.m */; };
 		36B726E5F1854E3AA7F5F66E /* Stripe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4973F77B5D2A4B2DBF5919D8 /* Stripe.framework */; };
+		CDCE13E21F1C4BF8BA653FAC /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FB6DC1266F465D8AE1D35E /* CDVInAppBrowser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,8 +84,6 @@
 		AB18346419594420B0AFDB9C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; name = "FBSDKCoreKit.framework"; path = "CodeKL_Barber/Plugins/cordova-plugin-facebook4/FBSDKCoreKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		21DADD72E9A2422EB93A3D5F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; name = "FBSDKLoginKit.framework"; path = "CodeKL_Barber/Plugins/cordova-plugin-facebook4/FBSDKLoginKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		87D06F9B4A344F409719C8CE /* FBSDKShareKit.framework */ = {isa = PBXFileReference; name = "FBSDKShareKit.framework"; path = "CodeKL_Barber/Plugins/cordova-plugin-facebook4/FBSDKShareKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		DC472FF79E354A6298BB5627 /* CDVInAppBrowser.m */ = {isa = PBXFileReference; name = "CDVInAppBrowser.m"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
-		CF2E475F4E694F82B37555AA /* CDVInAppBrowser.h */ = {isa = PBXFileReference; name = "CDVInAppBrowser.h"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		A28C0DD65C8E4E539D861797 /* Toast+UIView.m */ = {isa = PBXFileReference; name = "Toast+UIView.m"; path = "cordova-plugin-x-toast/Toast+UIView.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		9DEF9BAEAD764D29B38800B2 /* Toast.m */ = {isa = PBXFileReference; name = "Toast.m"; path = "cordova-plugin-x-toast/Toast.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		939D2977E45E47459FEB1F3C /* Toast+UIView.h */ = {isa = PBXFileReference; name = "Toast+UIView.h"; path = "cordova-plugin-x-toast/Toast+UIView.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
@@ -100,6 +98,8 @@
 		09EAA9D1E8294969A2C63E9F /* CordovaStripe.m */ = {isa = PBXFileReference; name = "CordovaStripe.m"; path = "cordova-plugin-stripe/CordovaStripe.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		7E34DE7594D04BA0824A5350 /* CordovaStripe.h */ = {isa = PBXFileReference; name = "CordovaStripe.h"; path = "cordova-plugin-stripe/CordovaStripe.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		4973F77B5D2A4B2DBF5919D8 /* Stripe.framework */ = {isa = PBXFileReference; name = "Stripe.framework"; path = "CodeKL_Barber/Plugins/cordova-plugin-stripe/Stripe.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		C3FB6DC1266F465D8AE1D35E /* CDVInAppBrowser.m */ = {isa = PBXFileReference; name = "CDVInAppBrowser.m"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		B14A628C4077450383FF5739 /* CDVInAppBrowser.h */ = {isa = PBXFileReference; name = "CDVInAppBrowser.h"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,8 +223,6 @@
 				23D2E1B277C841B8807DC68F /* CDVDevice.h */,
 				BBB6399F49E64F65B82DB698 /* FacebookConnectPlugin.m */,
 				E9962DB1E2984F85AD635066 /* FacebookConnectPlugin.h */,
-				DC472FF79E354A6298BB5627 /* CDVInAppBrowser.m */,
-				CF2E475F4E694F82B37555AA /* CDVInAppBrowser.h */,
 				A28C0DD65C8E4E539D861797 /* Toast+UIView.m */,
 				9DEF9BAEAD764D29B38800B2 /* Toast.m */,
 				939D2977E45E47459FEB1F3C /* Toast+UIView.h */,
@@ -237,6 +235,8 @@
 				696EABE8DC7D4FA4A3CC924F /* IonicKeyboard.h */,
 				09EAA9D1E8294969A2C63E9F /* CordovaStripe.m */,
 				7E34DE7594D04BA0824A5350 /* CordovaStripe.h */,
+				C3FB6DC1266F465D8AE1D35E /* CDVInAppBrowser.m */,
+				B14A628C4077450383FF5739 /* CDVInAppBrowser.h */,
 			);
 			name = Plugins;
 			path = "CodeKL_Barber/Plugins";
@@ -352,13 +352,13 @@
 				34D6CBAA3781461CB6B11C73 /* CDVLogger.m in Sources */,
 				3CA50308B1CF4918A1069C24 /* CDVDevice.m in Sources */,
 				7ACA5F7257554391B9FE3B05 /* FacebookConnectPlugin.m in Sources */,
-				62D662210AAB4C58945F6E65 /* CDVInAppBrowser.m in Sources */,
 				66B65835E98640309CB469E3 /* Toast+UIView.m in Sources */,
 				0BA40A1ABC424690A805C90A /* Toast.m in Sources */,
 				638C267549B54994AA87338D /* NativePageTransitions.m in Sources */,
 				C4EBBC961B5944A3905FBAC5 /* AppDelegate+nativepagetransitions.m in Sources */,
 				D396171A6A6E423282BEF409 /* IonicKeyboard.m in Sources */,
 				748E3EC3AAF94CEEB6F52233 /* CordovaStripe.m in Sources */,
+				CDCE13E21F1C4BF8BA653FAC /* CDVInAppBrowser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

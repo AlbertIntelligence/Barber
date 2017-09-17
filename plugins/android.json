@@ -21,9 +21,6 @@
             "APP_NAME": "MPC Mobile App",
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
-        },
         "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
@@ -31,6 +28,9 @@
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
         "cordova-plugin-stripe": {
+            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+        },
+        "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         }
     },
