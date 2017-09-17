@@ -44,7 +44,8 @@ export class PhoneNumberPage {
   }
 
   ionViewDidLoad() {
-    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {'size' : 'invisible'});
+    this.recaptchaVerifier.render();
   }
 
   @HostListener('document:keyup', ['$event'])
@@ -559,7 +560,7 @@ export class PhoneNumberPage {
   Return: None
   *****************************************************************************/
   createNewUser() {
-    var cardNumber = $("#cardNumber").children().eq(0).val().toString();
+    var cardNumber = $("#cardNumber").children().eq(1).val().toString();
     var month = parseInt($("#expirationDate").children().eq(0).val().substring(0, 2));
     var year = parseInt('20' + $("#expirationDate").children().eq(0).val().substring(3, 5));
     var cvc = $("#cvv").children().eq(0).val().toString();
@@ -684,27 +685,38 @@ export class PhoneNumberPage {
   }
 
   /*****************************************************************************
-  Function: proceedPayment
-  Description: Proceed to the user payment via stripe
-  Parameters: none
+  Function: getCreditCardToken
+  Description: Retrieve user credit card token from stripe api
+  Parameters: cardinfo (obj of card infos)
   Return: void
   *****************************************************************************/
   getCreditCardToken(cardinfo) {
     this.stripe.setPublishableKey('pk_test_0Ghlv6GvobZIFI0SyNuDglPL');
     this.stripe.createCardToken(cardinfo).then((token) => {
       this.cardToken = token;
-      /*var data = 'stripetoken=' + token + '&amount=50';
-      var headers = new Headers();
-      headers.append('Content-Type', 'application/x-www-form-urlencoded')
-      this.http.post('http://192.168.27.1:3333/processpay', data, { headers: headers }).subscribe((res) => {
-        if (res.json().success) {
-          console.log('transaction Successfull!!');
-        } else {
-          console.log('transaction failed!!');
-        }
-      });*/
+      console.log(token);
     }).catch((error) => {
         console.log(error);
+    });
+  }
+
+  /*****************************************************************************
+  Function: pay
+  Description: Proceed to payment
+  Parameters: token (user credit card token), amount (amount to be charged to the user)
+              email (user email)
+  Return: void
+  *****************************************************************************/
+  pay(token, amount, email) {
+    var data = 'stripetoken=' + token + '&amount=' + amount + '&email=' + email;
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded')
+    this.http.post('http://192.168.27.1:3333/processpay', data, { headers: headers }).subscribe((res) => {
+      if (res.json().success) {
+        console.log('transaction Successfull!!');
+      } else {
+        console.log('transaction failed!!');
+      }
     });
   }
 
