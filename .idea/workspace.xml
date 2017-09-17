@@ -2,22 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18e0a697-649c-47cf-87ba-f412d7bb9cb8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/app.module.ts" afterPath="$PROJECT_DIR$/src/app/app.module.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/alert/alert.ts" afterPath="$PROJECT_DIR$/src/pages/alert/alert.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html" afterPath="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts" afterPath="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/home/home.html" afterPath="$PROJECT_DIR$/src/pages/home/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/home/home.ts" afterPath="$PROJECT_DIR$/src/pages/home/home.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/ticket-confirmation/ticket-confirmation.html" afterPath="$PROJECT_DIR$/src/pages/ticket-confirmation/ticket-confirmation.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/ticket-confirmation/ticket-confirmation.scss" afterPath="$PROJECT_DIR$/src/pages/ticket-confirmation/ticket-confirmation.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/ticket-confirmation/ticket-confirmation.ts" afterPath="$PROJECT_DIR$/src/pages/ticket-confirmation/ticket-confirmation.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/build/main.css" afterPath="$PROJECT_DIR$/www/build/main.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/build/main.js" afterPath="$PROJECT_DIR$/www/build/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/build/main.js.map" afterPath="$PROJECT_DIR$/www/build/main.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/build/vendor.js" afterPath="$PROJECT_DIR$/www/build/vendor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/build/vendor.js.map" afterPath="$PROJECT_DIR$/www/build/vendor.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -34,8 +22,8 @@
       <file leaf-file-name="get-a-ticket.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="41" column="27" lean-forward="true" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+            <state relative-caret-position="77">
+              <caret line="55" column="43" lean-forward="false" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="43" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
               </folding>
@@ -43,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="get-a-ticket.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="get-a-ticket.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1468">
-              <caret line="178" column="30" lean-forward="false" selection-start-line="178" selection-start-column="9" selection-end-line="178" selection-end-column="30" />
+            <state relative-caret-position="100">
+              <caret line="42" column="31" lean-forward="false" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -55,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="alert.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="alert.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/alert/alert.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="65" column="13" lean-forward="false" selection-start-line="65" selection-start-column="2" selection-end-line="65" selection-end-column="13" />
+            <state relative-caret-position="300">
+              <caret line="48" column="14" lean-forward="false" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
               <folding>
                 <element signature="e#1#43#0" expanded="true" />
               </folding>
@@ -91,6 +79,8 @@
       <find>toolbar-background</find>
       <find>presentAlert</find>
       <find>confirmation</find>
+      <find>confirmMessage</find>
+      <find>TicketConfirmationPage</find>
       <find>getTicketConfirmation</find>
     </findStrings>
   </component>
@@ -117,8 +107,8 @@
         <option value="$PROJECT_DIR$/src/pages/home/home.html" />
         <option value="$PROJECT_DIR$/src/pages/phone-number/phone-number.html" />
         <option value="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html" />
-        <option value="$PROJECT_DIR$/src/pages/alert/alert.ts" />
         <option value="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts" />
+        <option value="$PROJECT_DIR$/src/pages/alert/alert.ts" />
       </list>
     </option>
   </component>
@@ -245,12 +235,12 @@
       <updated>1505424789615</updated>
       <workItem from="1505424800139" duration="13634000" />
       <workItem from="1505456626771" duration="2777000" />
-      <workItem from="1505603579588" duration="8264000" />
+      <workItem from="1505603579588" duration="9643000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47310000" />
+    <option name="totallyTimeSpent" value="48689000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -775,10 +765,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="42" column="31" lean-forward="false" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="41" column="27" lean-forward="true" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+        <state relative-caret-position="77">
+          <caret line="55" column="43" lean-forward="false" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="43" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
           </folding>
@@ -787,20 +787,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/alert/alert.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="65" column="13" lean-forward="false" selection-start-line="65" selection-start-column="2" selection-end-line="65" selection-end-column="13" />
+        <state relative-caret-position="300">
+          <caret line="48" column="14" lean-forward="false" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
           <folding>
             <element signature="e#1#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1468">
-          <caret line="178" column="30" lean-forward="false" selection-start-line="178" selection-start-column="9" selection-end-line="178" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>

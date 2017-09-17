@@ -40,13 +40,9 @@ export class GetaTicketPage {
   public makeTransaction(){
 
     if( this.startTransaction ) {
-      if(this.isAvailable()) {
         this.addClientToList();
         this.setHiddeDiv(false);
         this.TicketDiv();
-      }
-      else
-        alert("Vous ne pouvez pas prendre plus d'un ticket");
     }
 
   }
@@ -172,7 +168,11 @@ export class GetaTicketPage {
   }
 
   public confirmMessage() {
-    this.newAlert.presentAlert();
+    if(this.isAvailable()) {
+      this.newAlert.presentAlert();
+    }
+    else
+      this.newAlert.ticketExist();
   }
 
   // Open ticket confirmation view page

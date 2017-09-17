@@ -44,13 +44,9 @@ let GetaTicketPage = class GetaTicketPage {
     }
     makeTransaction() {
         if (this.startTransaction) {
-            if (this.isAvailable()) {
-                this.addClientToList();
-                this.setHiddeDiv(false);
-                this.TicketDiv();
-            }
-            else
-                alert("Vous ne pouvez pas prendre plus d'un ticket");
+            this.addClientToList();
+            this.setHiddeDiv(false);
+            this.TicketDiv();
         }
     }
     //------------------------------------------THIS IS THE FIREBASE FUNCTION SECTION----------------------------------------------//
@@ -154,7 +150,11 @@ let GetaTicketPage = class GetaTicketPage {
         return this.hiddenDiv;
     }
     confirmMessage() {
-        this.newAlert.presentAlert();
+        if (this.isAvailable()) {
+            this.newAlert.presentAlert();
+        }
+        else
+            this.newAlert.ticketExist();
     }
     // Open ticket confirmation view page
     getTicketConfirmation() {
@@ -1533,23 +1533,14 @@ let Alert = class Alert {
      *****************************************************************************/
     ticketExist() {
         let alert = this.alertCtrl.create({
-            title: 'Confirmation de ticket',
-            message: "Oui, j'accepte les Termes et Conditions de BarberMe",
+            title: 'Tu a deja un ticket.',
+            message: "Vous ne pouvez prendre plus d'un ticket.",
             buttons: [
                 {
-                    text: 'Canceler',
+                    text: 'Ok',
                     role: 'cancel',
                     handler: data => {
                         console.log('Cancel clicked');
-                        this.ticket.startTransaction = false;
-                    }
-                },
-                {
-                    text: 'Confirmer',
-                    handler: data => {
-                        this.nav.push(__WEBPACK_IMPORTED_MODULE_2__ticket_confirmation_ticket_confirmation__["a" /* TicketConfirmationPage */]);
-                        this.ticket.startTransaction = true;
-                        this.ticket.makeTransaction();
                     }
                 }
             ]
