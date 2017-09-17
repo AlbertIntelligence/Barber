@@ -52,21 +52,17 @@ let GetaTicketPage = class GetaTicketPage {
     //------------------------------------------THIS IS THE FIREBASE FUNCTION SECTION----------------------------------------------//
     getUserInfo() {
         //initilize those empty string to make compiler happy
-        var firstName = "";
-        var lastName = "";
-        var email = "";
-        var phoneNumber = "";
-        var Date = "";
         var userData;
+        var self = this;
         var userId = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.auth().currentUser.uid;
         const userInfo = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref("Users/" + userId + "/");
         userInfo.on('value', snap => userData = snap.val());
-        this.userInfoFirstName = userData.firstName;
-        this.userInfoLastName = userData.lastName;
-        this.userInfoEmailName = userData.email;
-        this.userInfoPhoneNumber = userData.phoneNumber;
-        this.userInfoUserId = userId;
-        this.userInfoRegistrationDate = userData.Date;
+        self.userInfoFirstName = userData.firstName;
+        self.userInfoLastName = userData.lastName;
+        self.userInfoEmailName = userData.email;
+        self.userInfoPhoneNumber = userData.phoneNumber;
+        self.userInfoUserId = userId;
+        self.userInfoRegistrationDate = userData.Date;
     }
     /*****************************************************************************
      Function: checkPayment
@@ -1782,6 +1778,7 @@ PricingPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__get_a_ticket_get_a_ticket__ = __webpack_require__(148);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1794,6 +1791,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /*
  Generated class for the LoginPage page.
 
@@ -1801,8 +1799,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  Ionic pages and navigation.
  */
 let SettingsPage = class SettingsPage {
-    constructor(nav) {
+    constructor(nav, getTicket) {
         this.nav = nav;
+        this.getTicket = getTicket;
+        this.firstName = getTicket.userInfoFirstName;
+        this.lastName = getTicket.userInfoLastName;
+        this.email = this.getTicket.userInfoEmailName;
     }
     /*****************************************************************************
     Function: logout
@@ -1816,11 +1818,12 @@ let SettingsPage = class SettingsPage {
 };
 SettingsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'page-settings',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/settings/settings.html"*/'<!--\n  Generated template for the Settings page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header class="no-shadow">\n\n  <ion-navbar class="no-border" color="primary">\n    <ion-title>PARAMÈTRES</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="common-bg">\n  <!--top information-->\n  <div class="top-info" padding>\n    <div padding-top>\n      <h5 ion-text color="white">John Doe</h5>\n      <span ion-text color="white">johndoe@mail.com</span>\n    </div>\n  </div>\n\n  <!--user settings-->\n    <ion-item-group style="margin-top: 10px">\n      <ion-item-divider color="bg-color">Notifications</ion-item-divider>\n      <ion-item>\n        <ion-label>Notification push</ion-label>\n        <ion-toggle color="primary" checked="true"></ion-toggle>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Notification par courriel</ion-label>\n        <ion-toggle color="primary" checked="true"></ion-toggle>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Notification par SMS</ion-label>\n        <ion-toggle color="primary" checked="true"></ion-toggle>\n      </ion-item>\n    </ion-item-group>\n\n\n    <ion-item-group style="margin-top: 10px">\n      <ion-item-divider color="bg-color">Informations légales</ion-item-divider>\n        <ion-list>\n          <button ion-item>Termes et conditions</button>\n        </ion-list>\n      <ion-item-divider color="bg-color"></ion-item-divider>\n    </ion-item-group>\n\n    <!--sign out button-->\n    <div style="padding-left: 10%; padding-right: 10%">\n      <button ion-button class="round" color="orange" full (click)="logout()">SE DECONNECTER</button>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/settings/settings.html"*/
+        selector: 'page-settings',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/settings/settings.html"*/'<!--\n  Generated template for the Settings page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header class="no-shadow">\n\n  <ion-navbar class="no-border" color="primary">\n    <ion-title>PARAMÈTRES</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="common-bg">\n  <!--top information-->\n  <div class="top-info" padding>\n    <div padding-top>\n      <h5 ion-text color="white">{{firstName + " " + lastName}}</h5>\n      <span ion-text color="white">{{email}}</span>\n    </div>\n  </div>\n\n  <!--user settings-->\n    <ion-item-group style="margin-top: 10px">\n      <ion-item-divider color="bg-color">Notifications</ion-item-divider>\n      <ion-item>\n        <ion-label>Notification push</ion-label>\n        <ion-toggle color="primary" checked="true"></ion-toggle>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Notification par courriel</ion-label>\n        <ion-toggle color="primary" checked="true"></ion-toggle>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Notification par SMS</ion-label>\n        <ion-toggle color="primary" checked="true"></ion-toggle>\n      </ion-item>\n    </ion-item-group>\n\n\n    <ion-item-group style="margin-top: 10px">\n      <ion-item-divider color="bg-color">Informations légales</ion-item-divider>\n        <ion-list>\n          <button ion-item>Termes et conditions</button>\n        </ion-list>\n      <ion-item-divider color="bg-color"></ion-item-divider>\n    </ion-item-group>\n\n    <!--sign out button-->\n    <div style="padding-left: 10%; padding-right: 10%">\n      <button ion-button class="round" color="orange" full (click)="logout()">SE DECONNECTER</button>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/settings/settings.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__get_a_ticket_get_a_ticket__["a" /* GetaTicketPage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__get_a_ticket_get_a_ticket__["a" /* GetaTicketPage */]) === "function" && _b || Object])
 ], SettingsPage);
 
+var _a, _b;
 //# sourceMappingURL=settings.js.map
 
 /***/ }),
@@ -2073,6 +2076,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 //import { Facebook } from '@ionic-native/facebook';
 
 
@@ -2154,6 +2158,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_13__pages_phone_number_phone_number__["a" /* PhoneNumberPage */],
             __WEBPACK_IMPORTED_MODULE_20__ionic_native_keyboard__["a" /* Keyboard */],
             __WEBPACK_IMPORTED_MODULE_21__ionic_native_sms__["a" /* SMS */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
             //Facebook,
             providers,
             __WEBPACK_IMPORTED_MODULE_16__pages_progress_bar_progress_bar__["a" /* ProgressBarComponent */]

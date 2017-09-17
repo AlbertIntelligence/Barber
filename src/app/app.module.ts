@@ -1,4 +1,5 @@
 import {NgModule} from "@angular/core";
+import {NavController} from "ionic-angular";
 import {IonicApp, IonicModule } from "ionic-angular";
 import {MyApp} from "./app.component";
 import {BrowserModule} from '@angular/platform-browser';
@@ -88,6 +89,7 @@ const providers = [ ];
     PhoneNumberPage,
     Keyboard,
     SMS,
+    NavController,
     //Facebook,
     providers,
     ProgressBarComponent

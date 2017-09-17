@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18e0a697-649c-47cf-87ba-f412d7bb9cb8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/alert/alert.ts" afterPath="$PROJECT_DIR$/src/pages/alert/alert.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/app.module.ts" afterPath="$PROJECT_DIR$/src/app/app.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts" afterPath="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/settings/settings.html" afterPath="$PROJECT_DIR$/src/pages/settings/settings.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/settings/settings.ts" afterPath="$PROJECT_DIR$/src/pages/settings/settings.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/build/main.js" afterPath="$PROJECT_DIR$/www/build/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/build/main.js.map" afterPath="$PROJECT_DIR$/www/build/main.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,7 +27,7 @@
       <file leaf-file-name="get-a-ticket.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
+            <state relative-caret-position="331">
               <caret line="55" column="43" lean-forward="false" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="43" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
@@ -31,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="get-a-ticket.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts">
+      <file leaf-file-name="settings.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/settings/settings.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="42" column="31" lean-forward="false" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+            <state relative-caret-position="16">
+              <caret line="23" column="21" lean-forward="false" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -43,13 +48,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="alert.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/pages/alert/alert.ts">
+      <file leaf-file-name="home.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/home/home.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="48" column="14" lean-forward="false" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
+            <state relative-caret-position="15">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/home/home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="958">
+              <caret line="68" column="37" lean-forward="true" selection-start-line="68" selection-start-column="37" selection-end-line="68" selection-end-column="37" />
               <folding>
-                <element signature="e#1#43#0" expanded="true" />
+                <element signature="n#style#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-icon#0;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#ion-col#1;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#span#0;n#ion-col#1;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-icon#0;n#ion-col#0;n#ion-row#1;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#ion-col#1;n#ion-row#1;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#span#0;n#ion-col#1;n#ion-row#1;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-icon#0;n#ion-row#0;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#ion-row#1;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#ion-row#2;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-col#0;n#ion-row#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-label#0;n#ion-col#0;n#ion-row#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-col#0;n#ion-row#1;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ion-label#0;n#ion-col#0;n#ion-row#1;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/settings/settings.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="185">
+              <caret line="91" column="18" lean-forward="false" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#1099#1204#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -79,9 +132,9 @@
       <find>toolbar-background</find>
       <find>presentAlert</find>
       <find>confirmation</find>
-      <find>confirmMessage</find>
       <find>TicketConfirmationPage</find>
       <find>getTicketConfirmation</find>
+      <find>confirmMessage</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -91,7 +144,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/pages/home/home.scss" />
-        <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/pages/barber-location/barber-location.ts" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/pages/barber-location/barber-location.html" />
@@ -99,7 +151,6 @@
         <option value="$PROJECT_DIR$/src/pages/progress-bar/progress-bar.scss" />
         <option value="$PROJECT_DIR$/src/pages/progress-bar/progress-bar.ts" />
         <option value="$PROJECT_DIR$/src/pages/home/home.ts" />
-        <option value="$PROJECT_DIR$/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/src/pages/ticket-confirmation/ticket-confirmation.scss" />
         <option value="$PROJECT_DIR$/src/pages/ticket-confirmation/ticket-confirmation.ts" />
         <option value="$PROJECT_DIR$/src/pages/ticket-confirmation/ticket-confirmation.html" />
@@ -107,8 +158,12 @@
         <option value="$PROJECT_DIR$/src/pages/home/home.html" />
         <option value="$PROJECT_DIR$/src/pages/phone-number/phone-number.html" />
         <option value="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html" />
-        <option value="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts" />
         <option value="$PROJECT_DIR$/src/pages/alert/alert.ts" />
+        <option value="$PROJECT_DIR$/src/index.html" />
+        <option value="$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts" />
+        <option value="$PROJECT_DIR$/src/pages/settings/settings.ts" />
+        <option value="$PROJECT_DIR$/src/pages/settings/settings.html" />
+        <option value="$PROJECT_DIR$/src/app/app.module.ts" />
       </list>
     </option>
   </component>
@@ -158,6 +213,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -181,21 +238,19 @@
               <item name="Barber" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="alert" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Barber" type="b2602c69:ProjectViewProjectNode" />
               <item name="Barber" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="phone-number" type="462c0819:PsiDirectoryNode" />
+              <item name="settings" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -235,12 +290,13 @@
       <updated>1505424789615</updated>
       <workItem from="1505424800139" duration="13634000" />
       <workItem from="1505456626771" duration="2777000" />
-      <workItem from="1505603579588" duration="9643000" />
+      <workItem from="1505603579588" duration="11009000" />
+      <workItem from="1505660486360" duration="898000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48689000" />
+    <option name="totallyTimeSpent" value="50953000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -306,23 +362,11 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="24" lean-forward="false" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/home/home.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="21" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -390,9 +434,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1095">
           <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -501,13 +543,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/barber-location/BarberLocationModel.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -523,42 +558,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/settings/settings.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="25" column="3" lean-forward="false" selection-start-line="25" selection-start-column="3" selection-end-line="41" selection-end-column="21" />
-          <folding>
-            <element signature="n#style#0;n#ion-item-group#0;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#ion-content#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/barber-location/barber-location.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
           <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#ion-grid#0;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#ion-icon#0;n#ion-col#0;n#ion-row#0;n#ion-grid#0;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#ion-col#1;n#ion-row#0;n#ion-grid#0;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#ion-icon#0;n#ion-col#0;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#a#0;n#ion-col#1;n#ion-row#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#ion-icon#0;n#ion-col#0;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#a#0;n#ion-col#1;n#ion-row#0;n#ion-grid#2;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#ion-icon#0;n#ion-col#0;n#ion-row#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#a#0;n#ion-col#1;n#ion-row#0;n#ion-grid#3;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#ion-grid#4;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#ion-icon#0;n#ion-col#0;n#ion-row#0;n#ion-grid#4;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#a#0;n#ion-col#1;n#ion-row#0;n#ion-grid#4;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#ion-grid#5;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#ion-icon#0;n#ion-col#0;n#ion-row#0;n#ion-grid#5;n#ion-content#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#a#0;n#ion-col#1;n#ion-row#0;n#ion-grid#5;n#ion-content#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -586,7 +589,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -594,7 +596,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="6" lean-forward="false" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -602,7 +603,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -618,16 +618,6 @@
         <state relative-caret-position="-5122">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="92" column="24" lean-forward="false" selection-start-line="92" selection-start-column="24" selection-end-line="92" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -649,7 +639,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="130" lean-forward="false" selection-start-line="19" selection-start-column="130" selection-end-line="19" selection-end-column="130" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -665,7 +654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -673,25 +661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-22999">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/home/home.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-14">
-          <caret line="22" column="21" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -699,7 +668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="319">
           <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -707,7 +675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="56">
           <caret line="137" column="17" lean-forward="true" selection-start-line="137" selection-start-column="17" selection-end-line="137" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -715,7 +682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -728,13 +694,83 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/getanappointment/GetAnAppointmentModel.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-904">
+          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/alert/alert.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="48" column="14" lean-forward="false" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
+          <folding>
+            <element signature="e#1#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="3" lean-forward="false" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="55" column="43" lean-forward="false" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="28" column="67" lean-forward="false" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/settings/settings.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="23" column="21" lean-forward="false" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/settings/settings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/home/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
+        <state relative-caret-position="958">
           <caret line="68" column="37" lean-forward="true" selection-start-line="68" selection-start-column="37" selection-end-line="68" selection-end-column="37" />
           <folding>
             <element signature="n#style#0;n#ion-grid#1;n#ion-content#0;n#!!top" expanded="true" />
@@ -757,40 +793,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/getanappointment/GetAnAppointmentModel.ts">
+    <entry file="file://$PROJECT_DIR$/src/pages/home/home.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-904">
-          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.ts">
+    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="42" column="31" lean-forward="false" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+        <state relative-caret-position="185">
+          <caret line="91" column="18" lean-forward="false" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
           <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/get-a-ticket/get-a-ticket.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="55" column="43" lean-forward="false" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="43" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/alert/alert.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="48" column="14" lean-forward="false" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
-          <folding>
-            <element signature="e#1#43#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#1099#1204#0" expanded="true" />
           </folding>
         </state>
       </provider>
