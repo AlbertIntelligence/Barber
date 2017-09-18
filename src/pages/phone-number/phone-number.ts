@@ -31,6 +31,11 @@ export class PhoneNumberPage {
   private smsConfirmation: any;
   private userAccounts:Array<any> = [];
   private cardToken:any;
+  private phoneNumber:String;
+  private email:string;
+  private password:string;
+  private firstName:String;
+  private lastName:String;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -44,8 +49,7 @@ export class PhoneNumberPage {
   }
 
   ionViewDidLoad() {
-    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {'size' : 'invisible'});
-    this.recaptchaVerifier.render();
+    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('nextBtn', {'size' : 'invisible'});
   }
 
   @HostListener('document:keyup', ['$event'])
@@ -394,6 +398,7 @@ export class PhoneNumberPage {
       //Go to enter your name password
       case "email":
         var email = $("#emailInput").children().eq(0).val();
+        this.email = email;
         if (email.length > 0 && email.indexOf("@") != -1 && email.indexOf(".") != -1) {
             this.currentView = "password";
             $("#passwordInput").css('border-bottom', '2px solid black');
@@ -411,6 +416,7 @@ export class PhoneNumberPage {
       //Go to enter your name view
       case "password":
         var password = $("#passwordInput").children().eq(0).val();
+        this.password = password;
         if (password.length >= 5) {
             this.currentView = "name";
             $("#firstName").css('border-bottom', '2px solid black');
@@ -420,7 +426,6 @@ export class PhoneNumberPage {
             this.translate($("#nameInput"), "-100vw", "0px");
             this.translate($("#passwordInput"), "-200vw", "0px");
             setTimeout(() => { $("#firstName").children().eq(0).focus(); }, 1000);
-            this.linkWithEmailAuth();
           } else {
            $("#passwordInput").css('border-bottom', '2px solid red');
            $("#passwordInput").children().eq(0).focus();
@@ -431,6 +436,7 @@ export class PhoneNumberPage {
       case "name":
         var firstName = $("#firstName").children().eq(0).val();
         var lastName = $("#lastName").children().eq(0).val();
+        this.firstName = firstName; this.lastName = lastName;
         if (firstName.length > 0 && lastName.length > 0) {
           this.currentView = "paymentMethod";
           $("#nextBtn").hide();
@@ -491,8 +497,8 @@ export class PhoneNumberPage {
     const appVerifier = this.recaptchaVerifier;
     //const appVerifier = new firebase.auth.RecaptchaVerifier('nextBtn', {'size': 'invisible'});
     var value = $("#input").val();
-    appVerifier.verify();
     const phoneNumberString = "+1" + value.substring(1, 4) + value.substring(6, 9) + value.substring(10, 14);
+    this.phoneNumber = phoneNumberString;
 
     firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
       .then( confirmationResult => {
@@ -501,7 +507,7 @@ export class PhoneNumberPage {
         this.smsConfirmation = confirmationResult;
       })
       .catch(function (error) {
-        alert(error);
+        //alert(error);
         console.error("SMS not sent", error);
       });
   }
@@ -560,6 +566,8 @@ export class PhoneNumberPage {
   Return: None
   *****************************************************************************/
   createNewUser() {
+    this.linkWithEmailAuth();
+
     var cardNumber = $("#cardNumber").children().eq(1).val().toString();
     var month = parseInt($("#expirationDate").children().eq(0).val().substring(0, 2));
     var year = parseInt('20' + $("#expirationDate").children().eq(0).val().substring(3, 5));
@@ -573,20 +581,26 @@ export class PhoneNumberPage {
     }
     this.getCreditCardToken(cardinfo);
 
-    var users = firebase.database().ref('Users/');
-    var userId = firebase.auth().currentUser.uid;
-    var value = $("#input").val();
-    var token = this.cardToken;
-    const phoneNumberString = "+1" + value.substring(1, 4) + value.substring(6, 9) + value.substring(10, 14);
-    users.child(userId).set({
-      UserId: userId,
-      Date: Date(),
-      firstName: $("#firstName").children().eq(0).val(),
-      lastName: $("#lastName").children().eq(0).val(),
-      email: $("#emailInput").children().eq(0).val(),
-      phoneNumber: phoneNumberString,
-      cardToken: token
-    });
+    setTimeout(() => {
+      var users = firebase.database().ref('Users/');
+      var userId = firebase.auth().currentUser.uid;
+      var token = this.cardToken;
+      var firstName = this.firstName;
+      var lastName = this.lastName;
+      var email = this.email;
+      var phoneNumberString = this.phoneNumber;
+      users.child(userId).set({
+        UserId: userId,
+        Date: Date(),
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phoneNumber: phoneNumberString,
+        cardToken: token
+      });
+    }, 2000);
+
+    this.gotohome();
   }
 
   /*****************************************************************************
@@ -596,9 +610,19 @@ export class PhoneNumberPage {
   Return: None
   *****************************************************************************/
   alreadyExists() {
-    var value = $("#input").val();
-    const phoneNumberString = "+1" + value.substring(1, 4) + value.substring(6, 9) + value.substring(10, 14);
+    const phoneNumberString = this.phoneNumber;
     return (this.userAccounts.find(item => item.phoneNumber == phoneNumberString) != undefined);
+  }
+
+  /*****************************************************************************
+  Function: isLoggedIn
+  Purpose: Tells if there is a user logged in
+  Parameters: None
+  Return: True or False
+  *****************************************************************************/
+  isLoggedIn(): Boolean {
+    var user = firebase.auth().currentUser;
+    return (user != null && user != undefined) ? true : false;
   }
 
   /*****************************************************************************
@@ -655,14 +679,12 @@ export class PhoneNumberPage {
   Return: None
   *****************************************************************************/
   linkWithEmailAuth() {
-    var email = $("#emailInput").children().eq(0).val();
-    var password = $("#passwordInput").children().eq(0).val();
-    if (email.length == 0 || password.length == 0) {
-    } else {
-      var credential = firebase.auth.EmailAuthProvider.credential(email, password);
+    if (!(this.email.length == 0 || this.password.length == 0)) {
+      var credential = firebase.auth.EmailAuthProvider.credential(this.email, this.password);
       firebase.auth().currentUser.linkWithCredential(credential).then(function(user) {
         console.log("Account linking success: ", user);
       }, function(error) {
+        this.showAlert('Enregistrement Impossible', 'Vous avez déjà un compte avec cette adresse courriel')
         console.log("Account linking error: ", error);
       });
     }
@@ -694,7 +716,6 @@ export class PhoneNumberPage {
     this.stripe.setPublishableKey('pk_test_0Ghlv6GvobZIFI0SyNuDglPL');
     this.stripe.createCardToken(cardinfo).then((token) => {
       this.cardToken = token;
-      console.log(token);
     }).catch((error) => {
         console.log(error);
     });
@@ -720,6 +741,20 @@ export class PhoneNumberPage {
     });
   }
 
+  /*****************************************************************************
+  Function: updateDataSnapshot
+  Purpose: Listen to the firebase db and triggers controller methods when data
+           changed in firebase db
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  updateDataSnapshot() {
+    let controller = this;
+    firebase.database().ref('Users/')
+     .on('value', function(snapshot) {
+       console.log(snapshot);
+     });
+  }
 
   onFocus(parentId) {
     $("#" + parentId).css('border-bottom', '2px solid black');

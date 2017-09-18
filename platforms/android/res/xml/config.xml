@@ -29,6 +29,10 @@
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
+    <feature name="StatusBar">
+        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
+        <param name="onload" value="true" />
+    </feature>
     <name>CodeKL_Barber</name>
     <description>An awesome CodeKL Barber App.</description>
     <author email="help@codekl.com" href="http://codekl.com/">CKL Group Inc.</author>
@@ -42,6 +46,7 @@
     <allow-intent href="geo:*" />
     <allow-navigation href="http://192.168.153.1:8100" />
     <allow-navigation href="http://192.168.1.2:8100" />
+    <allow-navigation href="http://192.168.27.1:8100" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="android-minSdkVersion" value="16" />

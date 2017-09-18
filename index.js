@@ -9,7 +9,23 @@ var router = express.Router();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-app.post('/processpay', function (request, response) {
+router.post('/processpay', function (request, response) {
+    var stripetoken = request.body.stripetoken;
+    var amountpayable = request.body.amount;
+    var charge = stripe.charge.create({
+        amount: amountpayable,
+        currency: 'usd',
+        description: 'Sample transaction',
+        source: stripetoken
+    }, function (err, charge) {
+        if (err)
+            console.log('error: ' + err);
+        else
+            response.send(amountpayable + '$ payment completed.');
+    })
+})
+
+/*app.post('/processpay', function (request, response) {
     var stripetoken = request.body.stripetoken;
     var amountpayable = request.body.amount;
 
@@ -34,7 +50,7 @@ app.post('/processpay', function (request, response) {
       // Deal with an error
       console.log('error: ' + err);
     });
-})
+})*/
 
 app.use(router);
 app.listen(3333, function () {

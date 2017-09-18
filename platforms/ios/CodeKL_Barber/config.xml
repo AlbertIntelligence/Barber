@@ -46,6 +46,10 @@
     <feature name="InAppBrowser">
         <param name="ios-package" value="CDVInAppBrowser" />
     </feature>
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" />
+        <param name="onload" value="true" />
+    </feature>
     <name>CodeKL_Barber</name>
     <description>An awesome CodeKL Barber App.</description>
     <author email="help@codekl.com" href="http://codekl.com/">CKL Group Inc.</author>
@@ -59,6 +63,7 @@
     <allow-intent href="geo:*" />
     <allow-navigation href="http://192.168.153.1:8100" />
     <allow-navigation href="http://192.168.1.2:8100" />
+    <allow-navigation href="http://192.168.27.1:8100" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <preference name="AllowInlineMediaPlayback" value="false" />
@@ -74,6 +79,8 @@
     <preference name="PageLength" value="0" />
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="android-minSdkVersion" value="16" />

@@ -43,6 +43,7 @@
         "cordova-plugin-device": "^1.1.6",
         "cordova-plugin-facebook4": "^1.9.1",
         "cordova-plugin-inappbrowser": "^1.7.1",
+        "cordova-plugin-statusbar": "^2.2.3",
         "cordova-plugin-stripe": "^1.5.3",
         "cordova-plugin-x-toast": "^2.6.0",
         "cors": "^2.8.4",
@@ -86,7 +87,8 @@
             "com.telerik.plugins.nativepagetransitions": {},
             "ionic-plugin-keyboard": {},
             "cordova-plugin-stripe": {},
-            "cordova-plugin-inappbrowser": {}
+            "cordova-plugin-inappbrowser": {},
+            "cordova-plugin-statusbar": {}
         },
         "platforms": [
             "android",

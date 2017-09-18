@@ -78,6 +78,14 @@ module.exports = [
             "cordova.InAppBrowser.open",
             "window.open"
         ]
+    },
+    {
+        "id": "cordova-plugin-statusbar.statusbar",
+        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+        "pluginId": "cordova-plugin-statusbar",
+        "clobbers": [
+            "window.StatusBar"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -90,7 +98,8 @@ module.exports.metadata =
     "com.telerik.plugins.nativepagetransitions": "0.6.5",
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-plugin-stripe": "1.5.3",
-    "cordova-plugin-inappbrowser": "1.7.1"
+    "cordova-plugin-inappbrowser": "1.7.1",
+    "cordova-plugin-statusbar": "2.2.3"
 };
 // BOTTOM OF METADATA
 });

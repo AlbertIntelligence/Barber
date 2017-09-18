@@ -33,6 +33,7 @@
 		748E3EC3AAF94CEEB6F52233 /* CordovaStripe.m in Sources */ = {isa = PBXBuildFile; fileRef = 09EAA9D1E8294969A2C63E9F /* CordovaStripe.m */; };
 		36B726E5F1854E3AA7F5F66E /* Stripe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4973F77B5D2A4B2DBF5919D8 /* Stripe.framework */; };
 		CDCE13E21F1C4BF8BA653FAC /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FB6DC1266F465D8AE1D35E /* CDVInAppBrowser.m */; };
+		1692D3A7428049B3A8947C01 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AD6DA825374C18AB820431 /* CDVStatusBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,8 @@
 		4973F77B5D2A4B2DBF5919D8 /* Stripe.framework */ = {isa = PBXFileReference; name = "Stripe.framework"; path = "CodeKL_Barber/Plugins/cordova-plugin-stripe/Stripe.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		C3FB6DC1266F465D8AE1D35E /* CDVInAppBrowser.m */ = {isa = PBXFileReference; name = "CDVInAppBrowser.m"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		B14A628C4077450383FF5739 /* CDVInAppBrowser.h */ = {isa = PBXFileReference; name = "CDVInAppBrowser.h"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		B3AD6DA825374C18AB820431 /* CDVStatusBar.m */ = {isa = PBXFileReference; name = "CDVStatusBar.m"; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		74F1B5180927432C89ABCAE2 /* CDVStatusBar.h */ = {isa = PBXFileReference; name = "CDVStatusBar.h"; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +240,8 @@
 				7E34DE7594D04BA0824A5350 /* CordovaStripe.h */,
 				C3FB6DC1266F465D8AE1D35E /* CDVInAppBrowser.m */,
 				B14A628C4077450383FF5739 /* CDVInAppBrowser.h */,
+				B3AD6DA825374C18AB820431 /* CDVStatusBar.m */,
+				74F1B5180927432C89ABCAE2 /* CDVStatusBar.h */,
 			);
 			name = Plugins;
 			path = "CodeKL_Barber/Plugins";
@@ -359,6 +364,7 @@
 				D396171A6A6E423282BEF409 /* IonicKeyboard.m in Sources */,
 				748E3EC3AAF94CEEB6F52233 /* CordovaStripe.m in Sources */,
 				CDCE13E21F1C4BF8BA653FAC /* CDVInAppBrowser.m in Sources */,
+				1692D3A7428049B3A8947C01 /* CDVStatusBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
