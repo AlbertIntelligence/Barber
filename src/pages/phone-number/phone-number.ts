@@ -30,18 +30,19 @@ export class PhoneNumberPage {
   public recaptchaVerifier:firebase.auth.RecaptchaVerifier;
   private smsConfirmation: any;
   private userAccounts:Array<any> = [];
-  private cardToken:any;
   private phoneNumber:String;
   private email:string;
   private password:string;
   private firstName:String;
   private lastName:String;
+  private customerId:any;
+  private cardToken:any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
      private keyboard: Keyboard, public platform: Platform, public alertCtrl: AlertController,
      public stripe: Stripe, public http: Http) {
-
+       this.updateUserAccounts();
   }
 
   ngOnInit(): any {
@@ -495,7 +496,6 @@ export class PhoneNumberPage {
   *****************************************************************************/
   signInWithPhoneNumber() {
     const appVerifier = this.recaptchaVerifier;
-    //const appVerifier = new firebase.auth.RecaptchaVerifier('nextBtn', {'size': 'invisible'});
     var value = $("#input").val();
     const phoneNumberString = "+1" + value.substring(1, 4) + value.substring(6, 9) + value.substring(10, 14);
     this.phoneNumber = phoneNumberString;
@@ -507,7 +507,7 @@ export class PhoneNumberPage {
         this.smsConfirmation = confirmationResult;
       })
       .catch(function (error) {
-        //alert(error);
+        alert(error);
         console.error("SMS not sent", error);
       });
   }
@@ -520,7 +520,6 @@ export class PhoneNumberPage {
   *****************************************************************************/
   confirmSmsCode() {
     var confirmationCode = "";
-    this.updateUserAccounts();
     for (var i = 1; i < 7; i++) {
       confirmationCode += $("#digit" + i).children().eq(0).val();
     }
@@ -582,13 +581,19 @@ export class PhoneNumberPage {
     this.getCreditCardToken(cardinfo);
 
     setTimeout(() => {
+      var token = this.cardToken;
+      var email = this.email;
+      this.getCustomerInfos(token.id, email);
+    }, 2000);
+
+    setTimeout(() => {
       var users = firebase.database().ref('Users/');
       var userId = firebase.auth().currentUser.uid;
-      var token = this.cardToken;
       var firstName = this.firstName;
       var lastName = this.lastName;
-      var email = this.email;
       var phoneNumberString = this.phoneNumber;
+      var customerId = this.customerId; console.log(customerId);
+      var email = this.email;
       users.child(userId).set({
         UserId: userId,
         Date: Date(),
@@ -596,11 +601,11 @@ export class PhoneNumberPage {
         lastName: lastName,
         email: email,
         phoneNumber: phoneNumberString,
-        cardToken: token
+        customerStripeId: customerId
       });
-    }, 2000);
+    }, 4000);
 
-    this.gotohome();
+    //this.gotohome();
   }
 
   /*****************************************************************************
@@ -722,38 +727,25 @@ export class PhoneNumberPage {
   }
 
   /*****************************************************************************
-  Function: pay
-  Description: Proceed to payment
-  Parameters: token (user credit card token), amount (amount to be charged to the user)
-              email (user email)
+  Function: getCustomerInfos
+  Description: Retrieve user infos from stripe api
+  Parameters: none
   Return: void
   *****************************************************************************/
-  pay(token, amount, email) {
-    var data = 'stripetoken=' + token + '&amount=' + amount + '&email=' + email;
+  getCustomerInfos(token, email) {
+    var data = 'stripetoken=' + token + '&email=' + email;
     var headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded')
-    this.http.post('http://192.168.27.1:3333/processpay', data, { headers: headers }).subscribe((res) => {
-      if (res.json().success) {
-        console.log('transaction Successfull!!');
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    let controller = this;
+    this.http.post('http://192.168.27.1:3333/createUser', data, { headers: headers }).subscribe((res) => {
+      if (typeof(res) != "undefined") {
+        $.each(res, function(key,valueObj){
+          if (key == "_body") controller.customerId = valueObj;
+        });
       } else {
-        console.log('transaction failed!!');
+        console.log('Unable to save customer infos!!');
       }
     });
-  }
-
-  /*****************************************************************************
-  Function: updateDataSnapshot
-  Purpose: Listen to the firebase db and triggers controller methods when data
-           changed in firebase db
-  Parameters: None
-  Return: None
-  *****************************************************************************/
-  updateDataSnapshot() {
-    let controller = this;
-    firebase.database().ref('Users/')
-     .on('value', function(snapshot) {
-       console.log(snapshot);
-     });
   }
 
   onFocus(parentId) {

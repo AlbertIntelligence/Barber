@@ -9,48 +9,35 @@ var router = express.Router();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-router.post('/processpay', function (request, response) {
-    var stripetoken = request.body.stripetoken;
-    var amountpayable = request.body.amount;
-    var charge = stripe.charge.create({
-        amount: amountpayable,
-        currency: 'usd',
-        description: 'Sample transaction',
-        source: stripetoken
-    }, function (err, charge) {
-        if (err)
-            console.log('error: ' + err);
-        else
-            response.send(amountpayable + '$ payment completed.');
-    })
-})
+app.post('/createUser', function (request, response) {
+  var token = request.body.stripetoken;
+  var email = request.body.email;
 
-/*app.post('/processpay', function (request, response) {
-    var stripetoken = request.body.stripetoken;
-    var amountpayable = request.body.amount;
+  // Create a Customer:
+  stripe.customers.create({
+    email: "paying.user@example.com",
+    source: token,
+  }).then(function(customer) {
+    response.send(customer.id);
+  });
+});
 
-    stripe.customers.create({
-      email: 'foo-customer@example.com'
-    }).then(function(customer) {
-      return stripe.customers.createSource(customer.id, {
-        source: 'tok_visa'
-      });
-    }).then(function(source) {
-      return stripe.charges.create({
-        amount: amountpayable,
-        currency: 'cad',
-        customer: source.customer
-      });
-    }).then(function(charge) {
-      // New charge created on a new customer
-      var amoutPaid = amountpayable / 100;
-      console.log(amoutPaid + '$ payment completed.');
+app.post('/pay', function (request, response) {
+  var customerId = request.body.customerId;
+  var amountpayable = request.body.amount;
 
-    }).catch(function(err) {
-      // Deal with an error
-      console.log('error: ' + err);
-    });
-})*/
+  stripe.charges.create({
+    amount: amountpayable,
+    currency: "cad",
+    customer: customerId,
+  }).then(function(charge) {
+    // Use and save the charge info.
+    console.log(amountpayable + "$ payment completed.");
+  }).catch(function(err) {
+    // Deal with an error
+    console.log('Error: ' + err);
+  });
+});
 
 app.use(router);
 app.listen(3333, function () {
