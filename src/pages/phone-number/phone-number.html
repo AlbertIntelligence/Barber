@@ -90,18 +90,18 @@
     </ion-row>
 
     <!-- Inputs for credit card -->
-    <ion-row id="creditCartInputs" class="digitBloc" style="top: 15%; padding-right: 3vw">
+    <ion-row id="creditCartInputs" class="digitBloc" style="top: 4%; padding-right: 3vw">
       <!-- Credit card name -->
       <!--ion-row><ion-label color="#F2F2F2" stacked></ion-label></ion-row!-->
-      <ion-row id="cardName" style="padding:auto; margin:auto; margin-left:0; margin-top:30px">
-        <ion-icon style="font-size:8vw; margin-right: 15px" name="contact"></ion-icon>
-        <input class="input" type="text" placeholder="Nom sur la carte">
+      <ion-row id="cardName" style="padding:auto; margin:auto; margin-left:0; width:95%; margin-top:50px">
+        <ion-icon style="font-size:7vw; margin-right: 10px" name="contact"></ion-icon>
+        <input class="input" type="text" style="width:85%" placeholder="Nom sur la carte">
       </ion-row>
 
       <!-- Credit card number -->
       <!--ion-row style="margin-top: 50px"><ion-label color="#F2F2F2" stacked></ion-label></ion-row!-->
-      <ion-row id="cardNumber" style="padding:auto; margin:auto; margin-left:0; margin-top: 50px">
-        <ion-icon name="card" style="font-size:8vw; margin-right: 15px"></ion-icon>
+      <ion-row id="cardNumber" style="padding:auto; margin:auto; margin-left:0; width:95%; margin-top: 50px">
+        <ion-icon name="card" style="font-size:7vw; margin-right: 10px"></ion-icon>
         <input maxlength="16" class="input" type="tel" style="width:85%" placeholder="Numéro de carte">
       </ion-row>
 
@@ -133,7 +133,7 @@
 
       <!--sign out button-->
       <ion-row id="continueBtn" style="width: 100vw; padding:auto; margin:auto; margin-left:0; margin-top:10px;">
-        <button ion-button class="round" color="black" full (click)="createNewUser()">CONTINUER</button>
+        <button ion-button class="round" color="black" full (click)="createNewUser()" style="margin-top: 5vh; background-color: black">CONTINUER</button>
       </ion-row>
 
     </ion-row>
@@ -142,7 +142,7 @@
 
   <!-- Link to login page -->
   <ion-row class="footer" id="link">
-    <span (click)="gotoLoginPage()" ion-text color="black" style="margin-top: auto; margin-bottom: auto;">Connecte toi avec ton adresse courriel</span>
+    <span (click)="gotoLoginPage()" ion-text color="black" style="margin-top: auto; margin-bottom: auto;">Apprenez-en plus ici</span>
   </ion-row>
 
   <button id="nextBtn" (click)="goToNext()" ion-button class="btn-circle btn-xl hidden"><ion-icon name="ios-arrow-round-forward" class="nextIcon"></ion-icon></button>

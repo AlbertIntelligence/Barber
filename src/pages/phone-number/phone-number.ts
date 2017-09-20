@@ -26,18 +26,16 @@ export class PhoneNumberPage {
 
   private loaded: boolean = false;
   private currentView: String = "home";
-  private pinIsFull: boolean = false;
   public recaptchaVerifier:firebase.auth.RecaptchaVerifier;
-  private smsConfirmation: any;
   private userAccounts:Array<any> = [];
-  private phoneNumber:String;
   private email:string;
   private password:string;
   private passwordConfirmation:string;
   private firstName:String;
   private lastName:String;
-  private customerId:any;
-  private cardToken:any;
+  private customerId:any = null;
+  private cardToken:any = null;
+  private userExists:Boolean;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -56,35 +54,6 @@ export class PhoneNumberPage {
 
   @HostListener('document:keyup', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    if (event.key != "Backspace" && $(event.target).parent().attr('id').indexOf("digit") == 0) {
-      var index = parseInt($(event.target).parent().attr('id')[5]);
-      index++;
-      if (index == 7) this.pinIsFull = true;
-      if (index < 7) {
-        $("#digit" + index).css('border-bottom', '2px solid black');
-        $("#digit" + index).children().eq(0).focus();
-      }
-
-      if ($("#digit1").children().eq(0).val().length > 0) $("#digit1").css('border-bottom', '2px solid black');
-      if ($("#digit2").children().eq(0).val().length > 0) $("#digit2").css('border-bottom', '2px solid black');
-      if ($("#digit3").children().eq(0).val().length > 0) $("#digit3").css('border-bottom', '2px solid black');
-      if ($("#digit4").children().eq(0).val().length > 0) $("#digit4").css('border-bottom', '2px solid black');
-      if ($("#digit5").children().eq(0).val().length > 0) $("#digit6").css('border-bottom', '2px solid black');
-      if ($("#digit5").children().eq(0).val().length > 0) $("#digit6").css('border-bottom', '2px solid black');
-    }
-    else if (event.key == "Backspace" && $(event.target).parent().attr('id').indexOf("digit") == 0) {
-      var index = parseInt($(event.target).parent().attr('id')[5]);
-      if (index < 7 && index > 1 && $("#digit" + index).val().length == 0) {
-        $("#digit" + index).css('border-bottom', '2px solid #F2F2F2');
-        index--;
-        if (index > 0 && !this.pinIsFull) {
-          $("#digit" + index).children().eq(0).val("");
-          $("#digit" + index).children().eq(0).focus();
-        }
-        if (index == 5) this.pinIsFull = false;
-      }
-    }
-
     if ($(event.target).val().length == 0) {
       $(event.target).parent().css('border-bottom', '2px solid #F2F2F2');
     } else {
@@ -315,10 +284,9 @@ export class PhoneNumberPage {
     }
   }
 
-
   /*****************************************************************************
   Function: goToPin
-  Description: Show the 4 digit PIN features
+  Description: Show the next ui
   Parameters: None
   Return: None
   *****************************************************************************/
@@ -326,6 +294,7 @@ export class PhoneNumberPage {
     switch (this.currentView) {
       //Go to enter your password view
       case "email":
+        this.userExists = false;
         var email = $("#email").val();
         if (email.length > 3 && email.indexOf("@") != -1 && email.indexOf(".") != -1) {
             this.currentView = "password";
@@ -334,6 +303,13 @@ export class PhoneNumberPage {
             this.translate($("#title"), "-100vw", "14vh");
             this.translate($("#passwordInput"), "-100vw", "0px");
             this.translate($("#emailInput"), "-100vw", "21vh");
+
+            //Check if user is already registered
+            if (this.alreadyExists()) {
+              this.userExists = true;
+              var passTitle = (this.userExists) ? 'Ravi de vous revoir, entrez votre mot de passe' : 'Créez votre mot de passe';
+              $("#passwordTitle").children().eq(0).text(passTitle);
+            }
             setTimeout(() => { $("#passwordInput").children().eq(0).focus(); }, 1000);
         } else {
           $("#emailInput").css('border-bottom', '2px solid red');
@@ -345,6 +321,12 @@ export class PhoneNumberPage {
       case "password":
         var password = $("#passwordInput").children().eq(0).val();
         this.password = password;
+
+        //If user is already registered, login user
+        if (password.length >= 5 && this.userExists) {
+          this.loginUser();
+        }
+
         if (password.length >= 5) {
             this.currentView = "passwordConfirmation";
             $("#passwordConfirmationInput").css('border-bottom', '2px solid black');
@@ -359,24 +341,24 @@ export class PhoneNumberPage {
          }
          break;
 
-       //Go to enter your name view
-       case "passwordConfirmation":
-         var passwordConfirmation = $("#passwordConfirmationInput").children().eq(0).val();
-         this.passwordConfirmation = passwordConfirmation;
-         if (this.passwordConfirmation == this.password) {
-             this.currentView = "name";
-             $("#firstName").css('border-bottom', '2px solid black');
-             $("#lastName").css('border-bottom', '2px solid #F2F2F2');
-             this.translate($("#nameTitle"), "-100vw", "0px");
-             this.translate($("#passwordConfirmationTitle"), "-200vw", "0px");
-             this.translate($("#nameInput"), "-100vw", "0px");
-             this.translate($("#passwordConfirmationInput"), "-200vw", "0px");
-             setTimeout(() => { $("#firstName").children().eq(0).focus(); }, 1000);
-           } else {
-            $("#passwordConfirmationInput").css('border-bottom', '2px solid red');
-            $("#passwordConfirmationInput").children().eq(0).focus();
-          }
-          break;
+      //Go to enter your name view
+      case "passwordConfirmation":
+       var passwordConfirmation = $("#passwordConfirmationInput").children().eq(0).val();
+       this.passwordConfirmation = passwordConfirmation;
+       if (this.passwordConfirmation == this.password) {
+           this.currentView = "name";
+           $("#firstName").css('border-bottom', '2px solid black');
+           $("#lastName").css('border-bottom', '2px solid #F2F2F2');
+           this.translate($("#nameTitle"), "-100vw", "0px");
+           this.translate($("#passwordConfirmationTitle"), "-200vw", "0px");
+           this.translate($("#nameInput"), "-100vw", "0px");
+           this.translate($("#passwordConfirmationInput"), "-200vw", "0px");
+           setTimeout(() => { $("#firstName").children().eq(0).focus(); }, 1000);
+         } else {
+          $("#passwordConfirmationInput").css('border-bottom', '2px solid red');
+          $("#passwordConfirmationInput").children().eq(0).focus();
+        }
+        break;
 
       //Go to enter select payment method
       case "name":
@@ -434,75 +416,6 @@ export class PhoneNumberPage {
   }
 
   /*****************************************************************************
-  Function: signInWithPhoneNumber
-  Description: Sign in user with his phone number
-  Parameters: none
-  Return: void
-  *****************************************************************************/
-  signInWithPhoneNumber() {
-    const appVerifier = this.recaptchaVerifier;
-    var value = $("#input").val();
-    const phoneNumberString = "+1" + value.substring(1, 4) + value.substring(6, 9) + value.substring(10, 14);
-    this.phoneNumber = phoneNumberString;
-
-    firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
-      .then( confirmationResult => {
-        // SMS sent. Prompt user to type the code from the message, then sign the
-        // user in with confirmationResult.confirm(code).
-        this.smsConfirmation = confirmationResult;
-      })
-      .catch(function (error) {
-        alert(error);
-        console.error("SMS not sent", error);
-      });
-  }
-
-  /*****************************************************************************
-  Function: confirmSmsPin
-  Description: sms 6-digit code confirmation
-  Parameters: none
-  Return: void
-  *****************************************************************************/
-  confirmSmsCode() {
-    var confirmationCode = "";
-    for (var i = 1; i < 7; i++) {
-      confirmationCode += $("#digit" + i).children().eq(0).val();
-    }
-    let controller = this;
-
-    this.smsConfirmation.confirm(confirmationCode)
-    .then(function (result) {
-      // User signed in successfully.
-      if (result.user && controller.alreadyExists()) {
-        controller.gotohome();
-      } else {
-        controller.currentView = "email";
-        $("#emailInput").css('border-bottom', '2px solid black');
-        controller.translate($("#emailTitle"), "-100vw", "0px");
-        controller.translate($("#digitTitle"), "-200vw", "0px");
-        controller.translate($("#emailInput"), "-100vw", "0px");
-        controller.translate($("#digitBloc"), "-200vw", "0px");
-        setTimeout(() => { $("#emailInput").children().eq(0).focus(); }, 1000);
-      }
-
-    }).catch(function (error) {
-      // User couldn't sign in (bad verification code?)
-      $("#digit1").css('border-bottom', '2px solid red');
-      $("#digit2").css('border-bottom', '2px solid red');
-      $("#digit3").css('border-bottom', '2px solid red');
-      $("#digit4").css('border-bottom', '2px solid red');
-      $("#digit5").css('border-bottom', '2px solid red');
-      $("#digit6").css('border-bottom', '2px solid red');
-
-      $("#digit6").children().eq(0).focus();
-      if (error.message.indexOf("The SMS code has expired") != -1) {
-        controller.goBack();
-        controller.showAlert("Confirmation Impossible !", "Le code SMS a expiré. Re-envoyez le code de vérification pour réessayer.");
-      }
-    });
-  }
-
-  /*****************************************************************************
   Function: createNewUser
   Purpose: Create a new user account in db
   Parameters: date(String): date to be saved
@@ -510,8 +423,6 @@ export class PhoneNumberPage {
   Return: None
   *****************************************************************************/
   createNewUser() {
-    this.linkWithEmailAuth();
-
     var cardNumber = $("#cardNumber").children().eq(1).val().toString();
     var month = parseInt($("#expirationDate").children().eq(0).val().substring(0, 2));
     var year = parseInt('20' + $("#expirationDate").children().eq(0).val().substring(3, 5));
@@ -525,32 +436,21 @@ export class PhoneNumberPage {
     }
     this.getCreditCardToken(cardinfo);
 
-    setTimeout(() => {
+    /*setTimeout(() => {
       var token = this.cardToken;
       var email = this.email;
       this.getCustomerInfos(token.id, email);
-    }, 3000);
+    }, 3000);*/
 
-    setTimeout(() => {
-      var users = firebase.database().ref('Users/');
-      var userId = firebase.auth().currentUser.uid;
-      var firstName = this.firstName;
-      var lastName = this.lastName;
-      var phoneNumberString = this.phoneNumber;
-      var customerId = this.customerId;
-      var email = this.email;
-      users.child(userId).set({
-        UserId: userId,
-        Date: Date(),
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        phoneNumber: phoneNumberString,
-        customerStripeId: customerId
-      });
-    }, 6000);
+    /*setTimeout(() => {
+      if (this.cardToken != null && this.customerId != null) {
+        this.createUser();
+      }
+      else {
+        this.showAlert('Inscription Impossible !', 'Carte de crédit invalide.');
+      }
+    }, 6000);*/
 
-    this.gotohome();
   }
 
   /*****************************************************************************
@@ -560,8 +460,67 @@ export class PhoneNumberPage {
   Return: None
   *****************************************************************************/
   alreadyExists() {
-    const phoneNumberString = this.phoneNumber;
-    return (this.userAccounts.find(item => item.phoneNumber == phoneNumberString) != undefined);
+    const email = this.email;
+    return (this.userAccounts.find(item => item.email == email) != undefined);
+  }
+
+  /*****************************************************************************
+  Function: createUser
+  Description: Validate entries and create new user in firebase database.
+  Also displays warning registration messages
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  createUser() {
+    var users = firebase.database().ref('Users/');
+    var firstName = this.firstName;
+    var lastName = this.lastName;
+    var customerId = this.customerId;
+    var email = this.email;
+    let loginController = this;
+
+    firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function (data) {
+      loginController.loginUser();
+      var userId = firebase.auth().currentUser.uid;
+      
+      //Create user instance in db
+      users.child(userId).set({
+        UserId: userId,
+        Date: Date(),
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        customerStripeId: customerId
+      });
+    }).catch(function (error) {
+      loginController.showAlert('Inscription Impossible !', 'Veuillez entrer une adresse courriel valide.');
+    });
+  }
+
+  /*****************************************************************************
+  Function: loginUser
+  Purpose: Validate the entries and logs the user in.
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  loginUser() {
+    this.logoutUser();
+    let controller = this;
+    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function (data) {
+      if (controller.isLoggedIn()) controller.gotohome();
+    }).catch(function (error) {
+      controller.showAlert('Authentification Impossible !', 'Adresse courriel ou mot de passe éronné.');
+    });
+  }
+
+  /*****************************************************************************
+  Function: logoutUser
+  Purpose: Logs the user out
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  logoutUser(): firebase.Promise<void> {
+    return firebase.auth().signOut();
   }
 
   /*****************************************************************************
@@ -622,25 +581,6 @@ export class PhoneNumberPage {
   }
 
   /*****************************************************************************
-  Function:   Function: presentAlert
-  Description: Link user phone auth with email auth
-  Also displays warning registration messages
-  Parameters: None
-  Return: None
-  *****************************************************************************/
-  linkWithEmailAuth() {
-    if (!(this.email.length == 0 || this.password.length == 0)) {
-      var credential = firebase.auth.EmailAuthProvider.credential(this.email, this.password);
-      firebase.auth().currentUser.linkWithCredential(credential).then(function(user) {
-        console.log("Account linking success: ", user);
-      }, function(error) {
-        this.showAlert('Enregistrement Impossible', 'Vous avez déjà un compte avec cette adresse courriel')
-        console.log("Account linking error: ", error);
-      });
-    }
-  }
-
-  /*****************************************************************************
   Function: setFooter
   Description: Set the footer dimensions for iOS
   Parameters: none
@@ -666,7 +606,9 @@ export class PhoneNumberPage {
     this.stripe.setPublishableKey('pk_test_0Ghlv6GvobZIFI0SyNuDglPL');
     this.stripe.createCardToken(cardinfo).then((token) => {
       this.cardToken = token;
+      this.getCustomerInfos(this.cardToken.id, this.email);
     }).catch((error) => {
+        this.showAlert('Inscription Impossible !', 'Carte de crédit invalide.');
         console.log(error);
     });
   }
@@ -685,9 +627,13 @@ export class PhoneNumberPage {
     this.http.post('http://192.168.27.1:3333/createUser', data, { headers: headers }).subscribe((res) => {
       if (typeof(res) != "undefined") {
         $.each(res, function(key,valueObj){
-          if (key == "_body") controller.customerId = valueObj;
+          if (key == "_body") {
+            controller.customerId = valueObj;
+            controller.createUser();
+          }
         });
       } else {
+        this.showAlert('Inscription Impossible !', 'Carte de crédit invalide.');
         console.log('Unable to save customer infos!!');
       }
     });
@@ -696,4 +642,5 @@ export class PhoneNumberPage {
   onFocus(parentId) {
     $("#" + parentId).css('border-bottom', '2px solid black');
   }
+
 }

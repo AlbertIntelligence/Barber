@@ -78372,19 +78372,6 @@ page-home ion-grid.list-pictures ion-row ion-col .hide-sm,
   display: none;
 }
 
-page-phone-number {
-  /*
-  input:focus ~ .floating-label,
-  input:not(:focus):valid ~ .floating-label{
-    top: 0px;
-    bottom: 10px;
-    left: 0px;
-    font-size: 11px;
-    opacity: 1;
-  }
-*/
-}
-
 page-phone-number .content {
   overflow: hidden !important;
   height: 100vh;
@@ -78414,12 +78401,12 @@ page-phone-number .img {
 
 page-phone-number .input {
   border: 0 !important;
-  width: 75%;
-  font-size: 19px;
+  width: 90%;
+  font-size: 18px;
   outline: none;
   padding: 0;
-  padding-left: 1.5vw;
-  margin-left: 1vw;
+  padding-left: 0;
+  margin-left: 2vw;
   font-family: Verdana, Geneva, sans-serif;
   transition: 0.2s ease all;
 }
@@ -78487,7 +78474,7 @@ page-phone-number .title {
   -webkit-transition: -webkit-transform 750ms;
 }
 
-page-phone-number .phoneNumber {
+page-phone-number .email {
   position: relative;
   margin-top: 6vh;
   padding-top: 0vh;
