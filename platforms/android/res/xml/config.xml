@@ -33,6 +33,9 @@
         <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="Sms">
+        <param name="android-package" value="com.cordova.plugins.sms.Sms" />
+    </feature>
     <name>CodeKL_Barber</name>
     <description>An awesome CodeKL Barber App.</description>
     <author email="help@codekl.com" href="http://codekl.com/">CKL Group Inc.</author>

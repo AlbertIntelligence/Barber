@@ -584,7 +584,7 @@ export class PhoneNumberPage {
       var token = this.cardToken;
       var email = this.email;
       this.getCustomerInfos(token.id, email);
-    }, 2000);
+    }, 3000);
 
     setTimeout(() => {
       var users = firebase.database().ref('Users/');
@@ -592,7 +592,7 @@ export class PhoneNumberPage {
       var firstName = this.firstName;
       var lastName = this.lastName;
       var phoneNumberString = this.phoneNumber;
-      var customerId = this.customerId; console.log(customerId);
+      var customerId = this.customerId;
       var email = this.email;
       users.child(userId).set({
         UserId: userId,
@@ -603,9 +603,9 @@ export class PhoneNumberPage {
         phoneNumber: phoneNumberString,
         customerStripeId: customerId
       });
-    }, 4000);
+    }, 6000);
 
-    //this.gotohome();
+    this.gotohome();
   }
 
   /*****************************************************************************

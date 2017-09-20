@@ -94,6 +94,14 @@ module.exports = [
         "id": "cordova-plugin-statusbar.StatusBarProxy",
         "pluginId": "cordova-plugin-statusbar",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-sms-plugin/www/sms.js",
+        "id": "cordova-sms-plugin.Sms",
+        "pluginId": "cordova-sms-plugin",
+        "clobbers": [
+            "window.sms"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -107,7 +115,8 @@ module.exports.metadata =
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-plugin-stripe": "1.5.3",
     "cordova-plugin-inappbrowser": "1.7.1",
-    "cordova-plugin-statusbar": "2.2.3"
+    "cordova-plugin-statusbar": "2.2.3",
+    "cordova-sms-plugin": "0.1.11"
 }
 // BOTTOM OF METADATA
 });

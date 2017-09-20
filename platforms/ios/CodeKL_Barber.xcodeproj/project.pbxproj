@@ -34,6 +34,8 @@
 		36B726E5F1854E3AA7F5F66E /* Stripe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4973F77B5D2A4B2DBF5919D8 /* Stripe.framework */; };
 		CDCE13E21F1C4BF8BA653FAC /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FB6DC1266F465D8AE1D35E /* CDVInAppBrowser.m */; };
 		1692D3A7428049B3A8947C01 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AD6DA825374C18AB820431 /* CDVStatusBar.m */; };
+		719590B6E66244CAA68B4748 /* Sms.m in Sources */ = {isa = PBXBuildFile; fileRef = 9007A4B285C547A1893F4DB3 /* Sms.m */; };
+		9730FA34455A43A29D8941E0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A1CE64EE6D4B279AA6DAAF /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,9 @@
 		B14A628C4077450383FF5739 /* CDVInAppBrowser.h */ = {isa = PBXFileReference; name = "CDVInAppBrowser.h"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		B3AD6DA825374C18AB820431 /* CDVStatusBar.m */ = {isa = PBXFileReference; name = "CDVStatusBar.m"; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		74F1B5180927432C89ABCAE2 /* CDVStatusBar.h */ = {isa = PBXFileReference; name = "CDVStatusBar.h"; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		9007A4B285C547A1893F4DB3 /* Sms.m */ = {isa = PBXFileReference; name = "Sms.m"; path = "cordova-sms-plugin/Sms.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		E8847BF8E4944C129ACB7A46 /* Sms.h */ = {isa = PBXFileReference; name = "Sms.h"; path = "cordova-sms-plugin/Sms.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		37A1CE64EE6D4B279AA6DAAF /* MessageUI.framework */ = {isa = PBXFileReference; name = "MessageUI.framework"; path = "System/Library/Frameworks/MessageUI.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +123,7 @@
 				00C03CE31CE645759D174F9B /* FBSDKShareKit.framework in Frameworks */,
 				393B56833E5C42AFA38E35FE /* QuartzCore.framework in Frameworks */,
 				36B726E5F1854E3AA7F5F66E /* Stripe.framework in Frameworks */,
+				9730FA34455A43A29D8941E0 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +201,7 @@
 				87D06F9B4A344F409719C8CE /* FBSDKShareKit.framework */,
 				7BD9203D62284CEBB5DBD7DC /* QuartzCore.framework */,
 				4973F77B5D2A4B2DBF5919D8 /* Stripe.framework */,
+				37A1CE64EE6D4B279AA6DAAF /* MessageUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -242,6 +249,8 @@
 				B14A628C4077450383FF5739 /* CDVInAppBrowser.h */,
 				B3AD6DA825374C18AB820431 /* CDVStatusBar.m */,
 				74F1B5180927432C89ABCAE2 /* CDVStatusBar.h */,
+				9007A4B285C547A1893F4DB3 /* Sms.m */,
+				E8847BF8E4944C129ACB7A46 /* Sms.h */,
 			);
 			name = Plugins;
 			path = "CodeKL_Barber/Plugins";
@@ -365,6 +374,7 @@
 				748E3EC3AAF94CEEB6F52233 /* CordovaStripe.m in Sources */,
 				CDCE13E21F1C4BF8BA653FAC /* CDVInAppBrowser.m in Sources */,
 				1692D3A7428049B3A8947C01 /* CDVStatusBar.m in Sources */,
+				719590B6E66244CAA68B4748 /* Sms.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

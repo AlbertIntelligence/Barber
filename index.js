@@ -15,7 +15,7 @@ app.post('/createUser', function (request, response) {
 
   // Create a Customer:
   stripe.customers.create({
-    email: "paying.user@example.com",
+    email: email,
     source: token,
   }).then(function(customer) {
     response.send(customer.id);
@@ -31,8 +31,8 @@ app.post('/pay', function (request, response) {
     currency: "cad",
     customer: customerId,
   }).then(function(charge) {
-    // Use and save the charge info.
-    console.log(amountpayable + "$ payment completed.");
+    var amountPaid = amountpayable / 100;
+    console.log(amountPaid + "$ payment completed.");
   }).catch(function(err) {
     // Deal with an error
     console.log('Error: ' + err);

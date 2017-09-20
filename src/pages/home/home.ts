@@ -49,16 +49,15 @@ export class HomePage {
   checkout () {
     var userId = firebase.auth().currentUser.uid;
     var user = this.userAccounts.find(item => item.UserId == userId);
-    var token = user.cardToken.id;
-    var email = user.email;
-    this.pay(token, 500, email);
+    var customerId = user.customerStripeId;
+    this.pay(customerId, 500);
   }
 
-  pay(token, amount, email) {
-    var data = 'stripetoken=' + token + '&amount=' + amount + '&email=' + email;
+  pay(customerId, amount) {
+    var data = 'customerId=' + customerId + '&amount=' + amount;
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded')
-    this.http.post('http://192.168.27.1:3333/processpay', data, { headers: headers }).subscribe((res) => {
+    this.http.post('http://192.168.27.1:3333/pay', data, { headers: headers }).subscribe((res) => {
       if (res.json().success) {
         console.log('transaction Successfull!!');
       } else {

@@ -63,6 +63,10 @@
                         {
                             "xml": "<feature name=\"StatusBar\"><param name=\"android-package\" value=\"org.apache.cordova.statusbar.StatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Sms\"><param name=\"android-package\" value=\"com.cordova.plugins.sms.Sms\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -94,6 +98,20 @@
                         },
                         {
                             "xml": "<activity android:configChanges=\"keyboard|keyboardHidden|screenLayout|screenSize|orientation\" android:label=\"@string/fb_app_name\" android:name=\"com.facebook.FacebookActivity\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/manifest": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.SEND_SMS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-feature android:name=\"android.hardware.telephony\" android:required=\"false\" />",
                             "count": 1
                         }
                     ]
@@ -129,6 +147,9 @@
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
         "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+        },
+        "cordova-sms-plugin": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         }
     },
@@ -204,6 +225,14 @@
             "clobbers": [
                 "window.StatusBar"
             ]
+        },
+        {
+            "id": "cordova-sms-plugin.Sms",
+            "file": "plugins/cordova-sms-plugin/www/sms.js",
+            "pluginId": "cordova-sms-plugin",
+            "clobbers": [
+                "window.sms"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -215,6 +244,7 @@
         "ionic-plugin-keyboard": "2.2.1",
         "cordova-plugin-stripe": "1.5.3",
         "cordova-plugin-inappbrowser": "1.7.1",
-        "cordova-plugin-statusbar": "2.2.3"
+        "cordova-plugin-statusbar": "2.2.3",
+        "cordova-sms-plugin": "0.1.11"
     }
 }
