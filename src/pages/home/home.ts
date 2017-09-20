@@ -6,10 +6,6 @@ import {GalleryPage} from "../gallery/gallery";
 import {GetaTicketPage} from "../get-a-ticket/get-a-ticket";
 import {BarberLocation} from "../barber-location/barber-location";
 import {SettingsPage} from "../settings/settings";
-import firebase from 'firebase';
-import { Stripe } from '@ionic-native/stripe';
-import { Http, Headers } from '@angular/http';
-
 
 /*
  Generated class for the LoginPage page.
@@ -26,44 +22,10 @@ export class HomePage {
   public pictures: any;
   private userAccounts:Array<any> = [];
 
-  constructor(public nav: NavController, public galleryService: GalleryService, public stripe: Stripe, public http: Http) {
+  constructor(public nav: NavController, public galleryService: GalleryService) {
     // set sample data
     this.pictures = galleryService.getAll();
     this.updateUserAccounts();
-  }
-
-  updateUserAccounts() {
-    let controller = this;
-    firebase.database().ref('Users/')
-     .on('value', function(snapshot) {
-       let users = snapshot.val();
-       controller.userAccounts = [];
-       for (var property in users) {
-          if (users.hasOwnProperty(property)) {
-              controller.userAccounts.push(users[property]);
-          }
-       }
-     });
-  }
-
-  checkout () {
-    var userId = firebase.auth().currentUser.uid;
-    var user = this.userAccounts.find(item => item.UserId == userId);
-    var customerId = user.customerStripeId;
-    this.pay(customerId, 500);
-  }
-
-  pay(customerId, amount) {
-    var data = 'customerId=' + customerId + '&amount=' + amount;
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded')
-    this.http.post('http://192.168.27.1:3333/pay', data, { headers: headers }).subscribe((res) => {
-      if (res.json().success) {
-        console.log('transaction Successfull!!');
-      } else {
-        console.log('transaction failed!!');
-      }
-    });
   }
 
   /*****************************************************************************
