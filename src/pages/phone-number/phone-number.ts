@@ -33,6 +33,7 @@ export class PhoneNumberPage {
   private phoneNumber:String;
   private email:string;
   private password:string;
+  private passwordConfirmation:string;
   private firstName:String;
   private lastName:String;
   private customerId:any;
@@ -50,7 +51,7 @@ export class PhoneNumberPage {
   }
 
   ionViewDidLoad() {
-    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('nextBtn', {'size' : 'invisible'});
+    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {'size' : 'invisible'});
   }
 
   @HostListener('document:keyup', ['$event'])
@@ -195,12 +196,12 @@ export class PhoneNumberPage {
   }
 
   /*****************************************************************************
-  Function: enterYourPhone
+  Function: enterYourEmail
   Description: Trigger the transition
   Parameters: event
   Return: void
   *****************************************************************************/
-  enterYourPhone() {
+  enterYourEmail() {
     //When focusing on input, load phone number view if not already loaded
     if (!this.loaded) {
         this.loaded = true;
@@ -212,27 +213,27 @@ export class PhoneNumberPage {
           this.translate($("#main"), "0px", "-63vh");
         }
         $("#link").removeClass('visible').addClass('hidden');
-        this.translate($("#title"), "0px", "10vh");
-        this.translate($("#inputBloc"), "0px", "14vh");
+        this.translate($("#title"), "0px", "14vh");
+        this.translate($("#emailInput"), "0px", "21vh");
         $("#title").css('font-size', '5vw');
         $("#backBtn").css('margin-top', '2vh');
-        $("#title").text("Entrez votre numéro de téléphone");
+        $("#title").text("Entrez votre adresse courriel");
         $("#hr").removeClass('visible').addClass('hidden');
-        $("#input").attr("placeholder", "(514) 555-1234");
+        $("#email").attr("placeholder", "exemple@mail.ca");
 
         //Animation slow
         setTimeout(() => {
           $("#backBtn").removeClass('hidden').addClass('visible');
           $("#nextBtn").removeClass('hidden').addClass('visible');
-          $("#inputBloc").css('border-bottom', '2px solid black');
-          $("#input").focus();
+          $("#emailInput").css('border-bottom', '2px solid black');
+          $("#email").focus();
           setTimeout(() => {
-            $("#input").focus();
+            $("#email").focus();
           }, 1000);
 
         }, 1000);
 
-        this.currentView = "phoneNumber";
+        this.currentView = "email";
     }
   }
 
@@ -244,11 +245,11 @@ export class PhoneNumberPage {
   *****************************************************************************/
   goBack() {
     //back to the home view
-    if (this.loaded && this.currentView == "phoneNumber") {
-        $("#input").blur();
+    if (this.loaded && this.currentView == "email") {
+        $("#email").blur();
         this.loaded = false;
         this.translate($("#title"), "0px", "0px");
-        this.translate($("#inputBloc"), "0px", "0px");
+        this.translate($("#emailInput"), "0px", "0px");
         this.translate($("#main"), "0px", "0px");
         $("#title").css('font-size', '5.75vw');
         $("#backBtn").css('margin-top', '0');
@@ -256,8 +257,8 @@ export class PhoneNumberPage {
         $("#hr").removeClass('hidden').addClass('visible');
         $("#backBtn").addClass('hidden').removeClass('visible');
         $("#nextBtn").addClass('hidden').removeClass('visible');
-        $("#inputBloc").css('border', '0');
-        $("#input").attr("placeholder", "Numéro de téléphone");
+        $("#emailInput").css('border', '0');
+        $("#email").attr("placeholder", "Entrez votre adresse courriel");
 
         setTimeout(() => {
           $("#main").css('height', 'auto');
@@ -266,46 +267,31 @@ export class PhoneNumberPage {
         this.currentView = "home";
     }
 
-    //back to the phone number view
-    else if (this.currentView == "6-digit") {
-      this.translate($("#digitTitle"), "0px", "0px");
-      this.translate($("#title"), "0px", "10vh");
-      this.translate($("#digitBloc"), "0px", "0px");
-      this.translate($("#inputBloc"), "0px", "14vh");
-      this.currentView = "phoneNumber";
-    }
-
-    //back to the 6-digit PIN view
-    else if (this.currentView == "email") {
-      this.translate($("#emailTitle"), "0px", "0px");
-      this.translate($("#digitTitle"), "-100vw", "0px");
-      this.translate($("#emailInput"), "0px", "0px");
-      this.translate($("#digitBloc"), "-100vw", "0px");
-      $("#digit1").children().eq(0).val("");
-      $("#digit2").children().eq(0).val("");
-      $("#digit3").children().eq(0).val("");
-      $("#digit4").children().eq(0).val("");
-      $("#digit5").children().eq(0).val("");
-      $("#digit6").children().eq(0).val("");
-      this.currentView = "6-digit";
-    }
-
     //back to the email view
     else if (this.currentView == "password") {
       this.translate($("#passwordTitle"), "0px", "0px");
-      this.translate($("#emailTitle"), "-100vw", "0px");
+      this.translate($("#title"), "0px", "14vh");
       this.translate($("#passwordInput"), "0px", "0px");
-      this.translate($("#emailInput"), "-100vw", "0px");
+      this.translate($("#emailInput"), "0px", "21vh");
       this.currentView = "email";
     }
 
     //back to the password view
-    else if (this.currentView == "name") {
-      this.translate($("#nameTitle"), "0px", "0px");
+    else if (this.currentView == "passwordConfirmation") {
+      this.translate($("#passwordConfirmationTitle"), "0px", "0px");
       this.translate($("#passwordTitle"), "-100vw", "0px");
-      this.translate($("#nameInput"), "0px", "0px");
+      this.translate($("#passwordConfirmationInput"), "0px", "0px");
       this.translate($("#passwordInput"), "-100vw", "0px");
       this.currentView = "password";
+    }
+
+    //back to the password confirmation view
+    else if (this.currentView == "name") {
+      this.translate($("#nameTitle"), "0px", "0px");
+      this.translate($("#passwordConfirmationTitle"), "-100vw", "0px");
+      this.translate($("#nameInput"), "0px", "0px");
+      this.translate($("#passwordConfirmationInput"), "-100vw", "0px");
+      this.currentView = "passwordConfirmation";
     }
 
     //back to the name view
@@ -338,75 +324,16 @@ export class PhoneNumberPage {
   *****************************************************************************/
   goToNext() {
     switch (this.currentView) {
-      //Go to enter your view
-      case "phoneNumber":
-        if ($("#input").val().length == 14) {
-          this.currentView = "6-digit";
-          this.translate($("#digitTitle"), "-100vw", "0px");
-          this.translate($("#title"), "-100vw", "10vh");
-          this.translate($("#digitBloc"), "-100vw", "0px");
-          this.translate($("#inputBloc"), "-100vw", "14vh");
-          setTimeout(() => { $("#digit1").children().eq(0).focus(); }, 1000);
-
-          $("#digit1").children().eq(0).val("");
-          $("#digit2").children().eq(0).val("");
-          $("#digit3").children().eq(0).val("");
-          $("#digit4").children().eq(0).val("");
-          $("#digit5").children().eq(0).val("");
-          $("#digit6").children().eq(0).val("");
-
-          $("#digit1").css('border-bottom', '2px solid black');
-          $("#digit2").css('border-bottom', '2px solid #F2F2F2');
-          $("#digit3").css('border-bottom', '2px solid #F2F2F2');
-          $("#digit4").css('border-bottom', '2px solid #F2F2F2');
-          $("#digit5").css('border-bottom', '2px solid #F2F2F2');
-          $("#digit6").css('border-bottom', '2px solid #F2F2F2');
-
-          this.signInWithPhoneNumber();
-        } else {
-          $("#input").parent().css('border-bottom', '2px solid red');
-          $("#input").focus();
-        }
-        break;
-
-      //Go to enter your name email
-      case "6-digit":
-        if ($("#digit1").children().eq(0).val().length == 1 &&
-            $("#digit2").children().eq(0).val().length == 1 &&
-            $("#digit3").children().eq(0).val().length == 1 &&
-            $("#digit4").children().eq(0).val().length == 1 &&
-            $("#digit5").children().eq(0).val().length == 1 &&
-            $("#digit6").children().eq(0).val().length == 1)
-        {
-          this.confirmSmsCode();
-        } else {
-          $("#digit1").css('border-bottom', '2px solid red');
-          $("#digit2").css('border-bottom', '2px solid red');
-          $("#digit3").css('border-bottom', '2px solid red');
-          $("#digit4").css('border-bottom', '2px solid red');
-          $("#digit5").css('border-bottom', '2px solid red');
-          $("#digit6").css('border-bottom', '2px solid red');
-
-          $("#digit1").children().eq(0).val().length == 0 ? $("#digit1").children().eq(0).focus() :
-          ($("#digit2").children().eq(0).val().length == 0 ? $("#digit2").children().eq(0).focus() :
-          ($("#digit3").children().eq(0).val().length == 0 ? $("#digit3").children().eq(0).focus() :
-          ($("#digit4").children().eq(0).val().length == 0 ? $("#digit4").children().eq(0).focus() :
-          ($("#digit5").children().eq(0).val().length == 0 ? $("#digit5").children().eq(0).focus() :
-          ($("#digit6").children().eq(0).val().length == 0 ? $("#digit6").children().eq(0).focus() : null)))));
-        }
-        break;
-
-      //Go to enter your name password
+      //Go to enter your password view
       case "email":
-        var email = $("#emailInput").children().eq(0).val();
-        this.email = email;
-        if (email.length > 0 && email.indexOf("@") != -1 && email.indexOf(".") != -1) {
+        var email = $("#email").val();
+        if (email.length > 3 && email.indexOf("@") != -1 && email.indexOf(".") != -1) {
             this.currentView = "password";
             $("#passwordInput").css('border-bottom', '2px solid black');
             this.translate($("#passwordTitle"), "-100vw", "0px");
-            this.translate($("#emailTitle"), "-200vw", "0px");
+            this.translate($("#title"), "-100vw", "14vh");
             this.translate($("#passwordInput"), "-100vw", "0px");
-            this.translate($("#emailInput"), "-200vw", "0px");
+            this.translate($("#emailInput"), "-100vw", "21vh");
             setTimeout(() => { $("#passwordInput").children().eq(0).focus(); }, 1000);
         } else {
           $("#emailInput").css('border-bottom', '2px solid red');
@@ -414,24 +341,42 @@ export class PhoneNumberPage {
         }
         break;
 
-      //Go to enter your name view
+      //Go to enter your password confirmation view
       case "password":
         var password = $("#passwordInput").children().eq(0).val();
         this.password = password;
         if (password.length >= 5) {
-            this.currentView = "name";
-            $("#firstName").css('border-bottom', '2px solid black');
-            $("#lastName").css('border-bottom', '2px solid #F2F2F2');
-            this.translate($("#nameTitle"), "-100vw", "0px");
+            this.currentView = "passwordConfirmation";
+            $("#passwordConfirmationInput").css('border-bottom', '2px solid black');
+            this.translate($("#passwordConfirmationTitle"), "-100vw", "0px");
             this.translate($("#passwordTitle"), "-200vw", "0px");
-            this.translate($("#nameInput"), "-100vw", "0px");
+            this.translate($("#passwordConfirmationInput"), "-100vw", "0px");
             this.translate($("#passwordInput"), "-200vw", "0px");
-            setTimeout(() => { $("#firstName").children().eq(0).focus(); }, 1000);
+            setTimeout(() => { $("#passwordConfirmationInput").children().eq(0).focus(); }, 1000);
           } else {
            $("#passwordInput").css('border-bottom', '2px solid red');
            $("#passwordInput").children().eq(0).focus();
          }
          break;
+
+       //Go to enter your name view
+       case "passwordConfirmation":
+         var passwordConfirmation = $("#passwordConfirmationInput").children().eq(0).val();
+         this.passwordConfirmation = passwordConfirmation;
+         if (this.passwordConfirmation == this.password) {
+             this.currentView = "name";
+             $("#firstName").css('border-bottom', '2px solid black');
+             $("#lastName").css('border-bottom', '2px solid #F2F2F2');
+             this.translate($("#nameTitle"), "-100vw", "0px");
+             this.translate($("#passwordConfirmationTitle"), "-200vw", "0px");
+             this.translate($("#nameInput"), "-100vw", "0px");
+             this.translate($("#passwordConfirmationInput"), "-200vw", "0px");
+             setTimeout(() => { $("#firstName").children().eq(0).focus(); }, 1000);
+           } else {
+            $("#passwordConfirmationInput").css('border-bottom', '2px solid red');
+            $("#passwordConfirmationInput").children().eq(0).focus();
+          }
+          break;
 
       //Go to enter select payment method
       case "name":
@@ -446,13 +391,13 @@ export class PhoneNumberPage {
           this.translate($("#paymentList"), "-100vw", "0px");
           this.translate($("#nameInput"), "-200vw", "0px");
         } else {
-          if (firstName.length == 0) {
-            $("#firstName").css('border-bottom', '2px solid red');
-            $("#firstName").children().eq(0).focus();
-          }
           if (lastName.length == 0) {
             $("#lastName").css('border-bottom', '2px solid red');
             $("#lastName").children().eq(0).focus();
+          }
+          if (firstName.length == 0) {
+            $("#firstName").css('border-bottom', '2px solid red');
+            $("#firstName").children().eq(0).focus();
           }
         }
         break;

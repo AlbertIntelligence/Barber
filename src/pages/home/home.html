@@ -46,6 +46,8 @@
     </ion-row>
   </ion-grid>
 
+  <button ion-button class="round" color="primary" margin-top full (click)="sendSms()">Send SMS</button>
+
   <ion-grid class="list-pictures">
     <ion-row>
       <ion-col *ngFor="let picture of pictures[0].homeGalery" col-6>

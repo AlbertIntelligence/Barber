@@ -5,7 +5,6 @@
   Ionic pages and navigation.
 -->
 <div no-bounce ion-fixed class="content" style="margin:0; padding:0">
-  <div id="recaptcha-container"></div>
   <!-- Header image -->
   <ion-row id="headerImg" class="header-img">
 
@@ -26,61 +25,28 @@
     </ion-row>
 
     <!-- Input for phone number -->
-    <ion-row id="inputBloc" class="phoneNumber">
-      <span class="flag-icon flag-icon-ca" style="font-size: 5vw; margin-right:1vw;"></span>
-      <ion-icon name="md-arrow-dropdown" style="color: gray; margin: auto; padding: auto;"></ion-icon>
-      <span style="font-size: 19px; font-family: Verdana, Geneva, sans-serif; margin: auto; padding: auto;">+1</span>
-      <input maxlength="14" id="input" (focus)="enterYourPhone()" (keydown)="onKeyPress(e)" class="input" [(ngModel)]="phoneNumber" type="tel" placeholder="Numéro de téléphone">
-    </ion-row>
-
-    <!-- Enter 4 digit -->
-    <ion-row class="digitTitle" id="digitTitle">
-      <div>Entrez le code à 6 chiffres qui vous a été envoyé</div>
-    </ion-row>
-
-    <!-- Input for phone number -->
-    <ion-row id="digitBloc" class="digitBloc">
-      <ion-grid>
-        <ion-row>
-          <ion-col id="digit1" col-1 style="margin-right:10px; padding-left:0;padding-right:0">
-            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">
-          </ion-col>
-          <ion-col id="digit2" col-1 style="margin-right:10px; padding-left:0;padding-right:0">
-            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">
-          </ion-col>
-          <ion-col id="digit3" col-1 style="margin-right:10px; padding-left:0;padding-right:0">
-            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">
-          </ion-col>
-          <ion-col id="digit4" col-1 style="margin-right:10px; padding-left:0;padding-right:0">
-            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">
-          </ion-col>
-          <ion-col id="digit5" col-1 style="margin-right:10px; padding-left:0;padding-right:0">
-            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">
-          </ion-col>
-          <ion-col id="digit6" col-1 style="margin-right:10px; padding-left:0;padding-right:0">
-            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-row>
-
-    <!-- Enter your email -->
-    <ion-row class="digitTitle" id="emailTitle">
-      <div>Quelle est votre adresse e-mail ?</div>
-    </ion-row>
-
-    <!-- Input for email -->
-    <ion-row id="emailInput" class="inputBloc">
-      <input class="input" type="email" placeholder="example@mail.ca">
+    <ion-row id="emailInput" class="email">
+       <ion-icon ios="ios-mail" style="font-size: 7vw; color: gray; margin: auto; padding: auto; margin-left: 0; padding-left: 0; margin-right: 0; padding-right: 0;" md="md-mail"></ion-icon>
+      <input id="email" (focus)="enterYourEmail()" class="input" [(ngModel)]="email" type="email" placeholder="Entrez votre adresse courriel">
     </ion-row>
 
     <!-- Enter your password -->
     <ion-row class="digitTitle" id="passwordTitle">
-      <div>Créez le mot de passe de votre compte</div>
+      <div>Créez votre mot de passe</div>
     </ion-row>
 
     <!-- Input for password -->
     <ion-row id="passwordInput" class="inputBloc">
+      <input class="input" type="password" placeholder="5 caractères minimum">
+    </ion-row>
+
+    <!-- Enter your password confirmation -->
+    <ion-row class="digitTitle" id="passwordConfirmationTitle">
+      <div>Confirmez votre mot de passe</div>
+    </ion-row>
+
+    <!-- Input for password confirmation -->
+    <ion-row id="passwordConfirmationInput" class="inputBloc">
       <input class="input" type="password" placeholder="5 caractères minimum">
     </ion-row>
 
