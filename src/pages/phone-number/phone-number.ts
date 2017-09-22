@@ -36,6 +36,7 @@ export class PhoneNumberPage {
   private customerId:any = null;
   private cardToken:any = null;
   private userExists:Boolean;
+  private passwordToBeReset:Boolean = false;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -170,35 +171,46 @@ export class PhoneNumberPage {
   Parameters: event
   Return: void
   *****************************************************************************/
-  enterYourEmail() {
+  enterYourEmail(action?: string) {
     //When focusing on input, load phone number view if not already loaded
     if (!this.loaded) {
+        $("#backBtn").show();
+        $("#email").blur();
         this.loaded = true;
         $("#main").css('background-color', 'white');
         $("#main").css('height', '100vh');
         if (this.platform.is('ios')) {
-          this.translate($("#main"), "0px", "-63.5vh");
+          this.translate($("#main"), "0px", "-67vh");
         } else {
           this.translate($("#main"), "0px", "-63vh");
         }
         $("#link").removeClass('visible').addClass('hidden');
-        this.translate($("#title"), "0px", "14vh");
-        this.translate($("#emailInput"), "0px", "21vh");
+        this.translate($("#title"), "0px", "10vh");
+        this.translate($("#emailInput"), "0px", "14vh");
         $("#title").css('font-size', '5vw');
         $("#backBtn").css('margin-top', '2vh');
-        $("#title").text("Entrez votre adresse courriel");
+
+        if (action) {
+          $("#title").text("Réinitialiser votre mot de passe");  //Password reset
+          this.passwordToBeReset = true;
+        } else {
+          $("#title").text("Entrez votre adresse courriel");
+        }
+
         $("#hr").removeClass('visible').addClass('hidden');
         $("#email").attr("placeholder", "exemple@mail.ca");
 
         //Animation slow
         setTimeout(() => {
+          $("#backBtn").css('height', 'auto');
           $("#backBtn").removeClass('hidden').addClass('visible');
           $("#nextBtn").removeClass('hidden').addClass('visible');
           $("#emailInput").css('border-bottom', '2px solid black');
-          $("#email").focus();
+          //$("#email").focus();
           setTimeout(() => {
-            $("#email").focus();
-          }, 1000);
+            $("#email").click().focus();
+          }, 4000);
+          $("#email").click().focus();
 
         }, 1000);
 
@@ -224,7 +236,7 @@ export class PhoneNumberPage {
         $("#backBtn").css('margin-top', '0');
         $("#title").text("Coiffez vous avec Barber Me");
         $("#hr").removeClass('hidden').addClass('visible');
-        $("#backBtn").addClass('hidden').removeClass('visible');
+        $("#backBtn").addClass('hidden').removeClass('visible'); $("#backBtn").hide();
         $("#nextBtn").addClass('hidden').removeClass('visible');
         $("#emailInput").css('border', '0');
         $("#email").attr("placeholder", "Entrez votre adresse courriel");
@@ -234,14 +246,15 @@ export class PhoneNumberPage {
           $("#link").removeClass('hidden').addClass('visible');
         }, 1000);
         this.currentView = "home";
+        this.passwordToBeReset = false;
     }
 
     //back to the email view
     else if (this.currentView == "password") {
       this.translate($("#passwordTitle"), "0px", "0px");
-      this.translate($("#title"), "0px", "14vh");
+      this.translate($("#title"), "0px", "10vh");
       this.translate($("#passwordInput"), "0px", "0px");
-      this.translate($("#emailInput"), "0px", "21vh");
+      this.translate($("#emailInput"), "0px", "14vh");
       this.currentView = "email";
     }
 
@@ -297,12 +310,21 @@ export class PhoneNumberPage {
         this.userExists = false;
         var email = $("#email").val();
         if (email.length > 3 && email.indexOf("@") != -1 && email.indexOf(".") != -1) {
+          if (this.passwordToBeReset) {
+            let controller = this;
+            firebase.auth().sendPasswordResetEmail(this.email).then(function(){
+              controller.showAlert('Courriel Envoyé!', 'Un courriel avec un lien de réinitialisation de mot de passe vous a été envoyé.');
+            }).catch(function(){
+              controller.showAlert('Erreur!', 'Adresse courriel invalide.');
+            });
+
+          } else {
             this.currentView = "password";
             $("#passwordInput").css('border-bottom', '2px solid black');
             this.translate($("#passwordTitle"), "-100vw", "0px");
-            this.translate($("#title"), "-100vw", "14vh");
+            this.translate($("#title"), "-100vw", "10vh");
             this.translate($("#passwordInput"), "-100vw", "0px");
-            this.translate($("#emailInput"), "-100vw", "21vh");
+            this.translate($("#emailInput"), "-100vw", "14vh");
 
             //Check if user is already registered
             if (this.alreadyExists()) {
@@ -311,9 +333,10 @@ export class PhoneNumberPage {
               $("#passwordTitle").children().eq(0).text(passTitle);
             }
             setTimeout(() => { $("#passwordInput").children().eq(0).focus(); }, 1000);
+          }
         } else {
           $("#emailInput").css('border-bottom', '2px solid red');
-          $("#emailInput").children().eq(0).focus();
+          $("#email").focus();
         }
         break;
 
@@ -325,6 +348,7 @@ export class PhoneNumberPage {
         //If user is already registered, login user
         if (password.length >= 5 && this.userExists) {
           this.loginUser();
+          break;
         }
 
         if (password.length >= 5) {
@@ -435,22 +459,6 @@ export class PhoneNumberPage {
       cvc: cvc
     }
     this.getCreditCardToken(cardinfo);
-
-    /*setTimeout(() => {
-      var token = this.cardToken;
-      var email = this.email;
-      this.getCustomerInfos(token.id, email);
-    }, 3000);*/
-
-    /*setTimeout(() => {
-      if (this.cardToken != null && this.customerId != null) {
-        this.createUser();
-      }
-      else {
-        this.showAlert('Inscription Impossible !', 'Carte de crédit invalide.');
-      }
-    }, 6000);*/
-
   }
 
   /*****************************************************************************
@@ -482,7 +490,7 @@ export class PhoneNumberPage {
     firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function (data) {
       loginController.loginUser();
       var userId = firebase.auth().currentUser.uid;
-      
+
       //Create user instance in db
       users.child(userId).set({
         UserId: userId,
@@ -588,11 +596,11 @@ export class PhoneNumberPage {
   *****************************************************************************/
   setHeaderFooter() {
     if (this.platform.is('ios')) {
-      $(".header-img").height("65vh");
-      $("#link").height("7.5vh");
+      //$(".header-img").height("67vh");
+      //$("#link").height("5.5vh");
     } else {
-      $(".header-img").height("63vh");
-      $("#link").height("7.5vh");
+      //$(".header-img").height("63vh");
+      //$("#link").height("7.5vh");
     }
   }
 

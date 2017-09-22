@@ -6,7 +6,6 @@ import {GalleryPage} from "../gallery/gallery";
 import {GetaTicketPage} from "../get-a-ticket/get-a-ticket";
 import {BarberLocation} from "../barber-location/barber-location";
 import {SettingsPage} from "../settings/settings";
-import { Http, Headers } from '@angular/http';
 
 /*
  Generated class for the LoginPage page.
@@ -23,21 +22,9 @@ export class HomePage {
   public pictures: any;
   private userAccounts:Array<any> = [];
 
-  constructor(public nav: NavController, public galleryService: GalleryService, public http: Http) {
+  constructor(public nav: NavController, public galleryService: GalleryService) {
     // set sample data
     this.pictures = galleryService.getAll();
-  }
-
-  sendSms () {
-    var phoneNumber = '+15145668877';
-    var text = 'Hello CEO';
-    var data = 'phoneNumber=' + phoneNumber + '&text=' + text;
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
-    this.http.post('http://192.168.27.1:3333/sendSms', data, { headers: headers }).subscribe((res) => {
-
-    });
   }
 
   /*****************************************************************************

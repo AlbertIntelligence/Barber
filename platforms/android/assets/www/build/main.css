@@ -78385,7 +78385,7 @@ page-phone-number .header-img {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 64vw;
+  height: 67vh;
   padding: 0;
   margin: 0;
 }
@@ -78455,10 +78455,11 @@ page-phone-number .fadeOut {
 }
 
 page-phone-number .backbtn {
-  display: inline-block;
+  display: inline;
   position: relative;
   margin: 0;
   padding: 0;
+  width: auto;
 }
 
 page-phone-number .title {
@@ -78468,6 +78469,7 @@ page-phone-number .title {
   left: 0;
   margin: 0;
   padding: 0;
+  margin-top: 5vh;
   color: black;
   font-size: 5.75vw;
   font-family: Verdana, Geneva, sans-serif;
@@ -78489,7 +78491,7 @@ page-phone-number .footer {
   padding-right: 7vw;
   font-family: Verdana, Geneva, sans-serif;
   border-top: 1px solid #EBEBEB;
-  height: 10vh;
+  height: 7vh;
   color: blue;
   font-size: 4vw;
 }

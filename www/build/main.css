@@ -78385,7 +78385,7 @@ page-phone-number .header-img {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 64vw;
+  height: 67vh;
   padding: 0;
   margin: 0;
 }
@@ -78455,10 +78455,11 @@ page-phone-number .fadeOut {
 }
 
 page-phone-number .backbtn {
-  display: inline-block;
+  display: inline;
   position: relative;
   margin: 0;
   padding: 0;
+  width: auto;
 }
 
 page-phone-number .title {
@@ -78468,6 +78469,7 @@ page-phone-number .title {
   left: 0;
   margin: 0;
   padding: 0;
+  margin-top: 5vh;
   color: black;
   font-size: 5.75vw;
   font-family: Verdana, Geneva, sans-serif;
@@ -78489,7 +78491,7 @@ page-phone-number .footer {
   padding-right: 7vw;
   font-family: Verdana, Geneva, sans-serif;
   border-top: 1px solid #EBEBEB;
-  height: 10vh;
+  height: 7vh;
   color: blue;
   font-size: 4vw;
 }
@@ -78521,7 +78523,7 @@ page-phone-number .btn-circle {
 page-phone-number .btn-circle.btn-lg {
   position: fixed;
   right: 5vw;
-  top: 50vh;
+  top: 45vh;
   width: 50px;
   height: 50px;
   padding: 10px 16px;
@@ -78533,7 +78535,7 @@ page-phone-number .btn-circle.btn-lg {
 page-phone-number .btn-circle.btn-xl {
   position: fixed;
   right: 5vw;
-  top: 50vh;
+  top: 45vh;
   width: 20vw;
   height: 20vw;
   padding: 5vw 7vw;
@@ -78553,7 +78555,7 @@ page-phone-number .btn-circle.btn-xl:active {
 page-phone-number .digitTitle {
   position: absolute;
   left: 100vw;
-  top: 19%;
+  top: 15%;
   width: 100%;
   padding-left: 7vw;
   padding-right: 5vw;
@@ -78579,7 +78581,7 @@ page-phone-number .digitBloc {
 page-phone-number .inputBloc {
   position: absolute;
   left: 107vw;
-  top: 30%;
+  top: 23%;
   width: 86%;
   font-size: 19px;
   outline: none;

@@ -15,7 +15,7 @@
   <!--body of page !-->
   <ion-row id="main" class="main">
     <!-- Title -->
-    <ion-row class="backbtn hidden" id="backBtn">
+    <ion-row style="display: none" class="backbtn hidden" id="backBtn">
       <ion-icon (click)="goBack()" style="font-size: 12vw; color: black;padding:0;margin:0" name="ios-arrow-round-back"></ion-icon>
     </ion-row>
 
@@ -142,7 +142,7 @@
 
   <!-- Link to login page -->
   <ion-row class="footer" id="link">
-    <span (click)="gotoLoginPage()" ion-text color="black" style="margin-top: auto; margin-bottom: auto;">Apprenez-en plus ici</span>
+    <span (click)="enterYourEmail('reset password')" ion-text color="black" style="margin-top: auto; margin-bottom: auto;">Mot de passe oublié?</span>
   </ion-row>
 
   <button id="nextBtn" (click)="goToNext()" ion-button class="btn-circle btn-xl hidden"><ion-icon name="ios-arrow-round-forward" class="nextIcon"></ion-icon></button>
