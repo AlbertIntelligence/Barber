@@ -46,6 +46,7 @@
         <variable name="APP_NAME" value="MPC Mobile App" />
     </plugin>
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
+    <plugin name="cordova-plugin-network-information" spec="^1.3.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.2.3" />
     <plugin name="cordova-plugin-stripe" spec="^1.5.3" />
     <plugin name="cordova-plugin-x-toast" spec="^2.6.0" />

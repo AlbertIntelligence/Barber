@@ -20,6 +20,7 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { HttpModule } from '@angular/http';
 import { Stripe } from '@ionic-native/stripe';
 import firebase from 'firebase';
+import { Network } from '@ionic-native/network';
 
 
 // import services
@@ -88,7 +89,7 @@ const providers = [ ];
     PhoneNumberPage,
     Keyboard,
     Stripe,
-    //Facebook,
+    Network,
     providers,
     /* import services */
   ]

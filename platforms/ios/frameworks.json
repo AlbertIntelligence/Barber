@@ -1,5 +1,7 @@
 {
     "libz.tbd": 1,
     "QuartzCore.framework": 1,
-    "MessageUI.framework": 1
+    "MessageUI.framework": 1,
+    "SystemConfiguration.framework": 1,
+    "CoreTelephony.framework": 1
 }

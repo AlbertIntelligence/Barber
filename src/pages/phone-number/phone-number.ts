@@ -10,6 +10,7 @@ import { AlertController } from 'ionic-angular';
 import {LoginPage} from "../login/login";
 import { Stripe } from '@ionic-native/stripe';
 import { Http, Headers } from '@angular/http';
+import { Network } from '@ionic-native/network';
 
 /**
  * Generated class for the CreateUserPage page.
@@ -17,6 +18,10 @@ import { Http, Headers } from '@angular/http';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+
+ declare var navigator: any;
+ declare var Connection: any;
+
 @Component({
   selector: 'page-phone-number',
   templateUrl: 'phone-number.html',
@@ -37,12 +42,23 @@ export class PhoneNumberPage {
   private cardToken:any = null;
   private userExists:Boolean;
   private passwordToBeReset:Boolean = false;
+  private disconnected:Boolean = true;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
      private keyboard: Keyboard, public platform: Platform, public alertCtrl: AlertController,
-     public stripe: Stripe, public http: Http) {
+     public stripe: Stripe, public http: Http, private network: Network) {
+       this.networkIsConnected();
        this.updateUserAccounts();
+       // watch network for a disconnect
+      let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+        this.showAlert('Erreur!', 'Pas de connection internet.');
+        this.disconnected = true;
+      });
+
+      let connectSubscription = this.network.onConnect().subscribe(() => {
+        this.disconnected = false;
+      });
   }
 
   ngOnInit(): any {
@@ -307,8 +323,10 @@ export class PhoneNumberPage {
     switch (this.currentView) {
       //Go to enter your password view
       case "email":
+        if (this.disconnected) {this.showAlert('Erreur!', 'Pas de connection internet.'); break;}
         this.userExists = false;
         var email = $("#email").val();
+
         if (email.length > 3 && email.indexOf("@") != -1 && email.indexOf(".") != -1) {
           if (this.passwordToBeReset) {
             let controller = this;
@@ -342,6 +360,7 @@ export class PhoneNumberPage {
 
       //Go to enter your password confirmation view
       case "password":
+        if (this.disconnected) {this.showAlert('Erreur!', 'Pas de connection internet.'); break;}
         var password = $("#passwordInput").children().eq(0).val();
         this.password = password;
 
@@ -367,6 +386,7 @@ export class PhoneNumberPage {
 
       //Go to enter your name view
       case "passwordConfirmation":
+       if (this.disconnected) {this.showAlert('Erreur!', 'Pas de connection internet.'); break;}
        var passwordConfirmation = $("#passwordConfirmationInput").children().eq(0).val();
        this.passwordConfirmation = passwordConfirmation;
        if (this.passwordConfirmation == this.password) {
@@ -386,6 +406,7 @@ export class PhoneNumberPage {
 
       //Go to enter select payment method
       case "name":
+        if (this.disconnected) {this.showAlert('Erreur!', 'Pas de connection internet.'); break;}
         var firstName = $("#firstName").children().eq(0).val();
         var lastName = $("#lastName").children().eq(0).val();
         this.firstName = firstName; this.lastName = lastName;
@@ -410,6 +431,7 @@ export class PhoneNumberPage {
 
       //Go to credit card form
       case "paymentMethod":
+        if (this.disconnected) {this.showAlert('Erreur!', 'Pas de connection internet.'); break;}
         this.currentView = "creditCardForm";
         $("#cardName").css('border-bottom', '2px solid black');
         $("#cardNumber").css('border-bottom', '2px solid #F2F2F2');
@@ -560,6 +582,20 @@ export class PhoneNumberPage {
           }
        }
      });
+  }
+
+  networkIsConnected() {
+    let controller = this;
+    var connectedRef = firebase.database().ref(".info/connected");
+    connectedRef.on("value", function(snap) {
+      if (snap.val() === true) {
+        controller.disconnected = false;
+        alert("connected");
+      } else {
+        controller.disconnected = true;
+        controller.showAlert('Erreur!', 'Pas de connection internet.');
+      }
+    });
   }
 
   /*****************************************************************************

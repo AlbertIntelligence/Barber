@@ -28,6 +28,7 @@
         "@ionic-native/in-app-browser": "^4.2.1",
         "@ionic-native/keyboard": "^4.2.1",
         "@ionic-native/native-page-transitions": "^4.1.0",
+        "@ionic-native/network": "^4.2.1",
         "@ionic-native/sms": "^4.2.1",
         "@ionic-native/stripe": "^4.2.1",
         "@ionic-native/toast": "^3.12.1",
@@ -43,6 +44,7 @@
         "cordova-plugin-device": "^1.1.6",
         "cordova-plugin-facebook4": "^1.9.1",
         "cordova-plugin-inappbrowser": "^1.7.1",
+        "cordova-plugin-network-information": "^1.3.3",
         "cordova-plugin-statusbar": "^2.2.3",
         "cordova-plugin-stripe": "^1.5.3",
         "cordova-plugin-x-toast": "^2.6.0",
@@ -90,7 +92,8 @@
             "cordova-plugin-stripe": {},
             "cordova-plugin-inappbrowser": {},
             "cordova-plugin-statusbar": {},
-            "cordova-sms-plugin": {}
+            "cordova-sms-plugin": {},
+            "cordova-plugin-network-information": {}
         },
         "platforms": [
             "android",

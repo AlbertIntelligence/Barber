@@ -38,6 +38,9 @@
         },
         "cordova-sms-plugin": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         }
     },
     "dependent_plugins": {}
