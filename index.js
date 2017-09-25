@@ -19,6 +19,7 @@ app.post('/createUser', function (request, response) {
     email: email,
     source: token,
   }).then(function(customer) {
+    console.log('User created');
     response.send(customer.id);
   });
 });

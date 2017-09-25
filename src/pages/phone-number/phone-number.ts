@@ -31,7 +31,6 @@ export class PhoneNumberPage {
 
   private loaded: boolean = false;
   private currentView: String = "home";
-  public recaptchaVerifier:firebase.auth.RecaptchaVerifier;
   private userAccounts:Array<any> = [];
   private email:string;
   private password:string;
@@ -42,31 +41,28 @@ export class PhoneNumberPage {
   private cardToken:any = null;
   private userExists:Boolean;
   private passwordToBeReset:Boolean = false;
-  private disconnected:Boolean = true;
+  private disconnected:Boolean = false;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
      private keyboard: Keyboard, public platform: Platform, public alertCtrl: AlertController,
      public stripe: Stripe, public http: Http, private network: Network) {
-       this.networkIsConnected();
+       //this.networkIsConnected();
        this.updateUserAccounts();
        // watch network for a disconnect
-      let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
-        this.showAlert('Erreur!', 'Pas de connection internet.');
+      this.network.onDisconnect().subscribe(() => {
+        this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.');
         this.disconnected = true;
       });
 
-      let connectSubscription = this.network.onConnect().subscribe(() => {
+      this.network.onConnect().subscribe(() => {
+        this.updateUserAccounts();
         this.disconnected = false;
       });
   }
 
   ngOnInit(): any {
     this.setHeaderFooter();
-  }
-
-  ionViewDidLoad() {
-    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {'size' : 'invisible'});
   }
 
   @HostListener('document:keyup', ['$event'])
@@ -130,37 +126,37 @@ export class PhoneNumberPage {
           }
           break;
 
-          case 4:
-            if (event.key != "Backspace") {
-              if (value[0] == "(") {
-                $(event.target).val(value + ") ");
-              }
+        case 4:
+          if (event.key != "Backspace") {
+            if (value[0] == "(") {
+              $(event.target).val(value + ") ");
             }
-            break;
+          }
+          break;
 
-            case 5:
-              if (event.key != "Backspace") {
-                if (value[0] == "(" && value[4] != ")") {
-                  $(event.target).val(value.substring(0, 4) + ") " + value[4]);
-                }
-              }
-              break;
+        case 5:
+          if (event.key != "Backspace") {
+            if (value[0] == "(" && value[4] != ")") {
+              $(event.target).val(value.substring(0, 4) + ") " + value[4]);
+            }
+          }
+          break;
 
-              case 6:
-                if (event.key != "Backspace") {
-                  if (value[5] != " ") {
-                    $(event.target).val(value.substring(0, 5) + " " + value[5]);
-                  }
-                }
-                break;
+        case 6:
+          if (event.key != "Backspace") {
+            if (value[5] != " ") {
+              $(event.target).val(value.substring(0, 5) + " " + value[5]);
+            }
+          }
+          break;
 
-          case 9:
-            if (event.key != "Backspace") $(event.target).val(value + "-");
-            break;
+        case 9:
+          if (event.key != "Backspace") $(event.target).val(value + "-");
+          break;
 
-            case 10:
-              if (event.key != "Backspace") $(event.target).val(value.substring(0, 9) + "-" + value[9]);
-              break;
+        case 10:
+          if (event.key != "Backspace") $(event.target).val(value.substring(0, 9) + "-" + value[9]);
+          break;
 
         default:
 
@@ -190,8 +186,8 @@ export class PhoneNumberPage {
   enterYourEmail(action?: string) {
     //When focusing on input, load phone number view if not already loaded
     if (!this.loaded) {
+        $("#input").blur();
         $("#backBtn").show();
-        $("#email").blur();
         this.loaded = true;
         $("#main").css('background-color', 'white');
         $("#main").css('height', '100vh');
@@ -208,6 +204,7 @@ export class PhoneNumberPage {
 
         if (action) {
           $("#title").text("Réinitialiser votre mot de passe");  //Password reset
+          $("#backBtn").css('margin-top', '10vh');
           this.passwordToBeReset = true;
         } else {
           $("#title").text("Entrez votre adresse courriel");
@@ -222,12 +219,6 @@ export class PhoneNumberPage {
           $("#backBtn").removeClass('hidden').addClass('visible');
           $("#nextBtn").removeClass('hidden').addClass('visible');
           $("#emailInput").css('border-bottom', '2px solid black');
-          //$("#email").focus();
-          setTimeout(() => {
-            $("#email").click().focus();
-          }, 4000);
-          $("#email").click().focus();
-
         }, 1000);
 
         this.currentView = "email";
@@ -243,7 +234,7 @@ export class PhoneNumberPage {
   goBack() {
     //back to the home view
     if (this.loaded && this.currentView == "email") {
-        $("#email").blur();
+        $("#input").blur();
         this.loaded = false;
         this.translate($("#title"), "0px", "0px");
         this.translate($("#emailInput"), "0px", "0px");
@@ -320,12 +311,14 @@ export class PhoneNumberPage {
   Return: None
   *****************************************************************************/
   goToNext() {
+    if (this.userAccounts.length == 0) this.disconnected = true;
     switch (this.currentView) {
       //Go to enter your password view
       case "email":
-        if (this.disconnected) {this.showAlert('Erreur!', 'Pas de connection internet.'); break;}
+        if (this.disconnected) {this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.'); break;}
         this.userExists = false;
         var email = $("#email").val();
+        this.email = email;
 
         if (email.length > 3 && email.indexOf("@") != -1 && email.indexOf(".") != -1) {
           if (this.passwordToBeReset) {
@@ -350,43 +343,39 @@ export class PhoneNumberPage {
               var passTitle = (this.userExists) ? 'Ravi de vous revoir, entrez votre mot de passe' : 'Créez votre mot de passe';
               $("#passwordTitle").children().eq(0).text(passTitle);
             }
-            setTimeout(() => { $("#passwordInput").children().eq(0).focus(); }, 1000);
           }
         } else {
           $("#emailInput").css('border-bottom', '2px solid red');
-          $("#email").focus();
         }
         break;
 
       //Go to enter your password confirmation view
       case "password":
-        if (this.disconnected) {this.showAlert('Erreur!', 'Pas de connection internet.'); break;}
+        if (this.disconnected) {this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.'); break;}
         var password = $("#passwordInput").children().eq(0).val();
         this.password = password;
 
         //If user is already registered, login user
-        if (password.length >= 5 && this.userExists) {
+        if (password.length >= 6 && this.userExists) {
           this.loginUser();
           break;
         }
 
-        if (password.length >= 5) {
+        if (password.length >= 6) {
             this.currentView = "passwordConfirmation";
             $("#passwordConfirmationInput").css('border-bottom', '2px solid black');
             this.translate($("#passwordConfirmationTitle"), "-100vw", "0px");
             this.translate($("#passwordTitle"), "-200vw", "0px");
             this.translate($("#passwordConfirmationInput"), "-100vw", "0px");
             this.translate($("#passwordInput"), "-200vw", "0px");
-            setTimeout(() => { $("#passwordConfirmationInput").children().eq(0).focus(); }, 1000);
           } else {
            $("#passwordInput").css('border-bottom', '2px solid red');
-           $("#passwordInput").children().eq(0).focus();
          }
          break;
 
       //Go to enter your name view
       case "passwordConfirmation":
-       if (this.disconnected) {this.showAlert('Erreur!', 'Pas de connection internet.'); break;}
+       if (this.disconnected) {this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.'); break;}
        var passwordConfirmation = $("#passwordConfirmationInput").children().eq(0).val();
        this.passwordConfirmation = passwordConfirmation;
        if (this.passwordConfirmation == this.password) {
@@ -397,22 +386,22 @@ export class PhoneNumberPage {
            this.translate($("#passwordConfirmationTitle"), "-200vw", "0px");
            this.translate($("#nameInput"), "-100vw", "0px");
            this.translate($("#passwordConfirmationInput"), "-200vw", "0px");
-           setTimeout(() => { $("#firstName").children().eq(0).focus(); }, 1000);
          } else {
           $("#passwordConfirmationInput").css('border-bottom', '2px solid red');
-          $("#passwordConfirmationInput").children().eq(0).focus();
         }
         break;
 
       //Go to enter select payment method
       case "name":
-        if (this.disconnected) {this.showAlert('Erreur!', 'Pas de connection internet.'); break;}
+        if (this.disconnected) {this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.'); break;}
         var firstName = $("#firstName").children().eq(0).val();
         var lastName = $("#lastName").children().eq(0).val();
         this.firstName = firstName; this.lastName = lastName;
         if (firstName.length > 0 && lastName.length > 0) {
           this.currentView = "paymentMethod";
           $("#nextBtn").hide();
+          $("#firstName").children().eq(0).blur();
+          $("#lastName").children().eq(0).blur();
           this.translate($("#paymentTitle"), "-100vw", "0px");
           this.translate($("#nameTitle"), "-200vw", "0px");
           this.translate($("#paymentList"), "-100vw", "0px");
@@ -420,19 +409,18 @@ export class PhoneNumberPage {
         } else {
           if (lastName.length == 0) {
             $("#lastName").css('border-bottom', '2px solid red');
-            $("#lastName").children().eq(0).focus();
           }
           if (firstName.length == 0) {
             $("#firstName").css('border-bottom', '2px solid red');
-            $("#firstName").children().eq(0).focus();
           }
         }
         break;
 
       //Go to credit card form
       case "paymentMethod":
-        if (this.disconnected) {this.showAlert('Erreur!', 'Pas de connection internet.'); break;}
+        if (this.disconnected) {this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.'); break;}
         this.currentView = "creditCardForm";
+        this.keyboard.disableScroll(false);
         $("#cardName").css('border-bottom', '2px solid black');
         $("#cardNumber").css('border-bottom', '2px solid #F2F2F2');
         $("#expirationDate").css('border-bottom', '2px solid #F2F2F2');
@@ -444,7 +432,6 @@ export class PhoneNumberPage {
         this.translate($("#paymentTitle"), "-200vw", "0px");
         this.translate($("#creditCartInputs"), "-100vw", "0px");
         this.translate($("#paymentList"), "-200vw", "0px");
-        setTimeout(() => { $("#cardName").children().eq(0).focus(); }, 1000);
         break;
 
       default:
@@ -584,20 +571,6 @@ export class PhoneNumberPage {
      });
   }
 
-  networkIsConnected() {
-    let controller = this;
-    var connectedRef = firebase.database().ref(".info/connected");
-    connectedRef.on("value", function(snap) {
-      if (snap.val() === true) {
-        controller.disconnected = false;
-        alert("connected");
-      } else {
-        controller.disconnected = true;
-        controller.showAlert('Erreur!', 'Pas de connection internet.');
-      }
-    });
-  }
-
   /*****************************************************************************
   Function: translate
   Description: Move the obj in parameter by the others parameters
@@ -652,8 +625,8 @@ export class PhoneNumberPage {
       this.cardToken = token;
       this.getCustomerInfos(this.cardToken.id, this.email);
     }).catch((error) => {
-        this.showAlert('Inscription Impossible !', 'Carte de crédit invalide.');
-        console.log(error);
+      this.showAlert('Inscription Impossible !', 'Carte de crédit invalide.');
+      alert(error);
     });
   }
 
