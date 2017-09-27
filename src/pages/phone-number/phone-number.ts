@@ -18,10 +18,6 @@ import { Network } from '@ionic-native/network';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-
- declare var navigator: any;
- declare var Connection: any;
-
 @Component({
   selector: 'page-phone-number',
   templateUrl: 'phone-number.html',
@@ -47,8 +43,24 @@ export class PhoneNumberPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
      private keyboard: Keyboard, public platform: Platform, public alertCtrl: AlertController,
      public stripe: Stripe, public http: Http, private network: Network) {
-       //this.networkIsConnected();
+
        this.updateUserAccounts();
+
+       this.stripe.setPublishableKey('pk_test_0Ghlv6GvobZIFI0SyNuDglPL');
+
+       let card = {
+        number: '4242424242424242',
+        expMonth: 12,
+        expYear: 2020,
+        cvc: '220'
+       };
+
+       this.stripe.createCardToken(card)
+          .then((token) => {
+            this.showAlert('token', token[0]);
+            this.showAlert('token', token[1]);
+          })
+          .catch((error) => {this.showAlert('error', error);});
        // watch network for a disconnect
       this.network.onDisconnect().subscribe(() => {
         this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.');
@@ -59,6 +71,7 @@ export class PhoneNumberPage {
         this.updateUserAccounts();
         this.disconnected = false;
       });
+
   }
 
   ngOnInit(): any {
@@ -311,7 +324,7 @@ export class PhoneNumberPage {
   Return: None
   *****************************************************************************/
   goToNext() {
-    if (this.userAccounts.length == 0) this.disconnected = true;
+     if (this.userAccounts.length == 0) this.disconnected = true;
     switch (this.currentView) {
       //Go to enter your password view
       case "email":

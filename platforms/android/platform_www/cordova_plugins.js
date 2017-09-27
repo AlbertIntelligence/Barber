@@ -47,14 +47,6 @@ module.exports = [
         "runs": true
     },
     {
-        "id": "cordova-plugin-stripe.stripe",
-        "file": "plugins/cordova-plugin-stripe/www/CordovaStripe.js",
-        "pluginId": "cordova-plugin-stripe",
-        "clobbers": [
-            "cordova.plugins.stripe"
-        ]
-    },
-    {
         "id": "cordova-plugin-inappbrowser.inappbrowser",
         "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
         "pluginId": "cordova-plugin-inappbrowser",
@@ -95,6 +87,14 @@ module.exports = [
         "clobbers": [
             "Connection"
         ]
+    },
+    {
+        "id": "cordova-plugin-stripe.stripe",
+        "file": "plugins/cordova-plugin-stripe/www/CordovaStripe.js",
+        "pluginId": "cordova-plugin-stripe",
+        "clobbers": [
+            "cordova.plugins.stripe"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -106,11 +106,12 @@ module.exports.metadata =
     "cordova-plugin-facebook4": "1.9.1",
     "cordova-plugin-x-toast": "2.6.0",
     "ionic-plugin-keyboard": "2.2.1",
-    "cordova-plugin-stripe": "1.5.3",
     "cordova-plugin-inappbrowser": "1.7.1",
     "cordova-plugin-statusbar": "2.2.3",
     "cordova-sms-plugin": "0.1.11",
-    "cordova-plugin-network-information": "1.3.3"
+    "cordova-plugin-network-information": "1.3.3",
+    "cordova-plugin-stripe": "1.5.3",
+    "cordova-plugin-whitelist": "1.3.2"
 };
 // BOTTOM OF METADATA
 });
