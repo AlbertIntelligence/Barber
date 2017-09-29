@@ -33,6 +33,15 @@ module.exports = [
         ]
     },
     {
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
+    },
+    {
         "id": "cordova-plugin-x-toast.Toast",
         "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
         "pluginId": "cordova-plugin-x-toast",
@@ -63,28 +72,11 @@ module.exports = [
         "runs": true
     },
     {
-        "id": "cordova-plugin-inappbrowser.inappbrowser",
-        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-        "pluginId": "cordova-plugin-inappbrowser",
+        "id": "cordova-plugin-stripe.stripe",
+        "file": "plugins/cordova-plugin-stripe/www/CordovaStripe.js",
+        "pluginId": "cordova-plugin-stripe",
         "clobbers": [
-            "cordova.InAppBrowser.open",
-            "window.open"
-        ]
-    },
-    {
-        "id": "cordova-plugin-statusbar.statusbar",
-        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
-        "pluginId": "cordova-plugin-statusbar",
-        "clobbers": [
-            "window.StatusBar"
-        ]
-    },
-    {
-        "id": "cordova-sms-plugin.Sms",
-        "file": "plugins/cordova-sms-plugin/www/sms.js",
-        "pluginId": "cordova-sms-plugin",
-        "clobbers": [
-            "window.sms"
+            "cordova.plugins.stripe"
         ]
     },
     {
@@ -103,14 +95,6 @@ module.exports = [
         "clobbers": [
             "Connection"
         ]
-    },
-    {
-        "id": "cordova-plugin-stripe.stripe",
-        "file": "plugins/cordova-plugin-stripe/www/CordovaStripe.js",
-        "pluginId": "cordova-plugin-stripe",
-        "clobbers": [
-            "cordova.plugins.stripe"
-        ]
     }
 ];
 module.exports.metadata = 
@@ -119,15 +103,12 @@ module.exports.metadata =
     "cordova-plugin-console": "1.0.7",
     "cordova-plugin-device": "1.1.6",
     "cordova-plugin-facebook4": "1.9.1",
+    "cordova-plugin-inappbrowser": "1.7.1",
     "cordova-plugin-x-toast": "2.6.0",
     "com.telerik.plugins.nativepagetransitions": "0.6.5",
     "ionic-plugin-keyboard": "2.2.1",
-    "cordova-plugin-inappbrowser": "1.7.1",
-    "cordova-plugin-statusbar": "2.2.3",
-    "cordova-sms-plugin": "0.1.11",
-    "cordova-plugin-network-information": "1.3.3",
     "cordova-plugin-stripe": "1.5.3",
-    "cordova-plugin-whitelist": "1.3.2"
+    "cordova-plugin-network-information": "1.3.3"
 };
 // BOTTOM OF METADATA
 });
