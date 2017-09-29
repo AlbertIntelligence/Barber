@@ -83,7 +83,8 @@ module.exports.metadata =
     "cordova-plugin-x-toast": "2.6.0",
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-plugin-stripe": "1.5.3",
-    "cordova-plugin-network-information": "1.3.3"
+    "cordova-plugin-network-information": "1.3.3",
+    "cordova-plugin-whitelist": "1.3.2"
 };
 // BOTTOM OF METADATA
 });
