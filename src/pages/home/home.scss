@@ -1,0 +1,66 @@
+page-home,
+.home {
+
+  .top-menu {
+    padding: 1rem;
+    border-top: 5rem solid color($colors, primary);
+
+    ion-grid {
+      margin-top: -5rem;
+      border-radius: 5px;
+      background: color($colors, white);
+      padding: 0;
+
+      ion-row {
+
+        &:first-child {
+
+          ion-col {
+            border-bottom: 1px solid color($colors, bg-color);
+          }
+        }
+
+        ion-col {
+          display: flex;
+          align-items: center;
+          padding: 1.6rem;
+          font-size: 1.6rem;
+
+          &:first-child {
+            margin-left: 0;
+            border-right: 1px solid color($colors, bg-color);
+          }
+
+          ion-icon {
+            margin-right: 1rem;
+            font-size: 2.5rem;
+            width: 2.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  ion-grid.list-pictures {
+
+    ion-row {
+      flex-wrap: wrap;
+
+      ion-col {
+        padding: 0.5rem;
+
+        .rating-label {
+          display: none;
+        }
+
+        h5 {
+          font-size: 1.5rem;
+        }
+
+        .hide-sm {
+          display: none;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,149 @@
+<!--
+  Generated template for the Phone Number auth page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<div no-bounce ion-fixed class="content" style="margin:0; padding:0">
+  <!-- Header image -->
+  <ion-row id="headerImg" class="header-img">
+
+    <img src="assets/img/bg23.jpg" class="img"/>
+
+  </ion-row>
+
+  <!--body of page !-->
+  <ion-row id="main" class="main">
+    <!-- Title -->
+    <ion-row style="display: none" class="backbtn hidden" id="backBtn">
+      <ion-icon (click)="goBack()" style="font-size: 12vw; color: black;padding:0;margin:0" name="ios-arrow-round-back"></ion-icon>
+    </ion-row>
+
+    <!-- Title -->
+    <ion-row class="title" id="title">
+      <div>Coiffez vous avec Barber Me</div>
+    </ion-row>
+
+    <!-- Input for phone number -->
+    <ion-row id="emailInput" class="email">
+       <ion-icon ios="ios-mail" style="font-size: 7vw; color: gray; margin: auto; padding: auto; margin-left: 0; padding-left: 0; margin-right: 0; padding-right: 0;" md="md-mail"></ion-icon>
+      <input id="email" (focus)="enterYourEmail()" class="input" [(ngModel)]="email" type="email" placeholder="Entrez votre adresse courriel">
+    </ion-row>
+
+    <!-- Enter your password -->
+    <ion-row class="digitTitle" id="passwordTitle">
+      <div>Créez votre mot de passe</div>
+    </ion-row>
+
+    <!-- Input for password -->
+    <ion-row id="passwordInput" class="inputBloc">
+      <input class="input" type="password" placeholder="6 caractères minimum">
+    </ion-row>
+
+    <!-- Enter your password confirmation -->
+    <ion-row class="digitTitle" id="passwordConfirmationTitle">
+      <div>Confirmez votre mot de passe</div>
+    </ion-row>
+
+    <!-- Input for password confirmation -->
+    <ion-row id="passwordConfirmationInput" class="inputBloc">
+      <input class="input" type="password" placeholder="6 caractères minimum">
+    </ion-row>
+
+    <!-- Enter your name -->
+    <ion-row class="digitTitle" id="nameTitle">
+      <div>Comment vous appelez-vous ?</div>
+    </ion-row>
+
+    <!-- Input for name -->
+    <ion-row id="nameInput" class="inputBloc">
+      <ion-grid style="margin:0; padding:0">
+        <ion-row style="margin:0; padding:0">
+          <ion-col id="firstName" col-5 style="margin-left:0px">
+            <input class="nameInput" type="text" placeholder="Prénom">
+          </ion-col>
+
+          <ion-col id="lastName" col-5 style="margin-left:10px">
+            <input (focus)="onFocus('lastName')" class="nameInput" type="text" placeholder="Nom">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-row>
+
+    <!-- Select your payment method -->
+    <ion-row class="digitTitle" id="paymentTitle">
+      <div>Sélectionnez votre moyen de paiement préféré</div>
+    </ion-row>
+
+    <!-- List of payment methods -->
+    <ion-list (click)="selectCreditCard()" id="paymentList" class="digitBloc" style="padding:0; margin-top: 50px">
+      <ion-item (click)="selectCreditCard()" style="padding:0">
+        <ion-icon name="card" style="margin-left:7vw; margin-right:5vw"></ion-icon>
+          Carte de crédit
+        <ion-icon name="arrow-forward" style="position:absolute; right:5vw"></ion-icon>
+      </ion-item>
+    </ion-list>
+
+    <!-- Enter your credit card -->
+    <ion-row class="digitTitle" id="creditCardTitle" style="top: 10%">
+      <div>Ajouter la carte</div>
+    </ion-row>
+
+    <!-- Inputs for credit card -->
+    <ion-row id="creditCartInputs" class="digitBloc" style="top: 4%; padding-right: 3vw">
+      <!-- Credit card name -->
+      <!--ion-row><ion-label color="#F2F2F2" stacked></ion-label></ion-row!-->
+      <ion-row id="cardName" style="padding:auto; margin:auto; margin-left:0; width:95%; margin-top:50px">
+        <ion-icon style="font-size:7vw; margin-right: 10px" name="contact"></ion-icon>
+        <input class="input" type="text" style="width:85%" placeholder="Nom sur la carte">
+      </ion-row>
+
+      <!-- Credit card number -->
+      <ion-row id="cardNumber" style="padding:auto; margin:auto; margin-left:0; width:95%; margin-top: 50px">
+        <ion-icon name="card" style="font-size:7vw; margin-right: 10px"></ion-icon>
+        <input maxlength="16" class="input" type="tel" style="width:85%" placeholder="Numéro de carte">
+      </ion-row>
+
+      <!-- Exp date / CVV -->
+      <ion-grid style="margin:0; margin-top:50px; padding:0">
+        <ion-row style="margin:0; padding:0">
+          <ion-col id="expirationDate" col-6 style="margin-left:0px; padding-left:0">
+            <input class="nameInput" style="width:100%" type="text" placeholder="Date d'exp.">
+          </ion-col>
+
+          <ion-col id="cvv" col-5 style="margin-left:10px">
+            <input class="nameInput" style="width:100%" type="text" placeholder="CVV">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!-- country -->
+      <ion-label color="#F2F2F2" style="width: 100vw; margin-top: 40px" stacked>Pays</ion-label>
+      <ion-row id="country" style="padding:0; margin:0; margin-right: 5vw; width: 100vw">
+        <span class="flag-icon flag-icon-ca" style="font-size: 5vw; margin-right:2vw;"></span>
+        <div style="font-size: 5vw; font-family: Verdana, Geneva, sans-serif; margin: auto; padding: auto; width: 55vw">Canada</div>
+        <ion-icon name="md-arrow-dropdown" style="font-size:8vw; color: gray; margin: auto; padding: auto"></ion-icon>
+      </ion-row>
+
+      <!-- Postal Code -->
+      <ion-row id="postalCode" style="padding:auto; margin:auto; margin-left:0; margin-top:50px;">
+        <input maxlength="6" class="input" style="width:80vw; padding-left:0; margin-left:0; padding-bottom: 5px" type="text" placeholder="Code postal">
+      </ion-row>
+
+      <!--sign out button-->
+      <ion-row id="continueBtn" style="width: 100vw; padding:auto; margin:auto; margin-left:0; margin-top:10px;">
+        <button ion-button class="round" color="black" full (click)="createNewUser()" style="margin-top: 5vh; background-color: black">CONTINUER</button>
+      </ion-row>
+
+    </ion-row>
+
+  </ion-row>
+
+  <!-- Link to login page -->
+  <ion-row class="footer" id="link">
+    <span (click)="enterYourEmail('reset password')" ion-text color="black" style="margin-top: auto; margin-bottom: auto;">Mot de passe oublié?</span>
+  </ion-row>
+
+  <button id="nextBtn" (click)="goToNext()" ion-button class="btn-circle btn-xl hidden"><ion-icon name="ios-arrow-round-forward" class="nextIcon"></ion-icon></button>
+
+</div>

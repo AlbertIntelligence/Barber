@@ -1,0 +1,171 @@
+
+  $calBaseColor: map-get($colors,bg-color);
+  $calLightColor: map-get($colors,favoritelight);
+  $calMediumColor: map-get($colors,favoritemedium);
+  $calDarkMediumColor: map-get($colors,favoritedarkmedium);
+  $calDarkColor: map-get($colors,favoritedark);
+  $calLiteColor: map-get($colors,lite);
+  $calSelectedDayColor: map-get($colors,primary);
+  $calTodayColor: map-get($colors,bg-color);
+  $calCheckColor: map-get($colors,bg-color);
+  $calTextColor:$calDarkColor;
+  $calMonthHeaderBgColor:$calBaseColor;
+  $calWeekHeaderBgColor:$calBaseColor;
+  $calDayColBgColor: $calBaseColor;
+
+  .getanappointment {
+    position: relative;
+    padding: 0;
+    height:50%;
+    width:100%;
+    margin-top: 0;
+    margin-bottom: -5%;
+    background-color: $calBaseColor;
+
+    ion-grid {
+      padding:0;
+    }
+
+    .header-row {
+      .input-row {
+        color: $calDarkMediumColor;
+        border-bottom:solid 1px $calLiteColor;
+
+        ion-col {
+          padding-top:15px;
+          padding-bottom:10px;
+        }
+
+        .check-text {
+            font-size:1.3em;
+        }
+
+        .check-date {
+          font-size:0.8em;
+        }
+
+        .selected-input {
+          background-color:$calBaseColor !important;
+          color:$calDarkMediumColor !important;
+          box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+
+        }
+
+        .non-selected-input {
+          background-color:$calCheckColor !important;
+          color:$calBaseColor !important;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        }
+
+      }
+      border-bottom:solid 1px $calLiteColor;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+
+    .week-row {
+      width: 110%;
+      left: -5%;
+      color:$calDarkMediumColor;
+      background-color: $calWeekHeaderBgColor;
+      font-size:17px;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+
+    .month-list {
+      position: absolute;
+      width: 110%;
+      left: -5%;
+      ion-list {
+        .item {
+          padding-left:0;
+          padding-right:0;
+        }
+        .item-inner {
+          padding-left:0;
+          padding-right:0;
+        }
+      }
+
+
+      ion-label {
+        margin:0 0 0 0 !important;
+      }
+
+      .month-row {
+        color:$calTextColor;
+        font-size:17px;
+        background-color:$calMonthHeaderBgColor;
+      }
+
+      .day-row button {
+        color:$calTextColor !important;
+        position: relative;
+        height: 30px;
+        width: 30px;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .day-col {
+        background-color: $calDayColBgColor !important;
+        color:$calTextColor !important;
+        position:relative;
+      }
+
+      .day-col:hover {
+        cursor: pointer;
+      }
+
+      .day-col:active {
+        background-color: $calSelectedDayColor;
+        cursor: pointer;
+      }
+
+      .selected {
+        color:white !important;
+        background-color: $calSelectedDayColor !important;
+        /*border-radius:100%;*/
+        opacity:1;
+      }
+
+      .in-range-full {
+        background-color:$calMediumColor !important;
+      }
+
+      .in-range-left {
+        background: linear-gradient(90deg, $calMediumColor 50%, $calBaseColor 50%) !important;
+
+      }
+
+      .in-range-right {
+        background: linear-gradient(90deg, $calBaseColor 50%, $calMediumColor 50%) !important;
+      }
+
+      .today {
+        background-color:$calTodayColor;
+      }
+
+      .non-current-month {
+        display:none !important;
+        color: #fff !important;
+        background-color:$calBaseColor !important;
+      }
+
+      .bottom-padding {
+        padding-bottom:0px;
+      }
+
+    }
+  }
+
+  .conflictMessageOn {
+    display: inline;
+    color: red;
+    margin: auto;
+  }
+  .conflictMessageOff {
+    display: none;
+    margin: auto;
+  }
