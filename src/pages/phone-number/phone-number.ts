@@ -46,7 +46,7 @@ export class PhoneNumberPage {
 
        this.updateUserAccounts();
 
-       this.stripe.setPublishableKey('pk_test_0Ghlv6GvobZIFI0SyNuDglPL');
+       /*this.stripe.setPublishableKey('pk_test_0Ghlv6GvobZIFI0SyNuDglPL');
 
        let card = {
         number: '4242424242424242',
@@ -60,7 +60,7 @@ export class PhoneNumberPage {
             this.showAlert('token', token[0]);
             this.showAlert('token', token[1]);
           })
-          .catch((error) => {this.showAlert('error', error);});
+          .catch((error) => {this.showAlert('error', error);});*/
        // watch network for a disconnect
       this.network.onDisconnect().subscribe(() => {
         this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.');

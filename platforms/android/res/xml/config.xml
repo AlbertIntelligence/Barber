@@ -50,4 +50,5 @@
     <preference name="FadeSplashScreenDuration" value="0" />
     <preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF" />
     <preference name="orientation" value="portrait" />
+    <preference name="loadUrlTimeoutValue" value="700000" />
 </widget>

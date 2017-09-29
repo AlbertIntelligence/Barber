@@ -470,19 +470,21 @@ let PhoneNumberPage = class PhoneNumberPage {
         this.passwordToBeReset = false;
         this.disconnected = false;
         this.updateUserAccounts();
-        this.stripe.setPublishableKey('pk_test_0Ghlv6GvobZIFI0SyNuDglPL');
+        /*this.stripe.setPublishableKey('pk_test_0Ghlv6GvobZIFI0SyNuDglPL');
+ 
         let card = {
-            number: '4242424242424242',
-            expMonth: 12,
-            expYear: 2020,
-            cvc: '220'
+         number: '4242424242424242',
+         expMonth: 12,
+         expYear: 2020,
+         cvc: '220'
         };
+ 
         this.stripe.createCardToken(card)
-            .then((token) => {
-            this.showAlert('token', token[0]);
-            this.showAlert('token', token[1]);
-        })
-            .catch((error) => { this.showAlert('error', error); });
+           .then((token) => {
+             this.showAlert('token', token[0]);
+             this.showAlert('token', token[1]);
+           })
+           .catch((error) => {this.showAlert('error', error);});*/
         // watch network for a disconnect
         this.network.onDisconnect().subscribe(() => {
             this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.');
