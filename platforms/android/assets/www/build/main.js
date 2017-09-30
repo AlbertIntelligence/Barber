@@ -470,21 +470,6 @@ let PhoneNumberPage = class PhoneNumberPage {
         this.passwordToBeReset = false;
         this.disconnected = false;
         this.updateUserAccounts();
-        /*this.stripe.setPublishableKey('pk_test_0Ghlv6GvobZIFI0SyNuDglPL');
- 
-        let card = {
-         number: '4242424242424242',
-         expMonth: 12,
-         expYear: 2020,
-         cvc: '220'
-        };
- 
-        this.stripe.createCardToken(card)
-           .then((token) => {
-             this.showAlert('token', token[0]);
-             this.showAlert('token', token[1]);
-           })
-           .catch((error) => {this.showAlert('error', error);});*/
         // watch network for a disconnect
         this.network.onDisconnect().subscribe(() => {
             this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.');
@@ -1282,8 +1267,34 @@ let GetAnAppointmentPage = class GetAnAppointmentPage {
     getAppointment() {
         var date = this.currentDate.format(FORMAT);
         var hour = this.currentHour + " : " + this.currentMinutes;
-        (this.appointments.isAvailable(date, hour)) ? this.appointments.createNew(date, hour) : this.showAlert();
+        (this.appointments.isAvailable(date, hour)) ? this.displayAppointmentConfirmation(date, hour) : this.showAlert();
         this.disableBookedDays();
+    }
+    /*****************************************************************************
+    Function: getAppointment
+    Purpose: Save the current aay and hour in database. If conflict, display error
+             message
+    Parameters: None
+    Return: None
+    *****************************************************************************/
+    displayAppointmentConfirmation(date, hour) {
+        let alert = this.alertCtrl.create({
+            title: 'Confirmez votre réservation',
+            subTitle: 'En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de Barber Me.',
+            buttons: [{
+                    text: 'Annuler',
+                    handler: () => {
+                        return false;
+                    }
+                },
+                {
+                    text: 'Confirmer',
+                    handler: () => {
+                        this.appointments.createNew(date, hour);
+                    }
+                }]
+        });
+        alert.present();
     }
     /*****************************************************************************
     Function: showAlert

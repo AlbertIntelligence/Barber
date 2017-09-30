@@ -470,19 +470,6 @@ let PhoneNumberPage = class PhoneNumberPage {
         this.passwordToBeReset = false;
         this.disconnected = false;
         this.updateUserAccounts();
-        this.stripe.setPublishableKey('pk_test_0Ghlv6GvobZIFI0SyNuDglPL');
-        let card = {
-            number: '4242424242424242',
-            expMonth: 12,
-            expYear: 2020,
-            cvc: '220'
-        };
-        this.stripe.createCardToken(card)
-            .then((token) => {
-            this.showAlert('token', token[0]);
-            this.showAlert('token', token[1]);
-        })
-            .catch((error) => { this.showAlert('error', error); });
         // watch network for a disconnect
         this.network.onDisconnect().subscribe(() => {
             this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.');
@@ -1280,8 +1267,35 @@ let GetAnAppointmentPage = class GetAnAppointmentPage {
     getAppointment() {
         var date = this.currentDate.format(FORMAT);
         var hour = this.currentHour + " : " + this.currentMinutes;
-        (this.appointments.isAvailable(date, hour)) ? this.appointments.createNew(date, hour) : this.showAlert();
+        (this.appointments.isAvailable(date, hour)) ? this.displayAppointmentConfirmation(date, hour) : this.showAlert('Réservation impossible !', 'Veuillez choisir une autre plage horaire.');
         this.disableBookedDays();
+    }
+    /*****************************************************************************
+    Function: displayAppointmentConfirmation
+    Purpose: Prompt alert to confirm user reservation
+    Parameters: None
+    Return: None
+    *****************************************************************************/
+    displayAppointmentConfirmation(date, hour) {
+        let alert = this.alertCtrl.create({
+            title: 'Confirmez votre réservation',
+            subTitle: 'En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de Barber Me.',
+            buttons: [{
+                    text: 'Annuler',
+                    role: 'cancel',
+                    handler: () => {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Confirmer',
+                    handler: () => {
+                        this.appointments.createNew(date, hour);
+                        this.showAlert('Confirmation', 'Votre réservation est confirmée pour le ' + date + ' à ' + hour);
+                    }
+                }]
+        });
+        alert.present();
     }
     /*****************************************************************************
     Function: showAlert
@@ -1289,10 +1303,10 @@ let GetAnAppointmentPage = class GetAnAppointmentPage {
     Parameters: None
     Return: None
     *****************************************************************************/
-    showAlert() {
+    showAlert(title, subTitle) {
         let alert = this.alertCtrl.create({
-            title: 'Réservation impossible !',
-            subTitle: 'Veuillez choisir une autre plage horaire.',
+            title: title,
+            subTitle: subTitle,
             buttons: ['OK']
         });
         alert.present();
@@ -3063,7 +3077,7 @@ let GetAnAppointmentModel = class GetAnAppointmentModel {
     *****************************************************************************/
     updateDataSnapshot() {
         let model = this;
-        __WEBPACK_IMPORTED_MODULE_1_firebase___default.a.database().ref('Appointments/')
+        __WEBPACK_IMPORTED_MODULE_1_firebase___default.a.database().ref('Appointments/Users')
             .on('value', function (snapshot) {
             let appointments = snapshot.val();
             model.dataSnapshot = [];
