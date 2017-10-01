@@ -7,9 +7,11 @@ import firebase from 'firebase';
 export class GetAnAppointmentModel {
   private businessHours:Array<any> = [];
   private dataSnapshot:Array<any> = [];
+  private userAccounts:Array<any> = [];
 
   constructor() {
     this.updateDataSnapshot();
+    this.updateUserAccounts();
     this.businessHours = [
       {
         'Day': 'Monday',
@@ -123,13 +125,34 @@ export class GetAnAppointmentModel {
     var appointments = firebase.database().ref('Appointments/Users');
     var userId = firebase.auth().currentUser.uid;
     var timeStamp = new Date().getTime().toString();
+    var user = this.dataSnapshot.find(item => item.UserId == userId);
     appointments.child(timeStamp).set({
       UserId: userId,
       Date: date,
       Hour: hour,
-      firstName: "Koueni",
-      lastName: "Deumeni"
+      firstName: user.firstName,
+      lastName: user.lastName
     });
+  }
+
+  /*****************************************************************************
+  Function: updateUserAccounts
+  Purpose: Fetch user accounts from db
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  updateUserAccounts() {
+    let controller = this;
+    firebase.database().ref('Users/')
+     .on('value', function(snapshot) {
+       let users = snapshot.val();
+       controller.userAccounts = [];
+       for (var property in users) {
+          if (users.hasOwnProperty(property)) {
+              controller.userAccounts.push(users[property]);
+          }
+       }
+     });
   }
 
   /*****************************************************************************
