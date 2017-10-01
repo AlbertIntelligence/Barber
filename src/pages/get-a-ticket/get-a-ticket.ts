@@ -52,17 +52,21 @@ export class GetaTicketPage {
 
   public getUserInfo(){
     //initilize those empty string to make compiler happy
+    var firstName ="";
+    var lastName ="";
+    var email ="";
+    var phoneNumber ="";
+    var Date ="";
     var userData;
-    var self = this;
     var userId = firebase.auth().currentUser.uid;
     const userInfo = firebase.database().ref("Users/"+userId+"/");
     userInfo.on('value' , snap =>  userData =   snap.val()  );
-    self.userInfoFirstName = userData.firstName;
-    self.userInfoLastName = userData.lastName;
-    self.userInfoEmailName = userData.email;
-    self.userInfoPhoneNumber = userData.phoneNumber;
-    self.userInfoUserId = userId;
-    self.userInfoRegistrationDate = userData.Date;
+    this.userInfoFirstName = userData.firstName;
+    this.userInfoLastName = userData.lastName;
+    this.userInfoEmailName = userData.email;
+    this.userInfoPhoneNumber = userData.phoneNumber;
+    this.userInfoUserId = userId;
+    this.userInfoRegistrationDate = userData.Date;
   }
 
   /*****************************************************************************
@@ -77,7 +81,7 @@ export class GetaTicketPage {
     dbRefObject.limitToFirst(1).on('value', function(snapshot) {
       const ids = [];
       snapshot.forEach(function(childSnapshot) {
-        const id = childSnapshot.key;
+        const id = childSnapshot.key
         ids.push(id);
       }.bind(this));
       this.currentPosition = ids;
@@ -96,7 +100,7 @@ export class GetaTicketPage {
     dbRefObject.on('value', function(snapshot) {
       const ids = [];
       snapshot.forEach(function(childSnapshot) {
-        const id = childSnapshot.key;
+        const id = childSnapshot.key
         ids.pop();
         ids.push(id);
       }.bind(this));

@@ -13,7 +13,7 @@ page-phone-number {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 64vw;
+    height: 67vh;
     padding: 0;
     margin: 0;
   }
@@ -29,25 +29,16 @@ page-phone-number {
 
   .input {
     border: 0 !important;
-    width: 75%;
-    font-size: 19px;
+    width: 90%;
+    font-size: 18px;
     outline: none;
     padding: 0;
-    padding-left: 1.5vw;
-    margin-left: 1vw;
+    padding-left: 0;
+    margin-left: 2vw;
     font-family: Verdana, Geneva, sans-serif;
     transition: 0.2s ease all;
   }
-/*
-  input:focus ~ .floating-label,
-  input:not(:focus):valid ~ .floating-label{
-    top: 0px;
-    bottom: 10px;
-    left: 0px;
-    font-size: 11px;
-    opacity: 1;
-  }
-*/
+
   .floating-label {
     position: absolute;
     pointer-events: none;
@@ -56,7 +47,6 @@ page-phone-number {
     font-family: Verdana, Geneva, sans-serif;
     transition: 0.2s ease all;
   }
-
 
   .nameInput {
     border: 0 !important;
@@ -93,10 +83,11 @@ page-phone-number {
     }
 
   .backbtn {
-    display: inline-block;
+    display: inline;
     position: relative;
     margin: 0;
     padding: 0;
+    width: auto;
   }
 
   .title {
@@ -106,13 +97,14 @@ page-phone-number {
     left:0;
     margin: 0;
     padding: 0;
+    margin-top: 5vh;
     color: black;
     font-size: 5.75vw;
     font-family: Verdana, Geneva, sans-serif;
     -webkit-transition: -webkit-transform 750ms;
   }
 
-  .phoneNumber {
+  .email {
     position: relative;
     margin-top: 6vh;
     padding-top: 0vh;
@@ -127,7 +119,7 @@ page-phone-number {
     padding-right: 7vw;
     font-family: Verdana, Geneva, sans-serif;
     border-top: 1px solid #EBEBEB;
-    height: 10vh;
+    height: 7vh;
     color:blue;
     font-size: 4vw;
   }
@@ -157,7 +149,7 @@ page-phone-number {
   .btn-circle.btn-lg {
     position: fixed;
     right: 5vw;
-    top: 50vh;
+    top: 45vh;
     width: 50px;
     height: 50px;
     padding: 10px 16px;
@@ -168,7 +160,7 @@ page-phone-number {
   .btn-circle.btn-xl {
     position: fixed;
     right: 5vw;
-    top: 50vh;
+    top: 45vh;
     width: 20vw;
     height: 20vw;
     padding: 5vw 7vw;
@@ -189,7 +181,7 @@ page-phone-number {
   .digitTitle {
     position: absolute;
     left: 100vw;
-    top: 19%;
+    top: 15%;
     width: 100%;
     padding-left: 7vw;
     padding-right: 5vw;
@@ -216,7 +208,7 @@ page-phone-number {
   .inputBloc {
     position: absolute;
     left: 107vw;
-    top: 30%;
+    top: 23%;
     width: 86%;
     font-size: 19px;
     outline: none;

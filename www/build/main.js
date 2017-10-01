@@ -10,8 +10,8 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ticket_confirmation_ticket_confirmation__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__alert_alert__ = __webpack_require__(528);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(529);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__alert_alert__ = __webpack_require__(530);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(531);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -52,17 +52,21 @@ let GetaTicketPage = class GetaTicketPage {
     //------------------------------------------THIS IS THE FIREBASE FUNCTION SECTION----------------------------------------------//
     getUserInfo() {
         //initilize those empty string to make compiler happy
+        var firstName = "";
+        var lastName = "";
+        var email = "";
+        var phoneNumber = "";
+        var Date = "";
         var userData;
-        var self = this;
         var userId = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.auth().currentUser.uid;
         const userInfo = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref("Users/" + userId + "/");
         userInfo.on('value', snap => userData = snap.val());
-        self.userInfoFirstName = userData.firstName;
-        self.userInfoLastName = userData.lastName;
-        self.userInfoEmailName = userData.email;
-        self.userInfoPhoneNumber = userData.phoneNumber;
-        self.userInfoUserId = userId;
-        self.userInfoRegistrationDate = userData.Date;
+        this.userInfoFirstName = userData.firstName;
+        this.userInfoLastName = userData.lastName;
+        this.userInfoEmailName = userData.email;
+        this.userInfoPhoneNumber = userData.phoneNumber;
+        this.userInfoUserId = userId;
+        this.userInfoRegistrationDate = userData.Date;
     }
     /*****************************************************************************
      Function: checkPayment
@@ -173,12 +177,11 @@ let GetaTicketPage = class GetaTicketPage {
 };
 GetaTicketPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'get-a-ticket',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/get-a-ticket/get-a-ticket.html"*/'\n<script>\n  this.hideTicketDiv();\n</script>\n<ion-header>\n  <ion-navbar color="primary">\n    <ion-title>\n      Prendre un ticket\n    </ion-title>\n    <ion-buttons left>\n      <button ion-button icon-only>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content padding="false" class="common-bg">\n  <div style="">\n    <div style="">\n      <div style="display: block; border: 1px solid #C5C5C5; border-radius: 100%; padding: 0">\n        <img color="primary" src="../../assets/img/bg.jpg" style="display: block; margin: auto; border: 3vw solid #009687; width: 70vw; height: 70vw; border-radius: 100%" />\n      </div>\n      <div style="font-size: 20px; margin-top: 10px" text-center>{{userInfoFirstName + " " + userInfoLastName }}</div>\n      <div style="font-size: 10px" text-center>\n        <ion-icon color="primary" style="" name="pin"></ion-icon>\n        Montreal, Canada</div>\n    </div>\n\n\n    <div>\n\n      <div id="ticketPosition"  class="animated infinite bounce" >\n        <ion-grid style="margin-top: 15%">\n          <ion-row>\n            <ion-col col-6>\n              <ion-row>\n                <p style="margin:auto; font-size: 20px"><b>{{currentPosition}}</b></p>\n              </ion-row>\n              <ion-row>\n                <p style="margin:auto; font-size: 10px">CLIENT ACTUELE</p>\n              </ion-row>\n            </ion-col>\n            <ion-col col-6>\n              <ion-row>\n                <p style="margin:auto; font-size: 20px"><b>{{userPosition}}</b></p>\n              </ion-row>\n              <ion-row>\n                <p style="margin:auto; font-size: 10px">VOTRE POSITION</p>\n              </ion-row>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </div>\n\n      <ion-grid style="margin-top: 1%">\n        <ion-row>\n          <ion-icon (click)="confirmMessage()" color="primary" style="margin:auto; font-size: 50px;" name="add-circle"></ion-icon>\n        </ion-row>\n\n        <ion-row>\n          <p style="margin:auto; font-size: 10px">PRENDRE UN NUMERO</p>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/get-a-ticket/get-a-ticket.html"*/
+        selector: 'get-a-ticket',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\get-a-ticket\get-a-ticket.html"*/'\n\n<script>\n\n  this.hideTicketDiv();\n\n</script>\n\n<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Prendre un ticket\n\n    </ion-title>\n\n    <ion-buttons left>\n\n      <button ion-button icon-only>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding="false" class="common-bg">\n\n  <div style="">\n\n    <div style="">\n\n      <div style="display: block; border: 1px solid #C5C5C5; border-radius: 100%; padding: 0">\n\n        <img color="primary" src="../../assets/img/bg.jpg" style="display: block; margin: auto; border: 3vw solid #009687; width: 70vw; height: 70vw; border-radius: 100%" />\n\n      </div>\n\n      <div style="font-size: 20px; margin-top: 10px" text-center>{{userInfoFirstName + " " + userInfoLastName }}</div>\n\n      <div style="font-size: 10px" text-center>\n\n        <ion-icon color="primary" style="" name="pin"></ion-icon>\n\n        Montreal, Canada</div>\n\n    </div>\n\n\n\n\n\n    <div>\n\n\n\n      <div id="ticketPosition"  class="animated infinite bounce" >\n\n        <ion-grid style="margin-top: 15%">\n\n          <ion-row>\n\n            <ion-col col-6>\n\n              <ion-row>\n\n                <p style="margin:auto; font-size: 20px"><b>{{currentPosition}}</b></p>\n\n              </ion-row>\n\n              <ion-row>\n\n                <p style="margin:auto; font-size: 10px">CLIENT ACTUELE</p>\n\n              </ion-row>\n\n            </ion-col>\n\n            <ion-col col-6>\n\n              <ion-row>\n\n                <p style="margin:auto; font-size: 20px"><b>{{userPosition}}</b></p>\n\n              </ion-row>\n\n              <ion-row>\n\n                <p style="margin:auto; font-size: 10px">VOTRE POSITION</p>\n\n              </ion-row>\n\n            </ion-col>\n\n          </ion-row>\n\n        </ion-grid>\n\n      </div>\n\n\n\n      <ion-grid style="margin-top: 1%">\n\n        <ion-row>\n\n          <ion-icon (click)="confirmMessage()" color="primary" style="margin:auto; font-size: 50px;" name="add-circle"></ion-icon>\n\n        </ion-row>\n\n\n\n        <ion-row>\n\n          <p style="margin:auto; font-size: 10px">PRENDRE UN NUMERO</p>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\get-a-ticket\get-a-ticket.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__alert_alert__["a" /* Alert */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__alert_alert__["a" /* Alert */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ticket_confirmation_ticket_confirmation__["a" /* TicketConfirmationPage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ticket_confirmation_ticket_confirmation__["a" /* TicketConfirmationPage */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_4__alert_alert__["a" /* Alert */], __WEBPACK_IMPORTED_MODULE_2__ticket_confirmation_ticket_confirmation__["a" /* TicketConfirmationPage */]])
 ], GetaTicketPage);
 
-var _a, _b, _c;
 //# sourceMappingURL=get-a-ticket.js.map
 
 /***/ }),
@@ -205,7 +208,7 @@ let TicketConfirmationPage = class TicketConfirmationPage {
 };
 TicketConfirmationPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'ticket-confirmation',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/ticket-confirmation/ticket-confirmation.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-title>\n      Confirmation\n    </ion-title>\n    <ion-buttons left>\n     <button ion-button icon-only>\n    </button>\n  </ion-buttons>\n</ion-navbar>\n</ion-header>\n<ion-content padding="false" class="primary-bg" color="white">\n  <ion-row>\n    <ion-icon color="primary" style="margin:auto; margin-top: 15vh; font-size: 70vw; color: white" name="ios-checkmark-circle-outline"></ion-icon>\n  </ion-row>\n  <ion-row>\n    <div style="font-size: 20px; margin: auto; margin-top: 10px; color: white" text-center>Reservation completed !</div>\n  </ion-row>\n  <ion-row>\n    <div style="font-size: 20px; margin: auto; margin-top: 10px; color: white" text-center>You have {{userPosition}} in front you.</div>\n  </ion-row>\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/ticket-confirmation/ticket-confirmation.html"*/
+        selector: 'ticket-confirmation',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\ticket-confirmation\ticket-confirmation.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Confirmation\n\n    </ion-title>\n\n    <ion-buttons left>\n\n     <button ion-button icon-only>\n\n    </button>\n\n  </ion-buttons>\n\n</ion-navbar>\n\n</ion-header>\n\n<ion-content padding="false" class="primary-bg" color="white">\n\n  <ion-row>\n\n    <ion-icon color="primary" style="margin:auto; margin-top: 15vh; font-size: 70vw; color: white" name="ios-checkmark-circle-outline"></ion-icon>\n\n  </ion-row>\n\n  <ion-row>\n\n    <div style="font-size: 20px; margin: auto; margin-top: 10px; color: white" text-center>Reservation completed !</div>\n\n  </ion-row>\n\n  <ion-row>\n\n    <div style="font-size: 20px; margin: auto; margin-top: 10px; color: white" text-center>You have {{userPosition}} in front you.</div>\n\n  </ion-row>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\ticket-confirmation\ticket-confirmation.html"*/
     })
 ], TicketConfirmationPage);
 
@@ -223,7 +226,7 @@ TicketConfirmationPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__create_user_create_user__ = __webpack_require__(534);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__create_user_create_user__ = __webpack_require__(536);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -361,7 +364,7 @@ let LoginPage = class LoginPage {
 };
 LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'page-login',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/login/login.html"*/'<!--\n  Generated template for the ProfilePage page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-content padding class="login common-bg auth-page">\n  <div class="login-content">\n\n    <!-- Logo -->\n    <div padding text-center>\n      <h2 ion-text color="light">\n        Mario Perfect Cut\n      </h2>\n    </div>\n\n    <!-- Login form -->\n    <div class="list-form" padding>\n\n      <ion-item>\n        <ion-label stacked>Email</ion-label>\n        <ion-input [(ngModel)]="email" type="text" color="white"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked>Password</ion-label>\n        <ion-input [(ngModel)]="password" type="password"></ion-input>\n      </ion-item>\n\n    </div>\n\n    <p text-right ion-text color="light">Mot de passe oublié?</p>\n\n    <div>\n      <button ion-button block color="primary" (click)="loginUser()">\n        SE CONNECTER\n      </button>\n\n      <p text-center ion-text color="light">Ou</p>\n\n      <button ion-button block color="fb-color" (click)="gotoCreateUser()">\n        S\'INSCRIRE\n      </button>\n    </div>\n\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/login/login.html"*/
+        selector: 'page-login',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\login\login.html"*/'<!--\n\n  Generated template for the ProfilePage page.\n\n\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-content padding class="login common-bg auth-page">\n\n  <div class="login-content">\n\n\n\n    <!-- Logo -->\n\n    <div padding text-center>\n\n      <h2 ion-text color="light">\n\n        Mario Perfect Cut\n\n      </h2>\n\n    </div>\n\n\n\n    <!-- Login form -->\n\n    <div class="list-form" padding>\n\n\n\n      <ion-item>\n\n        <ion-label stacked>Email</ion-label>\n\n        <ion-input [(ngModel)]="email" type="text" color="white"></ion-input>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label stacked>Password</ion-label>\n\n        <ion-input [(ngModel)]="password" type="password"></ion-input>\n\n      </ion-item>\n\n\n\n    </div>\n\n\n\n    <p text-right ion-text color="light">Mot de passe oublié?</p>\n\n\n\n    <div>\n\n      <button ion-button block color="primary" (click)="loginUser()">\n\n        SE CONNECTER\n\n      </button>\n\n\n\n      <p text-center ion-text color="light">Ou</p>\n\n\n\n      <button ion-button block color="fb-color" (click)="gotoCreateUser()">\n\n        S\'INSCRIRE\n\n      </button>\n\n    </div>\n\n\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\login\login.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
 ], LoginPage);
@@ -370,7 +373,7 @@ LoginPage = __decorate([
 
 /***/ }),
 
-/***/ 162:
+/***/ 163:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -383,11 +386,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 162;
+webpackEmptyAsyncContext.id = 163;
 
 /***/ }),
 
-/***/ 205:
+/***/ 206:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -400,11 +403,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 205;
+webpackEmptyAsyncContext.id = 206;
 
 /***/ }),
 
-/***/ 399:
+/***/ 401:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -412,12 +415,15 @@ webpackEmptyAsyncContext.id = 205;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__(529);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__(531);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__login_login__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_stripe__ = __webpack_require__(539);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_http__ = __webpack_require__(540);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_network__ = __webpack_require__(541);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -437,6 +443,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 /**
  * Generated class for the CreateUserPage page.
  *
@@ -444,58 +453,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * on Ionic pages and navigation.
  */
 let PhoneNumberPage = class PhoneNumberPage {
-    constructor(navCtrl, navParams, keyboard, platform, alertCtrl) {
+    constructor(navCtrl, navParams, keyboard, platform, alertCtrl, stripe, http, network) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.keyboard = keyboard;
         this.platform = platform;
         this.alertCtrl = alertCtrl;
+        this.stripe = stripe;
+        this.http = http;
+        this.network = network;
         this.loaded = false;
         this.currentView = "home";
-        this.pinIsFull = false;
+        this.userAccounts = [];
+        this.customerId = null;
+        this.cardToken = null;
+        this.passwordToBeReset = false;
+        this.disconnected = false;
+        this.updateUserAccounts();
+        // watch network for a disconnect
+        this.network.onDisconnect().subscribe(() => {
+            this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.');
+            this.disconnected = true;
+        });
+        this.network.onConnect().subscribe(() => {
+            this.updateUserAccounts();
+            this.disconnected = false;
+        });
     }
     ngOnInit() {
         this.setHeaderFooter();
     }
-    ionViewDidLoad() {
-        this.recaptchaVerifier = new __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth.RecaptchaVerifier('recaptcha-container');
-    }
     handleKeyboardEvent(event) {
-        if (event.key != "Backspace" && __WEBPACK_IMPORTED_MODULE_3_jquery__(event.target).parent().attr('id').indexOf("digit") == 0) {
-            var index = parseInt(__WEBPACK_IMPORTED_MODULE_3_jquery__(event.target).parent().attr('id')[5]);
-            index++;
-            if (index == 7)
-                this.pinIsFull = true;
-            if (index < 7) {
-                __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit" + index).css('border-bottom', '2px solid black');
-                __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit" + index).children().eq(0).focus();
-            }
-            if (__WEBPACK_IMPORTED_MODULE_3_jquery__("#digit1").children().eq(0).val().length > 0)
-                __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit1").css('border-bottom', '2px solid black');
-            if (__WEBPACK_IMPORTED_MODULE_3_jquery__("#digit2").children().eq(0).val().length > 0)
-                __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit2").css('border-bottom', '2px solid black');
-            if (__WEBPACK_IMPORTED_MODULE_3_jquery__("#digit3").children().eq(0).val().length > 0)
-                __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit3").css('border-bottom', '2px solid black');
-            if (__WEBPACK_IMPORTED_MODULE_3_jquery__("#digit4").children().eq(0).val().length > 0)
-                __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit4").css('border-bottom', '2px solid black');
-            if (__WEBPACK_IMPORTED_MODULE_3_jquery__("#digit5").children().eq(0).val().length > 0)
-                __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit6").css('border-bottom', '2px solid black');
-            if (__WEBPACK_IMPORTED_MODULE_3_jquery__("#digit5").children().eq(0).val().length > 0)
-                __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit6").css('border-bottom', '2px solid black');
-        }
-        else if (event.key == "Backspace" && __WEBPACK_IMPORTED_MODULE_3_jquery__(event.target).parent().attr('id').indexOf("digit") == 0) {
-            var index = parseInt(__WEBPACK_IMPORTED_MODULE_3_jquery__(event.target).parent().attr('id')[5]);
-            if (index < 7 && index > 1 && __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit" + index).val().length == 0) {
-                __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit" + index).css('border-bottom', '2px solid #F2F2F2');
-                index--;
-                if (index > 0 && !this.pinIsFull) {
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit" + index).children().eq(0).val("");
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit" + index).children().eq(0).focus();
-                }
-                if (index == 5)
-                    this.pinIsFull = false;
-            }
-        }
         if (__WEBPACK_IMPORTED_MODULE_3_jquery__(event.target).val().length == 0) {
             __WEBPACK_IMPORTED_MODULE_3_jquery__(event.target).parent().css('border-bottom', '2px solid #F2F2F2');
         }
@@ -595,42 +583,48 @@ let PhoneNumberPage = class PhoneNumberPage {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__login_login__["a" /* LoginPage */]);
     }
     /*****************************************************************************
-    Function: enterYourPhone
+    Function: enterYourEmail
     Description: Trigger the transition
     Parameters: event
     Return: void
     *****************************************************************************/
-    enterYourPhone() {
+    enterYourEmail(action) {
         //When focusing on input, load phone number view if not already loaded
         if (!this.loaded) {
+            __WEBPACK_IMPORTED_MODULE_3_jquery__("#input").blur();
+            __WEBPACK_IMPORTED_MODULE_3_jquery__("#backBtn").show();
             this.loaded = true;
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#main").css('background-color', 'white');
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#main").css('height', '100vh');
             if (this.platform.is('ios')) {
-                this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#main"), "0px", "-63.5vh");
+                this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#main"), "0px", "-67vh");
             }
             else {
                 this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#main"), "0px", "-63vh");
             }
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#link").removeClass('visible').addClass('hidden');
             this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#title"), "0px", "10vh");
-            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#inputBloc"), "0px", "14vh");
+            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput"), "0px", "14vh");
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#title").css('font-size', '5vw');
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#backBtn").css('margin-top', '2vh');
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#title").text("Entrez votre numéro de téléphone");
+            if (action) {
+                __WEBPACK_IMPORTED_MODULE_3_jquery__("#title").text("Réinitialiser votre mot de passe"); //Password reset
+                __WEBPACK_IMPORTED_MODULE_3_jquery__("#backBtn").css('margin-top', '10vh');
+                this.passwordToBeReset = true;
+            }
+            else {
+                __WEBPACK_IMPORTED_MODULE_3_jquery__("#title").text("Entrez votre adresse courriel");
+            }
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#hr").removeClass('visible').addClass('hidden');
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#input").attr("placeholder", "(514) 555-1234");
+            __WEBPACK_IMPORTED_MODULE_3_jquery__("#email").attr("placeholder", "exemple@mail.ca");
             //Animation slow
             setTimeout(() => {
+                __WEBPACK_IMPORTED_MODULE_3_jquery__("#backBtn").css('height', 'auto');
                 __WEBPACK_IMPORTED_MODULE_3_jquery__("#backBtn").removeClass('hidden').addClass('visible');
                 __WEBPACK_IMPORTED_MODULE_3_jquery__("#nextBtn").removeClass('hidden').addClass('visible');
-                __WEBPACK_IMPORTED_MODULE_3_jquery__("#inputBloc").css('border-bottom', '2px solid black');
-                __WEBPACK_IMPORTED_MODULE_3_jquery__("#input").focus();
-                setTimeout(() => {
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#input").focus();
-                }, 1000);
+                __WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput").css('border-bottom', '2px solid black');
             }, 1000);
-            this.currentView = "phoneNumber";
+            this.currentView = "email";
         }
     }
     /*****************************************************************************
@@ -641,59 +635,48 @@ let PhoneNumberPage = class PhoneNumberPage {
     *****************************************************************************/
     goBack() {
         //back to the home view
-        if (this.loaded && this.currentView == "phoneNumber") {
+        if (this.loaded && this.currentView == "email") {
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#input").blur();
             this.loaded = false;
             this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#title"), "0px", "0px");
-            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#inputBloc"), "0px", "0px");
+            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput"), "0px", "0px");
             this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#main"), "0px", "0px");
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#title").css('font-size', '5.75vw');
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#backBtn").css('margin-top', '0');
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#title").text("Coiffez vous avec Barber Me");
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#hr").removeClass('hidden').addClass('visible');
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#backBtn").addClass('hidden').removeClass('visible');
+            __WEBPACK_IMPORTED_MODULE_3_jquery__("#backBtn").hide();
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#nextBtn").addClass('hidden').removeClass('visible');
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#inputBloc").css('border', '0');
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#input").attr("placeholder", "Numéro de téléphone");
+            __WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput").css('border', '0');
+            __WEBPACK_IMPORTED_MODULE_3_jquery__("#email").attr("placeholder", "Entrez votre adresse courriel");
             setTimeout(() => {
                 __WEBPACK_IMPORTED_MODULE_3_jquery__("#main").css('height', 'auto');
                 __WEBPACK_IMPORTED_MODULE_3_jquery__("#link").removeClass('hidden').addClass('visible');
             }, 1000);
             this.currentView = "home";
-        }
-        else if (this.currentView == "6-digit") {
-            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#digitTitle"), "0px", "0px");
-            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#title"), "0px", "10vh");
-            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#digitBloc"), "0px", "0px");
-            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#inputBloc"), "0px", "14vh");
-            this.currentView = "phoneNumber";
-        }
-        else if (this.currentView == "email") {
-            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#emailTitle"), "0px", "0px");
-            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#digitTitle"), "-100vw", "0px");
-            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput"), "0px", "0px");
-            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#digitBloc"), "-100vw", "0px");
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit1").children().eq(0).val("");
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit2").children().eq(0).val("");
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit3").children().eq(0).val("");
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit4").children().eq(0).val("");
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit5").children().eq(0).val("");
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit6").children().eq(0).val("");
-            this.currentView = "6-digit";
+            this.passwordToBeReset = false;
         }
         else if (this.currentView == "password") {
             this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordTitle"), "0px", "0px");
-            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#emailTitle"), "-100vw", "0px");
+            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#title"), "0px", "10vh");
             this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput"), "0px", "0px");
-            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput"), "-100vw", "0px");
+            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput"), "0px", "14vh");
             this.currentView = "email";
+        }
+        else if (this.currentView == "passwordConfirmation") {
+            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordConfirmationTitle"), "0px", "0px");
+            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordTitle"), "-100vw", "0px");
+            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordConfirmationInput"), "0px", "0px");
+            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput"), "-100vw", "0px");
+            this.currentView = "password";
         }
         else if (this.currentView == "name") {
             this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#nameTitle"), "0px", "0px");
-            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordTitle"), "-100vw", "0px");
+            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordConfirmationTitle"), "-100vw", "0px");
             this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#nameInput"), "0px", "0px");
-            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput"), "-100vw", "0px");
-            this.currentView = "password";
+            this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordConfirmationInput"), "-100vw", "0px");
+            this.currentView = "passwordConfirmation";
         }
         else if (this.currentView == "paymentMethod") {
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#nextBtn").show();
@@ -714,128 +697,134 @@ let PhoneNumberPage = class PhoneNumberPage {
     }
     /*****************************************************************************
     Function: goToPin
-    Description: Show the 4 digit PIN features
+    Description: Show the next ui
     Parameters: None
     Return: None
     *****************************************************************************/
     goToNext() {
+        if (this.userAccounts.length == 0)
+            this.disconnected = true;
         switch (this.currentView) {
-            //Go to enter your view
-            case "phoneNumber":
-                if (__WEBPACK_IMPORTED_MODULE_3_jquery__("#input").val().length == 14) {
-                    this.currentView = "6-digit";
-                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#digitTitle"), "-100vw", "0px");
-                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#title"), "-100vw", "10vh");
-                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#digitBloc"), "-100vw", "0px");
-                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#inputBloc"), "-100vw", "14vh");
-                    setTimeout(() => { __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit1").children().eq(0).focus(); }, 1000);
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit1").children().eq(0).val("");
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit2").children().eq(0).val("");
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit3").children().eq(0).val("");
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit4").children().eq(0).val("");
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit5").children().eq(0).val("");
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit6").children().eq(0).val("");
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit1").css('border-bottom', '2px solid black');
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit2").css('border-bottom', '2px solid #F2F2F2');
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit3").css('border-bottom', '2px solid #F2F2F2');
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit4").css('border-bottom', '2px solid #F2F2F2');
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit5").css('border-bottom', '2px solid #F2F2F2');
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit6").css('border-bottom', '2px solid #F2F2F2');
-                    this.signInWithPhoneNumber();
-                }
-                else {
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#input").parent().css('border-bottom', '2px solid red');
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#input").focus();
-                }
-                break;
-            //Go to enter your name email
-            case "6-digit":
-                if (__WEBPACK_IMPORTED_MODULE_3_jquery__("#digit1").children().eq(0).val().length == 1 &&
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit2").children().eq(0).val().length == 1 &&
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit3").children().eq(0).val().length == 1 &&
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit4").children().eq(0).val().length == 1 &&
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit5").children().eq(0).val().length == 1 &&
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit6").children().eq(0).val().length == 1) {
-                    this.confirmSmsCode();
-                }
-                else {
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit1").css('border-bottom', '2px solid red');
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit2").css('border-bottom', '2px solid red');
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit3").css('border-bottom', '2px solid red');
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit4").css('border-bottom', '2px solid red');
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit5").css('border-bottom', '2px solid red');
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit6").css('border-bottom', '2px solid red');
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit1").children().eq(0).val().length == 0 ? __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit1").children().eq(0).focus() :
-                        (__WEBPACK_IMPORTED_MODULE_3_jquery__("#digit2").children().eq(0).val().length == 0 ? __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit2").children().eq(0).focus() :
-                            (__WEBPACK_IMPORTED_MODULE_3_jquery__("#digit3").children().eq(0).val().length == 0 ? __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit3").children().eq(0).focus() :
-                                (__WEBPACK_IMPORTED_MODULE_3_jquery__("#digit4").children().eq(0).val().length == 0 ? __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit4").children().eq(0).focus() :
-                                    (__WEBPACK_IMPORTED_MODULE_3_jquery__("#digit5").children().eq(0).val().length == 0 ? __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit5").children().eq(0).focus() :
-                                        (__WEBPACK_IMPORTED_MODULE_3_jquery__("#digit6").children().eq(0).val().length == 0 ? __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit6").children().eq(0).focus() : null)))));
-                }
-                break;
-            //Go to enter your name password
+            //Go to enter your password view
             case "email":
-                var email = __WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput").children().eq(0).val();
-                if (email.length > 0 && email.indexOf("@") != -1 && email.indexOf(".") != -1) {
-                    this.currentView = "password";
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput").css('border-bottom', '2px solid black');
-                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordTitle"), "-100vw", "0px");
-                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#emailTitle"), "-200vw", "0px");
-                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput"), "-100vw", "0px");
-                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput"), "-200vw", "0px");
-                    setTimeout(() => { __WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput").children().eq(0).focus(); }, 1000);
+                if (this.disconnected) {
+                    this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.');
+                    break;
+                }
+                this.userExists = false;
+                var email = __WEBPACK_IMPORTED_MODULE_3_jquery__("#email").val();
+                this.email = email;
+                if (email.length > 3 && email.indexOf("@") != -1 && email.indexOf(".") != -1) {
+                    if (this.passwordToBeReset) {
+                        let controller = this;
+                        __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth().sendPasswordResetEmail(this.email).then(function () {
+                            controller.showAlert('Courriel Envoyé!', 'Un courriel avec un lien de réinitialisation de mot de passe vous a été envoyé.');
+                        }).catch(function () {
+                            controller.showAlert('Erreur!', 'Adresse courriel invalide.');
+                        });
+                    }
+                    else {
+                        this.currentView = "password";
+                        __WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput").css('border-bottom', '2px solid black');
+                        this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordTitle"), "-100vw", "0px");
+                        this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#title"), "-100vw", "10vh");
+                        this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput"), "-100vw", "0px");
+                        this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput"), "-100vw", "14vh");
+                        //Check if user is already registered
+                        if (this.alreadyExists()) {
+                            this.userExists = true;
+                            var passTitle = (this.userExists) ? 'Ravi de vous revoir, entrez votre mot de passe' : 'Créez votre mot de passe';
+                            __WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordTitle").children().eq(0).text(passTitle);
+                        }
+                    }
                 }
                 else {
                     __WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput").css('border-bottom', '2px solid red');
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput").children().eq(0).focus();
+                }
+                break;
+            //Go to enter your password confirmation view
+            case "password":
+                if (this.disconnected) {
+                    this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.');
+                    break;
+                }
+                var password = __WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput").children().eq(0).val();
+                this.password = password;
+                //If user is already registered, login user
+                if (password.length >= 6 && this.userExists) {
+                    this.loginUser();
+                    break;
+                }
+                if (password.length >= 6) {
+                    this.currentView = "passwordConfirmation";
+                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordConfirmationInput").css('border-bottom', '2px solid black');
+                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordConfirmationTitle"), "-100vw", "0px");
+                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordTitle"), "-200vw", "0px");
+                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordConfirmationInput"), "-100vw", "0px");
+                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput"), "-200vw", "0px");
+                }
+                else {
+                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput").css('border-bottom', '2px solid red');
                 }
                 break;
             //Go to enter your name view
-            case "password":
-                var password = __WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput").children().eq(0).val();
-                if (password.length >= 5) {
+            case "passwordConfirmation":
+                if (this.disconnected) {
+                    this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.');
+                    break;
+                }
+                var passwordConfirmation = __WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordConfirmationInput").children().eq(0).val();
+                this.passwordConfirmation = passwordConfirmation;
+                if (this.passwordConfirmation == this.password) {
                     this.currentView = "name";
                     __WEBPACK_IMPORTED_MODULE_3_jquery__("#firstName").css('border-bottom', '2px solid black');
                     __WEBPACK_IMPORTED_MODULE_3_jquery__("#lastName").css('border-bottom', '2px solid #F2F2F2');
                     this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#nameTitle"), "-100vw", "0px");
-                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordTitle"), "-200vw", "0px");
+                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordConfirmationTitle"), "-200vw", "0px");
                     this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#nameInput"), "-100vw", "0px");
-                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput"), "-200vw", "0px");
-                    setTimeout(() => { __WEBPACK_IMPORTED_MODULE_3_jquery__("#firstName").children().eq(0).focus(); }, 1000);
-                    this.linkWithEmailAuth();
+                    this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordConfirmationInput"), "-200vw", "0px");
                 }
                 else {
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput").css('border-bottom', '2px solid red');
-                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput").children().eq(0).focus();
+                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordConfirmationInput").css('border-bottom', '2px solid red');
                 }
                 break;
             //Go to enter select payment method
             case "name":
+                if (this.disconnected) {
+                    this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.');
+                    break;
+                }
                 var firstName = __WEBPACK_IMPORTED_MODULE_3_jquery__("#firstName").children().eq(0).val();
                 var lastName = __WEBPACK_IMPORTED_MODULE_3_jquery__("#lastName").children().eq(0).val();
+                this.firstName = firstName;
+                this.lastName = lastName;
                 if (firstName.length > 0 && lastName.length > 0) {
                     this.currentView = "paymentMethod";
                     __WEBPACK_IMPORTED_MODULE_3_jquery__("#nextBtn").hide();
+                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#firstName").children().eq(0).blur();
+                    __WEBPACK_IMPORTED_MODULE_3_jquery__("#lastName").children().eq(0).blur();
                     this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#paymentTitle"), "-100vw", "0px");
                     this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#nameTitle"), "-200vw", "0px");
                     this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#paymentList"), "-100vw", "0px");
                     this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#nameInput"), "-200vw", "0px");
-                    this.createNewUser();
                 }
                 else {
-                    if (firstName.length == 0) {
-                        __WEBPACK_IMPORTED_MODULE_3_jquery__("#firstName").css('border-bottom', '2px solid red');
-                        __WEBPACK_IMPORTED_MODULE_3_jquery__("#firstName").children().eq(0).focus();
-                    }
                     if (lastName.length == 0) {
                         __WEBPACK_IMPORTED_MODULE_3_jquery__("#lastName").css('border-bottom', '2px solid red');
-                        __WEBPACK_IMPORTED_MODULE_3_jquery__("#lastName").children().eq(0).focus();
+                    }
+                    if (firstName.length == 0) {
+                        __WEBPACK_IMPORTED_MODULE_3_jquery__("#firstName").css('border-bottom', '2px solid red');
                     }
                 }
                 break;
             //Go to credit card form
             case "paymentMethod":
+                if (this.disconnected) {
+                    this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.');
+                    break;
+                }
                 this.currentView = "creditCardForm";
+                this.keyboard.disableScroll(false);
                 __WEBPACK_IMPORTED_MODULE_3_jquery__("#cardName").css('border-bottom', '2px solid black');
                 __WEBPACK_IMPORTED_MODULE_3_jquery__("#cardNumber").css('border-bottom', '2px solid #F2F2F2');
                 __WEBPACK_IMPORTED_MODULE_3_jquery__("#expirationDate").css('border-bottom', '2px solid #F2F2F2');
@@ -846,7 +835,6 @@ let PhoneNumberPage = class PhoneNumberPage {
                 this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#paymentTitle"), "-200vw", "0px");
                 this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#creditCartInputs"), "-100vw", "0px");
                 this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#paymentList"), "-200vw", "0px");
-                setTimeout(() => { __WEBPACK_IMPORTED_MODULE_3_jquery__("#cardName").children().eq(0).focus(); }, 1000);
                 break;
             default:
         }
@@ -861,69 +849,6 @@ let PhoneNumberPage = class PhoneNumberPage {
         this.goToNext();
     }
     /*****************************************************************************
-    Function: signInWithPhoneNumber
-    Description: Sign in user with his phone number
-    Parameters: none
-    Return: void
-    *****************************************************************************/
-    signInWithPhoneNumber() {
-        //const appVerifier = this.recaptchaVerifier;
-        const appVerifier = new __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth.RecaptchaVerifier('nextBtn', { 'size': 'invisible' });
-        var value = __WEBPACK_IMPORTED_MODULE_3_jquery__("#input").val();
-        const phoneNumberString = "+1" + value.substring(1, 4) + value.substring(6, 9) + value.substring(10, 14);
-        __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
-            .then(confirmationResult => {
-            // SMS sent. Prompt user to type the code from the message, then sign the
-            // user in with confirmationResult.confirm(code).
-            this.smsConfirmation = confirmationResult;
-        })
-            .catch(function (error) {
-            console.error("SMS not sent", error);
-        });
-    }
-    /*****************************************************************************
-    Function: confirmSmsPin
-    Description: sms 6-digit code confirmation
-    Parameters: none
-    Return: void
-    *****************************************************************************/
-    confirmSmsCode() {
-        var confirmationCode = "";
-        for (var i = 1; i < 7; i++) {
-            confirmationCode += __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit" + i).children().eq(0).val();
-        }
-        let controller = this;
-        this.smsConfirmation.confirm(confirmationCode)
-            .then(function (result) {
-            // User signed in successfully.
-            if (result.user) {
-                controller.gotohome();
-            }
-            else {
-                controller.currentView = "email";
-                __WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput").css('border-bottom', '2px solid black');
-                controller.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#emailTitle"), "-100vw", "0px");
-                controller.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#digitTitle"), "-200vw", "0px");
-                controller.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput"), "-100vw", "0px");
-                controller.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#digitBloc"), "-200vw", "0px");
-                setTimeout(() => { __WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput").children().eq(0).focus(); }, 1000);
-            }
-        }).catch(function (error) {
-            // User couldn't sign in (bad verification code?)
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit1").css('border-bottom', '2px solid red');
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit2").css('border-bottom', '2px solid red');
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit3").css('border-bottom', '2px solid red');
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit4").css('border-bottom', '2px solid red');
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit5").css('border-bottom', '2px solid red');
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit6").css('border-bottom', '2px solid red');
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#digit6").children().eq(0).focus();
-            if (error.message.indexOf("The SMS code has expired") != -1) {
-                controller.goBack();
-                controller.showAlert("Confirmation Impossible !", "Le code SMS a expiré. Re-envoyez le code de vérification pour réessayer.");
-            }
-        });
-    }
-    /*****************************************************************************
     Function: createNewUser
     Purpose: Create a new user account in db
     Parameters: date(String): date to be saved
@@ -931,13 +856,110 @@ let PhoneNumberPage = class PhoneNumberPage {
     Return: None
     *****************************************************************************/
     createNewUser() {
+        var cardNumber = __WEBPACK_IMPORTED_MODULE_3_jquery__("#cardNumber").children().eq(1).val().toString();
+        var month = parseInt(__WEBPACK_IMPORTED_MODULE_3_jquery__("#expirationDate").children().eq(0).val().substring(0, 2));
+        var year = parseInt('20' + __WEBPACK_IMPORTED_MODULE_3_jquery__("#expirationDate").children().eq(0).val().substring(3, 5));
+        var cvc = __WEBPACK_IMPORTED_MODULE_3_jquery__("#cvv").children().eq(0).val().toString();
+        var cardinfo = {
+            number: cardNumber,
+            expMonth: month,
+            expYear: year,
+            cvc: cvc
+        };
+        this.getCreditCardToken(cardinfo);
+    }
+    /*****************************************************************************
+    Function: alreadyExists
+    Purpose: Tells is the user already exists by using phone number
+    Parameters: None
+    Return: None
+    *****************************************************************************/
+    alreadyExists() {
+        const email = this.email;
+        return (this.userAccounts.find(item => item.email == email) != undefined);
+    }
+    /*****************************************************************************
+    Function: createUser
+    Description: Validate entries and create new user in firebase database.
+    Also displays warning registration messages
+    Parameters: None
+    Return: None
+    *****************************************************************************/
+    createUser() {
         var users = __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.database().ref('Users/');
-        var userId = __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth().currentUser.uid;
-        users.child(userId).set({
-            UserId: userId,
-            Date: Date(),
-            firstName: __WEBPACK_IMPORTED_MODULE_3_jquery__("#firstName").children().eq(0).val(),
-            lastName: __WEBPACK_IMPORTED_MODULE_3_jquery__("#lastName").children().eq(0).val()
+        var firstName = this.firstName;
+        var lastName = this.lastName;
+        var customerId = this.customerId;
+        var email = this.email;
+        let loginController = this;
+        __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth().createUserWithEmailAndPassword(this.email, this.password).then(function (data) {
+            loginController.loginUser();
+            var userId = __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth().currentUser.uid;
+            //Create user instance in db
+            users.child(userId).set({
+                UserId: userId,
+                Date: Date(),
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                customerStripeId: customerId
+            });
+        }).catch(function (error) {
+            loginController.showAlert('Inscription Impossible !', 'Veuillez entrer une adresse courriel valide.');
+        });
+    }
+    /*****************************************************************************
+    Function: loginUser
+    Purpose: Validate the entries and logs the user in.
+    Parameters: None
+    Return: None
+    *****************************************************************************/
+    loginUser() {
+        this.logoutUser();
+        let controller = this;
+        __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth().signInWithEmailAndPassword(this.email, this.password).then(function (data) {
+            if (controller.isLoggedIn())
+                controller.gotohome();
+        }).catch(function (error) {
+            controller.showAlert('Authentification Impossible !', 'Adresse courriel ou mot de passe éronné.');
+        });
+    }
+    /*****************************************************************************
+    Function: logoutUser
+    Purpose: Logs the user out
+    Parameters: None
+    Return: None
+    *****************************************************************************/
+    logoutUser() {
+        return __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth().signOut();
+    }
+    /*****************************************************************************
+    Function: isLoggedIn
+    Purpose: Tells if there is a user logged in
+    Parameters: None
+    Return: True or False
+    *****************************************************************************/
+    isLoggedIn() {
+        var user = __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth().currentUser;
+        return (user != null && user != undefined) ? true : false;
+    }
+    /*****************************************************************************
+    Function: updateUserAccounts
+    Purpose: Fetch user accounts from db
+    Parameters: None
+    Return: None
+    *****************************************************************************/
+    updateUserAccounts() {
+        let controller = this;
+        __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.database().ref('Users/')
+            .on('value', function (snapshot) {
+            let users = snapshot.val();
+            controller.userAccounts = [];
+            for (var property in users) {
+                if (users.hasOwnProperty(property)) {
+                    controller.userAccounts.push(users[property]);
+                }
+            }
         });
     }
     /*****************************************************************************
@@ -965,49 +987,6 @@ let PhoneNumberPage = class PhoneNumberPage {
         alert.present();
     }
     /*****************************************************************************
-    Function: loginUser
-    Purpose: Validate the entries and logs the user in.
-    Parameters: None
-    Return: None
-    *****************************************************************************/
-    /*loginUser() {
-      var email = "";
-      var password = "";
-      if (email.length == 0 || password.length == 0) {
-        this.showAlert('Authentification Impossible !', 'Veuillez remplir tous les champs.')
-      } else {
-        this.logoutUser();
-        let loginController = this;
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function (data) {
-          if (loginController.isLoggedIn()) loginController.gotohome();
-        }).catch(function (error) {
-          loginController.showAlert('Authentification Impossible !', error.toString().substring(7, error.toString().length));
-        });
-      }
-    }*/
-    /*****************************************************************************
-    Function:   Function: presentAlert
-    Description: Link user phone auth with email auth
-    Also displays warning registration messages
-    Parameters: None
-    Return: None
-    *****************************************************************************/
-    linkWithEmailAuth() {
-        var email = __WEBPACK_IMPORTED_MODULE_3_jquery__("#emailInput").children().eq(0).val();
-        var password = __WEBPACK_IMPORTED_MODULE_3_jquery__("#passwordInput").children().eq(0).val();
-        if (email.length == 0 || password.length == 0) {
-        }
-        else {
-            let loginController = this;
-            var credential = __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth.EmailAuthProvider.credential(email, password);
-            __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth().currentUser.linkWithCredential(credential).then(function (user) {
-                console.log("Account linking success", user);
-            }, function (error) {
-                console.log("Account linking error", error);
-            });
-        }
-    }
-    /*****************************************************************************
     Function: setFooter
     Description: Set the footer dimensions for iOS
     Parameters: none
@@ -1015,13 +994,55 @@ let PhoneNumberPage = class PhoneNumberPage {
     *****************************************************************************/
     setHeaderFooter() {
         if (this.platform.is('ios')) {
-            __WEBPACK_IMPORTED_MODULE_3_jquery__(".header-img").height("65vh");
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#link").height("7.5vh");
+            //$(".header-img").height("67vh");
+            //$("#link").height("5.5vh");
         }
         else {
-            __WEBPACK_IMPORTED_MODULE_3_jquery__(".header-img").height("63vh");
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#link").height("7.5vh");
+            //$(".header-img").height("63vh");
+            //$("#link").height("7.5vh");
         }
+    }
+    /*****************************************************************************
+    Function: getCreditCardToken
+    Description: Retrieve user credit card token from stripe api
+    Parameters: cardinfo (obj of card infos)
+    Return: void
+    *****************************************************************************/
+    getCreditCardToken(cardinfo) {
+        this.stripe.setPublishableKey('pk_test_0Ghlv6GvobZIFI0SyNuDglPL');
+        this.stripe.createCardToken(cardinfo).then((token) => {
+            this.cardToken = token;
+            this.getCustomerInfos(this.cardToken.id, this.email);
+        }).catch((error) => {
+            this.showAlert('Inscription Impossible !', 'Carte de crédit invalide.');
+            alert(error);
+        });
+    }
+    /*****************************************************************************
+    Function: getCustomerInfos
+    Description: Retrieve user infos from stripe api
+    Parameters: none
+    Return: void
+    *****************************************************************************/
+    getCustomerInfos(token, email) {
+        var data = 'stripetoken=' + token + '&email=' + email;
+        var headers = new __WEBPACK_IMPORTED_MODULE_8__angular_http__["a" /* Headers */]();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        let controller = this;
+        this.http.post('http://192.168.27.1:3333/createUser', data, { headers: headers }).subscribe((res) => {
+            if (typeof (res) != "undefined") {
+                __WEBPACK_IMPORTED_MODULE_3_jquery__["each"](res, function (key, valueObj) {
+                    if (key == "_body") {
+                        controller.customerId = valueObj;
+                        controller.createUser();
+                    }
+                });
+            }
+            else {
+                this.showAlert('Inscription Impossible !', 'Carte de crédit invalide.');
+                console.log('Unable to save customer infos!!');
+            }
+        });
     }
     onFocus(parentId) {
         __WEBPACK_IMPORTED_MODULE_3_jquery__("#" + parentId).css('border-bottom', '2px solid black');
@@ -1035,17 +1056,18 @@ __decorate([
 ], PhoneNumberPage.prototype, "handleKeyboardEvent", null);
 PhoneNumberPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'page-phone-number',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/phone-number/phone-number.html"*/'<!--\n  Generated template for the Phone Number auth page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<div no-bounce ion-fixed class="content" style="margin:0; padding:0">\n  <div id="recaptcha-container"></div>\n  <!-- Header image -->\n  <ion-row id="headerImg" class="header-img">\n\n    <img src="assets/img/bg23.jpg" class="img"/>\n\n  </ion-row>\n\n  <!--body of page !-->\n  <ion-row id="main" class="main">\n    <!-- Title -->\n    <ion-row class="backbtn hidden" id="backBtn">\n      <ion-icon (click)="goBack()" style="font-size: 12vw; color: black;padding:0;margin:0" name="ios-arrow-round-back"></ion-icon>\n    </ion-row>\n\n    <!-- Title -->\n    <ion-row class="title" id="title">\n      <div>Coiffez vous avec Barber Me</div>\n    </ion-row>\n\n    <!-- Input for phone number -->\n    <ion-row id="inputBloc" class="phoneNumber">\n      <span class="flag-icon flag-icon-ca" style="font-size: 5vw; margin-right:1vw;"></span>\n      <ion-icon name="md-arrow-dropdown" style="color: gray; margin: auto; padding: auto;"></ion-icon>\n      <span style="font-size: 19px; font-family: Verdana, Geneva, sans-serif; margin: auto; padding: auto;">+1</span>\n      <input maxlength="14" id="input" (focus)="enterYourPhone()" (keydown)="onKeyPress(e)" class="input" [(ngModel)]="phoneNumber" type="tel" placeholder="Numéro de téléphone">\n    </ion-row>\n\n    <!-- Enter 4 digit -->\n    <ion-row class="digitTitle" id="digitTitle">\n      <div>Entrez le code à 4 chiffres qui vous a été envoyé à </div>\n    </ion-row>\n\n    <!-- Input for phone number -->\n    <ion-row id="digitBloc" class="digitBloc">\n      <ion-grid>\n        <ion-row>\n          <ion-col id="digit1" col-1 style="margin-right:10px; padding-left:0;padding-right:0">\n            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">\n          </ion-col>\n          <ion-col id="digit2" col-1 style="margin-right:10px; padding-left:0;padding-right:0">\n            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">\n          </ion-col>\n          <ion-col id="digit3" col-1 style="margin-right:10px; padding-left:0;padding-right:0">\n            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">\n          </ion-col>\n          <ion-col id="digit4" col-1 style="margin-right:10px; padding-left:0;padding-right:0">\n            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">\n          </ion-col>\n          <ion-col id="digit5" col-1 style="margin-right:10px; padding-left:0;padding-right:0">\n            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">\n          </ion-col>\n          <ion-col id="digit6" col-1 style="margin-right:10px; padding-left:0;padding-right:0">\n            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-row>\n\n    <!-- Enter your email -->\n    <ion-row class="digitTitle" id="emailTitle">\n      <div>Quelle est votre adresse e-mail ?</div>\n    </ion-row>\n\n    <!-- Input for email -->\n    <ion-row id="emailInput" class="inputBloc">\n      <input class="input" type="email" placeholder="example@mail.ca">\n    </ion-row>\n\n    <!-- Enter your password -->\n    <ion-row class="digitTitle" id="passwordTitle">\n      <div>Créez le mot de passe de votre compte</div>\n    </ion-row>\n\n    <!-- Input for password -->\n    <ion-row id="passwordInput" class="inputBloc">\n      <input class="input" type="password" placeholder="5 caractères minimum">\n    </ion-row>\n\n    <!-- Enter your name -->\n    <ion-row class="digitTitle" id="nameTitle">\n      <div>Comment vous appelez-vous ?</div>\n    </ion-row>\n\n    <!-- Input for name -->\n    <ion-row id="nameInput" class="inputBloc">\n      <ion-grid style="margin:0; padding:0">\n        <ion-row style="margin:0; padding:0">\n          <ion-col id="firstName" col-5 style="margin-left:0px">\n            <input class="nameInput" type="text" placeholder="Prénom">\n          </ion-col>\n\n          <ion-col id="lastName" col-5 style="margin-left:10px">\n            <input (focus)="onFocus(\'lastName\')" class="nameInput" type="text" placeholder="Nom">\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-row>\n\n    <!-- Select your payment method -->\n    <ion-row class="digitTitle" id="paymentTitle">\n      <div>Sélectionnez votre moyen de paiement préféré</div>\n    </ion-row>\n\n    <!-- List of payment methods -->\n    <ion-list (click)="selectCreditCard()" id="paymentList" class="digitBloc" style="padding:0; margin-top: 50px">\n      <ion-item (click)="selectCreditCard()" style="padding:0">\n        <ion-icon name="card" style="margin-left:7vw; margin-right:5vw"></ion-icon>\n          Carte de crédit\n        <ion-icon name="arrow-forward" style="position:absolute; right:5vw"></ion-icon>\n      </ion-item>\n    </ion-list>\n\n    <!-- Enter your credit card -->\n    <ion-row class="digitTitle" id="creditCardTitle" style="top: 10%">\n      <div>Ajouter la carte</div>\n    </ion-row>\n\n    <!-- Inputs for credit card -->\n    <ion-row id="creditCartInputs" class="digitBloc" style="top: 15%; padding-right: 3vw">\n      <!-- Credit card name -->\n      <!--ion-row><ion-label color="#F2F2F2" stacked></ion-label></ion-row!-->\n      <ion-row id="cardName" style="padding:auto; margin:auto; margin-left:0; margin-top:30px">\n        <ion-icon style="font-size:8vw; margin-right: 15px" name="contact"></ion-icon>\n        <input class="input" type="text" placeholder="Nom sur la carte">\n      </ion-row>\n\n      <!-- Credit card number -->\n      <!--ion-row style="margin-top: 50px"><ion-label color="#F2F2F2" stacked></ion-label></ion-row!-->\n      <ion-row id="cardNumber" style="padding:auto; margin:auto; margin-left:0; margin-top: 50px">\n        <ion-icon name="card" style="font-size:8vw; margin-right: 15px"></ion-icon>\n        <input maxlength="16" class="input" type="tel" style="width:85%" placeholder="Numéro de carte">\n      </ion-row>\n\n      <!-- Exp date / CVV -->\n      <ion-grid style="margin:0; margin-top:50px; padding:0">\n        <ion-row style="margin:0; padding:0">\n          <ion-col id="expirationDate" col-6 style="margin-left:0px; padding-left:0">\n            <input class="nameInput" style="width:100%" type="text" placeholder="Date d\'exp.">\n          </ion-col>\n\n          <ion-col id="cvv" col-5 style="margin-left:10px">\n            <input class="nameInput" style="width:100%" type="text" placeholder="CVV">\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <!-- country -->\n      <ion-label color="#F2F2F2" style="width: 100vw; margin-top: 40px" stacked>Pays</ion-label>\n      <ion-row id="country" style="padding:0; margin:0; margin-right: 5vw; width: 100vw">\n        <span class="flag-icon flag-icon-ca" style="font-size: 5vw; margin-right:2vw;"></span>\n        <div style="font-size: 5vw; font-family: Verdana, Geneva, sans-serif; margin: auto; padding: auto; width: 55vw">Canada</div>\n        <ion-icon name="md-arrow-dropdown" style="font-size:8vw; color: gray; margin: auto; padding: auto"></ion-icon>\n      </ion-row>\n\n      <!-- Postal Code -->\n      <ion-row id="postalCode" style="padding:auto; margin:auto; margin-left:0; margin-top:50px;">\n        <input maxlength="6" class="input" style="width:80vw; padding-left:0; margin-left:0; padding-bottom: 5px" type="text" placeholder="Code postal">\n      </ion-row>\n\n    </ion-row>\n\n  </ion-row>\n\n  <!-- Link to login page -->\n  <ion-row class="footer" id="link">\n    <span (click)="gotoLoginPage()" ion-text color="black" style="margin-top: auto; margin-bottom: auto;">Connecte toi avec ton adresse courriel</span>\n  </ion-row>\n\n  <button id="nextBtn" (click)="goToNext()" ion-button class="btn-circle btn-xl hidden"><ion-icon name="ios-arrow-round-forward" class="nextIcon"></ion-icon></button>\n\n</div>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/phone-number/phone-number.html"*/,
+        selector: 'page-phone-number',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\phone-number\phone-number.html"*/'<!--\n\n  Generated template for the Phone Number auth page.\n\n\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<div no-bounce ion-fixed class="content" style="margin:0; padding:0">\n\n  <!-- Header image -->\n\n  <ion-row id="headerImg" class="header-img">\n\n\n\n    <img src="assets/img/bg23.jpg" class="img"/>\n\n\n\n  </ion-row>\n\n\n\n  <!--body of page !-->\n\n  <ion-row id="main" class="main">\n\n    <!-- Title -->\n\n    <ion-row style="display: none" class="backbtn hidden" id="backBtn">\n\n      <ion-icon (click)="goBack()" style="font-size: 12vw; color: black;padding:0;margin:0" name="ios-arrow-round-back"></ion-icon>\n\n    </ion-row>\n\n\n\n    <!-- Title -->\n\n    <ion-row class="title" id="title">\n\n      <div>Coiffez vous avec Barber Me</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for phone number -->\n\n    <ion-row id="emailInput" class="email">\n\n       <ion-icon ios="ios-mail" style="font-size: 7vw; color: gray; margin: auto; padding: auto; margin-left: 0; padding-left: 0; margin-right: 0; padding-right: 0;" md="md-mail"></ion-icon>\n\n      <input id="email" (focus)="enterYourEmail()" class="input" [(ngModel)]="email" type="email" placeholder="Entrez votre adresse courriel">\n\n    </ion-row>\n\n\n\n    <!-- Enter your password -->\n\n    <ion-row class="digitTitle" id="passwordTitle">\n\n      <div>Créez votre mot de passe</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for password -->\n\n    <ion-row id="passwordInput" class="inputBloc">\n\n      <input class="input" type="password" placeholder="6 caractères minimum">\n\n    </ion-row>\n\n\n\n    <!-- Enter your password confirmation -->\n\n    <ion-row class="digitTitle" id="passwordConfirmationTitle">\n\n      <div>Confirmez votre mot de passe</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for password confirmation -->\n\n    <ion-row id="passwordConfirmationInput" class="inputBloc">\n\n      <input class="input" type="password" placeholder="6 caractères minimum">\n\n    </ion-row>\n\n\n\n    <!-- Enter your name -->\n\n    <ion-row class="digitTitle" id="nameTitle">\n\n      <div>Comment vous appelez-vous ?</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for name -->\n\n    <ion-row id="nameInput" class="inputBloc">\n\n      <ion-grid style="margin:0; padding:0">\n\n        <ion-row style="margin:0; padding:0">\n\n          <ion-col id="firstName" col-5 style="margin-left:0px">\n\n            <input class="nameInput" type="text" placeholder="Prénom">\n\n          </ion-col>\n\n\n\n          <ion-col id="lastName" col-5 style="margin-left:10px">\n\n            <input (focus)="onFocus(\'lastName\')" class="nameInput" type="text" placeholder="Nom">\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </ion-row>\n\n\n\n    <!-- Select your payment method -->\n\n    <ion-row class="digitTitle" id="paymentTitle">\n\n      <div>Sélectionnez votre moyen de paiement préféré</div>\n\n    </ion-row>\n\n\n\n    <!-- List of payment methods -->\n\n    <ion-list (click)="selectCreditCard()" id="paymentList" class="digitBloc" style="padding:0; margin-top: 50px">\n\n      <ion-item (click)="selectCreditCard()" style="padding:0">\n\n        <ion-icon name="card" style="margin-left:7vw; margin-right:5vw"></ion-icon>\n\n          Carte de crédit\n\n        <ion-icon name="arrow-forward" style="position:absolute; right:5vw"></ion-icon>\n\n      </ion-item>\n\n    </ion-list>\n\n\n\n    <!-- Enter your credit card -->\n\n    <ion-row class="digitTitle" id="creditCardTitle" style="top: 10%">\n\n      <div>Ajouter la carte</div>\n\n    </ion-row>\n\n\n\n    <!-- Inputs for credit card -->\n\n    <ion-row id="creditCartInputs" class="digitBloc" style="top: 4%; padding-right: 3vw">\n\n      <!-- Credit card name -->\n\n      <!--ion-row><ion-label color="#F2F2F2" stacked></ion-label></ion-row!-->\n\n      <ion-row id="cardName" style="padding:auto; margin:auto; margin-left:0; width:95%; margin-top:50px">\n\n        <ion-icon style="font-size:7vw; margin-right: 10px" name="contact"></ion-icon>\n\n        <input class="input" type="text" style="width:85%" placeholder="Nom sur la carte">\n\n      </ion-row>\n\n\n\n      <!-- Credit card number -->\n\n      <ion-row id="cardNumber" style="padding:auto; margin:auto; margin-left:0; width:95%; margin-top: 50px">\n\n        <ion-icon name="card" style="font-size:7vw; margin-right: 10px"></ion-icon>\n\n        <input maxlength="16" class="input" type="tel" style="width:85%" placeholder="Numéro de carte">\n\n      </ion-row>\n\n\n\n      <!-- Exp date / CVV -->\n\n      <ion-grid style="margin:0; margin-top:50px; padding:0">\n\n        <ion-row style="margin:0; padding:0">\n\n          <ion-col id="expirationDate" col-6 style="margin-left:0px; padding-left:0">\n\n            <input class="nameInput" style="width:100%" type="text" placeholder="Date d\'exp.">\n\n          </ion-col>\n\n\n\n          <ion-col id="cvv" col-5 style="margin-left:10px">\n\n            <input class="nameInput" style="width:100%" type="text" placeholder="CVV">\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n\n\n      <!-- country -->\n\n      <ion-label color="#F2F2F2" style="width: 100vw; margin-top: 40px" stacked>Pays</ion-label>\n\n      <ion-row id="country" style="padding:0; margin:0; margin-right: 5vw; width: 100vw">\n\n        <span class="flag-icon flag-icon-ca" style="font-size: 5vw; margin-right:2vw;"></span>\n\n        <div style="font-size: 5vw; font-family: Verdana, Geneva, sans-serif; margin: auto; padding: auto; width: 55vw">Canada</div>\n\n        <ion-icon name="md-arrow-dropdown" style="font-size:8vw; color: gray; margin: auto; padding: auto"></ion-icon>\n\n      </ion-row>\n\n\n\n      <!-- Postal Code -->\n\n      <ion-row id="postalCode" style="padding:auto; margin:auto; margin-left:0; margin-top:50px;">\n\n        <input maxlength="6" class="input" style="width:80vw; padding-left:0; margin-left:0; padding-bottom: 5px" type="text" placeholder="Code postal">\n\n      </ion-row>\n\n\n\n      <!--sign out button-->\n\n      <ion-row id="continueBtn" style="width: 100vw; padding:auto; margin:auto; margin-left:0; margin-top:10px;">\n\n        <button ion-button class="round" color="black" full (click)="createNewUser()" style="margin-top: 5vh; background-color: black">CONTINUER</button>\n\n      </ion-row>\n\n\n\n    </ion-row>\n\n\n\n  </ion-row>\n\n\n\n  <!-- Link to login page -->\n\n  <ion-row class="footer" id="link">\n\n    <span (click)="enterYourEmail(\'reset password\')" ion-text color="black" style="margin-top: auto; margin-bottom: auto;">Mot de passe oublié?</span>\n\n  </ion-row>\n\n\n\n  <button id="nextBtn" (click)="goToNext()" ion-button class="btn-circle btn-xl hidden"><ion-icon name="ios-arrow-round-forward" class="nextIcon"></ion-icon></button>\n\n\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\phone-number\phone-number.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+        __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_7__ionic_native_stripe__["a" /* Stripe */], __WEBPACK_IMPORTED_MODULE_8__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_9__ionic_native_network__["a" /* Network */]])
 ], PhoneNumberPage);
 
 //# sourceMappingURL=phone-number.js.map
 
 /***/ }),
 
-/***/ 400:
+/***/ 402:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1054,7 +1076,7 @@ PhoneNumberPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__GetAnAppointmentModel__ = __webpack_require__(854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__GetAnAppointmentModel__ = __webpack_require__(857);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
@@ -1245,8 +1267,35 @@ let GetAnAppointmentPage = class GetAnAppointmentPage {
     getAppointment() {
         var date = this.currentDate.format(FORMAT);
         var hour = this.currentHour + " : " + this.currentMinutes;
-        (this.appointments.isAvailable(date, hour)) ? this.appointments.createNew(date, hour) : this.showAlert();
+        (this.appointments.isAvailable(date, hour)) ? this.displayAppointmentConfirmation(date, hour) : this.showAlert('Réservation impossible !', 'Veuillez choisir une autre plage horaire.');
         this.disableBookedDays();
+    }
+    /*****************************************************************************
+    Function: displayAppointmentConfirmation
+    Purpose: Prompt alert to confirm user reservation
+    Parameters: None
+    Return: None
+    *****************************************************************************/
+    displayAppointmentConfirmation(date, hour) {
+        let alert = this.alertCtrl.create({
+            title: 'Confirmez votre réservation',
+            subTitle: 'En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de Barber Me.',
+            buttons: [{
+                    text: 'Annuler',
+                    role: 'cancel',
+                    handler: () => {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Confirmer',
+                    handler: () => {
+                        this.appointments.createNew(date, hour);
+                        this.showAlert('Confirmation', 'Votre réservation est confirmée pour le ' + date + ' à ' + hour);
+                    }
+                }]
+        });
+        alert.present();
     }
     /*****************************************************************************
     Function: showAlert
@@ -1254,10 +1303,10 @@ let GetAnAppointmentPage = class GetAnAppointmentPage {
     Parameters: None
     Return: None
     *****************************************************************************/
-    showAlert() {
+    showAlert(title, subTitle) {
         let alert = this.alertCtrl.create({
-            title: 'Réservation impossible !',
-            subTitle: 'Veuillez choisir une autre plage horaire.',
+            title: title,
+            subTitle: subTitle,
             buttons: ['OK']
         });
         alert.present();
@@ -1404,7 +1453,7 @@ __decorate([
 ], GetAnAppointmentPage.prototype, "dateSelectors", void 0);
 GetAnAppointmentPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'getanappointment',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/getanappointment/getanappointment.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-title>Mario Perfect Cut</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content class="light-bg">\n  <div class="getanappointment">\n    <div style="height:auto" class="cal-bg header-row">\n      <ion-row class="text-center input-row">\n        <ion-col width-100>\n          <div class="check-text">Choisissez le jour</div>\n        </ion-col>\n      </ion-row>\n\n      <ion-row class="text-center week-row">\n        <ion-col *ngFor="let weekName of weekNames" style="margin:0;padding:0">\n          <span>{{weekName}}</span>\n        </ion-col>\n      </ion-row>\n    </div>\n\n    <!-- ion-content contains the calendar months displayed in the view -->\n    <div style="height:100%; overflow-y: scroll; margin-left:0" class="month-list">\n      <ion-item *ngFor="let monthObj of months">\n        <ion-row class="month-row" >\n          <ion-col width-60 class="text-center">\n            {{monthObj.selectedMonth.format("MMM YYYY")}}\n          </ion-col>\n        </ion-row>\n\n        <div class="day-grid">\n          <ion-row class="text-center day-row" *ngFor="let week of monthObj.weeks; let rowIndex = index" >\n            <ion-col class="day-col" *ngFor="let day of week.days; let colIndex = index">\n\n                <button ion-button  *ngIf="day"  clear [datespan]="day.id" (click)="select(monthObj,day,rowIndex)">\n                  {{day.displayText}}\n                </button>\n\n            </ion-col>\n          </ion-row>\n        </div>\n      </ion-item>\n    </div>\n  </div>\n\n  <ion-row style="position: relative; margin-top:27.5%">\n    <ion-col col-3></ion-col>\n    <ion-col col-2>\n      <ion-row style="padding: 5px; cursor: pointer" (click)="increaseHour()">\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n      </ion-row>\n      <ion-row>\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentHour}}</p>\n      </ion-row>\n      <ion-row style="padding: 5px; cursor: pointer" (click)="decreaseHour()">\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n      </ion-row>\n    </ion-col>\n\n    <ion-col col-2>\n      <ion-row style="padding: 5px; cursor: pointer">\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n      </ion-row>\n      <ion-row>\n        <p style="padding: 5px; font-size: 20px; margin: auto">:</p>\n      </ion-row>\n      <ion-row style="padding: 5px; cursor: pointer">\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n      </ion-row>\n    </ion-col>\n\n    <ion-col col-2>\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n      </ion-row>\n      <ion-row>\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentMinutes}}</p>\n      </ion-row>\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n      </ion-row>\n    </ion-col>\n    <ion-col col-3></ion-col>\n  </ion-row>\n\n  <ion-row>\n    <p [ngClass] = "conflictMessageClasses">{{errorMessage}}</p>\n  </ion-row>\n\n  <div style="padding-left: 10%; padding-right: 10%;margin-top:1.5%">\n    <button ion-button class="round" full color="primary" (click)="getAppointment()">Réserver</button>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/getanappointment/getanappointment.html"*/,
+        selector: 'getanappointment',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\getanappointment\getanappointment.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>Mario Perfect Cut</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="light-bg">\n\n  <div class="getanappointment">\n\n    <div style="height:auto" class="cal-bg header-row">\n\n      <ion-row class="text-center input-row">\n\n        <ion-col width-100>\n\n          <div class="check-text">Choisissez le jour</div>\n\n        </ion-col>\n\n      </ion-row>\n\n\n\n      <ion-row class="text-center week-row">\n\n        <ion-col *ngFor="let weekName of weekNames" style="margin:0;padding:0">\n\n          <span>{{weekName}}</span>\n\n        </ion-col>\n\n      </ion-row>\n\n    </div>\n\n\n\n    <!-- ion-content contains the calendar months displayed in the view -->\n\n    <div style="height:100%; overflow-y: scroll; margin-left:0" class="month-list">\n\n      <ion-item *ngFor="let monthObj of months">\n\n        <ion-row class="month-row" >\n\n          <ion-col width-60 class="text-center">\n\n            {{monthObj.selectedMonth.format("MMM YYYY")}}\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <div class="day-grid">\n\n          <ion-row class="text-center day-row" *ngFor="let week of monthObj.weeks; let rowIndex = index" >\n\n            <ion-col class="day-col" *ngFor="let day of week.days; let colIndex = index">\n\n\n\n                <button ion-button  *ngIf="day"  clear [datespan]="day.id" (click)="select(monthObj,day,rowIndex)">\n\n                  {{day.displayText}}\n\n                </button>\n\n\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n      </ion-item>\n\n    </div>\n\n  </div>\n\n\n\n  <ion-row style="position: relative; margin-top:27.5%">\n\n    <ion-col col-3></ion-col>\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="increaseHour()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentHour}}</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="decreaseHour()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer">\n\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">:</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer">\n\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentMinutes}}</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n    <ion-col col-3></ion-col>\n\n  </ion-row>\n\n\n\n  <ion-row>\n\n    <p [ngClass] = "conflictMessageClasses">{{errorMessage}}</p>\n\n  </ion-row>\n\n\n\n  <div style="padding-left: 10%; padding-right: 10%;margin-top:1.5%">\n\n    <button ion-button class="round" full color="primary" (click)="getAppointment()">Réserver</button>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\getanappointment\getanappointment.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */]])
 ], GetAnAppointmentPage);
@@ -1413,7 +1462,7 @@ GetAnAppointmentPage = __decorate([
 
 /***/ }),
 
-/***/ 527:
+/***/ 529:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1445,7 +1494,7 @@ let GalleryPage = class GalleryPage {
 };
 GalleryPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'page-gallery',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/gallery/gallery.html"*/'<!--\n  Generated template for the Gallerie page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>Galerie photos</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div padding margin-top>\n    <ion-badge class="square center"  color="primary">Voir plus de photo</ion-badge>\n    <div class="clear"></div>\n  </div>\n\n  <!--list of pictures-->\n  <ion-grid class="list-hotels">\n    <ion-row>\n      <ion-col *ngFor="let picture of pictures[0].viewMoreGalery" col-6>\n        <div class="hotel-bg" [ngStyle]="{\'background-image\': \'url(\' + picture + \')\'}">\n          <div class="bg-filter">\n\n\n          </div>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/gallery/gallery.html"*/
+        selector: 'page-gallery',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\gallery\gallery.html"*/'<!--\n\n  Generated template for the Gallerie page.\n\n\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar color="primary">\n\n    <ion-title>Galerie photos</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n\n\n  <div padding margin-top>\n\n    <ion-badge class="square center"  color="primary">Voir plus de photo</ion-badge>\n\n    <div class="clear"></div>\n\n  </div>\n\n\n\n  <!--list of pictures-->\n\n  <ion-grid class="list-hotels">\n\n    <ion-row>\n\n      <ion-col *ngFor="let picture of pictures[0].viewMoreGalery" col-6>\n\n        <div class="hotel-bg" [ngStyle]="{\'background-image\': \'url(\' + picture + \')\'}">\n\n          <div class="bg-filter">\n\n\n\n\n\n          </div>\n\n        </div>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\gallery\gallery.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_gallery_service__["a" /* GalleryService */]])
 ], GalleryPage);
@@ -1454,7 +1503,7 @@ GalleryPage = __decorate([
 
 /***/ }),
 
-/***/ 528:
+/***/ 530:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1546,26 +1595,25 @@ let Alert = class Alert {
 };
 Alert = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'page-alert',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/alert/alert.html"*/'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <title>Title</title>\n</head>\n<body>\n\n</body>\n</html>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/alert/alert.html"*/
+        selector: 'page-alert',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\alert\alert.html"*/'<!DOCTYPE html>\n\n<html lang="en">\n\n<head>\n\n    <meta charset="UTF-8">\n\n    <title>Title</title>\n\n</head>\n\n<body>\n\n\n\n</body>\n\n</html>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\alert\alert.html"*/
     }),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular_index__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular_index__["a" /* AlertController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["b" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["b" /* App */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_index__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["b" /* App */]])
 ], Alert);
 
-var _a, _b;
 //# sourceMappingURL=alert.js.map
 
 /***/ }),
 
-/***/ 530:
+/***/ 532:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BarberLocation; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_barber_service__ = __webpack_require__(531);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pricing_pricing__ = __webpack_require__(532);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_barber_service__ = __webpack_require__(533);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pricing_pricing__ = __webpack_require__(534);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1642,7 +1690,7 @@ let BarberLocation = class BarberLocation {
 };
 BarberLocation = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'page-barber-location',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/barber-location/barber-location.html"*/'<!--\n  Generated template for the ProfilePage page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>Contactez Mario Perfect Cut</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class=" light-bg">\n\n  <!-- Show map here -->\n  <div style="height: 40vh;" id="map-detail"></div>\n\n\n\n\n  <!--services-->\n  <ion-grid style="height: 10vh;" class="border-bottom">\n    <ion-row>\n      <ion-col col-1 text-left>\n        <ion-icon style="padding-top: 16px" class="text-2x" name="pin"  color="dark"></ion-icon>\n      </ion-col>\n      <ion-col col-11 text-left>\n        <span class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 22px" ion-text color="dark">1536 Boulevard Curé-Labelle #185</span>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <!--services-->\n  <ion-grid style="height: 10vh;" class="border-bottom">\n    <ion-row>\n      <ion-col col-1 text-left>\n        <ion-icon style="padding-top: 20px" class="text-2x" name="globe"  color="dark"></ion-icon>\n      </ion-col>\n      <ion-col col-11 text-left>\n        <a href="http://www.marioperfectcutbarbershop.com/" class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 20px" ion-text color="dark">marioperfectcutbarbershop.com</a>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <!--services-->\n  <ion-grid  style="height: 10vh;" class="border-bottom">\n    <ion-row>\n      <ion-col col-1 text-left>\n        <ion-icon style="padding-top: 20px" class="text-2x" name="call"  color="dark"></ion-icon>\n      </ion-col>\n      <ion-col col-11 text-left>\n        <a href="tel:514-996-4730" class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 22px" ion-text color="dark">514-996-4730</a>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <!--services-->\n  <ion-grid  style="height: 10vh;" class="border-bottom">\n    <ion-row>\n      <ion-col col-1 text-left>\n        <ion-icon style="padding-top: 20px" class="" name="mail"  color="dark"></ion-icon>\n      </ion-col>\n      <ion-col col-11 text-left>\n        <a href="mailto:marioperfectcutbarbershop@gmail.com" class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 20px" ion-text color="dark">marioperfectcutbarbershop@gmail.com</a>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <!--services-->\n  <ion-grid  style="height: 10vh;" class="border-bottom">\n    <ion-row>\n      <ion-col col-1 text-left>\n        <ion-icon style="padding-top: 18px" class="text-2x" name="logo-instagram"  color="dark"></ion-icon>\n      </ion-col>\n      <ion-col col-11 text-left>\n        <a href="http://www.instagram.com/marioperfectcut" class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 22px" ion-text color="dark">instagram.com/marioperfectcut</a>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <!--services-->\n  <ion-grid  style="height: 10vh;" class="border-bottom">\n    <ion-row>\n      <ion-col col-1 text-left>\n        <ion-icon style="padding-top: 18px" class="text-2x" name="logo-facebook"  color="dark"></ion-icon>\n      </ion-col>\n      <ion-col col-11 text-left>\n        <a href="http://www.facebook.com/MarioPerfectCutBarberShop" class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 22px" ion-text color="dark">facebook.com/MarioPerfectCutBarberShop</a>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/barber-location/barber-location.html"*/
+        selector: 'page-barber-location',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\barber-location\barber-location.html"*/'<!--\n\n  Generated template for the ProfilePage page.\n\n\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar color="primary">\n\n    <ion-title>Contactez Mario Perfect Cut</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content class=" light-bg">\n\n\n\n  <!-- Show map here -->\n\n  <div style="height: 40vh;" id="map-detail"></div>\n\n\n\n\n\n\n\n\n\n  <!--services-->\n\n  <ion-grid style="height: 10vh;" class="border-bottom">\n\n    <ion-row>\n\n      <ion-col col-1 text-left>\n\n        <ion-icon style="padding-top: 16px" class="text-2x" name="pin"  color="dark"></ion-icon>\n\n      </ion-col>\n\n      <ion-col col-11 text-left>\n\n        <span class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 22px" ion-text color="dark">1536 Boulevard Curé-Labelle #185</span>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <!--services-->\n\n  <ion-grid style="height: 10vh;" class="border-bottom">\n\n    <ion-row>\n\n      <ion-col col-1 text-left>\n\n        <ion-icon style="padding-top: 20px" class="text-2x" name="globe"  color="dark"></ion-icon>\n\n      </ion-col>\n\n      <ion-col col-11 text-left>\n\n        <a href="http://www.marioperfectcutbarbershop.com/" class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 20px" ion-text color="dark">marioperfectcutbarbershop.com</a>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <!--services-->\n\n  <ion-grid  style="height: 10vh;" class="border-bottom">\n\n    <ion-row>\n\n      <ion-col col-1 text-left>\n\n        <ion-icon style="padding-top: 20px" class="text-2x" name="call"  color="dark"></ion-icon>\n\n      </ion-col>\n\n      <ion-col col-11 text-left>\n\n        <a href="tel:514-996-4730" class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 22px" ion-text color="dark">514-996-4730</a>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <!--services-->\n\n  <ion-grid  style="height: 10vh;" class="border-bottom">\n\n    <ion-row>\n\n      <ion-col col-1 text-left>\n\n        <ion-icon style="padding-top: 20px" class="" name="mail"  color="dark"></ion-icon>\n\n      </ion-col>\n\n      <ion-col col-11 text-left>\n\n        <a href="mailto:marioperfectcutbarbershop@gmail.com" class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 20px" ion-text color="dark">marioperfectcutbarbershop@gmail.com</a>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <!--services-->\n\n  <ion-grid  style="height: 10vh;" class="border-bottom">\n\n    <ion-row>\n\n      <ion-col col-1 text-left>\n\n        <ion-icon style="padding-top: 18px" class="text-2x" name="logo-instagram"  color="dark"></ion-icon>\n\n      </ion-col>\n\n      <ion-col col-11 text-left>\n\n        <a href="http://www.instagram.com/marioperfectcut" class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 22px" ion-text color="dark">instagram.com/marioperfectcut</a>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <!--services-->\n\n  <ion-grid  style="height: 10vh;" class="border-bottom">\n\n    <ion-row>\n\n      <ion-col col-1 text-left>\n\n        <ion-icon style="padding-top: 18px" class="text-2x" name="logo-facebook"  color="dark"></ion-icon>\n\n      </ion-col>\n\n      <ion-col col-11 text-left>\n\n        <a href="http://www.facebook.com/MarioPerfectCutBarberShop" class="service-name" style="font-size: 15px;font-weight: bold;padding-top: 22px" ion-text color="dark">facebook.com/MarioPerfectCutBarberShop</a>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\barber-location\barber-location.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_barber_service__["a" /* BarberService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */]])
 ], BarberLocation);
@@ -1651,13 +1699,13 @@ BarberLocation = __decorate([
 
 /***/ }),
 
-/***/ 531:
+/***/ 533:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BarberService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_barbers__ = __webpack_require__(882);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_barbers__ = __webpack_require__(885);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1697,7 +1745,7 @@ BarberService = __decorate([
 
 /***/ }),
 
-/***/ 532:
+/***/ 534:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1761,7 +1809,7 @@ let PricingPage = class PricingPage {
 };
 PricingPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'page-pricing',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/pricing/pricing.html"*/'<!--\n  Generated template for the ProfilePage page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>Panier</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="pricing common-bg">\n  <div class="card round">\n    <div class="hotel-bg" [ngStyle]="{\'background-image\': \'url(\' + picture.thumb + \')\'}">\n      <div class="bg-filter" text-center>\n        <div>\n          <h5 ion-text color="light" no-margin>Mario Perfect Cut</h5>\n          <span ion-text color="light">{{ dateFrom | date: \'MMM dd, yyyy\'}} - {{ dateTo | date: \'MMM dd, yyyy\'}}</span>\n          <div margin-top>\n            <span ion-text color="light">1536 Bd Curé Labelle, Chomedey QC H7V 2W2</span>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class="border-bottom" padding>\n      <h5 no-margin>Frais de reservation.</h5>\n      <span ion-text color="dark">5$</span>\n    </div>\n\n    <!--total price-->\n    <div padding>\n      <h4 class="pull-left" no-margin>Total</h4>\n      <h4 class="pull-right" ion-text color="primary" no-margin>25$</h4>\n      <div class="clear"></div>\n    </div>\n  </div>\n\n  <!--more info-->\n  <div class="card round" margin-top>\n    <ion-item class="no-border">\n      <ion-icon name="contact" item-left color="dark"></ion-icon>\n      <div>\n        <span class="bold" ion-text color="dark">KOUENI REPLACE THIS WITH CALENDAR</span>\n        <br/>\n        <span ion-text color="dark">Enter your information</span>\n      </div>\n    </ion-item>\n  </div>\n\n  <!--payment info-->\n  <div class="card round" margin-top>\n    <ion-item class="no-border">\n      <ion-icon name="ios-card" item-left color="dark"></ion-icon>\n      <div>\n        <span class="bold" ion-text color="dark">Mode de payment</span>\n        <br/>\n        <span ion-text color="dark">Carte de credit</span>\n      </div>\n    </ion-item>\n  </div>\n\n  <!--submit button-->\n  <button ion-button class="round" color="primary" margin-top full (click)="send()">COMPLETER</button>\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/pricing/pricing.html"*/
+        selector: 'page-pricing',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\pricing\pricing.html"*/'<!--\n\n  Generated template for the ProfilePage page.\n\n\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar color="primary">\n\n    <ion-title>Panier</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="pricing common-bg">\n\n  <div class="card round">\n\n    <div class="hotel-bg" [ngStyle]="{\'background-image\': \'url(\' + picture.thumb + \')\'}">\n\n      <div class="bg-filter" text-center>\n\n        <div>\n\n          <h5 ion-text color="light" no-margin>Mario Perfect Cut</h5>\n\n          <span ion-text color="light">{{ dateFrom | date: \'MMM dd, yyyy\'}} - {{ dateTo | date: \'MMM dd, yyyy\'}}</span>\n\n          <div margin-top>\n\n            <span ion-text color="light">1536 Bd Curé Labelle, Chomedey QC H7V 2W2</span>\n\n          </div>\n\n        </div>\n\n      </div>\n\n    </div>\n\n\n\n    <div class="border-bottom" padding>\n\n      <h5 no-margin>Frais de reservation.</h5>\n\n      <span ion-text color="dark">5$</span>\n\n    </div>\n\n\n\n    <!--total price-->\n\n    <div padding>\n\n      <h4 class="pull-left" no-margin>Total</h4>\n\n      <h4 class="pull-right" ion-text color="primary" no-margin>25$</h4>\n\n      <div class="clear"></div>\n\n    </div>\n\n  </div>\n\n\n\n  <!--more info-->\n\n  <div class="card round" margin-top>\n\n    <ion-item class="no-border">\n\n      <ion-icon name="contact" item-left color="dark"></ion-icon>\n\n      <div>\n\n        <span class="bold" ion-text color="dark">KOUENI REPLACE THIS WITH CALENDAR</span>\n\n        <br/>\n\n        <span ion-text color="dark">Enter your information</span>\n\n      </div>\n\n    </ion-item>\n\n  </div>\n\n\n\n  <!--payment info-->\n\n  <div class="card round" margin-top>\n\n    <ion-item class="no-border">\n\n      <ion-icon name="ios-card" item-left color="dark"></ion-icon>\n\n      <div>\n\n        <span class="bold" ion-text color="dark">Mode de payment</span>\n\n        <br/>\n\n        <span ion-text color="dark">Carte de credit</span>\n\n      </div>\n\n    </ion-item>\n\n  </div>\n\n\n\n  <!--submit button-->\n\n  <button ion-button class="round" color="primary" margin-top full (click)="send()">COMPLETER</button>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\pricing\pricing.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_gallery_service__["a" /* GalleryService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ToastController */]])
 ], PricingPage);
@@ -1770,7 +1818,7 @@ PricingPage = __decorate([
 
 /***/ }),
 
-/***/ 533:
+/***/ 535:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1778,7 +1826,6 @@ PricingPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__get_a_ticket_get_a_ticket__ = __webpack_require__(148);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1791,7 +1838,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 /*
  Generated class for the LoginPage page.
 
@@ -1799,12 +1845,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  Ionic pages and navigation.
  */
 let SettingsPage = class SettingsPage {
-    constructor(nav, getTicket) {
+    constructor(nav) {
         this.nav = nav;
-        this.getTicket = getTicket;
-        this.firstName = getTicket.userInfoFirstName;
-        this.lastName = getTicket.userInfoLastName;
-        this.email = this.getTicket.userInfoEmailName;
     }
     /*****************************************************************************
     Function: logout
@@ -1818,17 +1860,16 @@ let SettingsPage = class SettingsPage {
 };
 SettingsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'page-settings',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/settings/settings.html"*/'<!--\n  Generated template for the Settings page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header class="no-shadow">\n\n  <ion-navbar class="no-border" color="primary">\n    <ion-title>PARAMÈTRES</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="common-bg">\n  <!--top information-->\n  <div class="top-info" padding>\n    <div padding-top>\n      <h5 ion-text color="white">{{firstName + " " + lastName}}</h5>\n      <span ion-text color="white">{{email}}</span>\n    </div>\n  </div>\n\n  <!--user settings-->\n    <ion-item-group style="margin-top: 10px">\n      <ion-item-divider color="bg-color">Notifications</ion-item-divider>\n      <ion-item>\n        <ion-label>Notification push</ion-label>\n        <ion-toggle color="primary" checked="true"></ion-toggle>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Notification par courriel</ion-label>\n        <ion-toggle color="primary" checked="true"></ion-toggle>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Notification par SMS</ion-label>\n        <ion-toggle color="primary" checked="true"></ion-toggle>\n      </ion-item>\n    </ion-item-group>\n\n\n    <ion-item-group style="margin-top: 10px">\n      <ion-item-divider color="bg-color">Informations légales</ion-item-divider>\n        <ion-list>\n          <button ion-item>Termes et conditions</button>\n        </ion-list>\n      <ion-item-divider color="bg-color"></ion-item-divider>\n    </ion-item-group>\n\n    <!--sign out button-->\n    <div style="padding-left: 10%; padding-right: 10%">\n      <button ion-button class="round" color="orange" full (click)="logout()">SE DECONNECTER</button>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/settings/settings.html"*/
+        selector: 'page-settings',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\settings\settings.html"*/'<!--\n\n  Generated template for the Settings page.\n\n\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header class="no-shadow">\n\n\n\n  <ion-navbar class="no-border" color="primary">\n\n    <ion-title>PARAMÈTRES</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content class="common-bg">\n\n  <!--top information-->\n\n  <div class="top-info" padding>\n\n    <div padding-top>\n\n      <h5 ion-text color="white">John Doe</h5>\n\n      <span ion-text color="white">johndoe@mail.com</span>\n\n    </div>\n\n  </div>\n\n\n\n  <!--user settings-->\n\n    <ion-item-group style="margin-top: 10px">\n\n      <ion-item-divider color="bg-color">Notifications</ion-item-divider>\n\n      <ion-item>\n\n        <ion-label>Notification push</ion-label>\n\n        <ion-toggle color="primary" checked="true"></ion-toggle>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>Notification par courriel</ion-label>\n\n        <ion-toggle color="primary" checked="true"></ion-toggle>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>Notification par SMS</ion-label>\n\n        <ion-toggle color="primary" checked="true"></ion-toggle>\n\n      </ion-item>\n\n    </ion-item-group>\n\n\n\n\n\n    <ion-item-group style="margin-top: 10px">\n\n      <ion-item-divider color="bg-color">Informations légales</ion-item-divider>\n\n        <ion-list>\n\n          <button ion-item>Termes et conditions</button>\n\n        </ion-list>\n\n      <ion-item-divider color="bg-color"></ion-item-divider>\n\n    </ion-item-group>\n\n\n\n    <!--sign out button-->\n\n    <div style="padding-left: 10%; padding-right: 10%">\n\n      <button ion-button class="round" color="orange" full (click)="logout()">SE DECONNECTER</button>\n\n    </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\settings\settings.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__get_a_ticket_get_a_ticket__["a" /* GetaTicketPage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__get_a_ticket_get_a_ticket__["a" /* GetaTicketPage */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
 ], SettingsPage);
 
-var _a, _b;
 //# sourceMappingURL=settings.js.map
 
 /***/ }),
 
-/***/ 534:
+/***/ 536:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1963,7 +2004,7 @@ let CreateUserPage = class CreateUserPage {
 };
 CreateUserPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'page-create-user',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/create-user/create-user.html"*/'<!--\n  Generated template for the Create User page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-content padding class="login common-bg auth-page">\n  <div class="login-content">\n\n    <!-- Logo -->\n    <div padding text-center>\n      <!--\n      <div class="logo activity-bg">\n        <ion-icon name="md-calendar" color="light"></ion-icon>\n      </div> -->\n      <h2 ion-text color="light">\n        Mario Perfect Cut\n      </h2>\n    </div>\n\n    <!-- Login form -->\n    <div class="list-form" padding>\n\n      <ion-item>\n        <ion-label stacked>Email</ion-label>\n        <ion-input [(ngModel)]="email" type="text" color="white"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked>Password</ion-label>\n        <ion-input [(ngModel)]="password" type="password"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked>Confirm Password</ion-label>\n        <ion-input [(ngModel)]="confirmationPassword" type="password"></ion-input>\n      </ion-item>\n\n    </div>\n\n    <br />\n    <div>\n      <button ion-button block color="primary" (click)="createUser()">\n        S\'INSCRIRE\n      </button>\n    </div>\n\n    <div text-center margin-top>\n      <span ion-text color="light" (click)="gotoLoginPage()">Déjà Inscrit? Connecte toi !</span>\n    </div>\n\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/create-user/create-user.html"*/,
+        selector: 'page-create-user',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\create-user\create-user.html"*/'<!--\n\n  Generated template for the Create User page.\n\n\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-content padding class="login common-bg auth-page">\n\n  <div class="login-content">\n\n\n\n    <!-- Logo -->\n\n    <div padding text-center>\n\n      <!--\n\n      <div class="logo activity-bg">\n\n        <ion-icon name="md-calendar" color="light"></ion-icon>\n\n      </div> -->\n\n      <h2 ion-text color="light">\n\n        Mario Perfect Cut\n\n      </h2>\n\n    </div>\n\n\n\n    <!-- Login form -->\n\n    <div class="list-form" padding>\n\n\n\n      <ion-item>\n\n        <ion-label stacked>Email</ion-label>\n\n        <ion-input [(ngModel)]="email" type="text" color="white"></ion-input>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label stacked>Password</ion-label>\n\n        <ion-input [(ngModel)]="password" type="password"></ion-input>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label stacked>Confirm Password</ion-label>\n\n        <ion-input [(ngModel)]="confirmationPassword" type="password"></ion-input>\n\n      </ion-item>\n\n\n\n    </div>\n\n\n\n    <br />\n\n    <div>\n\n      <button ion-button block color="primary" (click)="createUser()">\n\n        S\'INSCRIRE\n\n      </button>\n\n    </div>\n\n\n\n    <div text-center margin-top>\n\n      <span ion-text color="light" (click)="gotoLoginPage()">Déjà Inscrit? Connecte toi !</span>\n\n    </div>\n\n\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\create-user\create-user.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
 ], CreateUserPage);
@@ -1972,7 +2013,7 @@ CreateUserPage = __decorate([
 
 /***/ }),
 
-/***/ 535:
+/***/ 537:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1999,7 +2040,7 @@ __decorate([
 ], ProgressBarComponent.prototype, "progress", void 0);
 ProgressBarComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'page-progress-bar',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/progress-bar/progress-bar.html"*/'<div class="progress-outer">\n  <div class="progress-inner" [style.width]="progress + \'%\'">\n    {{progress}}%\n  </div>\n</div>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/progress-bar/progress-bar.html"*/
+        selector: 'page-progress-bar',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\progress-bar\progress-bar.html"*/'<div class="progress-outer">\n\n  <div class="progress-inner" [style.width]="progress + \'%\'">\n\n    {{progress}}%\n\n  </div>\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\progress-bar\progress-bar.html"*/
     }),
     __metadata("design:paramtypes", [])
 ], ProgressBarComponent);
@@ -2008,13 +2049,13 @@ ProgressBarComponent = __decorate([
 
 /***/ }),
 
-/***/ 538:
+/***/ 542:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(539);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(543);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(543);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(547);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -2022,34 +2063,36 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 543:
+/***/ 547:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__(579);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__(583);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_gallery_service__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_barber_service__ = __webpack_require__(531);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_pricing_pricing__ = __webpack_require__(532);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_barber_service__ = __webpack_require__(533);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_pricing_pricing__ = __webpack_require__(534);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_barber_location_barber_location__ = __webpack_require__(530);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_barber_location_barber_location__ = __webpack_require__(532);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_login_login__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_get_a_ticket_get_a_ticket__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_ticket_confirmation_ticket_confirmation__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_create_user_create_user__ = __webpack_require__(534);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_phone_number_phone_number__ = __webpack_require__(399);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_gallery_gallery__ = __webpack_require__(527);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_settings_settings__ = __webpack_require__(533);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_progress_bar_progress_bar__ = __webpack_require__(535);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_getanappointment_getanappointment__ = __webpack_require__(400);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_alert_alert__ = __webpack_require__(528);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_create_user_create_user__ = __webpack_require__(536);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_phone_number_phone_number__ = __webpack_require__(401);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_gallery_gallery__ = __webpack_require__(529);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_settings_settings__ = __webpack_require__(535);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_progress_bar_progress_bar__ = __webpack_require__(537);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_getanappointment_getanappointment__ = __webpack_require__(402);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_alert_alert__ = __webpack_require__(530);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_keyboard__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_sms__ = __webpack_require__(886);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_http__ = __webpack_require__(540);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_stripe__ = __webpack_require__(539);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ionic_native_network__ = __webpack_require__(541);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2077,7 +2120,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-//import { Facebook } from '@ionic-native/facebook';
+
 
 
 
@@ -2124,6 +2167,7 @@ AppModule = __decorate([
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["a" /* BrowserModule */],
+            __WEBPACK_IMPORTED_MODULE_21__angular_http__["c" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* MyApp */], {
                 scrollPadding: false,
                 scrollAssist: false,
@@ -2157,9 +2201,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_12__pages_create_user_create_user__["a" /* CreateUserPage */],
             __WEBPACK_IMPORTED_MODULE_13__pages_phone_number_phone_number__["a" /* PhoneNumberPage */],
             __WEBPACK_IMPORTED_MODULE_20__ionic_native_keyboard__["a" /* Keyboard */],
-            __WEBPACK_IMPORTED_MODULE_21__ionic_native_sms__["a" /* SMS */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
-            //Facebook,
+            __WEBPACK_IMPORTED_MODULE_22__ionic_native_stripe__["a" /* Stripe */],
+            __WEBPACK_IMPORTED_MODULE_23__ionic_native_network__["a" /* Network */],
             providers,
             __WEBPACK_IMPORTED_MODULE_16__pages_progress_bar_progress_bar__["a" /* ProgressBarComponent */]
             /* import services */
@@ -2172,15 +2215,15 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 579:
+/***/ 583:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_native__ = __webpack_require__(580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_phone_number_phone_number__ = __webpack_require__(399);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_native__ = __webpack_require__(584);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_phone_number_phone_number__ = __webpack_require__(401);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__ = __webpack_require__(151);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2219,7 +2262,7 @@ let MyApp = class MyApp {
     }
 };
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/app/app.html"*/'<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/app/app.html"*/,
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\app\app.html"*/'<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\app\app.html"*/,
         queries: {
             nav: new __WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* ViewChild */]('content')
         }
@@ -2239,14 +2282,14 @@ MyApp = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_gallery_service__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__getanappointment_getanappointment__ = __webpack_require__(400);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__gallery_gallery__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__getanappointment_getanappointment__ = __webpack_require__(402);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__gallery_gallery__ = __webpack_require__(529);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__get_a_ticket_get_a_ticket__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__barber_location_barber_location__ = __webpack_require__(530);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__settings_settings__ = __webpack_require__(533);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__barber_location_barber_location__ = __webpack_require__(532);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__settings_settings__ = __webpack_require__(535);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__progress_bar_progress_bar__ = __webpack_require__(535);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__progress_bar_progress_bar__ = __webpack_require__(537);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2357,7 +2400,7 @@ let HomePage = class HomePage {
 };
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/home/home.html"*/'<!--\n  Generated template for the ProfilePage page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header class="no-shadow">\n\n  <ion-navbar class="no-border" color="primary">\n    <ion-title>ACCUEIL</ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="goToSettings()">\n        <ion-icon name="more"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n\n\n<ion-content class=" common-bg">\n  <!--list menu on the top-->\n  <div class="top-menu common-bg">\n    <ion-grid class="card">\n      <ion-row>\n        <ion-col (click)="getTicket()">\n          <ion-icon name="md-pricetag" color="green"></ion-icon>\n          <span ion-text color="dark">Prendre un ticket</span>\n        </ion-col>\n        <ion-col (click)="getAnAppointment()">\n          <ion-icon name="md-calendar" color="flight-color"></ion-icon>\n          <span ion-text color="dark">Prendre un rendez vous</span>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>\n\n  <ion-grid class="card">\n    <ion-row>\n      <ion-col>\n        <ion-badge class="center square" color="primary" (click)="goToBarberLocation()">Contacts</ion-badge>\n      </ion-col>\n      <ion-col  >\n        <ion-badge class="center square" color="primary" (click)="viewGallery()">Photos</ion-badge>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid style="margin-bottom:5%;margin-top:5%;" class="card" >\n    <ion-row>\n      <ion-col col-1>\n        <ion-icon name="people" style ="font-size: 30px;" color="flight-color"></ion-icon>\n      </ion-col>\n      <ion-col  col-11>\n        <span ion-text color="dark" style="font-size: 30px;">Client devant vous: <span style="font-weight: bold">{{numberClientWaitingTicketList}}</span></span>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col col-1>\n        <ion-icon name="clock" style ="font-size: 30px;" color="flight-color"></ion-icon>\n      </ion-col>\n      <ion-col  col-11>\n        <span ion-text color="dark" style="font-size: 30px;">Temps estimer: <span style="font-weight: bold">30 </span>minute</span>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n  <ion-grid text-center class="card">\n    <ion-row center>\n      <ion-col center style="padding-top: 20px;align-content: center;" col-12>\n        <ion-row center>\n          <ion-icon  style ="font-size: 50px;margin:0 auto;" name="people" color="flight-color"></ion-icon>\n        </ion-row>\n        <ion-row center>\n          <span ion-text color="dark" style="font-size: 30px;margin:0 auto;">Heure de votre reservation</span>\n        </ion-row>\n        <ion-row center>\n          <span ion-text color="dark" style="font-weight: bold;font-size: 30px;margin:0 auto;">21-SEP-2017 10 : 00</span>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid  style="margin-top:5%;" text-center class="card">\n    <ion-row center>\n      <ion-col center style="align-content: center;" col-12>\n        <ion-label style="font-size: 20px;font-weight: bold;">Messages en direct:</ion-label>\n      </ion-col>\n    </ion-row>\n    <ion-row center>\n      <ion-col center style="align-content: center;" col-12>\n        <ion-label style="font-size: 20px;">{{directMessages}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\home\home.html"*/'<!--\n\n  Generated template for the ProfilePage page.\n\n\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header class="no-shadow">\n\n\n\n  <ion-navbar class="no-border" color="primary">\n\n    <ion-title>ACCUEIL</ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button (click)="goToSettings()">\n\n        <ion-icon name="more"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n\n\n<ion-content class=" common-bg">\n\n  <!--list menu on the top-->\n\n  <div class="top-menu common-bg">\n\n    <ion-grid class="card">\n\n      <ion-row>\n\n        <ion-col (click)="getTicket()">\n\n          <ion-icon name="md-pricetag" color="green"></ion-icon>\n\n          <span ion-text color="dark">Prendre un ticket</span>\n\n        </ion-col>\n\n        <ion-col (click)="getAnAppointment()">\n\n          <ion-icon name="md-calendar" color="flight-color"></ion-icon>\n\n          <span ion-text color="dark">Prendre un rendez vous</span>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n\n\n  <ion-grid class="card">\n\n    <ion-row>\n\n      <ion-col>\n\n        <ion-badge class="center square" color="primary" (click)="goToBarberLocation()">Contacts</ion-badge>\n\n      </ion-col>\n\n      <ion-col  >\n\n        <ion-badge class="center square" color="primary" (click)="viewGallery()">Photos</ion-badge>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <ion-grid style="margin-bottom:5%;margin-top:5%;" class="card" >\n\n    <ion-row>\n\n      <ion-col col-1>\n\n        <ion-icon name="people" style ="font-size: 30px;" color="flight-color"></ion-icon>\n\n      </ion-col>\n\n      <ion-col  col-11>\n\n        <span ion-text color="dark" style="font-size: 30px;">Client devant vous: <span style="font-weight: bold">{{numberClientWaitingTicketList}}</span></span>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col col-1>\n\n        <ion-icon name="clock" style ="font-size: 30px;" color="flight-color"></ion-icon>\n\n      </ion-col>\n\n      <ion-col  col-11>\n\n        <span ion-text color="dark" style="font-size: 30px;">Temps estimer: <span style="font-weight: bold">30 </span>minute</span>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n\n\n  <ion-grid text-center class="card">\n\n    <ion-row center>\n\n      <ion-col center style="padding-top: 20px;align-content: center;" col-12>\n\n        <ion-row center>\n\n          <ion-icon  style ="font-size: 50px;margin:0 auto;" name="people" color="flight-color"></ion-icon>\n\n        </ion-row>\n\n        <ion-row center>\n\n          <span ion-text color="dark" style="font-size: 30px;margin:0 auto;">Heure de votre reservation</span>\n\n        </ion-row>\n\n        <ion-row center>\n\n          <span ion-text color="dark" style="font-weight: bold;font-size: 30px;margin:0 auto;">21-SEP-2017 10 : 00</span>\n\n        </ion-row>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <ion-grid  style="margin-top:5%;" text-center class="card">\n\n    <ion-row center>\n\n      <ion-col center style="align-content: center;" col-12>\n\n        <ion-label style="font-size: 20px;font-weight: bold;">Messages en direct:</ion-label>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row center>\n\n      <ion-col center style="align-content: center;" col-12>\n\n        <ion-label style="font-size: 20px;">{{directMessages}}</ion-label>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\home\home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_gallery_service__["a" /* GalleryService */], __WEBPACK_IMPORTED_MODULE_9__progress_bar_progress_bar__["a" /* ProgressBarComponent */]])
 ], HomePage);
@@ -2372,7 +2415,7 @@ HomePage = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GalleryService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_pictures__ = __webpack_require__(851);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_pictures__ = __webpack_require__(854);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2412,7 +2455,7 @@ GalleryService = __decorate([
 
 /***/ }),
 
-/***/ 851:
+/***/ 854:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2702,240 +2745,240 @@ let PICTURES = [
 
 /***/ }),
 
-/***/ 853:
+/***/ 856:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 401,
-	"./af.js": 401,
-	"./ar": 402,
-	"./ar-dz": 403,
-	"./ar-dz.js": 403,
-	"./ar-kw": 404,
-	"./ar-kw.js": 404,
-	"./ar-ly": 405,
-	"./ar-ly.js": 405,
-	"./ar-ma": 406,
-	"./ar-ma.js": 406,
-	"./ar-sa": 407,
-	"./ar-sa.js": 407,
-	"./ar-tn": 408,
-	"./ar-tn.js": 408,
-	"./ar.js": 402,
-	"./az": 409,
-	"./az.js": 409,
-	"./be": 410,
-	"./be.js": 410,
-	"./bg": 411,
-	"./bg.js": 411,
-	"./bn": 412,
-	"./bn.js": 412,
-	"./bo": 413,
-	"./bo.js": 413,
-	"./br": 414,
-	"./br.js": 414,
-	"./bs": 415,
-	"./bs.js": 415,
-	"./ca": 416,
-	"./ca.js": 416,
-	"./cs": 417,
-	"./cs.js": 417,
-	"./cv": 418,
-	"./cv.js": 418,
-	"./cy": 419,
-	"./cy.js": 419,
-	"./da": 420,
-	"./da.js": 420,
-	"./de": 421,
-	"./de-at": 422,
-	"./de-at.js": 422,
-	"./de-ch": 423,
-	"./de-ch.js": 423,
-	"./de.js": 421,
-	"./dv": 424,
-	"./dv.js": 424,
-	"./el": 425,
-	"./el.js": 425,
-	"./en-au": 426,
-	"./en-au.js": 426,
-	"./en-ca": 427,
-	"./en-ca.js": 427,
-	"./en-gb": 428,
-	"./en-gb.js": 428,
-	"./en-ie": 429,
-	"./en-ie.js": 429,
-	"./en-nz": 430,
-	"./en-nz.js": 430,
-	"./eo": 431,
-	"./eo.js": 431,
-	"./es": 432,
-	"./es-do": 433,
-	"./es-do.js": 433,
-	"./es.js": 432,
-	"./et": 434,
-	"./et.js": 434,
-	"./eu": 435,
-	"./eu.js": 435,
-	"./fa": 436,
-	"./fa.js": 436,
-	"./fi": 437,
-	"./fi.js": 437,
-	"./fo": 438,
-	"./fo.js": 438,
-	"./fr": 439,
-	"./fr-ca": 440,
-	"./fr-ca.js": 440,
-	"./fr-ch": 441,
-	"./fr-ch.js": 441,
-	"./fr.js": 439,
-	"./fy": 442,
-	"./fy.js": 442,
-	"./gd": 443,
-	"./gd.js": 443,
-	"./gl": 444,
-	"./gl.js": 444,
-	"./gom-latn": 445,
-	"./gom-latn.js": 445,
-	"./he": 446,
-	"./he.js": 446,
-	"./hi": 447,
-	"./hi.js": 447,
-	"./hr": 448,
-	"./hr.js": 448,
-	"./hu": 449,
-	"./hu.js": 449,
-	"./hy-am": 450,
-	"./hy-am.js": 450,
-	"./id": 451,
-	"./id.js": 451,
-	"./is": 452,
-	"./is.js": 452,
-	"./it": 453,
-	"./it.js": 453,
-	"./ja": 454,
-	"./ja.js": 454,
-	"./jv": 455,
-	"./jv.js": 455,
-	"./ka": 456,
-	"./ka.js": 456,
-	"./kk": 457,
-	"./kk.js": 457,
-	"./km": 458,
-	"./km.js": 458,
-	"./kn": 459,
-	"./kn.js": 459,
-	"./ko": 460,
-	"./ko.js": 460,
-	"./ky": 461,
-	"./ky.js": 461,
-	"./lb": 462,
-	"./lb.js": 462,
-	"./lo": 463,
-	"./lo.js": 463,
-	"./lt": 464,
-	"./lt.js": 464,
-	"./lv": 465,
-	"./lv.js": 465,
-	"./me": 466,
-	"./me.js": 466,
-	"./mi": 467,
-	"./mi.js": 467,
-	"./mk": 468,
-	"./mk.js": 468,
-	"./ml": 469,
-	"./ml.js": 469,
-	"./mr": 470,
-	"./mr.js": 470,
-	"./ms": 471,
-	"./ms-my": 472,
-	"./ms-my.js": 472,
-	"./ms.js": 471,
-	"./my": 473,
-	"./my.js": 473,
-	"./nb": 474,
-	"./nb.js": 474,
-	"./ne": 475,
-	"./ne.js": 475,
-	"./nl": 476,
-	"./nl-be": 477,
-	"./nl-be.js": 477,
-	"./nl.js": 476,
-	"./nn": 478,
-	"./nn.js": 478,
-	"./pa-in": 479,
-	"./pa-in.js": 479,
-	"./pl": 480,
-	"./pl.js": 480,
-	"./pt": 481,
-	"./pt-br": 482,
-	"./pt-br.js": 482,
-	"./pt.js": 481,
-	"./ro": 483,
-	"./ro.js": 483,
-	"./ru": 484,
-	"./ru.js": 484,
-	"./sd": 485,
-	"./sd.js": 485,
-	"./se": 486,
-	"./se.js": 486,
-	"./si": 487,
-	"./si.js": 487,
-	"./sk": 488,
-	"./sk.js": 488,
-	"./sl": 489,
-	"./sl.js": 489,
-	"./sq": 490,
-	"./sq.js": 490,
-	"./sr": 491,
-	"./sr-cyrl": 492,
-	"./sr-cyrl.js": 492,
-	"./sr.js": 491,
-	"./ss": 493,
-	"./ss.js": 493,
-	"./sv": 494,
-	"./sv.js": 494,
-	"./sw": 495,
-	"./sw.js": 495,
-	"./ta": 496,
-	"./ta.js": 496,
-	"./te": 497,
-	"./te.js": 497,
-	"./tet": 498,
-	"./tet.js": 498,
-	"./th": 499,
-	"./th.js": 499,
-	"./tl-ph": 500,
-	"./tl-ph.js": 500,
-	"./tlh": 501,
-	"./tlh.js": 501,
-	"./tr": 502,
-	"./tr.js": 502,
-	"./tzl": 503,
-	"./tzl.js": 503,
-	"./tzm": 504,
-	"./tzm-latn": 505,
-	"./tzm-latn.js": 505,
-	"./tzm.js": 504,
-	"./uk": 506,
-	"./uk.js": 506,
-	"./ur": 507,
-	"./ur.js": 507,
-	"./uz": 508,
-	"./uz-latn": 509,
-	"./uz-latn.js": 509,
-	"./uz.js": 508,
-	"./vi": 510,
-	"./vi.js": 510,
-	"./x-pseudo": 511,
-	"./x-pseudo.js": 511,
-	"./yo": 512,
-	"./yo.js": 512,
-	"./zh-cn": 513,
-	"./zh-cn.js": 513,
-	"./zh-hk": 514,
-	"./zh-hk.js": 514,
-	"./zh-tw": 515,
-	"./zh-tw.js": 515
+	"./af": 403,
+	"./af.js": 403,
+	"./ar": 404,
+	"./ar-dz": 405,
+	"./ar-dz.js": 405,
+	"./ar-kw": 406,
+	"./ar-kw.js": 406,
+	"./ar-ly": 407,
+	"./ar-ly.js": 407,
+	"./ar-ma": 408,
+	"./ar-ma.js": 408,
+	"./ar-sa": 409,
+	"./ar-sa.js": 409,
+	"./ar-tn": 410,
+	"./ar-tn.js": 410,
+	"./ar.js": 404,
+	"./az": 411,
+	"./az.js": 411,
+	"./be": 412,
+	"./be.js": 412,
+	"./bg": 413,
+	"./bg.js": 413,
+	"./bn": 414,
+	"./bn.js": 414,
+	"./bo": 415,
+	"./bo.js": 415,
+	"./br": 416,
+	"./br.js": 416,
+	"./bs": 417,
+	"./bs.js": 417,
+	"./ca": 418,
+	"./ca.js": 418,
+	"./cs": 419,
+	"./cs.js": 419,
+	"./cv": 420,
+	"./cv.js": 420,
+	"./cy": 421,
+	"./cy.js": 421,
+	"./da": 422,
+	"./da.js": 422,
+	"./de": 423,
+	"./de-at": 424,
+	"./de-at.js": 424,
+	"./de-ch": 425,
+	"./de-ch.js": 425,
+	"./de.js": 423,
+	"./dv": 426,
+	"./dv.js": 426,
+	"./el": 427,
+	"./el.js": 427,
+	"./en-au": 428,
+	"./en-au.js": 428,
+	"./en-ca": 429,
+	"./en-ca.js": 429,
+	"./en-gb": 430,
+	"./en-gb.js": 430,
+	"./en-ie": 431,
+	"./en-ie.js": 431,
+	"./en-nz": 432,
+	"./en-nz.js": 432,
+	"./eo": 433,
+	"./eo.js": 433,
+	"./es": 434,
+	"./es-do": 435,
+	"./es-do.js": 435,
+	"./es.js": 434,
+	"./et": 436,
+	"./et.js": 436,
+	"./eu": 437,
+	"./eu.js": 437,
+	"./fa": 438,
+	"./fa.js": 438,
+	"./fi": 439,
+	"./fi.js": 439,
+	"./fo": 440,
+	"./fo.js": 440,
+	"./fr": 441,
+	"./fr-ca": 442,
+	"./fr-ca.js": 442,
+	"./fr-ch": 443,
+	"./fr-ch.js": 443,
+	"./fr.js": 441,
+	"./fy": 444,
+	"./fy.js": 444,
+	"./gd": 445,
+	"./gd.js": 445,
+	"./gl": 446,
+	"./gl.js": 446,
+	"./gom-latn": 447,
+	"./gom-latn.js": 447,
+	"./he": 448,
+	"./he.js": 448,
+	"./hi": 449,
+	"./hi.js": 449,
+	"./hr": 450,
+	"./hr.js": 450,
+	"./hu": 451,
+	"./hu.js": 451,
+	"./hy-am": 452,
+	"./hy-am.js": 452,
+	"./id": 453,
+	"./id.js": 453,
+	"./is": 454,
+	"./is.js": 454,
+	"./it": 455,
+	"./it.js": 455,
+	"./ja": 456,
+	"./ja.js": 456,
+	"./jv": 457,
+	"./jv.js": 457,
+	"./ka": 458,
+	"./ka.js": 458,
+	"./kk": 459,
+	"./kk.js": 459,
+	"./km": 460,
+	"./km.js": 460,
+	"./kn": 461,
+	"./kn.js": 461,
+	"./ko": 462,
+	"./ko.js": 462,
+	"./ky": 463,
+	"./ky.js": 463,
+	"./lb": 464,
+	"./lb.js": 464,
+	"./lo": 465,
+	"./lo.js": 465,
+	"./lt": 466,
+	"./lt.js": 466,
+	"./lv": 467,
+	"./lv.js": 467,
+	"./me": 468,
+	"./me.js": 468,
+	"./mi": 469,
+	"./mi.js": 469,
+	"./mk": 470,
+	"./mk.js": 470,
+	"./ml": 471,
+	"./ml.js": 471,
+	"./mr": 472,
+	"./mr.js": 472,
+	"./ms": 473,
+	"./ms-my": 474,
+	"./ms-my.js": 474,
+	"./ms.js": 473,
+	"./my": 475,
+	"./my.js": 475,
+	"./nb": 476,
+	"./nb.js": 476,
+	"./ne": 477,
+	"./ne.js": 477,
+	"./nl": 478,
+	"./nl-be": 479,
+	"./nl-be.js": 479,
+	"./nl.js": 478,
+	"./nn": 480,
+	"./nn.js": 480,
+	"./pa-in": 481,
+	"./pa-in.js": 481,
+	"./pl": 482,
+	"./pl.js": 482,
+	"./pt": 483,
+	"./pt-br": 484,
+	"./pt-br.js": 484,
+	"./pt.js": 483,
+	"./ro": 485,
+	"./ro.js": 485,
+	"./ru": 486,
+	"./ru.js": 486,
+	"./sd": 487,
+	"./sd.js": 487,
+	"./se": 488,
+	"./se.js": 488,
+	"./si": 489,
+	"./si.js": 489,
+	"./sk": 490,
+	"./sk.js": 490,
+	"./sl": 491,
+	"./sl.js": 491,
+	"./sq": 492,
+	"./sq.js": 492,
+	"./sr": 493,
+	"./sr-cyrl": 494,
+	"./sr-cyrl.js": 494,
+	"./sr.js": 493,
+	"./ss": 495,
+	"./ss.js": 495,
+	"./sv": 496,
+	"./sv.js": 496,
+	"./sw": 497,
+	"./sw.js": 497,
+	"./ta": 498,
+	"./ta.js": 498,
+	"./te": 499,
+	"./te.js": 499,
+	"./tet": 500,
+	"./tet.js": 500,
+	"./th": 501,
+	"./th.js": 501,
+	"./tl-ph": 502,
+	"./tl-ph.js": 502,
+	"./tlh": 503,
+	"./tlh.js": 503,
+	"./tr": 504,
+	"./tr.js": 504,
+	"./tzl": 505,
+	"./tzl.js": 505,
+	"./tzm": 506,
+	"./tzm-latn": 507,
+	"./tzm-latn.js": 507,
+	"./tzm.js": 506,
+	"./uk": 508,
+	"./uk.js": 508,
+	"./ur": 509,
+	"./ur.js": 509,
+	"./uz": 510,
+	"./uz-latn": 511,
+	"./uz-latn.js": 511,
+	"./uz.js": 510,
+	"./vi": 512,
+	"./vi.js": 512,
+	"./x-pseudo": 513,
+	"./x-pseudo.js": 513,
+	"./yo": 514,
+	"./yo.js": 514,
+	"./zh-cn": 515,
+	"./zh-cn.js": 515,
+	"./zh-hk": 516,
+	"./zh-hk.js": 516,
+	"./zh-tw": 517,
+	"./zh-tw.js": 517
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -2951,11 +2994,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 853;
+webpackContext.id = 856;
 
 /***/ }),
 
-/***/ 854:
+/***/ 857:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3034,7 +3077,7 @@ let GetAnAppointmentModel = class GetAnAppointmentModel {
     *****************************************************************************/
     updateDataSnapshot() {
         let model = this;
-        __WEBPACK_IMPORTED_MODULE_1_firebase___default.a.database().ref('Appointments/')
+        __WEBPACK_IMPORTED_MODULE_1_firebase___default.a.database().ref('Appointments/Users')
             .on('value', function (snapshot) {
             let appointments = snapshot.val();
             model.dataSnapshot = [];
@@ -3138,7 +3181,7 @@ let GetAnAppointmentModel = class GetAnAppointmentModel {
     }
 };
 GetAnAppointmentModel = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/getanappointment/getanappointment.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-title>Mario Perfect Cut</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content class="light-bg">\n  <div class="getanappointment">\n    <div style="height:auto" class="cal-bg header-row">\n      <ion-row class="text-center input-row">\n        <ion-col width-100>\n          <div class="check-text">Choisissez le jour</div>\n        </ion-col>\n      </ion-row>\n\n      <ion-row class="text-center week-row">\n        <ion-col *ngFor="let weekName of weekNames" style="margin:0;padding:0">\n          <span>{{weekName}}</span>\n        </ion-col>\n      </ion-row>\n    </div>\n\n    <!-- ion-content contains the calendar months displayed in the view -->\n    <div style="height:100%; overflow-y: scroll; margin-left:0" class="month-list">\n      <ion-item *ngFor="let monthObj of months">\n        <ion-row class="month-row" >\n          <ion-col width-60 class="text-center">\n            {{monthObj.selectedMonth.format("MMM YYYY")}}\n          </ion-col>\n        </ion-row>\n\n        <div class="day-grid">\n          <ion-row class="text-center day-row" *ngFor="let week of monthObj.weeks; let rowIndex = index" >\n            <ion-col class="day-col" *ngFor="let day of week.days; let colIndex = index">\n\n                <button ion-button  *ngIf="day"  clear [datespan]="day.id" (click)="select(monthObj,day,rowIndex)">\n                  {{day.displayText}}\n                </button>\n\n            </ion-col>\n          </ion-row>\n        </div>\n      </ion-item>\n    </div>\n  </div>\n\n  <ion-row style="position: relative; margin-top:27.5%">\n    <ion-col col-3></ion-col>\n    <ion-col col-2>\n      <ion-row style="padding: 5px; cursor: pointer" (click)="increaseHour()">\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n      </ion-row>\n      <ion-row>\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentHour}}</p>\n      </ion-row>\n      <ion-row style="padding: 5px; cursor: pointer" (click)="decreaseHour()">\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n      </ion-row>\n    </ion-col>\n\n    <ion-col col-2>\n      <ion-row style="padding: 5px; cursor: pointer">\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n      </ion-row>\n      <ion-row>\n        <p style="padding: 5px; font-size: 20px; margin: auto">:</p>\n      </ion-row>\n      <ion-row style="padding: 5px; cursor: pointer">\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n      </ion-row>\n    </ion-col>\n\n    <ion-col col-2>\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n      </ion-row>\n      <ion-row>\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentMinutes}}</p>\n      </ion-row>\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n      </ion-row>\n    </ion-col>\n    <ion-col col-3></ion-col>\n  </ion-row>\n\n  <ion-row>\n    <p [ngClass] = "conflictMessageClasses">{{errorMessage}}</p>\n  </ion-row>\n\n  <div style="padding-left: 10%; padding-right: 10%;margin-top:1.5%">\n    <button ion-button class="round" full color="primary" (click)="getAppointment()">Réserver</button>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/officemobile/Documents/GitHubRepo/Barber/src/pages/getanappointment/getanappointment.html"*/,
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\getanappointment\getanappointment.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>Mario Perfect Cut</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="light-bg">\n\n  <div class="getanappointment">\n\n    <div style="height:auto" class="cal-bg header-row">\n\n      <ion-row class="text-center input-row">\n\n        <ion-col width-100>\n\n          <div class="check-text">Choisissez le jour</div>\n\n        </ion-col>\n\n      </ion-row>\n\n\n\n      <ion-row class="text-center week-row">\n\n        <ion-col *ngFor="let weekName of weekNames" style="margin:0;padding:0">\n\n          <span>{{weekName}}</span>\n\n        </ion-col>\n\n      </ion-row>\n\n    </div>\n\n\n\n    <!-- ion-content contains the calendar months displayed in the view -->\n\n    <div style="height:100%; overflow-y: scroll; margin-left:0" class="month-list">\n\n      <ion-item *ngFor="let monthObj of months">\n\n        <ion-row class="month-row" >\n\n          <ion-col width-60 class="text-center">\n\n            {{monthObj.selectedMonth.format("MMM YYYY")}}\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <div class="day-grid">\n\n          <ion-row class="text-center day-row" *ngFor="let week of monthObj.weeks; let rowIndex = index" >\n\n            <ion-col class="day-col" *ngFor="let day of week.days; let colIndex = index">\n\n\n\n                <button ion-button  *ngIf="day"  clear [datespan]="day.id" (click)="select(monthObj,day,rowIndex)">\n\n                  {{day.displayText}}\n\n                </button>\n\n\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n      </ion-item>\n\n    </div>\n\n  </div>\n\n\n\n  <ion-row style="position: relative; margin-top:27.5%">\n\n    <ion-col col-3></ion-col>\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="increaseHour()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentHour}}</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="decreaseHour()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer">\n\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">:</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer">\n\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentMinutes}}</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n    <ion-col col-3></ion-col>\n\n  </ion-row>\n\n\n\n  <ion-row>\n\n    <p [ngClass] = "conflictMessageClasses">{{errorMessage}}</p>\n\n  </ion-row>\n\n\n\n  <div style="padding-left: 10%; padding-right: 10%;margin-top:1.5%">\n\n    <button ion-button class="round" full color="primary" (click)="getAppointment()">Réserver</button>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\getanappointment\getanappointment.html"*/,
     }),
     __metadata("design:paramtypes", [])
 ], GetAnAppointmentModel);
@@ -3147,7 +3190,7 @@ GetAnAppointmentModel = __decorate([
 
 /***/ }),
 
-/***/ 882:
+/***/ 885:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3437,5 +3480,5 @@ let BARBERS = [
 
 /***/ })
 
-},[538]);
+},[542]);
 //# sourceMappingURL=main.js.map

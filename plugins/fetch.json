@@ -15,17 +15,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-facebook4": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-facebook4@^1.9.1"
-        },
-        "is_top_level": true,
-        "variables": {
-            "APP_ID": "318855111853318",
-            "APP_NAME": "MPC Mobile App"
-        }
-    },
     "cordova-plugin-inappbrowser": {
         "source": {
             "type": "registry",
@@ -54,6 +43,30 @@
         "source": {
             "type": "registry",
             "id": "ionic-plugin-keyboard"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-stripe": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-stripe"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-network-information": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-network-information"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-whitelist@1.3.2"
         },
         "is_top_level": true,
         "variables": {}

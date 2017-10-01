@@ -67,7 +67,7 @@ export class GetAnAppointmentModel {
   *****************************************************************************/
   updateDataSnapshot() {
     let model = this;
-    firebase.database().ref('Appointments/')
+    firebase.database().ref('Appointments/Users')
      .on('value', function(snapshot) {
        let appointments = snapshot.val();
        model.dataSnapshot = [];

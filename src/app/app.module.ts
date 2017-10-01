@@ -1,5 +1,4 @@
 import {NgModule} from "@angular/core";
-import {NavController} from "ionic-angular";
 import {IonicApp, IonicModule } from "ionic-angular";
 import {MyApp} from "./app.component";
 import {BrowserModule} from '@angular/platform-browser';
@@ -16,12 +15,13 @@ import {PhoneNumberPage} from "../pages/phone-number/phone-number";
 import {GalleryPage} from "../pages/gallery/gallery";
 import {SettingsPage} from "../pages/settings/settings";
 import {ProgressBarComponent} from "../pages/progress-bar/progress-bar";
-//import { Facebook } from '@ionic-native/facebook';
 import { GetAnAppointmentPage, DateSelectorDirective } from '../pages/getanappointment/getanappointment';
 import {Alert} from '../pages/alert/alert';
 import * as firebase from "firebase";
 import { Keyboard } from '@ionic-native/keyboard';
-import { SMS } from '@ionic-native/sms';
+import { HttpModule } from '@angular/http';
+import { Stripe } from '@ionic-native/stripe';
+import { Network } from '@ionic-native/network';
 
 // import services
 // end import services
@@ -55,6 +55,7 @@ const providers = [ ];
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp,{
       scrollPadding: false,
       scrollAssist: false,
@@ -88,9 +89,8 @@ const providers = [ ];
     CreateUserPage,
     PhoneNumberPage,
     Keyboard,
-    SMS,
-    NavController,
-    //Facebook,
+    Stripe,
+    Network,
     providers,
     ProgressBarComponent
     /* import services */

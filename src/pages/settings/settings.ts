@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
 import {NavController} from "ionic-angular";
 import {LoginPage} from "../login/login";
-import {GetaTicketPage} from "../get-a-ticket/get-a-ticket";
 
 
 /*
@@ -16,14 +15,7 @@ import {GetaTicketPage} from "../get-a-ticket/get-a-ticket";
 })
 export class SettingsPage {
 
-  public firstName:any;
-  public lastName:any;
-  public email:any;
-
-  constructor(public nav: NavController,public getTicket?:GetaTicketPage) {
-    this.firstName = getTicket.userInfoFirstName;
-    this.lastName = getTicket.userInfoLastName;
-    this.email = this.getTicket.userInfoEmailName;
+  constructor(public nav: NavController) {
   }
 
   /*****************************************************************************

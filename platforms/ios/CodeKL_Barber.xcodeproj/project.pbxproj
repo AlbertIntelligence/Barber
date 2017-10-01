@@ -19,11 +19,6 @@
 		34D6CBAA3781461CB6B11C73 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = E23416CDC8714D9ABE52F11D /* CDVLogger.m */; };
 		3CA50308B1CF4918A1069C24 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 670A4B2CEBAD4196B65C46BB /* CDVDevice.m */; };
 		0B9F6E903A2646EBA5E63466 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E6BCF0815E449C2AA34842F /* libz.tbd */; };
-		7ACA5F7257554391B9FE3B05 /* FacebookConnectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6399F49E64F65B82DB698 /* FacebookConnectPlugin.m */; };
-		E7B23D1EF8704C5B9989B9ED /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BB82411FE0C431CA51DF357 /* Bolts.framework */; };
-		A08458FBE2AF4483A05E9C9B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB18346419594420B0AFDB9C /* FBSDKCoreKit.framework */; };
-		CB8C2CCA9A0745E2AF23DB06 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21DADD72E9A2422EB93A3D5F /* FBSDKLoginKit.framework */; };
-		00C03CE31CE645759D174F9B /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D06F9B4A344F409719C8CE /* FBSDKShareKit.framework */; };
 		62D662210AAB4C58945F6E65 /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = DC472FF79E354A6298BB5627 /* CDVInAppBrowser.m */; };
 		66B65835E98640309CB469E3 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = A28C0DD65C8E4E539D861797 /* Toast+UIView.m */; };
 		0BA40A1ABC424690A805C90A /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DEF9BAEAD764D29B38800B2 /* Toast.m */; };
@@ -31,6 +26,12 @@
 		638C267549B54994AA87338D /* NativePageTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C819AE92B34B6694BE7996 /* NativePageTransitions.m */; };
 		C4EBBC961B5944A3905FBAC5 /* AppDelegate+nativepagetransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = A43D428237C94228BB17ECF0 /* AppDelegate+nativepagetransitions.m */; };
 		D396171A6A6E423282BEF409 /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CB5D30B754391AB32F59F /* IonicKeyboard.m */; };
+		609BD954444547DFBEE71A93 /* CordovaStripe.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5C2A0BC6084A06BE48DB5F /* CordovaStripe.m */; };
+		C13B5D5B81B8435793E89C8F /* Stripe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656C7EAC163F435991CD66F6 /* Stripe.framework */; };
+		01440087C73D4B3BB2B10427 /* CDVConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F824B3553D4F88BAF93884 /* CDVConnection.m */; };
+		283584FED5434D95A6FACCA9 /* CDVReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 893B7AEAC9DD431A937CB5E6 /* CDVReachability.m */; };
+		5D1B1600411447ABAAA5CBA0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1321E0850DF845BAB2DA52B2 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		40AEB908A3EF497E9A854C9B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1057EB1DCE724D068BC6157B /* CoreTelephony.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,12 +77,6 @@
 		670A4B2CEBAD4196B65C46BB /* CDVDevice.m */ = {isa = PBXFileReference; name = "CDVDevice.m"; path = "cordova-plugin-device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		23D2E1B277C841B8807DC68F /* CDVDevice.h */ = {isa = PBXFileReference; name = "CDVDevice.h"; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		7E6BCF0815E449C2AA34842F /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
-		BBB6399F49E64F65B82DB698 /* FacebookConnectPlugin.m */ = {isa = PBXFileReference; name = "FacebookConnectPlugin.m"; path = "cordova-plugin-facebook4/FacebookConnectPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
-		E9962DB1E2984F85AD635066 /* FacebookConnectPlugin.h */ = {isa = PBXFileReference; name = "FacebookConnectPlugin.h"; path = "cordova-plugin-facebook4/FacebookConnectPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
-		5BB82411FE0C431CA51DF357 /* Bolts.framework */ = {isa = PBXFileReference; name = "Bolts.framework"; path = "CodeKL_Barber/Plugins/cordova-plugin-facebook4/Bolts.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		AB18346419594420B0AFDB9C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; name = "FBSDKCoreKit.framework"; path = "CodeKL_Barber/Plugins/cordova-plugin-facebook4/FBSDKCoreKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		21DADD72E9A2422EB93A3D5F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; name = "FBSDKLoginKit.framework"; path = "CodeKL_Barber/Plugins/cordova-plugin-facebook4/FBSDKLoginKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		87D06F9B4A344F409719C8CE /* FBSDKShareKit.framework */ = {isa = PBXFileReference; name = "FBSDKShareKit.framework"; path = "CodeKL_Barber/Plugins/cordova-plugin-facebook4/FBSDKShareKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		DC472FF79E354A6298BB5627 /* CDVInAppBrowser.m */ = {isa = PBXFileReference; name = "CDVInAppBrowser.m"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		CF2E475F4E694F82B37555AA /* CDVInAppBrowser.h */ = {isa = PBXFileReference; name = "CDVInAppBrowser.h"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		A28C0DD65C8E4E539D861797 /* Toast+UIView.m */ = {isa = PBXFileReference; name = "Toast+UIView.m"; path = "cordova-plugin-x-toast/Toast+UIView.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
@@ -95,6 +90,15 @@
 		0B586AA9BE5C4202BE963CBF /* AppDelegate+nativepagetransitions.h */ = {isa = PBXFileReference; name = "AppDelegate+nativepagetransitions.h"; path = "com.telerik.plugins.nativepagetransitions/AppDelegate+nativepagetransitions.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		5B0CB5D30B754391AB32F59F /* IonicKeyboard.m */ = {isa = PBXFileReference; name = "IonicKeyboard.m"; path = "ionic-plugin-keyboard/IonicKeyboard.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		696EABE8DC7D4FA4A3CC924F /* IonicKeyboard.h */ = {isa = PBXFileReference; name = "IonicKeyboard.h"; path = "ionic-plugin-keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		AE5C2A0BC6084A06BE48DB5F /* CordovaStripe.m */ = {isa = PBXFileReference; name = "CordovaStripe.m"; path = "cordova-plugin-stripe/CordovaStripe.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		707C15A5D8A44CFCA5D65A6D /* CordovaStripe.h */ = {isa = PBXFileReference; name = "CordovaStripe.h"; path = "cordova-plugin-stripe/CordovaStripe.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		656C7EAC163F435991CD66F6 /* Stripe.framework */ = {isa = PBXFileReference; name = "Stripe.framework"; path = "CodeKL_Barber/Plugins/cordova-plugin-stripe/Stripe.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		19F824B3553D4F88BAF93884 /* CDVConnection.m */ = {isa = PBXFileReference; name = "CDVConnection.m"; path = "cordova-plugin-network-information/CDVConnection.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		893B7AEAC9DD431A937CB5E6 /* CDVReachability.m */ = {isa = PBXFileReference; name = "CDVReachability.m"; path = "cordova-plugin-network-information/CDVReachability.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		CC1188D25DE5466CBD7F3D2E /* CDVConnection.h */ = {isa = PBXFileReference; name = "CDVConnection.h"; path = "cordova-plugin-network-information/CDVConnection.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		EE2219D67E054A10B37F6C7C /* CDVReachability.h */ = {isa = PBXFileReference; name = "CDVReachability.h"; path = "cordova-plugin-network-information/CDVReachability.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		1321E0850DF845BAB2DA52B2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		1057EB1DCE724D068BC6157B /* CoreTelephony.framework */ = {isa = PBXFileReference; name = "CoreTelephony.framework"; path = "System/Library/Frameworks/CoreTelephony.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,11 +108,10 @@
 			files = (
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				0B9F6E903A2646EBA5E63466 /* libz.tbd in Frameworks */,
-				E7B23D1EF8704C5B9989B9ED /* Bolts.framework in Frameworks */,
-				A08458FBE2AF4483A05E9C9B /* FBSDKCoreKit.framework in Frameworks */,
-				CB8C2CCA9A0745E2AF23DB06 /* FBSDKLoginKit.framework in Frameworks */,
-				00C03CE31CE645759D174F9B /* FBSDKShareKit.framework in Frameworks */,
 				393B56833E5C42AFA38E35FE /* QuartzCore.framework in Frameworks */,
+				C13B5D5B81B8435793E89C8F /* Stripe.framework in Frameworks */,
+				5D1B1600411447ABAAA5CBA0 /* SystemConfiguration.framework in Frameworks */,
+				40AEB908A3EF497E9A854C9B /* CoreTelephony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,11 +183,10 @@
 			isa = PBXGroup;
 			children = (
 				7E6BCF0815E449C2AA34842F /* libz.tbd */,
-				5BB82411FE0C431CA51DF357 /* Bolts.framework */,
-				AB18346419594420B0AFDB9C /* FBSDKCoreKit.framework */,
-				21DADD72E9A2422EB93A3D5F /* FBSDKLoginKit.framework */,
-				87D06F9B4A344F409719C8CE /* FBSDKShareKit.framework */,
 				7BD9203D62284CEBB5DBD7DC /* QuartzCore.framework */,
+				656C7EAC163F435991CD66F6 /* Stripe.framework */,
+				1321E0850DF845BAB2DA52B2 /* SystemConfiguration.framework */,
+				1057EB1DCE724D068BC6157B /* CoreTelephony.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -214,8 +216,6 @@
 				4F04A4BBF40D4FE2B4C50DB2 /* CDVLogger.h */,
 				670A4B2CEBAD4196B65C46BB /* CDVDevice.m */,
 				23D2E1B277C841B8807DC68F /* CDVDevice.h */,
-				BBB6399F49E64F65B82DB698 /* FacebookConnectPlugin.m */,
-				E9962DB1E2984F85AD635066 /* FacebookConnectPlugin.h */,
 				DC472FF79E354A6298BB5627 /* CDVInAppBrowser.m */,
 				CF2E475F4E694F82B37555AA /* CDVInAppBrowser.h */,
 				A28C0DD65C8E4E539D861797 /* Toast+UIView.m */,
@@ -228,6 +228,12 @@
 				0B586AA9BE5C4202BE963CBF /* AppDelegate+nativepagetransitions.h */,
 				5B0CB5D30B754391AB32F59F /* IonicKeyboard.m */,
 				696EABE8DC7D4FA4A3CC924F /* IonicKeyboard.h */,
+				AE5C2A0BC6084A06BE48DB5F /* CordovaStripe.m */,
+				707C15A5D8A44CFCA5D65A6D /* CordovaStripe.h */,
+				19F824B3553D4F88BAF93884 /* CDVConnection.m */,
+				893B7AEAC9DD431A937CB5E6 /* CDVReachability.m */,
+				CC1188D25DE5466CBD7F3D2E /* CDVConnection.h */,
+				EE2219D67E054A10B37F6C7C /* CDVReachability.h */,
 			);
 			name = Plugins;
 			path = "CodeKL_Barber/Plugins";
@@ -342,13 +348,15 @@
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				34D6CBAA3781461CB6B11C73 /* CDVLogger.m in Sources */,
 				3CA50308B1CF4918A1069C24 /* CDVDevice.m in Sources */,
-				7ACA5F7257554391B9FE3B05 /* FacebookConnectPlugin.m in Sources */,
 				62D662210AAB4C58945F6E65 /* CDVInAppBrowser.m in Sources */,
 				66B65835E98640309CB469E3 /* Toast+UIView.m in Sources */,
 				0BA40A1ABC424690A805C90A /* Toast.m in Sources */,
 				638C267549B54994AA87338D /* NativePageTransitions.m in Sources */,
 				C4EBBC961B5944A3905FBAC5 /* AppDelegate+nativepagetransitions.m in Sources */,
 				D396171A6A6E423282BEF409 /* IonicKeyboard.m in Sources */,
+				609BD954444547DFBEE71A93 /* CordovaStripe.m in Sources */,
+				01440087C73D4B3BB2B10427 /* CDVConnection.m in Sources */,
+				283584FED5434D95A6FACCA9 /* CDVReachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +398,7 @@
 					"\"CodeKL_Barber/Plugins/cordova-plugin-facebook4\"",
 					"\"CodeKL_Barber/Plugins/cordova-plugin-facebook4\"",
 					"\"CodeKL_Barber/Plugins/cordova-plugin-facebook4\"",
+					"\"CodeKL_Barber/Plugins/cordova-plugin-stripe\"",
 				);
 			};
 			name = Debug;
@@ -419,6 +428,7 @@
 					"\"CodeKL_Barber/Plugins/cordova-plugin-facebook4\"",
 					"\"CodeKL_Barber/Plugins/cordova-plugin-facebook4\"",
 					"\"CodeKL_Barber/Plugins/cordova-plugin-facebook4\"",
+					"\"CodeKL_Barber/Plugins/cordova-plugin-stripe\"",
 				);
 			};
 			name = Release;
