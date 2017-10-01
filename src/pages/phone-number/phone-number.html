@@ -5,7 +5,6 @@
   Ionic pages and navigation.
 -->
 <div no-bounce ion-fixed class="content" style="margin:0; padding:0">
-  <div id="recaptcha-container"></div>
   <!-- Header image -->
   <ion-row id="headerImg" class="header-img">
 
@@ -16,7 +15,7 @@
   <!--body of page !-->
   <ion-row id="main" class="main">
     <!-- Title -->
-    <ion-row class="backbtn hidden" id="backBtn">
+    <ion-row style="display: none" class="backbtn hidden" id="backBtn">
       <ion-icon (click)="goBack()" style="font-size: 12vw; color: black;padding:0;margin:0" name="ios-arrow-round-back"></ion-icon>
     </ion-row>
 
@@ -26,62 +25,29 @@
     </ion-row>
 
     <!-- Input for phone number -->
-    <ion-row id="inputBloc" class="phoneNumber">
-      <span class="flag-icon flag-icon-ca" style="font-size: 5vw; margin-right:1vw;"></span>
-      <ion-icon name="md-arrow-dropdown" style="color: gray; margin: auto; padding: auto;"></ion-icon>
-      <span style="font-size: 19px; font-family: Verdana, Geneva, sans-serif; margin: auto; padding: auto;">+1</span>
-      <input maxlength="14" id="input" (focus)="enterYourPhone()" (keydown)="onKeyPress(e)" class="input" [(ngModel)]="phoneNumber" type="tel" placeholder="Numéro de téléphone">
-    </ion-row>
-
-    <!-- Enter 4 digit -->
-    <ion-row class="digitTitle" id="digitTitle">
-      <div>Entrez le code à 4 chiffres qui vous a été envoyé à </div>
-    </ion-row>
-
-    <!-- Input for phone number -->
-    <ion-row id="digitBloc" class="digitBloc">
-      <ion-grid>
-        <ion-row>
-          <ion-col id="digit1" col-1 style="margin-right:10px; padding-left:0;padding-right:0">
-            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">
-          </ion-col>
-          <ion-col id="digit2" col-1 style="margin-right:10px; padding-left:0;padding-right:0">
-            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">
-          </ion-col>
-          <ion-col id="digit3" col-1 style="margin-right:10px; padding-left:0;padding-right:0">
-            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">
-          </ion-col>
-          <ion-col id="digit4" col-1 style="margin-right:10px; padding-left:0;padding-right:0">
-            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">
-          </ion-col>
-          <ion-col id="digit5" col-1 style="margin-right:10px; padding-left:0;padding-right:0">
-            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">
-          </ion-col>
-          <ion-col id="digit6" col-1 style="margin-right:10px; padding-left:0;padding-right:0">
-            <input maxlength="1" size="1" class="input" type="password" placeholder="" style="padding:auto; margin: auto; font-size: 20px;" pattern="[0-9]*" inputmode="numeric">
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-row>
-
-    <!-- Enter your email -->
-    <ion-row class="digitTitle" id="emailTitle">
-      <div>Quelle est votre adresse e-mail ?</div>
-    </ion-row>
-
-    <!-- Input for email -->
-    <ion-row id="emailInput" class="inputBloc">
-      <input class="input" type="email" placeholder="example@mail.ca">
+    <ion-row id="emailInput" class="email">
+       <ion-icon ios="ios-mail" style="font-size: 7vw; color: gray; margin: auto; padding: auto; margin-left: 0; padding-left: 0; margin-right: 0; padding-right: 0;" md="md-mail"></ion-icon>
+      <input id="email" (focus)="enterYourEmail()" class="input" [(ngModel)]="email" type="email" placeholder="Entrez votre adresse courriel">
     </ion-row>
 
     <!-- Enter your password -->
     <ion-row class="digitTitle" id="passwordTitle">
-      <div>Créez le mot de passe de votre compte</div>
+      <div>Créez votre mot de passe</div>
     </ion-row>
 
     <!-- Input for password -->
     <ion-row id="passwordInput" class="inputBloc">
-      <input class="input" type="password" placeholder="5 caractères minimum">
+      <input class="input" type="password" placeholder="6 caractères minimum">
+    </ion-row>
+
+    <!-- Enter your password confirmation -->
+    <ion-row class="digitTitle" id="passwordConfirmationTitle">
+      <div>Confirmez votre mot de passe</div>
+    </ion-row>
+
+    <!-- Input for password confirmation -->
+    <ion-row id="passwordConfirmationInput" class="inputBloc">
+      <input class="input" type="password" placeholder="6 caractères minimum">
     </ion-row>
 
     <!-- Enter your name -->
@@ -124,18 +90,17 @@
     </ion-row>
 
     <!-- Inputs for credit card -->
-    <ion-row id="creditCartInputs" class="digitBloc" style="top: 15%; padding-right: 3vw">
+    <ion-row id="creditCartInputs" class="digitBloc" style="top: 4%; padding-right: 3vw">
       <!-- Credit card name -->
       <!--ion-row><ion-label color="#F2F2F2" stacked></ion-label></ion-row!-->
-      <ion-row id="cardName" style="padding:auto; margin:auto; margin-left:0; margin-top:30px">
-        <ion-icon style="font-size:8vw; margin-right: 15px" name="contact"></ion-icon>
-        <input class="input" type="text" placeholder="Nom sur la carte">
+      <ion-row id="cardName" style="padding:auto; margin:auto; margin-left:0; width:95%; margin-top:50px">
+        <ion-icon style="font-size:7vw; margin-right: 10px" name="contact"></ion-icon>
+        <input class="input" type="text" style="width:85%" placeholder="Nom sur la carte">
       </ion-row>
 
       <!-- Credit card number -->
-      <!--ion-row style="margin-top: 50px"><ion-label color="#F2F2F2" stacked></ion-label></ion-row!-->
-      <ion-row id="cardNumber" style="padding:auto; margin:auto; margin-left:0; margin-top: 50px">
-        <ion-icon name="card" style="font-size:8vw; margin-right: 15px"></ion-icon>
+      <ion-row id="cardNumber" style="padding:auto; margin:auto; margin-left:0; width:95%; margin-top: 50px">
+        <ion-icon name="card" style="font-size:7vw; margin-right: 10px"></ion-icon>
         <input maxlength="16" class="input" type="tel" style="width:85%" placeholder="Numéro de carte">
       </ion-row>
 
@@ -165,13 +130,18 @@
         <input maxlength="6" class="input" style="width:80vw; padding-left:0; margin-left:0; padding-bottom: 5px" type="text" placeholder="Code postal">
       </ion-row>
 
+      <!--sign out button-->
+      <ion-row id="continueBtn" style="width: 100vw; padding:auto; margin:auto; margin-left:0; margin-top:10px;">
+        <button ion-button class="round" color="black" full (click)="createNewUser()" style="margin-top: 5vh; background-color: black">CONTINUER</button>
+      </ion-row>
+
     </ion-row>
 
   </ion-row>
 
   <!-- Link to login page -->
   <ion-row class="footer" id="link">
-    <span (click)="gotoLoginPage()" ion-text color="black" style="margin-top: auto; margin-bottom: auto;">Connecte toi avec ton adresse courriel</span>
+    <span (click)="enterYourEmail('reset password')" ion-text color="black" style="margin-top: auto; margin-bottom: auto;">Mot de passe oublié?</span>
   </ion-row>
 
   <button id="nextBtn" (click)="goToNext()" ion-button class="btn-circle btn-xl hidden"><ion-icon name="ios-arrow-round-forward" class="nextIcon"></ion-icon></button>

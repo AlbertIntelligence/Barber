@@ -16,11 +16,6 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
-        "cordova-plugin-facebook4": {
-            "APP_ID": "318855111853318",
-            "APP_NAME": "MPC Mobile App",
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
-        },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
@@ -28,6 +23,15 @@
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
         "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+        },
+        "cordova-plugin-stripe": {
+            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         }
     },

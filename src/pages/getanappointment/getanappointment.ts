@@ -209,9 +209,37 @@ export class GetAnAppointmentPage {
   getAppointment() {
     var date = this.currentDate.format(FORMAT);
     var hour = this.currentHour + " : " + this.currentMinutes;
-    (this.appointments.isAvailable(date, hour)) ? this.appointments.createNew(date, hour) : this.showAlert();
+    (this.appointments.isAvailable(date, hour)) ? this.displayAppointmentConfirmation(date, hour) : this.showAlert('Réservation impossible !', 'Veuillez choisir une autre plage horaire.');
     this.disableBookedDays();
   }
+
+  /*****************************************************************************
+  Function: displayAppointmentConfirmation
+  Purpose: Prompt alert to confirm user reservation
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+displayAppointmentConfirmation (date, hour) {
+  let alert = this.alertCtrl.create({
+    title: 'Confirmez votre réservation',
+    subTitle: 'En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de Barber Me.',
+    buttons: [{
+      text: 'Annuler',
+      role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+    },
+    {
+      text: 'Confirmer',
+          handler: () => {
+            this.appointments.createNew(date, hour);
+            this.showAlert('Confirmation', 'Votre réservation est confirmée pour le ' + date + ' à ' + hour);
+          }
+    }]
+  });
+  alert.present();
+}
 
   /*****************************************************************************
   Function: showAlert
@@ -219,10 +247,10 @@ export class GetAnAppointmentPage {
   Parameters: None
   Return: None
   *****************************************************************************/
-  showAlert() {
+  showAlert(title, subTitle) {
     let alert = this.alertCtrl.create({
-      title: 'Réservation impossible !',
-      subTitle: 'Veuillez choisir une autre plage horaire.',
+      title: title,
+      subTitle: subTitle,
       buttons: ['OK']
     });
     alert.present();
