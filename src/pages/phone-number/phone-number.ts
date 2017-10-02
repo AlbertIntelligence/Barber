@@ -11,6 +11,7 @@ import {LoginPage} from "../login/login";
 import { Stripe } from '@ionic-native/stripe';
 import { Http, Headers } from '@angular/http';
 import { Network } from '@ionic-native/network';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 /**
  * Generated class for the CreateUserPage page.
@@ -40,10 +41,12 @@ export class PhoneNumberPage {
   private disconnected:Boolean = false;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams, private splashScreen: SplashScreen,
      private keyboard: Keyboard, public platform: Platform, public alertCtrl: AlertController,
      public stripe: Stripe, public http: Http, private network: Network) {
 
+
+      this.splashScreen.show();
       this.updateUserAccounts();
        // watch network for a disconnect
       this.network.onDisconnect().subscribe(() => {
@@ -55,6 +58,10 @@ export class PhoneNumberPage {
         this.updateUserAccounts();
         this.disconnected = false;
       });
+
+      setTimeout(() => {
+        this.splashScreen.hide();
+      }, 2000);
 
   }
 
@@ -189,11 +196,7 @@ export class PhoneNumberPage {
         this.loaded = true;
         $("#main").css('background-color', 'white');
         $("#main").css('height', '100vh');
-        if (this.platform.is('ios')) {
-          this.translate($("#main"), "0px", "-67vh");
-        } else {
-          this.translate($("#main"), "0px", "-63vh");
-        }
+        this.translate($("#main"), "0px", "-67vh");
         $("#link").removeClass('visible').addClass('hidden');
         this.translate($("#title"), "0px", "10vh");
         this.translate($("#emailInput"), "0px", "14vh");
@@ -460,7 +463,7 @@ export class PhoneNumberPage {
     var year = parseInt('20' + $("#expirationDate").children().eq(0).val().substring(3, 5));
     var cvc = $("#cvv").children().eq(0).val().toString();
 
-    if (cardName.length == 0 || $("#input").val().length != 14 || cardNumber.length != 16 || month.toString().length != 2 || year.toString().length != 2 || cvc.length != 3) {
+    if (cardName.length == 0 || $("#input").val().length != 14 || cardNumber.length != 16 || month.toString().length != 2 || year.toString().length != 4 || cvc.length != 3) {
       this.showAlert('Erreur !', 'Veuillez remplir tous les champs convenablement.')
       return;
     }
@@ -633,7 +636,6 @@ export class PhoneNumberPage {
       this.getCustomerInfos(this.cardToken.id, this.email);
     }).catch((error) => {
       this.showAlert('Inscription Impossible !', 'Carte de crédit invalide.');
-      alert(error);
     });
   }
 
