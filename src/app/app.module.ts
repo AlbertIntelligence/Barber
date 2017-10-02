@@ -22,6 +22,7 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { HttpModule } from '@angular/http';
 import { Stripe } from '@ionic-native/stripe';
 import { Network } from '@ionic-native/network';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 // import services
 // end import services
@@ -91,6 +92,7 @@ const providers = [ ];
     Keyboard,
     Stripe,
     Network,
+    SplashScreen,
     providers,
     ProgressBarComponent
     /* import services */
