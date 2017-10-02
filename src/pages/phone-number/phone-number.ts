@@ -11,6 +11,7 @@ import {LoginPage} from "../login/login";
 import { Stripe } from '@ionic-native/stripe';
 import { Http, Headers } from '@angular/http';
 import { Network } from '@ionic-native/network';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 /**
  * Generated class for the CreateUserPage page.
@@ -40,10 +41,12 @@ export class PhoneNumberPage {
   private disconnected:Boolean = false;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams, private splashScreen: SplashScreen,
      private keyboard: Keyboard, public platform: Platform, public alertCtrl: AlertController,
      public stripe: Stripe, public http: Http, private network: Network) {
 
+
+      this.splashScreen.show();
       this.updateUserAccounts();
        // watch network for a disconnect
       this.network.onDisconnect().subscribe(() => {
@@ -55,6 +58,10 @@ export class PhoneNumberPage {
         this.updateUserAccounts();
         this.disconnected = false;
       });
+
+      setTimeout(() => {
+        this.splashScreen.hide();
+      }, 2000);
 
   }
 
