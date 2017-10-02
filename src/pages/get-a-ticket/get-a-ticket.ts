@@ -26,7 +26,7 @@ export class GetaTicketPage {
   public userPosition:any;
   private dataSnapshot:Array<any> = [];
 
-  constructor(public nav?: NavController, private newAlert?: Alert,public ticketConfirmation?:TicketConfirmationPage) {
+  constructor(public nav: NavController, private newAlert?: Alert,public ticketConfirmation?:TicketConfirmationPage) {
     this.getCurrentClient();
     this.getLastClient();
     this.getUserInfo();
@@ -41,6 +41,7 @@ export class GetaTicketPage {
 
     if( this.startTransaction ) {
         this.addClientToList();
+        this.nav.push(TicketConfirmationPage);
         this.setHiddeDiv(false);
         this.TicketDiv();
     }
@@ -198,5 +199,3 @@ export class GetaTicketPage {
   }
 
 }
-
-

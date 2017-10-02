@@ -108,11 +108,11 @@
       <ion-grid style="margin:0; margin-top:50px; padding:0">
         <ion-row style="margin:0; padding:0">
           <ion-col id="expirationDate" col-6 style="margin-left:0px; padding-left:0">
-            <input class="nameInput" style="width:100%" type="text" placeholder="Date d'exp.">
+            <input maxlength="5" class="nameInput" style="width:100%" type="text" placeholder="Date d'exp.">
           </ion-col>
 
           <ion-col id="cvv" col-5 style="margin-left:10px">
-            <input class="nameInput" style="width:100%" type="text" placeholder="CVV">
+            <input maxlength="3" class="nameInput" style="width:100%" type="text" placeholder="CVV">
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -126,8 +126,8 @@
       </ion-row>
 
       <!-- Postal Code -->
-      <ion-row id="postalCode" style="padding:auto; margin:auto; margin-left:0; margin-top:50px;">
-        <input maxlength="6" class="input" style="width:80vw; padding-left:0; margin-left:0; padding-bottom: 5px" type="text" placeholder="Code postal">
+      <ion-row id="phoneNumber" style="padding:auto; margin:auto; margin-left:0; margin-top:50px;">
+        <input id="input" maxlength="14" class="input" style="width:80vw; padding-left:0; margin-left:0; padding-bottom: 5px" type="tel" placeholder="Numéro de téléphone">
       </ion-row>
 
       <!--sign out button-->

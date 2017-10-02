@@ -21,7 +21,7 @@ export class Alert {
   constructor(private alertCtrl ?: AlertController ,private app?:App) {
     this.nav = app.getActiveNav();
     this.ticketConfirmationPage = new TicketConfirmationPage();
-    this.ticket = new GetaTicketPage ;
+    this.ticket = new GetaTicketPage(this.nav) ;
   }
 
   /*****************************************************************************
@@ -46,7 +46,7 @@ export class Alert {
         {
           text: 'Confirmer',
             handler: data => {
-              this.nav.push(TicketConfirmationPage);
+              //this.nav.push(TicketConfirmationPage);
               this.ticket.startTransaction=true;
               this.ticket.makeTransaction();
 

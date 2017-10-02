@@ -219,27 +219,27 @@ export class GetAnAppointmentPage {
   Parameters: None
   Return: None
   *****************************************************************************/
-displayAppointmentConfirmation (date, hour) {
-  let alert = this.alertCtrl.create({
-    title: 'Confirmez votre réservation',
-    subTitle: 'En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de Barber Me.',
-    buttons: [{
-      text: 'Annuler',
-      role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-    },
-    {
-      text: 'Confirmer',
-          handler: () => {
-            this.appointments.createNew(date, hour);
-            this.showAlert('Confirmation', 'Votre réservation est confirmée pour le ' + date + ' à ' + hour);
-          }
-    }]
-  });
-  alert.present();
-}
+  displayAppointmentConfirmation (date, hour) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirmez votre réservation',
+      subTitle: 'En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de Barber Me.',
+      buttons: [{
+        text: 'Annuler',
+        role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+      },
+      {
+        text: 'Confirmer',
+            handler: () => {
+              this.appointments.createNew(date, hour);
+              this.showAlert('Confirmation', 'Votre réservation est confirmée pour le ' + date + ' à ' + hour);
+            }
+      }]
+    });
+    alert.present();
+  }
 
   /*****************************************************************************
   Function: showAlert
@@ -270,6 +270,14 @@ displayAppointmentConfirmation (date, hour) {
     if (typeof dayBooked != "undefined") dayBooked.setEnabled();
   }
 
+  //Change date format to MMM, DD, YYYY
+  changeDateFormat(date) {
+    var day = date.substring(0, 2);
+    var month = date.substring(3, 6);
+    var year = date.substring(7, 11);
+    return month + ", " + day + ", " + year;
+  }
+
   //Disable all dates that are full booked
   disableBookedDays() {
     var daysBooked = this.appointments.getDaysBooked();
@@ -277,6 +285,26 @@ displayAppointmentConfirmation (date, hour) {
       this.disableDate(daysBooked[i]);
     }
   }
+
+  //Disable days when the barber shop is closed
+  /*disableClosingDays() {
+    //Get days that barber shop is closed
+    var daysClosed = [];
+    for (var i = 0; i < this.appointments.businessHours.length; i++) {
+      if (this.appointments.businessHours[i].Opening == null && this.appointments.businessHours[i].Closure == null)
+      {
+        var j = i + 1;
+        if (j == 7) j = 0;
+        daysClosed.push(j);
+      }
+    }
+
+    //Disable those days
+    for (var i = 0; i < this.appointments.dataSnapshot.length; i++) {
+      var day = new Date(this.changeDateFormat(this.appointments.dataSnapshot[i].Date)).getDay();
+      if (daysClosed.indexOf(day) != -1) this.disableDate(this.appointments.dataSnapshot[i].Date);
+    }
+  }*/
 
   // Programmatically set the CSS Classes on the dates displayed in the Calendar View
   getSelectorKey(day) {
@@ -381,7 +409,7 @@ displayAppointmentConfirmation (date, hour) {
 
       //Programmatically set the CSS Class to disable and enable the dates
       //Mario perfect cut is not opened on mondays =  || directiveDate.weekday() == 1
-      if(directiveDate.isBefore(this.today,'day')) {
+      if(directiveDate.isBefore(this.today,'day') || directiveDate.weekday() == 1) {
         dateSelector.setDisabled();
       } else {
         dateSelector.setEnabled();
@@ -404,8 +432,8 @@ displayAppointmentConfirmation (date, hour) {
   //Programmatically Set the CSS classes to optimize the performance
   ngAfterViewInit() {
     this.initSelectorMap();
-    this.selectDate(this.currentDate);
-    this.selectToday(this.today);
+    //this.selectDate(this.currentDate);
+    //this.selectToday(this.today);
   }
 
 }

@@ -79,7 +79,7 @@ export class PhoneNumberPage {
     }
 
     if ($(event.target).parent().attr('id') == "cvv" && $(event.target).val().length == 3) {
-      $("#postalCode").children().eq(0).focus();
+      $("#phoneNumber").children().eq(0).focus();
     }
 
     if ($(event.target).parent().attr('id') == "expirationDate") {
@@ -182,6 +182,7 @@ export class PhoneNumberPage {
   *****************************************************************************/
   enterYourEmail(action?: string) {
     //When focusing on input, load phone number view if not already loaded
+    this.keyboard.disableScroll(true);
     if (!this.loaded) {
         $("#input").blur();
         $("#backBtn").show();
@@ -423,7 +424,7 @@ export class PhoneNumberPage {
         $("#expirationDate").css('border-bottom', '2px solid #F2F2F2');
         $("#cvv").css('border-bottom', '2px solid #F2F2F2');
         $("#country").css('border-bottom', '2px solid #F2F2F2');
-        $("#postalCode").css('border-bottom', '2px solid #F2F2F2');
+        $("#phoneNumber").css('border-bottom', '2px solid #F2F2F2');
 
         this.translate($("#creditCardTitle"), "-100vw", "0px");
         this.translate($("#paymentTitle"), "-200vw", "0px");
@@ -453,10 +454,16 @@ export class PhoneNumberPage {
   Return: None
   *****************************************************************************/
   createNewUser() {
+    var cardName = $("#cardName").children().eq(1).val().toString();
     var cardNumber = $("#cardNumber").children().eq(1).val().toString();
     var month = parseInt($("#expirationDate").children().eq(0).val().substring(0, 2));
     var year = parseInt('20' + $("#expirationDate").children().eq(0).val().substring(3, 5));
     var cvc = $("#cvv").children().eq(0).val().toString();
+
+    if (cardName.length == 0 || $("#input").val().length != 14 || cardNumber.length != 16 || month.toString().length != 2 || year.toString().length != 2 || cvc.length != 3) {
+      this.showAlert('Erreur !', 'Veuillez remplir tous les champs convenablement.')
+      return;
+    }
 
     var cardinfo = {
       number: cardNumber,
@@ -491,6 +498,8 @@ export class PhoneNumberPage {
     var lastName = this.lastName;
     var customerId = this.customerId;
     var email = this.email;
+    var value = $("#input").val();
+    var phoneNumberString = "+1" + value.substring(1, 4) + value.substring(6, 9) + value.substring(10, 14);
     let loginController = this;
 
     firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function (data) {
@@ -504,6 +513,7 @@ export class PhoneNumberPage {
         firstName: firstName,
         lastName: lastName,
         email: email,
+        phoneNumber: phoneNumberString,
         customerStripeId: customerId
       });
     }).catch(function (error) {
