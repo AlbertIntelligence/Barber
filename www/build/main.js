@@ -45,6 +45,7 @@ let GetaTicketPage = class GetaTicketPage {
     makeTransaction() {
         if (this.startTransaction) {
             this.addClientToList();
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_2__ticket_confirmation_ticket_confirmation__["a" /* TicketConfirmationPage */]);
             this.setHiddeDiv(false);
             this.TicketDiv();
         }
@@ -497,7 +498,7 @@ let PhoneNumberPage = class PhoneNumberPage {
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#cvv").children().eq(0).focus();
         }
         if (__WEBPACK_IMPORTED_MODULE_3_jquery__(event.target).parent().attr('id') == "cvv" && __WEBPACK_IMPORTED_MODULE_3_jquery__(event.target).val().length == 3) {
-            __WEBPACK_IMPORTED_MODULE_3_jquery__("#postalCode").children().eq(0).focus();
+            __WEBPACK_IMPORTED_MODULE_3_jquery__("#phoneNumber").children().eq(0).focus();
         }
         if (__WEBPACK_IMPORTED_MODULE_3_jquery__(event.target).parent().attr('id') == "expirationDate") {
             var value = __WEBPACK_IMPORTED_MODULE_3_jquery__(event.target).val();
@@ -590,6 +591,7 @@ let PhoneNumberPage = class PhoneNumberPage {
     *****************************************************************************/
     enterYourEmail(action) {
         //When focusing on input, load phone number view if not already loaded
+        this.keyboard.disableScroll(true);
         if (!this.loaded) {
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#input").blur();
             __WEBPACK_IMPORTED_MODULE_3_jquery__("#backBtn").show();
@@ -830,7 +832,7 @@ let PhoneNumberPage = class PhoneNumberPage {
                 __WEBPACK_IMPORTED_MODULE_3_jquery__("#expirationDate").css('border-bottom', '2px solid #F2F2F2');
                 __WEBPACK_IMPORTED_MODULE_3_jquery__("#cvv").css('border-bottom', '2px solid #F2F2F2');
                 __WEBPACK_IMPORTED_MODULE_3_jquery__("#country").css('border-bottom', '2px solid #F2F2F2');
-                __WEBPACK_IMPORTED_MODULE_3_jquery__("#postalCode").css('border-bottom', '2px solid #F2F2F2');
+                __WEBPACK_IMPORTED_MODULE_3_jquery__("#phoneNumber").css('border-bottom', '2px solid #F2F2F2');
                 this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#creditCardTitle"), "-100vw", "0px");
                 this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#paymentTitle"), "-200vw", "0px");
                 this.translate(__WEBPACK_IMPORTED_MODULE_3_jquery__("#creditCartInputs"), "-100vw", "0px");
@@ -856,10 +858,13 @@ let PhoneNumberPage = class PhoneNumberPage {
     Return: None
     *****************************************************************************/
     createNewUser() {
+        var cardName = __WEBPACK_IMPORTED_MODULE_3_jquery__("#cardName").children().eq(1).val().toString();
         var cardNumber = __WEBPACK_IMPORTED_MODULE_3_jquery__("#cardNumber").children().eq(1).val().toString();
         var month = parseInt(__WEBPACK_IMPORTED_MODULE_3_jquery__("#expirationDate").children().eq(0).val().substring(0, 2));
         var year = parseInt('20' + __WEBPACK_IMPORTED_MODULE_3_jquery__("#expirationDate").children().eq(0).val().substring(3, 5));
         var cvc = __WEBPACK_IMPORTED_MODULE_3_jquery__("#cvv").children().eq(0).val().toString();
+        if (cardName.length == 0 || __WEBPACK_IMPORTED_MODULE_3_jquery__("#input").val().length != 14 || cardNumber.length != 16 || month.toString().length != 2 || year.toString().length != 2 || cvc.length != 3) {
+        }
         var cardinfo = {
             number: cardNumber,
             expMonth: month,
@@ -891,6 +896,8 @@ let PhoneNumberPage = class PhoneNumberPage {
         var lastName = this.lastName;
         var customerId = this.customerId;
         var email = this.email;
+        var value = __WEBPACK_IMPORTED_MODULE_3_jquery__("#input").val();
+        var phoneNumberString = "+1" + value.substring(1, 4) + value.substring(6, 9) + value.substring(10, 14);
         let loginController = this;
         __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.auth().createUserWithEmailAndPassword(this.email, this.password).then(function (data) {
             loginController.loginUser();
@@ -902,6 +909,7 @@ let PhoneNumberPage = class PhoneNumberPage {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
+                phoneNumber: phoneNumberString,
                 customerStripeId: customerId
             });
         }).catch(function (error) {
@@ -1056,7 +1064,7 @@ __decorate([
 ], PhoneNumberPage.prototype, "handleKeyboardEvent", null);
 PhoneNumberPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'page-phone-number',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\phone-number\phone-number.html"*/'<!--\n\n  Generated template for the Phone Number auth page.\n\n\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<div no-bounce ion-fixed class="content" style="margin:0; padding:0">\n\n  <!-- Header image -->\n\n  <ion-row id="headerImg" class="header-img">\n\n\n\n    <img src="assets/img/bg23.jpg" class="img"/>\n\n\n\n  </ion-row>\n\n\n\n  <!--body of page !-->\n\n  <ion-row id="main" class="main">\n\n    <!-- Title -->\n\n    <ion-row style="display: none" class="backbtn hidden" id="backBtn">\n\n      <ion-icon (click)="goBack()" style="font-size: 12vw; color: black;padding:0;margin:0" name="ios-arrow-round-back"></ion-icon>\n\n    </ion-row>\n\n\n\n    <!-- Title -->\n\n    <ion-row class="title" id="title">\n\n      <div>Coiffez vous avec Barber Me</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for phone number -->\n\n    <ion-row id="emailInput" class="email">\n\n       <ion-icon ios="ios-mail" style="font-size: 7vw; color: gray; margin: auto; padding: auto; margin-left: 0; padding-left: 0; margin-right: 0; padding-right: 0;" md="md-mail"></ion-icon>\n\n      <input id="email" (focus)="enterYourEmail()" class="input" [(ngModel)]="email" type="email" placeholder="Entrez votre adresse courriel">\n\n    </ion-row>\n\n\n\n    <!-- Enter your password -->\n\n    <ion-row class="digitTitle" id="passwordTitle">\n\n      <div>Créez votre mot de passe</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for password -->\n\n    <ion-row id="passwordInput" class="inputBloc">\n\n      <input class="input" type="password" placeholder="6 caractères minimum">\n\n    </ion-row>\n\n\n\n    <!-- Enter your password confirmation -->\n\n    <ion-row class="digitTitle" id="passwordConfirmationTitle">\n\n      <div>Confirmez votre mot de passe</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for password confirmation -->\n\n    <ion-row id="passwordConfirmationInput" class="inputBloc">\n\n      <input class="input" type="password" placeholder="6 caractères minimum">\n\n    </ion-row>\n\n\n\n    <!-- Enter your name -->\n\n    <ion-row class="digitTitle" id="nameTitle">\n\n      <div>Comment vous appelez-vous ?</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for name -->\n\n    <ion-row id="nameInput" class="inputBloc">\n\n      <ion-grid style="margin:0; padding:0">\n\n        <ion-row style="margin:0; padding:0">\n\n          <ion-col id="firstName" col-5 style="margin-left:0px">\n\n            <input class="nameInput" type="text" placeholder="Prénom">\n\n          </ion-col>\n\n\n\n          <ion-col id="lastName" col-5 style="margin-left:10px">\n\n            <input (focus)="onFocus(\'lastName\')" class="nameInput" type="text" placeholder="Nom">\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </ion-row>\n\n\n\n    <!-- Select your payment method -->\n\n    <ion-row class="digitTitle" id="paymentTitle">\n\n      <div>Sélectionnez votre moyen de paiement préféré</div>\n\n    </ion-row>\n\n\n\n    <!-- List of payment methods -->\n\n    <ion-list (click)="selectCreditCard()" id="paymentList" class="digitBloc" style="padding:0; margin-top: 50px">\n\n      <ion-item (click)="selectCreditCard()" style="padding:0">\n\n        <ion-icon name="card" style="margin-left:7vw; margin-right:5vw"></ion-icon>\n\n          Carte de crédit\n\n        <ion-icon name="arrow-forward" style="position:absolute; right:5vw"></ion-icon>\n\n      </ion-item>\n\n    </ion-list>\n\n\n\n    <!-- Enter your credit card -->\n\n    <ion-row class="digitTitle" id="creditCardTitle" style="top: 10%">\n\n      <div>Ajouter la carte</div>\n\n    </ion-row>\n\n\n\n    <!-- Inputs for credit card -->\n\n    <ion-row id="creditCartInputs" class="digitBloc" style="top: 4%; padding-right: 3vw">\n\n      <!-- Credit card name -->\n\n      <!--ion-row><ion-label color="#F2F2F2" stacked></ion-label></ion-row!-->\n\n      <ion-row id="cardName" style="padding:auto; margin:auto; margin-left:0; width:95%; margin-top:50px">\n\n        <ion-icon style="font-size:7vw; margin-right: 10px" name="contact"></ion-icon>\n\n        <input class="input" type="text" style="width:85%" placeholder="Nom sur la carte">\n\n      </ion-row>\n\n\n\n      <!-- Credit card number -->\n\n      <ion-row id="cardNumber" style="padding:auto; margin:auto; margin-left:0; width:95%; margin-top: 50px">\n\n        <ion-icon name="card" style="font-size:7vw; margin-right: 10px"></ion-icon>\n\n        <input maxlength="16" class="input" type="tel" style="width:85%" placeholder="Numéro de carte">\n\n      </ion-row>\n\n\n\n      <!-- Exp date / CVV -->\n\n      <ion-grid style="margin:0; margin-top:50px; padding:0">\n\n        <ion-row style="margin:0; padding:0">\n\n          <ion-col id="expirationDate" col-6 style="margin-left:0px; padding-left:0">\n\n            <input class="nameInput" style="width:100%" type="text" placeholder="Date d\'exp.">\n\n          </ion-col>\n\n\n\n          <ion-col id="cvv" col-5 style="margin-left:10px">\n\n            <input class="nameInput" style="width:100%" type="text" placeholder="CVV">\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n\n\n      <!-- country -->\n\n      <ion-label color="#F2F2F2" style="width: 100vw; margin-top: 40px" stacked>Pays</ion-label>\n\n      <ion-row id="country" style="padding:0; margin:0; margin-right: 5vw; width: 100vw">\n\n        <span class="flag-icon flag-icon-ca" style="font-size: 5vw; margin-right:2vw;"></span>\n\n        <div style="font-size: 5vw; font-family: Verdana, Geneva, sans-serif; margin: auto; padding: auto; width: 55vw">Canada</div>\n\n        <ion-icon name="md-arrow-dropdown" style="font-size:8vw; color: gray; margin: auto; padding: auto"></ion-icon>\n\n      </ion-row>\n\n\n\n      <!-- Postal Code -->\n\n      <ion-row id="postalCode" style="padding:auto; margin:auto; margin-left:0; margin-top:50px;">\n\n        <input maxlength="6" class="input" style="width:80vw; padding-left:0; margin-left:0; padding-bottom: 5px" type="text" placeholder="Code postal">\n\n      </ion-row>\n\n\n\n      <!--sign out button-->\n\n      <ion-row id="continueBtn" style="width: 100vw; padding:auto; margin:auto; margin-left:0; margin-top:10px;">\n\n        <button ion-button class="round" color="black" full (click)="createNewUser()" style="margin-top: 5vh; background-color: black">CONTINUER</button>\n\n      </ion-row>\n\n\n\n    </ion-row>\n\n\n\n  </ion-row>\n\n\n\n  <!-- Link to login page -->\n\n  <ion-row class="footer" id="link">\n\n    <span (click)="enterYourEmail(\'reset password\')" ion-text color="black" style="margin-top: auto; margin-bottom: auto;">Mot de passe oublié?</span>\n\n  </ion-row>\n\n\n\n  <button id="nextBtn" (click)="goToNext()" ion-button class="btn-circle btn-xl hidden"><ion-icon name="ios-arrow-round-forward" class="nextIcon"></ion-icon></button>\n\n\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\phone-number\phone-number.html"*/,
+        selector: 'page-phone-number',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\phone-number\phone-number.html"*/'<!--\n\n  Generated template for the Phone Number auth page.\n\n\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<div no-bounce ion-fixed class="content" style="margin:0; padding:0">\n\n  <!-- Header image -->\n\n  <ion-row id="headerImg" class="header-img">\n\n\n\n    <img src="assets/img/bg23.jpg" class="img"/>\n\n\n\n  </ion-row>\n\n\n\n  <!--body of page !-->\n\n  <ion-row id="main" class="main">\n\n    <!-- Title -->\n\n    <ion-row style="display: none" class="backbtn hidden" id="backBtn">\n\n      <ion-icon (click)="goBack()" style="font-size: 12vw; color: black;padding:0;margin:0" name="ios-arrow-round-back"></ion-icon>\n\n    </ion-row>\n\n\n\n    <!-- Title -->\n\n    <ion-row class="title" id="title">\n\n      <div>Coiffez vous avec Barber Me</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for phone number -->\n\n    <ion-row id="emailInput" class="email">\n\n       <ion-icon ios="ios-mail" style="font-size: 7vw; color: gray; margin: auto; padding: auto; margin-left: 0; padding-left: 0; margin-right: 0; padding-right: 0;" md="md-mail"></ion-icon>\n\n      <input id="email" (focus)="enterYourEmail()" class="input" [(ngModel)]="email" type="email" placeholder="Entrez votre adresse courriel">\n\n    </ion-row>\n\n\n\n    <!-- Enter your password -->\n\n    <ion-row class="digitTitle" id="passwordTitle">\n\n      <div>Créez votre mot de passe</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for password -->\n\n    <ion-row id="passwordInput" class="inputBloc">\n\n      <input class="input" type="password" placeholder="6 caractères minimum">\n\n    </ion-row>\n\n\n\n    <!-- Enter your password confirmation -->\n\n    <ion-row class="digitTitle" id="passwordConfirmationTitle">\n\n      <div>Confirmez votre mot de passe</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for password confirmation -->\n\n    <ion-row id="passwordConfirmationInput" class="inputBloc">\n\n      <input class="input" type="password" placeholder="6 caractères minimum">\n\n    </ion-row>\n\n\n\n    <!-- Enter your name -->\n\n    <ion-row class="digitTitle" id="nameTitle">\n\n      <div>Comment vous appelez-vous ?</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for name -->\n\n    <ion-row id="nameInput" class="inputBloc">\n\n      <ion-grid style="margin:0; padding:0">\n\n        <ion-row style="margin:0; padding:0">\n\n          <ion-col id="firstName" col-5 style="margin-left:0px">\n\n            <input class="nameInput" type="text" placeholder="Prénom">\n\n          </ion-col>\n\n\n\n          <ion-col id="lastName" col-5 style="margin-left:10px">\n\n            <input (focus)="onFocus(\'lastName\')" class="nameInput" type="text" placeholder="Nom">\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </ion-row>\n\n\n\n    <!-- Select your payment method -->\n\n    <ion-row class="digitTitle" id="paymentTitle">\n\n      <div>Sélectionnez votre moyen de paiement préféré</div>\n\n    </ion-row>\n\n\n\n    <!-- List of payment methods -->\n\n    <ion-list (click)="selectCreditCard()" id="paymentList" class="digitBloc" style="padding:0; margin-top: 50px">\n\n      <ion-item (click)="selectCreditCard()" style="padding:0">\n\n        <ion-icon name="card" style="margin-left:7vw; margin-right:5vw"></ion-icon>\n\n          Carte de crédit\n\n        <ion-icon name="arrow-forward" style="position:absolute; right:5vw"></ion-icon>\n\n      </ion-item>\n\n    </ion-list>\n\n\n\n    <!-- Enter your credit card -->\n\n    <ion-row class="digitTitle" id="creditCardTitle" style="top: 10%">\n\n      <div>Ajouter la carte</div>\n\n    </ion-row>\n\n\n\n    <!-- Inputs for credit card -->\n\n    <ion-row id="creditCartInputs" class="digitBloc" style="top: 4%; padding-right: 3vw">\n\n      <!-- Credit card name -->\n\n      <!--ion-row><ion-label color="#F2F2F2" stacked></ion-label></ion-row!-->\n\n      <ion-row id="cardName" style="padding:auto; margin:auto; margin-left:0; width:95%; margin-top:50px">\n\n        <ion-icon style="font-size:7vw; margin-right: 10px" name="contact"></ion-icon>\n\n        <input class="input" type="text" style="width:85%" placeholder="Nom sur la carte">\n\n      </ion-row>\n\n\n\n      <!-- Credit card number -->\n\n      <ion-row id="cardNumber" style="padding:auto; margin:auto; margin-left:0; width:95%; margin-top: 50px">\n\n        <ion-icon name="card" style="font-size:7vw; margin-right: 10px"></ion-icon>\n\n        <input maxlength="16" class="input" type="tel" style="width:85%" placeholder="Numéro de carte">\n\n      </ion-row>\n\n\n\n      <!-- Exp date / CVV -->\n\n      <ion-grid style="margin:0; margin-top:50px; padding:0">\n\n        <ion-row style="margin:0; padding:0">\n\n          <ion-col id="expirationDate" col-6 style="margin-left:0px; padding-left:0">\n\n            <input maxlength="5" class="nameInput" style="width:100%" type="text" placeholder="Date d\'exp.">\n\n          </ion-col>\n\n\n\n          <ion-col id="cvv" col-5 style="margin-left:10px">\n\n            <input maxlength="3" class="nameInput" style="width:100%" type="text" placeholder="CVV">\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n\n\n      <!-- country -->\n\n      <ion-label color="#F2F2F2" style="width: 100vw; margin-top: 40px" stacked>Pays</ion-label>\n\n      <ion-row id="country" style="padding:0; margin:0; margin-right: 5vw; width: 100vw">\n\n        <span class="flag-icon flag-icon-ca" style="font-size: 5vw; margin-right:2vw;"></span>\n\n        <div style="font-size: 5vw; font-family: Verdana, Geneva, sans-serif; margin: auto; padding: auto; width: 55vw">Canada</div>\n\n        <ion-icon name="md-arrow-dropdown" style="font-size:8vw; color: gray; margin: auto; padding: auto"></ion-icon>\n\n      </ion-row>\n\n\n\n      <!-- Postal Code -->\n\n      <ion-row id="phoneNumber" style="padding:auto; margin:auto; margin-left:0; margin-top:50px;">\n\n        <input id="input" maxlength="14" class="input" style="width:80vw; padding-left:0; margin-left:0; padding-bottom: 5px" type="tel" placeholder="Numéro de téléphone">\n\n      </ion-row>\n\n\n\n      <!--sign out button-->\n\n      <ion-row id="continueBtn" style="width: 100vw; padding:auto; margin:auto; margin-left:0; margin-top:10px;">\n\n        <button ion-button class="round" color="black" full (click)="createNewUser()" style="margin-top: 5vh; background-color: black">CONTINUER</button>\n\n      </ion-row>\n\n\n\n    </ion-row>\n\n\n\n  </ion-row>\n\n\n\n  <!-- Link to login page -->\n\n  <ion-row class="footer" id="link">\n\n    <span (click)="enterYourEmail(\'reset password\')" ion-text color="black" style="margin-top: auto; margin-bottom: auto;">Mot de passe oublié?</span>\n\n  </ion-row>\n\n\n\n  <button id="nextBtn" (click)="goToNext()" ion-button class="btn-circle btn-xl hidden"><ion-icon name="ios-arrow-round-forward" class="nextIcon"></ion-icon></button>\n\n\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\phone-number\phone-number.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
@@ -1325,6 +1333,13 @@ let GetAnAppointmentPage = class GetAnAppointmentPage {
         if (typeof dayBooked != "undefined")
             dayBooked.setEnabled();
     }
+    //Change date format to MMM, DD, YYYY
+    changeDateFormat(date) {
+        var day = date.substring(0, 2);
+        var month = date.substring(3, 6);
+        var year = date.substring(7, 11);
+        return month + ", " + day + ", " + year;
+    }
     //Disable all dates that are full booked
     disableBookedDays() {
         var daysBooked = this.appointments.getDaysBooked();
@@ -1332,6 +1347,25 @@ let GetAnAppointmentPage = class GetAnAppointmentPage {
             this.disableDate(daysBooked[i]);
         }
     }
+    //Disable days when the barber shop is closed
+    /*disableClosingDays() {
+      //Get days that barber shop is closed
+      var daysClosed = [];
+      for (var i = 0; i < this.appointments.businessHours.length; i++) {
+        if (this.appointments.businessHours[i].Opening == null && this.appointments.businessHours[i].Closure == null)
+        {
+          var j = i + 1;
+          if (j == 7) j = 0;
+          daysClosed.push(j);
+        }
+      }
+  
+      //Disable those days
+      for (var i = 0; i < this.appointments.dataSnapshot.length; i++) {
+        var day = new Date(this.changeDateFormat(this.appointments.dataSnapshot[i].Date)).getDay();
+        if (daysClosed.indexOf(day) != -1) this.disableDate(this.appointments.dataSnapshot[i].Date);
+      }
+    }*/
     // Programmatically set the CSS Classes on the dates displayed in the Calendar View
     getSelectorKey(day) {
         return day.format(FORMAT);
@@ -1421,7 +1455,7 @@ let GetAnAppointmentPage = class GetAnAppointmentPage {
             let directiveDate = __WEBPACK_IMPORTED_MODULE_1_moment___default()(selectorId, FORMAT);
             //Programmatically set the CSS Class to disable and enable the dates
             //Mario perfect cut is not opened on mondays =  || directiveDate.weekday() == 1
-            if (directiveDate.isBefore(this.today, 'day')) {
+            if (directiveDate.isBefore(this.today, 'day') || directiveDate.weekday() == 1) {
                 dateSelector.setDisabled();
             }
             else {
@@ -1443,8 +1477,8 @@ let GetAnAppointmentPage = class GetAnAppointmentPage {
     //Programmatically Set the CSS classes to optimize the performance
     ngAfterViewInit() {
         this.initSelectorMap();
-        this.selectDate(this.currentDate);
-        this.selectToday(this.today);
+        //this.selectDate(this.currentDate);
+        //this.selectToday(this.today);
     }
 };
 __decorate([
@@ -1453,7 +1487,7 @@ __decorate([
 ], GetAnAppointmentPage.prototype, "dateSelectors", void 0);
 GetAnAppointmentPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'getanappointment',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\getanappointment\getanappointment.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>Mario Perfect Cut</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="light-bg">\n\n  <div class="getanappointment">\n\n    <div style="height:auto" class="cal-bg header-row">\n\n      <ion-row class="text-center input-row">\n\n        <ion-col width-100>\n\n          <div class="check-text">Choisissez le jour</div>\n\n        </ion-col>\n\n      </ion-row>\n\n\n\n      <ion-row class="text-center week-row">\n\n        <ion-col *ngFor="let weekName of weekNames" style="margin:0;padding:0">\n\n          <span>{{weekName}}</span>\n\n        </ion-col>\n\n      </ion-row>\n\n    </div>\n\n\n\n    <!-- ion-content contains the calendar months displayed in the view -->\n\n    <div style="height:100%; overflow-y: scroll; margin-left:0" class="month-list">\n\n      <ion-item *ngFor="let monthObj of months">\n\n        <ion-row class="month-row" >\n\n          <ion-col width-60 class="text-center">\n\n            {{monthObj.selectedMonth.format("MMM YYYY")}}\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <div class="day-grid">\n\n          <ion-row class="text-center day-row" *ngFor="let week of monthObj.weeks; let rowIndex = index" >\n\n            <ion-col class="day-col" *ngFor="let day of week.days; let colIndex = index">\n\n\n\n                <button ion-button  *ngIf="day"  clear [datespan]="day.id" (click)="select(monthObj,day,rowIndex)">\n\n                  {{day.displayText}}\n\n                </button>\n\n\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n      </ion-item>\n\n    </div>\n\n  </div>\n\n\n\n  <ion-row style="position: relative; margin-top:27.5%">\n\n    <ion-col col-3></ion-col>\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="increaseHour()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentHour}}</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="decreaseHour()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer">\n\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">:</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer">\n\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentMinutes}}</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n    <ion-col col-3></ion-col>\n\n  </ion-row>\n\n\n\n  <ion-row>\n\n    <p [ngClass] = "conflictMessageClasses">{{errorMessage}}</p>\n\n  </ion-row>\n\n\n\n  <div style="padding-left: 10%; padding-right: 10%;margin-top:1.5%">\n\n    <button ion-button class="round" full color="primary" (click)="getAppointment()">Réserver</button>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\getanappointment\getanappointment.html"*/,
+        selector: 'getanappointment',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\getanappointment\getanappointment.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>Prendre rendez-vous</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="light-bg">\n\n  <div class="getanappointment">\n\n    <div style="height:auto" class="cal-bg header-row">\n\n      <ion-row class="text-center input-row">\n\n        <ion-col width-100>\n\n          <div class="check-text">Choisissez le jour</div>\n\n        </ion-col>\n\n      </ion-row>\n\n\n\n      <ion-row class="text-center week-row">\n\n        <ion-col *ngFor="let weekName of weekNames" style="margin:0;padding:0">\n\n          <span>{{weekName}}</span>\n\n        </ion-col>\n\n      </ion-row>\n\n    </div>\n\n\n\n    <!-- ion-content contains the calendar months displayed in the view -->\n\n    <div style="height:100%; overflow-y: scroll; margin-left:0" class="month-list">\n\n      <ion-item *ngFor="let monthObj of months">\n\n        <ion-row class="month-row" >\n\n          <ion-col width-60 class="text-center">\n\n            {{monthObj.selectedMonth.format("MMM YYYY")}}\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <div class="day-grid">\n\n          <ion-row class="text-center day-row" *ngFor="let week of monthObj.weeks; let rowIndex = index" >\n\n            <ion-col class="day-col" *ngFor="let day of week.days; let colIndex = index">\n\n\n\n                <button ion-button  *ngIf="day"  clear [datespan]="day.id" (click)="select(monthObj,day,rowIndex)">\n\n                  {{day.displayText}}\n\n                </button>\n\n\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n      </ion-item>\n\n    </div>\n\n  </div>\n\n\n\n  <ion-row style="position: relative; margin-top:27.5%">\n\n    <ion-col col-3></ion-col>\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="increaseHour()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentHour}}</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="decreaseHour()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer">\n\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">:</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer">\n\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentMinutes}}</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n    <ion-col col-3></ion-col>\n\n  </ion-row>\n\n\n\n  <ion-row>\n\n    <p [ngClass] = "conflictMessageClasses">{{errorMessage}}</p>\n\n  </ion-row>\n\n\n\n  <div style="padding-left: 10%; padding-right: 10%;margin-top:1.5%">\n\n    <button ion-button class="round" full color="primary" (click)="getAppointment()">Réserver</button>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\getanappointment\getanappointment.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */]])
 ], GetAnAppointmentPage);
@@ -1537,7 +1571,7 @@ let Alert = class Alert {
         this.app = app;
         this.nav = app.getActiveNav();
         this.ticketConfirmationPage = new __WEBPACK_IMPORTED_MODULE_2__ticket_confirmation_ticket_confirmation__["a" /* TicketConfirmationPage */]();
-        this.ticket = new __WEBPACK_IMPORTED_MODULE_3__get_a_ticket_get_a_ticket__["a" /* GetaTicketPage */];
+        this.ticket = new __WEBPACK_IMPORTED_MODULE_3__get_a_ticket_get_a_ticket__["a" /* GetaTicketPage */](this.nav);
     }
     /*****************************************************************************
     Function: presentAlert
@@ -1561,7 +1595,7 @@ let Alert = class Alert {
                 {
                     text: 'Confirmer',
                     handler: data => {
-                        this.nav.push(__WEBPACK_IMPORTED_MODULE_2__ticket_confirmation_ticket_confirmation__["a" /* TicketConfirmationPage */]);
+                        //this.nav.push(TicketConfirmationPage);
                         this.ticket.startTransaction = true;
                         this.ticket.makeTransaction();
                     }
@@ -3021,7 +3055,9 @@ let GetAnAppointmentModel = class GetAnAppointmentModel {
     constructor() {
         this.businessHours = [];
         this.dataSnapshot = [];
+        this.userAccounts = [];
         this.updateDataSnapshot();
+        this.updateUserAccounts();
         this.businessHours = [
             {
                 'Day': 'Monday',
@@ -3105,7 +3141,6 @@ let GetAnAppointmentModel = class GetAnAppointmentModel {
                 var index = this.businessHours.findIndex(item => item.Day.indexOf(day) != -1);
                 index++;
                 day = this.businessHours[index].Day.substring(0, 3);
-                console.log(this.businessHours[index]);
             } while (this.businessHours[index].Opening == null);
             return this.businessHours[index];
         }
@@ -3131,12 +3166,32 @@ let GetAnAppointmentModel = class GetAnAppointmentModel {
         var appointments = __WEBPACK_IMPORTED_MODULE_1_firebase___default.a.database().ref('Appointments/Users');
         var userId = __WEBPACK_IMPORTED_MODULE_1_firebase___default.a.auth().currentUser.uid;
         var timeStamp = new Date().getTime().toString();
+        var user = this.userAccounts.find(item => item.UserId == userId);
         appointments.child(timeStamp).set({
             UserId: userId,
             Date: date,
             Hour: hour,
-            firstName: "Koueni",
-            lastName: "Deumeni"
+            firstName: user.firstName,
+            lastName: user.lastName
+        });
+    }
+    /*****************************************************************************
+    Function: updateUserAccounts
+    Purpose: Fetch user accounts from db
+    Parameters: None
+    Return: None
+    *****************************************************************************/
+    updateUserAccounts() {
+        let controller = this;
+        __WEBPACK_IMPORTED_MODULE_1_firebase___default.a.database().ref('Users/')
+            .on('value', function (snapshot) {
+            let users = snapshot.val();
+            controller.userAccounts = [];
+            for (var property in users) {
+                if (users.hasOwnProperty(property)) {
+                    controller.userAccounts.push(users[property]);
+                }
+            }
         });
     }
     /*****************************************************************************
@@ -3181,7 +3236,7 @@ let GetAnAppointmentModel = class GetAnAppointmentModel {
     }
 };
 GetAnAppointmentModel = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\getanappointment\getanappointment.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>Mario Perfect Cut</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="light-bg">\n\n  <div class="getanappointment">\n\n    <div style="height:auto" class="cal-bg header-row">\n\n      <ion-row class="text-center input-row">\n\n        <ion-col width-100>\n\n          <div class="check-text">Choisissez le jour</div>\n\n        </ion-col>\n\n      </ion-row>\n\n\n\n      <ion-row class="text-center week-row">\n\n        <ion-col *ngFor="let weekName of weekNames" style="margin:0;padding:0">\n\n          <span>{{weekName}}</span>\n\n        </ion-col>\n\n      </ion-row>\n\n    </div>\n\n\n\n    <!-- ion-content contains the calendar months displayed in the view -->\n\n    <div style="height:100%; overflow-y: scroll; margin-left:0" class="month-list">\n\n      <ion-item *ngFor="let monthObj of months">\n\n        <ion-row class="month-row" >\n\n          <ion-col width-60 class="text-center">\n\n            {{monthObj.selectedMonth.format("MMM YYYY")}}\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <div class="day-grid">\n\n          <ion-row class="text-center day-row" *ngFor="let week of monthObj.weeks; let rowIndex = index" >\n\n            <ion-col class="day-col" *ngFor="let day of week.days; let colIndex = index">\n\n\n\n                <button ion-button  *ngIf="day"  clear [datespan]="day.id" (click)="select(monthObj,day,rowIndex)">\n\n                  {{day.displayText}}\n\n                </button>\n\n\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n      </ion-item>\n\n    </div>\n\n  </div>\n\n\n\n  <ion-row style="position: relative; margin-top:27.5%">\n\n    <ion-col col-3></ion-col>\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="increaseHour()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentHour}}</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="decreaseHour()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer">\n\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">:</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer">\n\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentMinutes}}</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n    <ion-col col-3></ion-col>\n\n  </ion-row>\n\n\n\n  <ion-row>\n\n    <p [ngClass] = "conflictMessageClasses">{{errorMessage}}</p>\n\n  </ion-row>\n\n\n\n  <div style="padding-left: 10%; padding-right: 10%;margin-top:1.5%">\n\n    <button ion-button class="round" full color="primary" (click)="getAppointment()">Réserver</button>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\getanappointment\getanappointment.html"*/,
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\getanappointment\getanappointment.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>Prendre rendez-vous</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="light-bg">\n\n  <div class="getanappointment">\n\n    <div style="height:auto" class="cal-bg header-row">\n\n      <ion-row class="text-center input-row">\n\n        <ion-col width-100>\n\n          <div class="check-text">Choisissez le jour</div>\n\n        </ion-col>\n\n      </ion-row>\n\n\n\n      <ion-row class="text-center week-row">\n\n        <ion-col *ngFor="let weekName of weekNames" style="margin:0;padding:0">\n\n          <span>{{weekName}}</span>\n\n        </ion-col>\n\n      </ion-row>\n\n    </div>\n\n\n\n    <!-- ion-content contains the calendar months displayed in the view -->\n\n    <div style="height:100%; overflow-y: scroll; margin-left:0" class="month-list">\n\n      <ion-item *ngFor="let monthObj of months">\n\n        <ion-row class="month-row" >\n\n          <ion-col width-60 class="text-center">\n\n            {{monthObj.selectedMonth.format("MMM YYYY")}}\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <div class="day-grid">\n\n          <ion-row class="text-center day-row" *ngFor="let week of monthObj.weeks; let rowIndex = index" >\n\n            <ion-col class="day-col" *ngFor="let day of week.days; let colIndex = index">\n\n\n\n                <button ion-button  *ngIf="day"  clear [datespan]="day.id" (click)="select(monthObj,day,rowIndex)">\n\n                  {{day.displayText}}\n\n                </button>\n\n\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n      </ion-item>\n\n    </div>\n\n  </div>\n\n\n\n  <ion-row style="position: relative; margin-top:27.5%">\n\n    <ion-col col-3></ion-col>\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="increaseHour()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentHour}}</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="decreaseHour()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer">\n\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">:</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer">\n\n        <ion-icon color="bg-color" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n\n\n    <ion-col col-2>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-up"></ion-icon>\n\n      </ion-row>\n\n      <ion-row>\n\n        <p style="padding: 5px; font-size: 20px; margin: auto">{{currentMinutes}}</p>\n\n      </ion-row>\n\n      <ion-row style="padding: 5px; cursor: pointer" (click)="changeMinutes()">\n\n        <ion-icon color="primary" style="font-size: 25px; margin: auto" name="ios-arrow-down"></ion-icon>\n\n      </ion-row>\n\n    </ion-col>\n\n    <ion-col col-3></ion-col>\n\n  </ion-row>\n\n\n\n  <ion-row>\n\n    <p [ngClass] = "conflictMessageClasses">{{errorMessage}}</p>\n\n  </ion-row>\n\n\n\n  <div style="padding-left: 10%; padding-right: 10%;margin-top:1.5%">\n\n    <button ion-button class="round" full color="primary" (click)="getAppointment()">Réserver</button>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\Barber\src\pages\getanappointment\getanappointment.html"*/,
     }),
     __metadata("design:paramtypes", [])
 ], GetAnAppointmentModel);
