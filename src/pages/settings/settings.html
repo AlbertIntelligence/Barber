@@ -27,17 +27,17 @@
       <ion-item-divider color="bg-color">Notifications</ion-item-divider>
       <ion-item>
         <ion-label>Notification push</ion-label>
-        <ion-toggle color="primary" checked="true"></ion-toggle>
+        <ion-toggle [(ngModel)]="pushNotification" color="primary" checked="true" (ionChange)="changeNotification('push')"></ion-toggle>
       </ion-item>
 
       <ion-item>
         <ion-label>Notification par courriel</ion-label>
-        <ion-toggle color="primary" checked="true"></ion-toggle>
+        <ion-toggle [(ngModel)]="emailNotification" color="primary" checked="true" (ionChange)="changeNotification('email')"></ion-toggle>
       </ion-item>
 
       <ion-item>
         <ion-label>Notification par SMS</ion-label>
-        <ion-toggle color="primary" checked="true"></ion-toggle>
+        <ion-toggle [(ngModel)]="smsNotification" color="primary" checked="true" (ionChange)="changeNotification('sms')"></ion-toggle>
       </ion-item>
     </ion-item-group>
 
