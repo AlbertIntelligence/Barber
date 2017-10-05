@@ -21,13 +21,14 @@ page-phone-number {
   .img {
     position: absolute;
     z-index: 100px;
-    top: 25vh;
-    left: 35vw;
+    top: 0px;
+    left: 0px;
     margin: auto;
     padding: auto;
-    width: 30vw;
-    height: 30vw;
+    width: 100vw;
+    height: 67vh;
     box-shadow: 0px 0px 10px 5px #888888;
+    opacity: 0.3;
   }
 
   .video {

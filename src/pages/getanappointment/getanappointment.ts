@@ -74,7 +74,7 @@ export class GetAnAppointmentPage {
   private today:any;
   private months:Array<any> = [];
   private currentDate:any;
-  private currentHour:any = "10";
+  private currentHour:any = "12";
   private currentMinutes:any = "00";
   private appointments:GetAnAppointmentModel;
   private errorMessage:String;
@@ -93,11 +93,11 @@ export class GetAnAppointmentPage {
     this.appointments = new GetAnAppointmentModel();
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
-    this.currentDate = this.today.clone();
-    this.setDefaultHour();
+    //this.currentDate = this.today.clone();
+    //this.setDefaultHour();
     this.updateDataSnapshot();
-    this.openingHour = this.appointments.getBusinessHours(this.currentDate).Opening + "h";
-    this.closingHour = this.appointments.getBusinessHours(this.currentDate).Closure + "h";
+    //this.openingHour = this.appointments.getBusinessHours(this.currentDate).Opening + "h";
+    //this.closingHour = this.appointments.getBusinessHours(this.currentDate).Closure + "h";
   }
 
   /*****************************************************************************
@@ -112,7 +112,7 @@ export class GetAnAppointmentPage {
       this.currentHour = parseInt(this.currentHour) + 1;
       this.verifyAvailibility();  //check if hour is available
     } else {
-      //To be completed : Display Heure de fermeture
+      //Display Heure de fermeture
       this.displayConflictMessage("Heures d'ouverture : " + this.openingHour + " - " + this.closingHour);
     }
   }
@@ -165,10 +165,12 @@ export class GetAnAppointmentPage {
   Return: None
   *****************************************************************************/
   verifyAvailibility () {
-    this.conflictMessageClasses = { 'conflictMessageOn': false, 'conflictMessageOff': true };
-    var hour = this.currentHour + " : " + this.currentMinutes;
-    if (!this.appointments.isAvailable(this.currentDate.format(FORMAT), hour))
-        this.displayConflictMessage("Cette plage horaire n'est plus disponible.");
+    if (this.currentDate != undefined) {
+      this.conflictMessageClasses = { 'conflictMessageOn': false, 'conflictMessageOff': true };
+      var hour = this.currentHour + " : " + this.currentMinutes;
+      if (!this.appointments.isAvailable(this.currentDate.format(FORMAT), hour))
+          this.displayConflictMessage("Cette plage horaire n'est plus disponible.");
+    }
   }
 
   /*****************************************************************************
@@ -207,6 +209,18 @@ export class GetAnAppointmentPage {
   Return: None
   *****************************************************************************/
   getAppointment() {
+    if (this.currentDate == undefined) {
+      this.showAlert('Erreur', 'Veuillez sélectionner une date.');
+      return;
+    }
+
+    var openingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Opening);
+    var closingHour = parseFloat(this.appointments.getBusinessHours(this.currentDate).Closure);
+    if (closingHour <= (parseFloat(this.currentHour) + 1) || openingHour > (parseFloat(this.currentHour) - 1)) {
+      this.displayConflictMessage("Heures d'ouverture : " + this.openingHour + " - " + this.closingHour);
+      return;
+    }
+
     var date = this.currentDate.format(FORMAT);
     var hour = this.currentHour + " : " + this.currentMinutes;
     (this.appointments.isAvailable(date, hour)) ? this.displayAppointmentConfirmation(date, hour) : this.showAlert('Réservation impossible !', 'Veuillez choisir une autre plage horaire.');
@@ -285,26 +299,6 @@ export class GetAnAppointmentPage {
       this.disableDate(daysBooked[i]);
     }
   }
-
-  //Disable days when the barber shop is closed
-  /*disableClosingDays() {
-    //Get days that barber shop is closed
-    var daysClosed = [];
-    for (var i = 0; i < this.appointments.businessHours.length; i++) {
-      if (this.appointments.businessHours[i].Opening == null && this.appointments.businessHours[i].Closure == null)
-      {
-        var j = i + 1;
-        if (j == 7) j = 0;
-        daysClosed.push(j);
-      }
-    }
-
-    //Disable those days
-    for (var i = 0; i < this.appointments.dataSnapshot.length; i++) {
-      var day = new Date(this.changeDateFormat(this.appointments.dataSnapshot[i].Date)).getDay();
-      if (daysClosed.indexOf(day) != -1) this.disableDate(this.appointments.dataSnapshot[i].Date);
-    }
-  }*/
 
   // Programmatically set the CSS Classes on the dates displayed in the Calendar View
   getSelectorKey(day) {
