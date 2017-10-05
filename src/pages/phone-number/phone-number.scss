@@ -18,13 +18,31 @@ page-phone-number {
     margin: 0;
   }
 
-  .video {
-    display: block;
+  .img {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    padding: 0;
+    z-index: 100px;
+    top: 40vw;
+    left: 30vw;
     margin: auto;
+    padding: auto;
+    width: 40vw;
+    height: 40vw;
+    box-shadow: 0px 0px 10px 5px #888888;
+    opacity: 1;
+  }
+
+  .video {
+    position: absolute;
+    z-index: 0;
+    background: url(mel.jpg) no-repeat;
+    background-size: 100vw 67vh;
+    top: 0px;
+    right: -30vw; /* fixed to left. Replace it by right if you want.*/
+    min-width: 100vw;
+    max-height: 67vh;
+    width: auto;
+    height: auto;
+    opacity: 0.5;
   }
 
   .input {
@@ -122,6 +140,7 @@ page-phone-number {
     height: 7vh;
     color:blue;
     font-size: 4vw;
+    background-color: white;
   }
 
   .visible {

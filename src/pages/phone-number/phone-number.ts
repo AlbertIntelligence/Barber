@@ -517,7 +517,10 @@ export class PhoneNumberPage {
         lastName: lastName,
         email: email,
         phoneNumber: phoneNumberString,
-        customerStripeId: customerId
+        customerStripeId: customerId,
+        pushNotification: true,
+        emailNotification: true,
+        smsNotification: true
       });
     }).catch(function (error) {
       loginController.showAlert('Inscription Impossible !', 'Veuillez entrer une adresse courriel valide.');
