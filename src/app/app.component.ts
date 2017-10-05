@@ -24,7 +24,7 @@ export class MyApp {
     this.rootPage = PhoneNumberPage;
 
     // show splash screen
-    Splashscreen.show();
+    //Splashscreen.show();
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

@@ -1,8 +1,9 @@
 import { Component, Directive, Input, ViewChildren, QueryList, ElementRef, Renderer } from '@angular/core';
 import moment from 'moment';
 import {GetAnAppointmentModel} from './GetAnAppointmentModel';
-import { AlertController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import firebase from 'firebase';
+import {AppointmentConfirmationPage} from "../appointment-confirmation/appointment-confirmation";
 
 const NUM_OF_DAYS = 7;
 const NUM_OF_MONTHS = 1;
@@ -89,7 +90,7 @@ export class GetAnAppointmentPage {
   // Get All the  ViewChild References of the date element displayed in the
   // calendar view
   @ViewChildren(DateSelectorDirective) dateSelectors:QueryList<DateSelectorDirective>;
-  constructor(public alertCtrl: AlertController) {
+  constructor(public alertCtrl: AlertController, private nav: NavController,) {
     this.appointments = new GetAnAppointmentModel();
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
@@ -248,7 +249,8 @@ export class GetAnAppointmentPage {
         text: 'Confirmer',
             handler: () => {
               this.appointments.createNew(date, hour);
-              this.showAlert('Confirmation', 'Votre réservation est confirmée pour le ' + date + ' à ' + hour);
+              this.goToAppointmentConfirmationPage(date, hour);
+              //this.showAlert('Confirmation', 'Votre réservation est confirmée pour le ' + date + ' à ' + hour);
             }
       }]
     });
@@ -428,6 +430,11 @@ export class GetAnAppointmentPage {
     this.initSelectorMap();
     //this.selectDate(this.currentDate);
     //this.selectToday(this.today);
+  }
+
+  // Open ticket confirmation view page
+  public goToAppointmentConfirmationPage(date:String, heure:String) {
+    this.nav.push(AppointmentConfirmationPage, { date: date, heure: heure });
   }
 
 }
