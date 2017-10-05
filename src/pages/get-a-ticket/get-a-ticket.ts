@@ -25,6 +25,7 @@ export class GetaTicketPage {
   public lastPosition:any;
   public userPosition:any;
   private dataSnapshot:Array<any> = [];
+  private dataSnapshotStandBy:Array<any> = [];
 
   constructor(public nav: NavController, private newAlert?: Alert,public ticketConfirmation?:TicketConfirmationPage) {
     this.getCurrentClient();
@@ -144,11 +145,23 @@ export class GetaTicketPage {
           }
         }
       });
+
+      firebase.database().ref('StandByList/Users/')
+        .on('value', function(snapshot) {
+          let tickets = snapshot.val();
+          model.dataSnapshot = [];
+          for (var property in tickets) {
+            if (tickets.hasOwnProperty(property)) {
+              model.dataSnapshotStandBy.push(tickets[property]);
+            }
+          }
+        });
   }
 
   isAvailable(): Boolean {
     var userId = firebase.auth().currentUser.uid;
-    return (this.dataSnapshot.find(item => item.uid == userId) == undefined);
+    return (this.dataSnapshot.find(item => item.uid == userId) == undefined &&
+            this.dataSnapshotStandBy.find(item => item.uid == userId) == undefined);
   }
 
 
