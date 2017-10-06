@@ -26,7 +26,8 @@ export class HomePage {
   public numberClientWaitingTicketList = 0;
   public numberClientWaitingReservation= 0;
   public directMessages:any;
-
+  private nbOfBarbers:any=4;
+  private estimatedWaitingTime:any;
 
   constructor(public nav: NavController, public galleryService: GalleryService ,public progress:ProgressBarComponent) {
     // set sample data
@@ -34,6 +35,7 @@ export class HomePage {
     this.ClientWaiting();
     this.TotalReservation();
     this.DirectMessages();
+    this.calculateWaitingTime();
   }
 
   /*****************************************************************************
@@ -94,6 +96,7 @@ export class HomePage {
         numberClientWaitingTicketList++;
       }.bind(this));
       this.numberClientWaitingTicketList = numberClientWaitingTicketList
+      this.calculateWaitingTime();
     }.bind(this));
   }
 
@@ -111,6 +114,22 @@ export class HomePage {
   DirectMessages() {
     const liveMessages = firebase.database().ref('Messages/live/');
     liveMessages.on('value' , snap =>  this.directMessages =   snap.val()  ).bind(this);
+  }
+
+  /*****************************************************************************
+  Function: calculateWaitingTime
+  Purpose: Calculates the estimated user waiting time
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  calculateWaitingTime() {
+    if (this.nbOfBarbers == 0) {
+      this.estimatedWaitingTime = "";
+    } else if (this.numberClientWaitingTicketList == 0) {
+      this.estimatedWaitingTime = "Moins de 30 minutes";
+    } else {
+      this.estimatedWaitingTime = Math.ceil(this.numberClientWaitingTicketList/this.nbOfBarbers) * 30;
+    }
   }
 
 }
