@@ -32,6 +32,13 @@
           <span ion-text color="dark">Prendre un rendez vous</span>
         </ion-col>
       </ion-row>
+
+      <ion-row style="padding:auto">
+        <ion-col style="margin:auto; width: 100%">
+          <ion-icon ios="ios-pin" md="md-pin" pull-right color="green"></ion-icon>
+          <span style="font-size: 17px" ion-text color="dark">Confirmez votre présence ici</span>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </div>
 
@@ -63,24 +70,6 @@
      </ion-col>
    </ion-row>
  </ion-grid>
-
- <ion-grid class="list-hotels" style="margin-top: 15px">
-  <ion-row style="height:auto">
-    <ion-col col-12>
-      <div class="hotel-bg bg-filter" [ngStyle]="{'background-image': 'url(assets/img/bg2.jpg)'}">
-        <div class="bg-filter" style="height:125px">
-
-          <div class="discount" style="font-size: 20px">{{estimatedWaitingTime}}</div>
-
-          <div class="bottom-info pull-left" style="height: auto">
-            <h5 ion-text color="light">Temps d'attente (en minutes)</h5>
-          </div>
-
-        </div>
-      </div>
-    </ion-col>
-  </ion-row>
-</ion-grid>
 
 <ion-grid class="list-hotels" style="margin-top: 15px">
  <ion-row style="height:auto">
