@@ -23,6 +23,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 export class HomePage {
 
   public pictures: any;
+  public numberClientWaiting = 0;
+  public numberClientWaitingStandByList = 0;
   public numberClientWaitingTicketList = 0;
   public numberClientWaitingReservation= 0;
   public directMessages:any;
@@ -90,6 +92,7 @@ export class HomePage {
   }
 
   ClientWaiting() {
+    //ticket list
     const listOfUsers = firebase.database().ref('TicketList/Users/');
     listOfUsers.on('value', function(snapshot) {
       var numberClientWaitingTicketList = 0;
@@ -97,7 +100,18 @@ export class HomePage {
         numberClientWaitingTicketList++;
       }.bind(this));
       this.numberClientWaitingTicketList = numberClientWaitingTicketList
-      this.calculateWaitingTime();
+      this.numberClientWaiting = this.numberClientWaitingTicketList + this.numberClientWaitingStandByList;
+    }.bind(this));
+
+    //stand by list
+    const users = firebase.database().ref('StandByList/Users/');
+    users.on('value', function(snapshot) {
+      var numberClientWaitingStandByList = 0;
+      snapshot.forEach(function(childSnapshot) {
+        numberClientWaitingStandByList++;
+      }.bind(this));
+      this.numberClientWaitingStandByList = numberClientWaitingStandByList;
+      this.numberClientWaiting = this.numberClientWaitingTicketList + this.numberClientWaitingStandByList;
     }.bind(this));
   }
 
