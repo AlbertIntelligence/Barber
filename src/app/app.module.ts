@@ -24,6 +24,8 @@ import { HttpModule } from '@angular/http';
 import { Stripe } from '@ionic-native/stripe';
 import { Network } from '@ionic-native/network';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 // import services
 // end import services
@@ -59,6 +61,7 @@ const providers = [ ];
   imports: [
     BrowserModule,
     HttpModule,
+    NgxQRCodeModule,
     IonicModule.forRoot(MyApp,{
       scrollPadding: false,
       scrollAssist: false,
@@ -97,6 +100,7 @@ const providers = [ ];
     Stripe,
     Network,
     SplashScreen,
+    BarcodeScanner,
     providers,
     ProgressBarComponent
     /* import services */

@@ -8,7 +8,7 @@ import {BarberLocation} from "../barber-location/barber-location";
 import {SettingsPage} from "../settings/settings";
 import firebase from 'firebase';
 import {ProgressBarComponent} from "../progress-bar/progress-bar";
-
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 /*
  Generated class for the LoginPage page.
@@ -29,7 +29,8 @@ export class HomePage {
   private nbOfBarbers:any=4;
   private estimatedWaitingTime:any;
 
-  constructor(public nav: NavController, public galleryService: GalleryService ,public progress:ProgressBarComponent) {
+  constructor(public nav: NavController, public galleryService: GalleryService,
+              private barcodeScanner: BarcodeScanner, public progress:ProgressBarComponent) {
     // set sample data
     this.pictures = galleryService.getAll();
     this.ClientWaiting();
@@ -130,6 +131,18 @@ export class HomePage {
     } else {
       this.estimatedWaitingTime = Math.ceil(this.numberClientWaitingTicketList/this.nbOfBarbers) * 30;
     }
+  }
+
+  /*****************************************************************************
+  Function: scanQrCode
+  Purpose: Scans the qr code to check in the user
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  scanQrCode() {
+    this.barcodeScanner.scan().then(barcodeData => {
+      alert(barcodeData.text);
+    });
   }
 
 }
