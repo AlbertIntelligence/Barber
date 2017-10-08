@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {NavController} from "ionic-angular";
+import {NavController, AlertController} from "ionic-angular";
 import {GalleryService} from "../../services/gallery-service";
 import {GetAnAppointmentPage} from "../getanappointment/getanappointment";
 import {GalleryPage} from "../gallery/gallery";
@@ -30,10 +30,11 @@ export class HomePage {
   public directMessages:any;
   private nbOfBarbers:any=4;
   private estimatedWaitingTime:any;
+  private checkInMessage:any = "Mario Perfect Cut";
 
-  constructor(public nav: NavController, public galleryService: GalleryService,
+  constructor(public nav: NavController, public galleryService: GalleryService, public alertCtrl: AlertController,
               private barcodeScanner: BarcodeScanner, public progress:ProgressBarComponent) {
-    // set sample data
+
     this.pictures = galleryService.getAll();
     this.ClientWaiting();
     this.TotalReservation();
@@ -155,8 +156,64 @@ export class HomePage {
   *****************************************************************************/
   scanQrCode() {
     this.barcodeScanner.scan().then(barcodeData => {
-      alert(barcodeData.text);
+      if (barcodeData.text == this.checkInMessage) {
+        this.showAlert('Confirmation', 'Votre présence est confirmée.');
+        this.checkInUser();
+      } else {
+        this.showAlert('Code erroné', 'Veuillez scanner un code valide.');
+      }
     });
+  }
+
+  checkInUser() {
+    var userId = firebase.auth().currentUser.uid;
+    var timeStamp = new Date().getTime().toString();
+    let controller = this;
+
+    firebase.database().ref('TicketList/Users/')
+     .on('value', function(snapshot) {
+       let tickets = snapshot.val();
+       for (var property in tickets) {
+          if (tickets.hasOwnProperty(property)) {
+              if (tickets[property].UserId == userId) {
+                firebase.database().ref().child('TicketList/Users/' + property).update({
+                  hasCheckedIn: true,
+                  checkInTime: timeStamp
+                });
+              }
+          }
+       }
+     });
+
+     firebase.database().ref('Appointments/Users/')
+      .on('value', function(snapshot) {
+        let appointments = snapshot.val();
+        for (var property in appointments) {
+           if (appointments.hasOwnProperty(property)) {
+               if (appointments[property].UserId == userId) {
+                 firebase.database().ref().child('Appointments/Users/' + property).update({
+                   hasCheckedIn: true,
+                   checkInTime: timeStamp
+                 });
+               }
+           }
+        }
+      });
+  }
+
+  /*****************************************************************************
+  Function: showAlert
+  Purpose: Display a pop-up alert to notify user on reservation conflict
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  showAlert(title, subTitle) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: subTitle,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

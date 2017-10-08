@@ -82,6 +82,7 @@ export class GetAnAppointmentPage {
   private conflictMessageClasses:any = { 'conflictMessageOn': false, 'conflictMessageOff': true };
   private openingHour:String;
   private closingHour:String;
+  private hasAnAppointment:Boolean = false;
 
   // A Map where key = 'DD-MMM-YYYY' and Value as the ViewChild Reference of the date element displayed in the
   // calendar view
@@ -195,10 +196,17 @@ export class GetAnAppointmentPage {
   *****************************************************************************/
   updateDataSnapshot() {
     let controller = this;
-    firebase.database().ref('Appointments/')
+    var userId = firebase.auth().currentUser.uid;
+    firebase.database().ref('Appointments/Users/')
      .on('value', function(snapshot) {
        controller.verifyAvailibility();
        controller.appointments.getDaysBooked();
+       let appointments = snapshot.val();
+       for (var property in appointments) {
+          if (appointments.hasOwnProperty(property)) {
+              if (appointments[property].UserId == userId) controller.hasAnAppointment = true;
+          }
+       }
      });
   }
 
@@ -210,6 +218,11 @@ export class GetAnAppointmentPage {
   Return: None
   *****************************************************************************/
   getAppointment() {
+    if (this.hasAnAppointment) {
+      this.showAlert('Erreur', 'Vous avez déjà un rendez-vous.');
+      return;
+    }
+
     if (this.currentDate == undefined) {
       this.showAlert('Erreur', 'Veuillez sélectionner une date.');
       return;
@@ -250,7 +263,7 @@ export class GetAnAppointmentPage {
             handler: () => {
               this.appointments.createNew(date, hour);
               this.goToAppointmentConfirmationPage(date, hour);
-              //this.showAlert('Confirmation', 'Votre réservation est confirmée pour le ' + date + ' à ' + hour);
+              this.hasAnAppointment = true;
             }
       }]
     });

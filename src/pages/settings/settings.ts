@@ -60,7 +60,7 @@ export class SettingsPage {
     var id = type + "Notification";
     var userId = firebase.auth().currentUser.uid;
     let controller = this;
-    
+
     //Update notification status in db
     if (type == "push") {
       firebase.database().ref().child('/Users/' + userId).update({
@@ -86,13 +86,13 @@ export class SettingsPage {
   Return: None
   *****************************************************************************/
   updateUserAccounts() {
+    var userId = firebase.auth().currentUser.uid;
     let controller = this;
     firebase.database().ref('Users/')
      .on('value', function(snapshot) {
        let users = snapshot.val();
        for (var property in users) {
           if (users.hasOwnProperty(property)) {
-              var userId = firebase.auth().currentUser.uid;
               if (users[property].UserId == userId) {
                 controller.userFirstName = users[property].firstName;
                 controller.userLastName = users[property].lastName;
