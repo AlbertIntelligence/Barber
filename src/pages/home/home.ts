@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {NavController, AlertController} from "ionic-angular";
 import {GalleryService} from "../../services/gallery-service";
 import {GetAnAppointmentPage} from "../getanappointment/getanappointment";
+import {CheckInConfirmationPage} from "../checkin-confirmation/checkin-confirmation";
 import {GalleryPage} from "../gallery/gallery";
 import {GetaTicketPage} from "../get-a-ticket/get-a-ticket";
 import {BarberLocation} from "../barber-location/barber-location";
@@ -31,6 +32,7 @@ export class HomePage {
   private nbOfBarbers:any=4;
   private estimatedWaitingTime:any;
   private checkInMessage:any = "Mario Perfect Cut";
+  private reservation:any = "Aucune réservation";
 
   constructor(public nav: NavController, public galleryService: GalleryService, public alertCtrl: AlertController,
               private barcodeScanner: BarcodeScanner, public progress:ProgressBarComponent) {
@@ -40,6 +42,7 @@ export class HomePage {
     this.TotalReservation();
     this.DirectMessages();
     this.calculateWaitingTime();
+    this.getReservation();
   }
 
   /*****************************************************************************
@@ -80,6 +83,16 @@ export class HomePage {
   *****************************************************************************/
   goToSettings() {
     this.nav.push(SettingsPage);
+  }
+
+  /*****************************************************************************
+  Function: goToCheckInConfirmationPage
+  Purpose: Pushes the check in confirmation page
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  goToCheckInConfirmationPage() {
+    this.nav.push(CheckInConfirmationPage);
   }
 
   /*****************************************************************************
@@ -157,7 +170,7 @@ export class HomePage {
   scanQrCode() {
     this.barcodeScanner.scan().then(barcodeData => {
       if (barcodeData.text == this.checkInMessage) {
-        this.showAlert('Confirmation', 'Votre présence est confirmée.');
+        this.goToCheckInConfirmationPage();
         this.checkInUser();
       } else {
         this.showAlert('Code erroné', 'Veuillez scanner un code valide.');
@@ -165,6 +178,12 @@ export class HomePage {
     });
   }
 
+  /*****************************************************************************
+  Function: checkInUser
+  Purpose: check in the user in the db
+  Parameters: None
+  Return: None
+  *****************************************************************************/
   checkInUser() {
     var userId = firebase.auth().currentUser.uid;
     var timeStamp = new Date().getTime().toString();
@@ -199,6 +218,26 @@ export class HomePage {
            }
         }
       });
+  }
+
+  /*****************************************************************************
+  Function: getReservation
+  Purpose: get the user reservation date and hour
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  getReservation() {
+    let controller = this;
+    var userId = firebase.auth().currentUser.uid;
+    firebase.database().ref('Appointments/Users')
+     .on('value', function(snapshot) {
+       let appointments = snapshot.val();
+       for (var property in appointments) {
+          if (appointments.hasOwnProperty(property)) {
+              if (appointments[property].UserId == userId) controller.reservation = appointments[property].Date + ", " + appointments[property].Hour;
+          }
+       }
+     });
   }
 
   /*****************************************************************************

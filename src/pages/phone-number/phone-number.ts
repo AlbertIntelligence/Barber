@@ -63,6 +63,8 @@ export class PhoneNumberPage {
         this.splashScreen.hide();
       }, 2000);
 
+      if (this.isLoggedIn()) this.gotohome();
+
   }
 
   ngOnInit(): any {
