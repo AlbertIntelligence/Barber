@@ -4,6 +4,7 @@ import {TicketConfirmationPage} from "../ticket-confirmation/ticket-confirmation
 import firebase from 'firebase';
 import {Alert} from "../alert/alert";
 import * as $ from 'jquery';
+import {TicketCancellationConfirmationPage} from "../ticket-cancellation-confirmation/ticket-cancellation-confirmation";
 
 
 @Component({
@@ -26,6 +27,12 @@ export class GetaTicketPage {
   public userPosition:any;
   private dataSnapshot:Array<any> = [];
   private dataSnapshotStandBy:Array<any> = [];
+  private buttonText:String = "PRENDRE UN NUMÉRO";
+  private hasTicket:any;
+  private ticketId:any;
+  private buttonColor:String = "primary";
+  private buttonType:String = "add-circle";
+  private ticketTimeStamp:any;
 
   constructor(public nav: NavController, private newAlert?: Alert,public ticketConfirmation?:TicketConfirmationPage) {
     this.getCurrentClient();
@@ -47,6 +54,11 @@ export class GetaTicketPage {
         this.TicketDiv();
     }
 
+  }
+
+  // Open ticket cancellation confirmation view page
+  public goToTicketCancellationPage() {
+    this.nav.push(TicketCancellationConfirmationPage);
   }
 
 
@@ -117,23 +129,26 @@ export class GetaTicketPage {
    Date de modification:
    Description: This function tells if a user is logged in
    *****************************************************************************/
-  private addClientToList(){
+  private addClientToList() {
+    var timeStamp = new Date().getTime().toString();
     const dbRefObject = firebase.database().ref().child('TicketList/Users/');
     this.userPosition = Number(this.lastPosition) +1;
     var uPosition = this.userPosition;
     this.ticketConfirmation = uPosition;
     dbRefObject.child(uPosition).set(
- {
-        "firstName" : this.userInfoFirstName,
-        "lastName": this.userInfoLastName,
-        "email":this.userInfoEmailName,
-        "phoneNumber":this.userInfoPhoneNumber,
-        "uid":this.userInfoUserId
-       }
+        {
+          "firstName" : this.userInfoFirstName,
+          "lastName": this.userInfoLastName,
+          "email":this.userInfoEmailName,
+          "phoneNumber":this.userInfoPhoneNumber,
+          "uid":this.userInfoUserId,
+          "timeStamp":timeStamp
+         }
        );
   }
 
   updateDataSnapshot() {
+    var userId = firebase.auth().currentUser.uid;
     let model = this;
     firebase.database().ref('TicketList/Users/')
       .on('value', function(snapshot) {
@@ -142,20 +157,34 @@ export class GetaTicketPage {
         for (var property in tickets) {
           if (tickets.hasOwnProperty(property)) {
             model.dataSnapshot.push(tickets[property]);
+            if (tickets[property].uid == userId) {
+               model.hasTicket = true;
+               model.buttonText = "ANNULER MON NUMÉRO";
+               model.ticketId = property;
+               model.buttonColor = "danger";
+               model.buttonType = "remove-circle";
+            }
           }
         }
       });
 
-      firebase.database().ref('StandByList/Users/')
-        .on('value', function(snapshot) {
-          let tickets = snapshot.val();
-          model.dataSnapshot = [];
-          for (var property in tickets) {
-            if (tickets.hasOwnProperty(property)) {
-              model.dataSnapshotStandBy.push(tickets[property]);
+    firebase.database().ref('StandByList/Users/')
+      .on('value', function(snapshot) {
+        let tickets = snapshot.val();
+        model.dataSnapshot = [];
+        for (var property in tickets) {
+          if (tickets.hasOwnProperty(property)) {
+            model.dataSnapshotStandBy.push(tickets[property]);
+            if (tickets[property].uid == userId) {
+               model.hasTicket = true;
+               model.buttonText = "ANNULER MON NUMÉRO";
+               model.ticketId = property;
+               model.buttonColor = "danger";
+               model.buttonType = "remove-circle";
             }
           }
-        });
+        }
+      });
   }
 
   isAvailable(): Boolean {
@@ -181,12 +210,70 @@ export class GetaTicketPage {
     return this.hiddenDiv;
   }
 
+  /*****************************************************************************
+  Function: canCancel
+  Purpose: Tells if user can cancel ticket
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  canCancel(): Boolean {
+    var timeStamp = new Date().getTime();
+    var delta = (timeStamp - parseInt(this.ticketTimeStamp)) / (1000 * 60); //minutes
+    if (delta < 30) return true;
+    return false;
+  }
+
+  /*****************************************************************************
+  Function: cancelTicket
+  Purpose: Cancel the user ticket
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  cancelTicket() {
+    var id = this.ticketTimeStamp;
+    firebase.database().ref('TicketList/Users/' + id).once('value').then(function(snapshot) {
+      var ticket = snapshot.val();
+
+      firebase.database().ref().child('TicketsArchive/Users/').update({
+        [id] : ticket
+      });
+    });
+
+    firebase.database().ref().child('TicketList/Users/' + id).remove();
+    this.goToTicketCancellationPage();
+    this.hasTicket = false;
+    this.buttonText = 'PRENDRE UN NUMÉRO';
+
+    firebase.database().ref('StandByList/Users/' + id).once('value').then(function(snapshot) {
+      var ticket = snapshot.val();
+
+      firebase.database().ref().child('TicketsArchive/Users/').update({
+        [id] : ticket
+      });
+    });
+
+    firebase.database().ref().child('StandByList/Users/' + id).remove();
+    this.goToTicketCancellationPage();
+    this.hasTicket = false;
+    this.buttonText = 'PRENDRE UN NUMÉRO';
+
+    this.updateDataSnapshot();
+  }
+
   public confirmMessage() {
-    if(this.isAvailable()) {
-      this.newAlert.presentAlert();
+    if (this.buttonText == "PRENDRE UN NUMÉRO") {
+      if(this.isAvailable()) {
+        this.newAlert.presentAlert();
+      }
+      else
+        this.newAlert.ticketExist();
+    } else {
+      if (this.canCancel()) {
+        this.cancelTicket();
+      } else {
+        this.newAlert.cannotCancel();
+      }
     }
-    else
-      this.newAlert.ticketExist();
   }
 
   // Open ticket confirmation view page

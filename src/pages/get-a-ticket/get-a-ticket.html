@@ -53,11 +53,11 @@
 
       <ion-grid style="margin-top: 1%">
         <ion-row>
-          <ion-icon (click)="confirmMessage()" color="primary" style="margin:auto; font-size: 50px;" name="add-circle"></ion-icon>
+          <ion-icon (click)="confirmMessage()" color="{{ buttonColor }}" style="margin:auto; font-size: 50px;" name="{{ buttonType }}"></ion-icon>
         </ion-row>
 
         <ion-row>
-          <p style="margin:auto; font-size: 10px">PRENDRE UN NUMERO</p>
+          <p style="margin:auto; font-size: 10px">{{ buttonText }}</p>
         </ion-row>
       </ion-grid>
     </div>

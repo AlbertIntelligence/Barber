@@ -83,7 +83,7 @@ export class GetAnAppointmentPage {
   private openingHour:String;
   private closingHour:String;
   private hasAnAppointment:Boolean = false;
-  private buttonText:String = "Réserver";
+  private buttonText:String = "RÉSERVER";
   private appointmentId:any;
 
   // A Map where key = 'DD-MMM-YYYY' and Value as the ViewChild Reference of the date element displayed in the
@@ -209,7 +209,7 @@ export class GetAnAppointmentPage {
           if (appointments.hasOwnProperty(property)) {
               if (appointments[property].UserId == userId) {
                  controller.hasAnAppointment = true;
-                 controller.buttonText = "Annuler Réservation";
+                 controller.buttonText = "ANNULER RÉSERVATION";
                  controller.appointmentId = property;
                  hasAppointment = true;
               }
@@ -217,7 +217,7 @@ export class GetAnAppointmentPage {
        }
        if (!hasAppointment) {
          controller.hasAnAppointment = false;
-         controller.buttonText = 'Réserver';
+         controller.buttonText = 'RÉSERVER';
        }
      });
   }
@@ -230,8 +230,13 @@ export class GetAnAppointmentPage {
   Return: None
   *****************************************************************************/
   getAppointment() {
-    if (this.buttonText == "Annuler Réservation") {
-      this.displayAppointmentConfirmation(date, hour, 'cancellation');
+    if (this.buttonText == "ANNULER RÉSERVATION") {
+      if (this.canCancel()) {
+        this.displayAppointmentConfirmation(date, hour, 'cancellation');
+      } else {
+        this.showAlert('Annulation impossible !', 'Vous ne pouvez plus annuler votre réservation.');
+        this.buttonText = "RÉSERVER";
+      }
       return;
     }
 
@@ -276,8 +281,22 @@ export class GetAnAppointmentPage {
     firebase.database().ref().child('Appointments/Users/' + id).remove();
     this.goToAppointmentConfirmationPage('Cancellation', 'Cancellation');
     this.hasAnAppointment = false;
-    this.buttonText = 'Réserver';
+    this.buttonText = 'RÉSERVER';
     this.updateDataSnapshot();
+  }
+
+  /*****************************************************************************
+  Function: cancelReservation
+  Purpose: Cancel the user reservation
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  canCancel(): Boolean {
+    var timeStamp = new Date().getTime();
+    var appointmentTimeStamp = parseInt(this.appointmentId);
+    var delta = (timeStamp - appointmentTimeStamp) / (1000 * 60); //minutes
+    if (delta < 30) return true;
+    return false;
   }
 
   /*****************************************************************************
