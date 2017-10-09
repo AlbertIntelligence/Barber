@@ -1,3 +1,5 @@
+//npm install express body-parser cors stripe --save
+
 var stripe = require("stripe")("sk_test_tpF8KRd8RfbX6bR7qi9Z0xWf");
 var express = require('express');
 var bodyParser = require('body-parser');

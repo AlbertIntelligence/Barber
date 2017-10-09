@@ -33,11 +33,13 @@ export class HomePage {
   private estimatedWaitingTime:any;
   private checkInMessage:any = "Mario Perfect Cut";
   private reservation:any = "Aucune réservation";
+  private ticketId:any;
+  private appointmentId:any;
 
   constructor(public nav: NavController, public galleryService: GalleryService, public alertCtrl: AlertController,
               private barcodeScanner: BarcodeScanner, public progress:ProgressBarComponent) {
 
-    this.pictures = galleryService.getAll();
+    this.updateIds();
     this.ClientWaiting();
     this.TotalReservation();
     this.DirectMessages();
@@ -175,7 +177,9 @@ export class HomePage {
       } else {
         this.showAlert('Code erroné', 'Veuillez scanner un code valide.');
       }
-    });
+    }).catch(function(error){
+        this.showAlert('Erreur!', error);
+    });;
   }
 
   /*****************************************************************************
@@ -185,39 +189,21 @@ export class HomePage {
   Return: None
   *****************************************************************************/
   checkInUser() {
-    var userId = firebase.auth().currentUser.uid;
     var timeStamp = new Date().getTime().toString();
-    let controller = this;
 
-    firebase.database().ref('TicketList/Users/')
-     .on('value', function(snapshot) {
-       let tickets = snapshot.val();
-       for (var property in tickets) {
-          if (tickets.hasOwnProperty(property)) {
-              if (tickets[property].UserId == userId) {
-                firebase.database().ref().child('TicketList/Users/' + property).update({
-                  hasCheckedIn: true,
-                  checkInTime: timeStamp
-                });
-              }
-          }
-       }
-     });
-
-     firebase.database().ref('Appointments/Users/')
-      .on('value', function(snapshot) {
-        let appointments = snapshot.val();
-        for (var property in appointments) {
-           if (appointments.hasOwnProperty(property)) {
-               if (appointments[property].UserId == userId) {
-                 firebase.database().ref().child('Appointments/Users/' + property).update({
-                   hasCheckedIn: true,
-                   checkInTime: timeStamp
-                 });
-               }
-           }
-        }
+    if (this.ticketId != undefined) {
+      firebase.database().ref().child('TicketList/Users/' + this.ticketId).update({
+        hasCheckedIn: true,
+        checkInTime: timeStamp
       });
+    }
+
+    if (this.appointmentId != undefined) {
+      firebase.database().ref().child('Appointments/Users/' + this.appointmentId).update({
+        hasCheckedIn: true,
+        checkInTime: timeStamp
+      });
+    }
   }
 
   /*****************************************************************************
@@ -238,6 +224,36 @@ export class HomePage {
           }
        }
      });
+  }
+
+  /*****************************************************************************
+  Function: updateIds
+  Purpose: update ticket and appointments ids
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  updateIds() {
+    var userId = firebase.auth().currentUser.uid;
+    let controller = this;
+    firebase.database().ref('Appointments/Users')
+     .on('value', function(snapshot) {
+       let appointments = snapshot.val();
+       for (var property in appointments) {
+          if (appointments.hasOwnProperty(property)) {
+              if (appointments[property].UserId == userId) controller.appointmentId = property;
+          }
+       }
+     });
+
+     firebase.database().ref('TicketList/Users')
+      .on('value', function(snapshot) {
+        let tickets = snapshot.val();
+        for (var property in tickets) {
+           if (tickets.hasOwnProperty(property)) {
+               if (tickets[property].UserId == userId) controller.ticketId = property;
+           }
+        }
+      });
   }
 
   /*****************************************************************************
