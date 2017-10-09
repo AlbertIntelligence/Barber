@@ -83,6 +83,8 @@ export class GetAnAppointmentPage {
   private openingHour:String;
   private closingHour:String;
   private hasAnAppointment:Boolean = false;
+  private buttonText:String = "Réserver";
+  private appointmentId:any;
 
   // A Map where key = 'DD-MMM-YYYY' and Value as the ViewChild Reference of the date element displayed in the
   // calendar view
@@ -197,6 +199,7 @@ export class GetAnAppointmentPage {
   updateDataSnapshot() {
     let controller = this;
     var userId = firebase.auth().currentUser.uid;
+    var hasAppointment = false;
     firebase.database().ref('Appointments/Users/')
      .on('value', function(snapshot) {
        controller.verifyAvailibility();
@@ -204,8 +207,17 @@ export class GetAnAppointmentPage {
        let appointments = snapshot.val();
        for (var property in appointments) {
           if (appointments.hasOwnProperty(property)) {
-              if (appointments[property].UserId == userId) controller.hasAnAppointment = true;
+              if (appointments[property].UserId == userId) {
+                 controller.hasAnAppointment = true;
+                 controller.buttonText = "Annuler Réservation";
+                 controller.appointmentId = property;
+                 hasAppointment = true;
+              }
           }
+       }
+       if (!hasAppointment) {
+         controller.hasAnAppointment = false;
+         controller.buttonText = 'Réserver';
        }
      });
   }
@@ -218,6 +230,11 @@ export class GetAnAppointmentPage {
   Return: None
   *****************************************************************************/
   getAppointment() {
+    if (this.buttonText == "Annuler Réservation") {
+      this.displayAppointmentConfirmation(date, hour, 'cancellation');
+      return;
+    }
+
     if (this.hasAnAppointment) {
       this.showAlert('Erreur', 'Vous avez déjà un rendez-vous.');
       return;
@@ -237,8 +254,30 @@ export class GetAnAppointmentPage {
 
     var date = this.currentDate.format(FORMAT);
     var hour = this.currentHour + " : " + this.currentMinutes;
-    (this.appointments.isAvailable(date, hour)) ? this.displayAppointmentConfirmation(date, hour) : this.showAlert('Réservation impossible !', 'Veuillez choisir une autre plage horaire.');
+    (this.appointments.isAvailable(date, hour)) ? this.displayAppointmentConfirmation(date, hour, 'reservation') : this.showAlert('Réservation impossible !', 'Veuillez choisir une autre plage horaire.');
     this.disableBookedDays();
+  }
+
+  /*****************************************************************************
+  Function: cancelReservation
+  Purpose: Cancel the user reservation
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  cancelReservation() {
+    var id = this.appointmentId;
+    firebase.database().ref('Appointments/Users/' + id).once('value').then(function(snapshot) {
+      var appointment = snapshot.val();
+      firebase.database().ref().child('AppointmentsArchive/Users/').update({
+        [id] : appointment
+      });
+    });
+
+    firebase.database().ref().child('Appointments/Users/' + id).remove();
+    this.goToAppointmentConfirmationPage('Cancellation', 'Cancellation');
+    this.hasAnAppointment = false;
+    this.buttonText = 'Réserver';
+    this.updateDataSnapshot();
   }
 
   /*****************************************************************************
@@ -247,9 +286,10 @@ export class GetAnAppointmentPage {
   Parameters: None
   Return: None
   *****************************************************************************/
-  displayAppointmentConfirmation (date, hour) {
+  displayAppointmentConfirmation (date, hour, action) {
+    var title = (action == 'reservation') ? 'Confirmez votre réservation' : 'Confirmez votre annulation';
     let alert = this.alertCtrl.create({
-      title: 'Confirmez votre réservation',
+      title: title,
       subTitle: 'En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de Barber Me.',
       buttons: [{
         text: 'Annuler',
@@ -261,9 +301,13 @@ export class GetAnAppointmentPage {
       {
         text: 'Confirmer',
             handler: () => {
-              this.appointments.createNew(date, hour);
-              this.goToAppointmentConfirmationPage(date, hour);
-              this.hasAnAppointment = true;
+              if (action == 'reservation') {
+                this.appointments.createNew(date, hour);
+                this.goToAppointmentConfirmationPage(date, hour);
+                this.hasAnAppointment = true;
+              } else {
+                this.cancelReservation();
+              }
             }
       }]
     });
