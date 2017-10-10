@@ -286,6 +286,15 @@ export class PhoneNumberPage {
       this.currentView = "passwordConfirmation";
     }
 
+    //back to the password confirmation view
+    else if (this.currentView == "phoneNumber") {
+      this.translate($("#phoneNumberTitle"), "0px", "0px");
+      this.translate($("#nameTitle"), "-100vw", "0px");
+      this.translate($("#phoneNumberInput"), "0px", "0px");
+      this.translate($("#nameInput"), "-100vw", "0px");
+      this.currentView = "name";
+    }
+
     //back to the name view
     else if (this.currentView == "paymentMethod") {
       $("#nextBtn").show();
@@ -318,10 +327,10 @@ export class PhoneNumberPage {
     switch (this.currentView) {
       //Go to enter your password view
       case "email":
-        if (this.disconnected) {this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.'); break;}
-        this.userExists = false;
         var email = $("#email").val();
         this.email = email;
+        if (this.disconnected) {this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.'); break;}
+        this.userExists = false;
 
         if (email.length > 3 && email.indexOf("@") != -1 && email.indexOf(".") != -1) {
           if (this.passwordToBeReset) {
@@ -341,11 +350,9 @@ export class PhoneNumberPage {
             this.translate($("#emailInput"), "-100vw", "14vh");
 
             //Check if user is already registered
-            if (this.alreadyExists()) {
-              this.userExists = true;
-              var passTitle = (this.userExists) ? 'Ravi de vous revoir, entrez votre mot de passe' : 'Créez votre mot de passe';
-              $("#passwordTitle").children().eq(0).text(passTitle);
-            }
+            this.userExists = this.alreadyExists();
+            var passTitle = (this.userExists) ? 'Ravi de vous revoir, entrez votre mot de passe' : 'Créez votre mot de passe';
+            $("#passwordTitle").children().eq(0).text(passTitle);
           }
         } else {
           $("#emailInput").css('border-bottom', '2px solid red');
@@ -394,28 +401,45 @@ export class PhoneNumberPage {
         }
         break;
 
+        //Go to credit card form
+        case "name":
+          if (this.disconnected) {this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.'); break;}
+          var firstName = $("#firstName").children().eq(0).val();
+          var lastName = $("#lastName").children().eq(0).val();
+          this.firstName = firstName; this.lastName = lastName;
+          if (firstName.length > 0 && lastName.length > 0) {
+            this.currentView = "phoneNumber";
+            $("#phoneNumberInput").css('border-bottom', '2px solid black');
+
+            this.translate($("#phoneNumberTitle"), "-100vw", "0px");
+            this.translate($("#nameTitle"), "-200vw", "0px");
+            this.translate($("#phoneNumberInput"), "-100vw", "0px");
+            this.translate($("#nameInput"), "-200vw", "0px");
+          } else {
+            if (lastName.length == 0) {
+              $("#lastName").css('border-bottom', '2px solid red');
+            }
+            if (firstName.length == 0) {
+              $("#firstName").css('border-bottom', '2px solid red');
+            }
+          }
+          break;
+
       //Go to enter select payment method
-      case "name":
+      case "phoneNumber":
         if (this.disconnected) {this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.'); break;}
-        var firstName = $("#firstName").children().eq(0).val();
-        var lastName = $("#lastName").children().eq(0).val();
-        this.firstName = firstName; this.lastName = lastName;
-        if (firstName.length > 0 && lastName.length > 0) {
-          this.currentView = "paymentMethod";
+        if ($("#input").val().length == 14) {
+          this.createUser();
+          /*this.currentView = "paymentMethod";
           $("#nextBtn").hide();
           $("#firstName").children().eq(0).blur();
           $("#lastName").children().eq(0).blur();
           this.translate($("#paymentTitle"), "-100vw", "0px");
           this.translate($("#nameTitle"), "-200vw", "0px");
           this.translate($("#paymentList"), "-100vw", "0px");
-          this.translate($("#nameInput"), "-200vw", "0px");
+          this.translate($("#nameInput"), "-200vw", "0px");*/
         } else {
-          if (lastName.length == 0) {
-            $("#lastName").css('border-bottom', '2px solid red');
-          }
-          if (firstName.length == 0) {
-            $("#firstName").css('border-bottom', '2px solid red');
-          }
+          $("#phoneNumberInput").css('border-bottom', '2px solid red');
         }
         break;
 
@@ -429,7 +453,7 @@ export class PhoneNumberPage {
         $("#expirationDate").css('border-bottom', '2px solid #F2F2F2');
         $("#cvv").css('border-bottom', '2px solid #F2F2F2');
         $("#country").css('border-bottom', '2px solid #F2F2F2');
-        $("#phoneNumber").css('border-bottom', '2px solid #F2F2F2');
+        $("#phoneNumberInput").css('border-bottom', '2px solid #F2F2F2');
 
         this.translate($("#creditCardTitle"), "-100vw", "0px");
         this.translate($("#paymentTitle"), "-200vw", "0px");
@@ -525,6 +549,7 @@ export class PhoneNumberPage {
         smsNotification: true
       });
     }).catch(function (error) {
+      console.log(error);
       loginController.showAlert('Inscription Impossible !', 'Veuillez entrer une adresse courriel valide.');
     });
   }
