@@ -29,7 +29,8 @@ export class GetaTicketPage {
   private dataSnapshotStandBy:Array<any> = [];
   private buttonText:String = "PRENDRE UN NUMÉRO";
   private hasTicket:any;
-  private ticketId:any;
+  private ticketId:any = null;
+  private standbyTicketId:any = null;
   private buttonColor:String = "primary";
   private buttonType:String = "add-circle";
   private ticketTimeStamp:any;
@@ -150,8 +151,10 @@ export class GetaTicketPage {
   updateDataSnapshot() {
     var userId = firebase.auth().currentUser.uid;
     let model = this;
+
     firebase.database().ref('TicketList/Users/')
       .on('value', function(snapshot) {
+        model.hasTicket = false;
         let tickets = snapshot.val();
         model.dataSnapshot = [];
         for (var property in tickets) {
@@ -161,10 +164,17 @@ export class GetaTicketPage {
                model.hasTicket = true;
                model.buttonText = "ANNULER MON NUMÉRO";
                model.ticketId = property;
+               model.standbyTicketId = null;
                model.buttonColor = "danger";
                model.buttonType = "remove-circle";
+               model.ticketTimeStamp = tickets[property].timeStamp;
             }
           }
+        }
+        if (!model.hasTicket) {
+          model.buttonType = 'add-circle';
+          model.buttonColor = 'primary';
+          model.buttonText = "PRENDRE UN NUMÉRO";
         }
       });
 
@@ -178,11 +188,18 @@ export class GetaTicketPage {
             if (tickets[property].uid == userId) {
                model.hasTicket = true;
                model.buttonText = "ANNULER MON NUMÉRO";
-               model.ticketId = property;
+               model.standbyTicketId = property;
+               model.ticketId = null;
                model.buttonColor = "danger";
                model.buttonType = "remove-circle";
+               model.ticketTimeStamp = tickets[property].timeStamp;
             }
           }
+        }
+        if (!model.hasTicket) {
+          model.buttonType = 'add-circle';
+          model.buttonColor = 'primary';
+          model.buttonText = "PRENDRE UN NUMÉRO";
         }
       });
   }
@@ -231,33 +248,41 @@ export class GetaTicketPage {
   *****************************************************************************/
   cancelTicket() {
     var id = this.ticketTimeStamp;
-    firebase.database().ref('TicketList/Users/' + id).once('value').then(function(snapshot) {
-      var ticket = snapshot.val();
-
-      firebase.database().ref().child('TicketsArchive/Users/').update({
-        [id] : ticket
-      });
+    var userId = firebase.auth().currentUser.uid;
+    firebase.database().ref('TicketList/Users/').once('value').then(function(snapshot) {
+      var tickets = snapshot.val();
+      var ticket;
+      for (var property in tickets) {
+         if (tickets.hasOwnProperty(property)) {
+             if (tickets[property].uid == userId) {
+               ticket = tickets[property];
+               firebase.database().ref().child('TicketsArchive/Users/').update({
+                 [id] : ticket
+               });
+             }
+         }
+      }
     });
 
-    firebase.database().ref().child('TicketList/Users/' + id).remove();
-    this.goToTicketCancellationPage();
-    this.hasTicket = false;
-    this.buttonText = 'PRENDRE UN NUMÉRO';
-
-    firebase.database().ref('StandByList/Users/' + id).once('value').then(function(snapshot) {
-      var ticket = snapshot.val();
-
-      firebase.database().ref().child('TicketsArchive/Users/').update({
-        [id] : ticket
-      });
+    firebase.database().ref('StandByList/Users/').once('value').then(function(snapshot) {
+      var tickets = snapshot.val();
+      var ticket;
+      for (var property in tickets) {
+         if (tickets.hasOwnProperty(property)) {
+             if (tickets[property].uid == userId) {
+               ticket = tickets[property];
+               firebase.database().ref().child('TicketsArchive/Users/').update({
+                 [id] : ticket
+               });
+             }
+         }
+      }
     });
 
-    firebase.database().ref().child('StandByList/Users/' + id).remove();
-    this.goToTicketCancellationPage();
-    this.hasTicket = false;
-    this.buttonText = 'PRENDRE UN NUMÉRO';
+    if (this.ticketId != null) firebase.database().ref().child('TicketList/Users/' + this.ticketId).remove();
+    if (this.standbyTicketId != null) firebase.database().ref().child('StandByList/Users/' + this.standbyTicketId).remove();
 
-    this.updateDataSnapshot();
+    this.goToTicketCancellationPage();
   }
 
   public confirmMessage() {
@@ -269,7 +294,7 @@ export class GetaTicketPage {
         this.newAlert.ticketExist();
     } else {
       if (this.canCancel()) {
-        this.cancelTicket();
+        this.newAlert.showCancellationConfirmation();
       } else {
         this.newAlert.cannotCancel();
       }
