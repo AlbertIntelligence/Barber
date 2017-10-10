@@ -12,6 +12,7 @@ import {GetaTicketPage} from "../pages/get-a-ticket/get-a-ticket";
 import {TicketConfirmationPage} from "../pages/ticket-confirmation/ticket-confirmation";
 import {AppointmentConfirmationPage} from "../pages/appointment-confirmation/appointment-confirmation";
 import {CheckInConfirmationPage} from "../pages/checkin-confirmation/checkin-confirmation";
+import {TicketCancellationConfirmationPage} from "../pages/ticket-cancellation-confirmation/ticket-cancellation-confirmation";
 import {CreateUserPage} from "../pages/create-user/create-user";
 import {PhoneNumberPage} from "../pages/phone-number/phone-number";
 import {GalleryPage} from "../pages/gallery/gallery";
@@ -49,6 +50,7 @@ const providers = [ ];
     TicketConfirmationPage,
     AppointmentConfirmationPage,
     CheckInConfirmationPage,
+    TicketCancellationConfirmationPage,
     GalleryPage,
     SettingsPage,
     components,
@@ -80,6 +82,7 @@ const providers = [ ];
     TicketConfirmationPage,
     AppointmentConfirmationPage,
     CheckInConfirmationPage,
+    TicketCancellationConfirmationPage,
     GalleryPage,
     SettingsPage,
     BarberLocation,
@@ -95,6 +98,7 @@ const providers = [ ];
     TicketConfirmationPage,
     AppointmentConfirmationPage,
     CheckInConfirmationPage,
+    TicketCancellationConfirmationPage,
     GalleryPage,
     SettingsPage,
     Alert,

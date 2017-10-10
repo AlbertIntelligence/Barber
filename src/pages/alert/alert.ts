@@ -32,11 +32,11 @@ export class Alert {
   *****************************************************************************/
   presentAlert() {
     let alert = this.alertCtrl.create({
-      title: 'Confirmation de ticket',
-      message: "Oui, j'accepte les Termes et Conditions de BarberMe",
+      title: 'Confirmez votre Ticket',
+      message: "En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de Barber Me.",
       buttons: [
         {
-          text: 'Canceler',
+          text: 'Annuler',
           role: 'cancel',
           handler: data => {
             console.log('Cancel clicked');
@@ -65,14 +65,67 @@ export class Alert {
    *****************************************************************************/
   ticketExist() {
     let alert = this.alertCtrl.create({
-      title: 'Tu a deja un ticket.',
-      message: "Vous ne pouvez prendre plus d'un ticket.",
+      title: 'Erreur.',
+      message: "Vous avez déjà un ticket.",
       buttons: [
         {
           text: 'Ok',
           role: 'cancel',
           handler: data => {
             console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  /*****************************************************************************
+   Function: cannotCancel
+   Description: This function display a warning on pop-up
+   Parameters: None
+   Return: None
+   *****************************************************************************/
+  cannotCancel() {
+    let alert = this.alertCtrl.create({
+      title: 'Annulation Impossible !',
+      message: "Vous ne pouvez plus annuler votre ticket.",
+      buttons: [
+        {
+          text: 'OK',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  /*****************************************************************************
+  Function: showCancellationConfirmation
+  Description: This function display a warning on pop-up
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  showCancellationConfirmation() {
+    let alert = this.alertCtrl.create({
+      title: 'Confirmez votre annulation',
+      message: "En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de Barber Me.",
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Confirmer',
+            handler: data => {
+              this.ticket.cancelTicket();
+
           }
         }
       ]
