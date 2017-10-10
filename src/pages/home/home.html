@@ -32,6 +32,13 @@
           <span ion-text color="dark">Prendre un rendez vous</span>
         </ion-col>
       </ion-row>
+
+      <ion-row style="padding:auto" (click)="scanQrCode()">
+        <ion-col style="margin:auto; width: 100%">
+          <ion-icon ios="ios-pin" md="md-pin" pull-right color="green"></ion-icon>
+          <span style="font-size: 17px" ion-text color="dark">Confirmez votre présence ici</span>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </div>
 
@@ -46,13 +53,13 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid class="list-hotels" style="margin-top: 20px">
+  <ion-grid class="list-hotels" style="margin-top: 10px">
    <ion-row style="height:auto">
      <ion-col col-12>
        <div class="hotel-bg bg-filter" [ngStyle]="{'background-image': 'url(assets/img/bg2.jpg)'}">
          <div class="bg-filter" style="height:125px">
 
-           <div class="discount" style="font-size: 20px">{{numberClientWaitingTicketList}}</div>
+           <div class="discount" style="font-size: 20px">{{numberClientWaiting}}</div>
 
            <div class="bottom-info pull-left" style="height: auto">
              <h5 ion-text color="light">Clients avant votre tour</h5>
@@ -64,24 +71,6 @@
    </ion-row>
  </ion-grid>
 
- <ion-grid class="list-hotels" style="margin-top: 15px">
-  <ion-row style="height:auto">
-    <ion-col col-12>
-      <div class="hotel-bg bg-filter" [ngStyle]="{'background-image': 'url(assets/img/bg2.jpg)'}">
-        <div class="bg-filter" style="height:125px">
-
-          <div class="discount" style="font-size: 20px">30</div>
-
-          <div class="bottom-info pull-left" style="height: auto">
-            <h5 ion-text color="light">Temps d'attente (en minutes)</h5>
-          </div>
-
-        </div>
-      </div>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-
 <ion-grid class="list-hotels" style="margin-top: 15px">
  <ion-row style="height:auto">
    <ion-col col-12>
@@ -89,9 +78,8 @@
        <div class="bg-filter" style="height:125px">
          <div class="bottom-info pull-left" style="height: auto;">
            <h5 ion-text color="light">Votre réservation: </h5>
-           <h5 ion-text color="light">21-Sep-2017, 10 : 00</h5>
+           <h5 ion-text color="light">{{ reservation }}</h5>
          </div>
-
        </div>
      </div>
    </ion-col>

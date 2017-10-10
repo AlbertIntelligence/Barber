@@ -36,6 +36,10 @@
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+        },
+        "phonegap-plugin-barcodescanner": {
+            "CAMERA_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         }
     },
     "dependent_plugins": {}

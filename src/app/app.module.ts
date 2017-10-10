@@ -11,6 +11,8 @@ import {LoginPage} from "../pages/login/login";
 import {GetaTicketPage} from "../pages/get-a-ticket/get-a-ticket";
 import {TicketConfirmationPage} from "../pages/ticket-confirmation/ticket-confirmation";
 import {AppointmentConfirmationPage} from "../pages/appointment-confirmation/appointment-confirmation";
+import {CheckInConfirmationPage} from "../pages/checkin-confirmation/checkin-confirmation";
+import {TicketCancellationConfirmationPage} from "../pages/ticket-cancellation-confirmation/ticket-cancellation-confirmation";
 import {CreateUserPage} from "../pages/create-user/create-user";
 import {PhoneNumberPage} from "../pages/phone-number/phone-number";
 import {GalleryPage} from "../pages/gallery/gallery";
@@ -24,6 +26,8 @@ import { HttpModule } from '@angular/http';
 import { Stripe } from '@ionic-native/stripe';
 import { Network } from '@ionic-native/network';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 // import services
 // end import services
@@ -45,6 +49,8 @@ const providers = [ ];
     GetaTicketPage,
     TicketConfirmationPage,
     AppointmentConfirmationPage,
+    CheckInConfirmationPage,
+    TicketCancellationConfirmationPage,
     GalleryPage,
     SettingsPage,
     components,
@@ -59,6 +65,7 @@ const providers = [ ];
   imports: [
     BrowserModule,
     HttpModule,
+    NgxQRCodeModule,
     IonicModule.forRoot(MyApp,{
       scrollPadding: false,
       scrollAssist: false,
@@ -74,6 +81,8 @@ const providers = [ ];
     GetaTicketPage,
     TicketConfirmationPage,
     AppointmentConfirmationPage,
+    CheckInConfirmationPage,
+    TicketCancellationConfirmationPage,
     GalleryPage,
     SettingsPage,
     BarberLocation,
@@ -88,6 +97,8 @@ const providers = [ ];
     GetaTicketPage,
     TicketConfirmationPage,
     AppointmentConfirmationPage,
+    CheckInConfirmationPage,
+    TicketCancellationConfirmationPage,
     GalleryPage,
     SettingsPage,
     Alert,
@@ -97,6 +108,7 @@ const providers = [ ];
     Stripe,
     Network,
     SplashScreen,
+    BarcodeScanner,
     providers,
     ProgressBarComponent
     /* import services */

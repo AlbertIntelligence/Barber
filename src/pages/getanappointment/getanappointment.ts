@@ -82,6 +82,9 @@ export class GetAnAppointmentPage {
   private conflictMessageClasses:any = { 'conflictMessageOn': false, 'conflictMessageOff': true };
   private openingHour:String;
   private closingHour:String;
+  private hasAnAppointment:Boolean = false;
+  private buttonText:String = "RÉSERVER";
+  private appointmentId:any;
 
   // A Map where key = 'DD-MMM-YYYY' and Value as the ViewChild Reference of the date element displayed in the
   // calendar view
@@ -195,10 +198,27 @@ export class GetAnAppointmentPage {
   *****************************************************************************/
   updateDataSnapshot() {
     let controller = this;
-    firebase.database().ref('Appointments/')
+    var userId = firebase.auth().currentUser.uid;
+    var hasAppointment = false;
+    firebase.database().ref('Appointments/Users/')
      .on('value', function(snapshot) {
        controller.verifyAvailibility();
        controller.appointments.getDaysBooked();
+       let appointments = snapshot.val();
+       for (var property in appointments) {
+          if (appointments.hasOwnProperty(property)) {
+              if (appointments[property].UserId == userId) {
+                 controller.hasAnAppointment = true;
+                 controller.buttonText = "ANNULER RÉSERVATION";
+                 controller.appointmentId = property;
+                 hasAppointment = true;
+              }
+          }
+       }
+       if (!hasAppointment) {
+         controller.hasAnAppointment = false;
+         controller.buttonText = 'RÉSERVER';
+       }
      });
   }
 
@@ -210,6 +230,21 @@ export class GetAnAppointmentPage {
   Return: None
   *****************************************************************************/
   getAppointment() {
+    if (this.buttonText == "ANNULER RÉSERVATION") {
+      if (this.canCancel()) {
+        this.displayAppointmentConfirmation(date, hour, 'cancellation');
+      } else {
+        this.showAlert('Annulation impossible !', 'Vous ne pouvez plus annuler votre réservation.');
+        this.buttonText = "RÉSERVER";
+      }
+      return;
+    }
+
+    if (this.hasAnAppointment) {
+      this.showAlert('Erreur', 'Vous avez déjà un rendez-vous.');
+      return;
+    }
+
     if (this.currentDate == undefined) {
       this.showAlert('Erreur', 'Veuillez sélectionner une date.');
       return;
@@ -224,8 +259,44 @@ export class GetAnAppointmentPage {
 
     var date = this.currentDate.format(FORMAT);
     var hour = this.currentHour + " : " + this.currentMinutes;
-    (this.appointments.isAvailable(date, hour)) ? this.displayAppointmentConfirmation(date, hour) : this.showAlert('Réservation impossible !', 'Veuillez choisir une autre plage horaire.');
+    (this.appointments.isAvailable(date, hour)) ? this.displayAppointmentConfirmation(date, hour, 'reservation') : this.showAlert('Réservation impossible !', 'Veuillez choisir une autre plage horaire.');
     this.disableBookedDays();
+  }
+
+  /*****************************************************************************
+  Function: cancelReservation
+  Purpose: Cancel the user reservation
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  cancelReservation() {
+    var id = this.appointmentId;
+    firebase.database().ref('Appointments/Users/' + id).once('value').then(function(snapshot) {
+      var appointment = snapshot.val();
+      firebase.database().ref().child('AppointmentsArchive/Users/').update({
+        [id] : appointment
+      });
+    });
+
+    firebase.database().ref().child('Appointments/Users/' + id).remove();
+    this.goToAppointmentConfirmationPage('Cancellation', 'Cancellation');
+    this.hasAnAppointment = false;
+    this.buttonText = 'RÉSERVER';
+    this.updateDataSnapshot();
+  }
+
+  /*****************************************************************************
+  Function: cancelReservation
+  Purpose: Cancel the user reservation
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  canCancel(): Boolean {
+    var timeStamp = new Date().getTime();
+    var appointmentTimeStamp = parseInt(this.appointmentId);
+    var delta = (timeStamp - appointmentTimeStamp) / (1000 * 60); //minutes
+    if (delta < 30) return true;
+    return false;
   }
 
   /*****************************************************************************
@@ -234,9 +305,10 @@ export class GetAnAppointmentPage {
   Parameters: None
   Return: None
   *****************************************************************************/
-  displayAppointmentConfirmation (date, hour) {
+  displayAppointmentConfirmation (date, hour, action) {
+    var title = (action == 'reservation') ? 'Confirmez votre réservation' : 'Confirmez votre annulation';
     let alert = this.alertCtrl.create({
-      title: 'Confirmez votre réservation',
+      title: title,
       subTitle: 'En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de Barber Me.',
       buttons: [{
         text: 'Annuler',
@@ -248,9 +320,13 @@ export class GetAnAppointmentPage {
       {
         text: 'Confirmer',
             handler: () => {
-              this.appointments.createNew(date, hour);
-              this.goToAppointmentConfirmationPage(date, hour);
-              //this.showAlert('Confirmation', 'Votre réservation est confirmée pour le ' + date + ' à ' + hour);
+              if (action == 'reservation') {
+                this.appointments.createNew(date, hour);
+                this.goToAppointmentConfirmationPage(date, hour);
+                this.hasAnAppointment = true;
+              } else {
+                this.cancelReservation();
+              }
             }
       }]
     });
