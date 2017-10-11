@@ -271,12 +271,12 @@ export class GetAnAppointmentPage {
   *****************************************************************************/
   cancelReservation() {
     var id = this.appointmentId;
-    firebase.database().ref('Appointments/Users/' + id).once('value').then(function(snapshot) {
+    /*firebase.database().ref('Appointments/Users/' + id).once('value').then(function(snapshot) {
       var appointment = snapshot.val();
       firebase.database().ref().child('AppointmentsArchive/Users/').update({
         [id] : appointment
       });
-    });
+    });*/
 
     firebase.database().ref().child('Appointments/Users/' + id).remove();
     this.goToAppointmentConfirmationPage('Cancellation', 'Cancellation');

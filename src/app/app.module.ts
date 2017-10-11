@@ -19,6 +19,7 @@ import {GalleryPage} from "../pages/gallery/gallery";
 import {SettingsPage} from "../pages/settings/settings";
 import {ProgressBarComponent} from "../pages/progress-bar/progress-bar";
 import { GetAnAppointmentPage, DateSelectorDirective } from '../pages/getanappointment/getanappointment';
+import { GetAnAppointmentModel } from '../pages/getanappointment/GetAnAppointmentModel';
 import {Alert} from '../pages/alert/alert';
 import * as firebase from "firebase";
 import { Keyboard } from '@ionic-native/keyboard';
@@ -60,6 +61,7 @@ const providers = [ ];
     CreateUserPage,
     PhoneNumberPage,
     ProgressBarComponent,
+    GetAnAppointmentModel,
 
   ],
   imports: [

@@ -46,7 +46,7 @@ export class PhoneNumberPage {
      public stripe: Stripe, public http: Http, private network: Network) {
 
 
-      this.splashScreen.show();
+      //this.splashScreen.show();
       this.updateUserAccounts();
        // watch network for a disconnect
       this.network.onDisconnect().subscribe(() => {
@@ -59,9 +59,9 @@ export class PhoneNumberPage {
         this.disconnected = false;
       });
 
-      setTimeout(() => {
+      /*setTimeout(() => {
         this.splashScreen.hide();
-      }, 2000);
+      }, 20000);*/
 
       if (this.isLoggedIn()) this.gotohome();
 
