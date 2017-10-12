@@ -47,6 +47,7 @@ export class SettingsPage {
   Return: None
   *****************************************************************************/
   logout() {
+    firebase.auth().signOut();
     this.nav.setRoot(PhoneNumberPage);
   }
 

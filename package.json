@@ -27,6 +27,7 @@
         "@ionic-native/keyboard": "^4.2.1",
         "@ionic-native/native-page-transitions": "^4.1.0",
         "@ionic-native/network": "^4.3.0",
+        "@ionic-native/push": "^4.3.1",
         "@ionic-native/sms": "^4.1.0",
         "@ionic-native/splash-screen": "^4.3.0",
         "@ionic-native/stripe": "^4.3.0",
@@ -61,6 +62,7 @@
         "ngx-bootstrap": "^1.7.1",
         "ngx-qrcode2": "0.0.5",
         "phonegap-plugin-barcodescanner": "^6.0.8",
+        "phonegap-plugin-push": "^2.0.0",
         "rxjs": "5.1.1",
         "stripe": "^5.1.0",
         "sw-toolbox": "3.6.0",
@@ -93,6 +95,9 @@
             "cordova-plugin-splashscreen": {},
             "phonegap-plugin-barcodescanner": {
                 "CAMERA_USAGE_DESCRIPTION": " "
+            },
+            "phonegap-plugin-push": {
+                "SENDER_ID": "351355658098"
             }
         },
         "platforms": [

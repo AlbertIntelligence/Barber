@@ -1,8 +1,57 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
+
+
+admin.initializeApp(functions.config().firebase);
+var wrotedata;
+exports.Pushtrigger = functions.database.ref('/Messages/live').onWrite((event) => {
+    wrotedata = event.data.val();
+
+    admin.database().ref('/Users').once('value').then((users) => {
+        var rawtokens = users.val();
+        var tokens = [];
+        processtokens(rawtokens).then((processedtokens) => {
+
+          for (var token of processedtokens) {
+              if (token.deviceToken != undefined) tokens.push(token.deviceToken);
+          }
+
+          var payload = {
+
+                  "notification":{
+                      "title":"Mario Perfect Cut",
+                      "body":wrotedata,
+                      "sound":"default",
+                      },
+                  "data":{
+                      "sendername":"Mario Perfect Cut",
+                      "message":wrotedata
+                  }
+          }
+          
+          return admin.messaging().sendToDevice(tokens, payload).then((response) => {
+              console.log('Pushed notifications');
+          }).catch((err) => {
+              console.log(err);
+          });
+        });
+    });
+});
+
+function processtokens(rawtokens) {
+    var promise = new Promise((resolve, reject) => {
+         var processedtokens = []
+    for (var token in rawtokens) {
+        processedtokens.push(rawtokens[token]);
+    }
+    resolve(processedtokens);
+    })
+    return promise;
+}
 
 //This function archives every ticket that is deleted from the ticket list
 exports.archiveDeletedTickets = functions.database.ref('TicketList/Users/{pushId}')

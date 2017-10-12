@@ -40,13 +40,12 @@ export class PhoneNumberPage {
   private passwordToBeReset:Boolean = false;
   private disconnected:Boolean = false;
 
-
   constructor(public navCtrl: NavController, public navParams: NavParams, private splashScreen: SplashScreen,
      private keyboard: Keyboard, public platform: Platform, public alertCtrl: AlertController,
      public stripe: Stripe, public http: Http, private network: Network) {
 
 
-      //this.splashScreen.show();
+      this.splashScreen.show();
       this.updateUserAccounts();
        // watch network for a disconnect
       this.network.onDisconnect().subscribe(() => {
@@ -59,9 +58,9 @@ export class PhoneNumberPage {
         this.disconnected = false;
       });
 
-      /*setTimeout(() => {
+      setTimeout(() => {
         this.splashScreen.hide();
-      }, 20000);*/
+      }, 2000);
 
       if (this.isLoggedIn()) this.gotohome();
 
