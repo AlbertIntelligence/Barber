@@ -306,7 +306,6 @@ export class HomePage {
       firebase.database().ref().child('Users/' + userId).update({
         deviceToken : registration.registrationId
       });
-      this.showAlert('Device registered', registration.registrationId);
     });
 
     pushObject.on('error').subscribe(error => console.log('Error with Push plugin ' + error));

@@ -43,6 +43,9 @@
         },
         "phonegap-plugin-push": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+        },
+        "cordova-plugin-app-update": {
+            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         }
     },
     "dependent_plugins": {
@@ -50,6 +53,9 @@
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
         "cordova-plugin-swift-support": {
+            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+        },
+        "cordova-plugin-appversion": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         }
     }

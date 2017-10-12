@@ -17,7 +17,7 @@ exports.Pushtrigger = functions.database.ref('/Messages/live').onWrite((event) =
         processtokens(rawtokens).then((processedtokens) => {
 
           for (var token of processedtokens) {
-              if (token.deviceToken != undefined) tokens.push(token.deviceToken);
+              if (token.deviceToken != undefined && token.pushNotification == true) tokens.push(token.deviceToken);
           }
 
           var payload = {
@@ -32,7 +32,7 @@ exports.Pushtrigger = functions.database.ref('/Messages/live').onWrite((event) =
                       "message":wrotedata
                   }
           }
-          
+
           return admin.messaging().sendToDevice(tokens, payload).then((response) => {
               console.log('Pushed notifications');
           }).catch((err) => {
