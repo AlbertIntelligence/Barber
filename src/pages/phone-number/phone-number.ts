@@ -291,6 +291,7 @@ export class PhoneNumberPage {
       this.translate($("#nameTitle"), "-100vw", "0px");
       this.translate($("#phoneNumberInput"), "0px", "0px");
       this.translate($("#nameInput"), "-100vw", "0px");
+      this.translate($("#termsAndConditions"), "0px", "0px");
       this.currentView = "name";
     }
 
@@ -414,6 +415,7 @@ export class PhoneNumberPage {
             this.translate($("#nameTitle"), "-200vw", "0px");
             this.translate($("#phoneNumberInput"), "-100vw", "0px");
             this.translate($("#nameInput"), "-200vw", "0px");
+            this.translate($("#termsAndConditions"), "-100vw", "0px");
           } else {
             if (lastName.length == 0) {
               $("#lastName").css('border-bottom', '2px solid red');
@@ -696,6 +698,21 @@ export class PhoneNumberPage {
 
   onFocus(parentId) {
     $("#" + parentId).css('border-bottom', '2px solid black');
+  }
+
+  /*****************************************************************************
+  Function: showTermsAndConditions
+  Purpose: Open terms and conditions pop-up
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  showTermsAndConditions() {
+    let controller = this;
+    firebase.database().ref('TermsAndConditions/')
+     .on('value', function(snapshot) {
+       let termsAndConditions = snapshot.val().value;
+       controller.showAlert('Termes et Conditions', termsAndConditions);
+     });
   }
 
 }

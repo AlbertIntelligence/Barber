@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import * as $ from 'jquery';
 import { Network } from '@ionic-native/network';
 import { AlertController } from 'ionic-angular';
+import {TermsAndConditionsPage} from "../terms-and-conditions/terms-and-conditions";
 
 
 /*
@@ -120,6 +121,16 @@ export class SettingsPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  /*****************************************************************************
+  Function: goToTermsAndConditions
+  Purpose: Open terms and conditions page
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  goToTermsAndConditions() {
+    this.nav.push(TermsAndConditionsPage);
   }
 
 }

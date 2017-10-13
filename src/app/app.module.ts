@@ -17,6 +17,7 @@ import {CreateUserPage} from "../pages/create-user/create-user";
 import {PhoneNumberPage} from "../pages/phone-number/phone-number";
 import {GalleryPage} from "../pages/gallery/gallery";
 import {SettingsPage} from "../pages/settings/settings";
+import {TermsAndConditionsPage} from "../pages/terms-and-conditions/terms-and-conditions";
 import {ProgressBarComponent} from "../pages/progress-bar/progress-bar";
 import { GetAnAppointmentPage, DateSelectorDirective } from '../pages/getanappointment/getanappointment';
 import { GetAnAppointmentModel } from '../pages/getanappointment/GetAnAppointmentModel';
@@ -56,6 +57,7 @@ const providers = [ ];
     TicketCancellationConfirmationPage,
     GalleryPage,
     SettingsPage,
+    TermsAndConditionsPage,
     components,
     directives,
     BarberLocation,
@@ -89,6 +91,7 @@ const providers = [ ];
     TicketCancellationConfirmationPage,
     GalleryPage,
     SettingsPage,
+    TermsAndConditionsPage,
     BarberLocation,
     components,
     Alert,
@@ -105,6 +108,7 @@ const providers = [ ];
     TicketCancellationConfirmationPage,
     GalleryPage,
     SettingsPage,
+    TermsAndConditionsPage,
     Alert,
     CreateUserPage,
     PhoneNumberPage,
