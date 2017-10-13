@@ -30,6 +30,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Push } from '@ionic-native/push';
+import { AppUpdate } from '@ionic-native/app-update';
 
 // import services
 // end import services
@@ -114,7 +115,8 @@ const providers = [ ];
     BarcodeScanner,
     Push,
     providers,
-    ProgressBarComponent
+    ProgressBarComponent,
+    AppUpdate
     /* import services */
   ]
 })
