@@ -249,7 +249,7 @@ export class GetaTicketPage {
   cancelTicket() {
     var id = this.ticketTimeStamp;
     var userId = firebase.auth().currentUser.uid;
-    firebase.database().ref('TicketList/Users/').once('value').then(function(snapshot) {
+    /*firebase.database().ref('TicketList/Users/').once('value').then(function(snapshot) {
       var tickets = snapshot.val();
       var ticket;
       for (var property in tickets) {
@@ -277,7 +277,7 @@ export class GetaTicketPage {
              }
          }
       }
-    });
+    });*/
 
     if (this.ticketId != null) firebase.database().ref().child('TicketList/Users/' + this.ticketId).remove();
     if (this.standbyTicketId != null) firebase.database().ref().child('StandByList/Users/' + this.standbyTicketId).remove();

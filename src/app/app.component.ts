@@ -1,9 +1,10 @@
 import {Component, ViewChild} from "@angular/core";
-import {Platform} from "ionic-angular";
+import {Platform, AlertController} from "ionic-angular";
 import {StatusBar, Splashscreen} from "ionic-native";
 import {PhoneNumberPage} from "../pages/phone-number/phone-number";
 import { Keyboard } from '@ionic-native/keyboard';
-
+import { AppUpdate } from '@ionic-native/app-update';
+import firebase from 'firebase';
 
 // import pages
 // end import pages
@@ -20,7 +21,8 @@ export class MyApp {
 
   public nav: any;
 
-  constructor(public platform: Platform, private keyboard: Keyboard) {
+  constructor(public platform: Platform, private keyboard: Keyboard, private appUpdate: AppUpdate,
+              public alertCtrl: AlertController) {
     this.rootPage = PhoneNumberPage;
 
     // show splash screen
@@ -32,6 +34,16 @@ export class MyApp {
       StatusBar.styleDefault();
 
       this.keyboard.disableScroll(true);
+
+      //App url update
+      var updateUrl;
+      let controller = this;
+      firebase.database().ref('AppUpdate/')
+       .on('value', function(snapshot) {
+         let appUpdate = snapshot.val();
+         if (appUpdate.hasAnUrl) updateUrl = appUpdate.url;
+         controller.appUpdate.checkAppUpdate(updateUrl);
+       });
     });
   }
 

@@ -22,11 +22,13 @@
         "@angular/platform-browser": "4.1.2",
         "@angular/platform-browser-dynamic": "4.1.2",
         "@angular/platform-server": "2.4.8",
+        "@ionic-native/app-update": "^4.3.1",
         "@ionic-native/barcode-scanner": "^4.3.1",
         "@ionic-native/core": "^3.12.1",
         "@ionic-native/keyboard": "^4.2.1",
         "@ionic-native/native-page-transitions": "^4.1.0",
         "@ionic-native/network": "^4.3.0",
+        "@ionic-native/push": "^4.3.1",
         "@ionic-native/sms": "^4.1.0",
         "@ionic-native/splash-screen": "^4.3.0",
         "@ionic-native/stripe": "^4.3.0",
@@ -38,6 +40,8 @@
         "cordova-android": "^6.2.3",
         "cordova-browser": "^4.1.0",
         "cordova-ios": "^4.4.0",
+        "cordova-plugin-app-update": "^1.4.2",
+        "cordova-plugin-appversion": "^1.0.0",
         "cordova-plugin-compat": "^1.0.0",
         "cordova-plugin-console": "^1.0.7",
         "cordova-plugin-device": "^1.1.6",
@@ -61,6 +65,7 @@
         "ngx-bootstrap": "^1.7.1",
         "ngx-qrcode2": "0.0.5",
         "phonegap-plugin-barcodescanner": "^6.0.8",
+        "phonegap-plugin-push": "^2.0.0",
         "rxjs": "5.1.1",
         "stripe": "^5.1.0",
         "sw-toolbox": "3.6.0",
@@ -93,7 +98,11 @@
             "cordova-plugin-splashscreen": {},
             "phonegap-plugin-barcodescanner": {
                 "CAMERA_USAGE_DESCRIPTION": " "
-            }
+            },
+            "phonegap-plugin-push": {
+                "SENDER_ID": "351355658098"
+            },
+            "cordova-plugin-app-update": {}
         },
         "platforms": [
             "android",

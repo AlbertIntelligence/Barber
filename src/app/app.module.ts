@@ -17,8 +17,10 @@ import {CreateUserPage} from "../pages/create-user/create-user";
 import {PhoneNumberPage} from "../pages/phone-number/phone-number";
 import {GalleryPage} from "../pages/gallery/gallery";
 import {SettingsPage} from "../pages/settings/settings";
+import {TermsAndConditionsPage} from "../pages/terms-and-conditions/terms-and-conditions";
 import {ProgressBarComponent} from "../pages/progress-bar/progress-bar";
 import { GetAnAppointmentPage, DateSelectorDirective } from '../pages/getanappointment/getanappointment';
+import { GetAnAppointmentModel } from '../pages/getanappointment/GetAnAppointmentModel';
 import {Alert} from '../pages/alert/alert';
 import * as firebase from "firebase";
 import { Keyboard } from '@ionic-native/keyboard';
@@ -28,6 +30,8 @@ import { Network } from '@ionic-native/network';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { Push } from '@ionic-native/push';
+import { AppUpdate } from '@ionic-native/app-update';
 
 // import services
 // end import services
@@ -53,6 +57,7 @@ const providers = [ ];
     TicketCancellationConfirmationPage,
     GalleryPage,
     SettingsPage,
+    TermsAndConditionsPage,
     components,
     directives,
     BarberLocation,
@@ -60,6 +65,7 @@ const providers = [ ];
     CreateUserPage,
     PhoneNumberPage,
     ProgressBarComponent,
+    GetAnAppointmentModel,
 
   ],
   imports: [
@@ -85,6 +91,7 @@ const providers = [ ];
     TicketCancellationConfirmationPage,
     GalleryPage,
     SettingsPage,
+    TermsAndConditionsPage,
     BarberLocation,
     components,
     Alert,
@@ -101,6 +108,7 @@ const providers = [ ];
     TicketCancellationConfirmationPage,
     GalleryPage,
     SettingsPage,
+    TermsAndConditionsPage,
     Alert,
     CreateUserPage,
     PhoneNumberPage,
@@ -109,8 +117,10 @@ const providers = [ ];
     Network,
     SplashScreen,
     BarcodeScanner,
+    Push,
     providers,
-    ProgressBarComponent
+    ProgressBarComponent,
+    AppUpdate
     /* import services */
   ]
 })

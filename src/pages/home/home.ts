@@ -10,6 +10,7 @@ import {SettingsPage} from "../settings/settings";
 import firebase from 'firebase';
 import {ProgressBarComponent} from "../progress-bar/progress-bar";
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 /*
  Generated class for the LoginPage page.
@@ -37,7 +38,7 @@ export class HomePage {
   private appointmentId:any;
 
   constructor(public nav: NavController, public galleryService: GalleryService, public alertCtrl: AlertController,
-              private barcodeScanner: BarcodeScanner, public progress:ProgressBarComponent) {
+              private barcodeScanner: BarcodeScanner, public progress:ProgressBarComponent, public push: Push) {
 
     this.updateIds();
     this.ClientWaiting();
@@ -45,6 +46,7 @@ export class HomePage {
     this.DirectMessages();
     this.calculateWaitingTime();
     this.getReservation();
+    this.pushNotificationSetup();
   }
 
   /*****************************************************************************
@@ -269,6 +271,44 @@ export class HomePage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  /*****************************************************************************
+  Function: pushNotificationSetup
+  Description: Setup the push notification plugin
+  Parameters: none
+  Return: void
+  *****************************************************************************/
+  pushNotificationSetup() {
+    var userId = firebase.auth().currentUser.uid;
+    const options: PushOptions = {
+       android: {
+         //senderID: '351355658098'
+       },
+       ios: {
+           alert: 'true',
+           badge: true,
+           sound: 'false'
+       },
+       windows: {},
+       browser: {
+           pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+       }
+     };
+
+    const pushObject: PushObject = this.push.init(options);
+
+    pushObject.on('notification').subscribe((notification: any) => {
+      this.showAlert('Mario Perfect Cut', notification.message);
+    });
+
+    pushObject.on('registration').subscribe((registration: any) => {
+      firebase.database().ref().child('Users/' + userId).update({
+        deviceToken : registration.registrationId
+      });
+    });
+
+    pushObject.on('error').subscribe(error => console.log('Error with Push plugin ' + error));
   }
 
 }

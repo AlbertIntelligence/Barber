@@ -8,45 +8,54 @@
     },
     "installed_plugins": {
         "com.telerik.plugins.nativepagetransitions": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+            "PACKAGE_NAME": "com.codekl.barberme"
+        },
+        "cordova-plugin-app-update": {
+            "PACKAGE_NAME": "com.codekl.barberme"
         },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+            "PACKAGE_NAME": "com.codekl.barberme"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+            "PACKAGE_NAME": "com.codekl.barberme"
         },
         "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+            "PACKAGE_NAME": "com.codekl.barberme"
         },
         "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+            "PACKAGE_NAME": "com.codekl.barberme"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+            "PACKAGE_NAME": "com.codekl.barberme"
         },
         "cordova-plugin-stripe": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+            "PACKAGE_NAME": "com.codekl.barberme"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+            "PACKAGE_NAME": "com.codekl.barberme"
         },
         "cordova-plugin-x-toast": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+            "PACKAGE_NAME": "com.codekl.barberme"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+            "PACKAGE_NAME": "com.codekl.barberme"
         },
         "phonegap-plugin-barcodescanner": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+            "PACKAGE_NAME": "com.codekl.barberme"
+        },
+        "phonegap-plugin-push": {
+            "PACKAGE_NAME": "com.codekl.barberme"
         }
     },
     "dependent_plugins": {
+        "cordova-plugin-appversion": {
+            "PACKAGE_NAME": "com.codekl.barberme"
+        },
         "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+            "PACKAGE_NAME": "com.codekl.barberme"
         },
         "cordova-plugin-swift-support": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
+            "PACKAGE_NAME": "com.codekl.barberme"
         }
     }
 }
