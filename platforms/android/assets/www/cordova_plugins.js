@@ -9,6 +9,22 @@ module.exports = [
         ]
     },
     {
+        "id": "cordova-plugin-appversion.RareloopAppVersion",
+        "file": "plugins/cordova-plugin-appversion/www/app-version.js",
+        "pluginId": "cordova-plugin-appversion",
+        "clobbers": [
+            "AppVersion"
+        ]
+    },
+    {
+        "id": "cordova-plugin-app-update.AppUpdate",
+        "file": "plugins/cordova-plugin-app-update/www/AppUpdate.js",
+        "pluginId": "cordova-plugin-app-update",
+        "clobbers": [
+            "AppUpdate"
+        ]
+    },
+    {
         "id": "cordova-plugin-device.device",
         "file": "plugins/cordova-plugin-device/www/device.js",
         "pluginId": "cordova-plugin-device",
@@ -23,6 +39,39 @@ module.exports = [
         "clobbers": [
             "cordova.InAppBrowser.open",
             "window.open"
+        ]
+    },
+    {
+        "id": "cordova-plugin-network-information.network",
+        "file": "plugins/cordova-plugin-network-information/www/network.js",
+        "pluginId": "cordova-plugin-network-information",
+        "clobbers": [
+            "navigator.connection",
+            "navigator.network.connection"
+        ]
+    },
+    {
+        "id": "cordova-plugin-network-information.Connection",
+        "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+        "pluginId": "cordova-plugin-network-information",
+        "clobbers": [
+            "Connection"
+        ]
+    },
+    {
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
+        "id": "cordova-plugin-stripe.stripe",
+        "file": "plugins/cordova-plugin-stripe/www/CordovaStripe.js",
+        "pluginId": "cordova-plugin-stripe",
+        "clobbers": [
+            "cordova.plugins.stripe"
         ]
     },
     {
@@ -48,28 +97,19 @@ module.exports = [
         "runs": true
     },
     {
-        "id": "cordova-plugin-stripe.stripe",
-        "file": "plugins/cordova-plugin-stripe/www/CordovaStripe.js",
-        "pluginId": "cordova-plugin-stripe",
+        "id": "phonegap-plugin-barcodescanner.BarcodeScanner",
+        "file": "plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js",
+        "pluginId": "phonegap-plugin-barcodescanner",
         "clobbers": [
-            "cordova.plugins.stripe"
+            "cordova.plugins.barcodeScanner"
         ]
     },
     {
-        "id": "cordova-plugin-network-information.network",
-        "file": "plugins/cordova-plugin-network-information/www/network.js",
-        "pluginId": "cordova-plugin-network-information",
+        "id": "phonegap-plugin-push.PushNotification",
+        "file": "plugins/phonegap-plugin-push/www/push.js",
+        "pluginId": "phonegap-plugin-push",
         "clobbers": [
-            "navigator.connection",
-            "navigator.network.connection"
-        ]
-    },
-    {
-        "id": "cordova-plugin-network-information.Connection",
-        "file": "plugins/cordova-plugin-network-information/www/Connection.js",
-        "pluginId": "cordova-plugin-network-information",
-        "clobbers": [
-            "Connection"
+            "PushNotification"
         ]
     }
 ];
@@ -77,14 +117,20 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "com.telerik.plugins.nativepagetransitions": "0.6.5",
-    "cordova-plugin-console": "1.0.7",
+    "cordova-plugin-appversion": "1.0.0",
+    "cordova-plugin-app-update": "1.4.2",
+    "cordova-plugin-compat": "1.0.0",
     "cordova-plugin-device": "1.1.6",
     "cordova-plugin-inappbrowser": "1.7.1",
+    "cordova-plugin-network-information": "1.3.3",
+    "cordova-plugin-splashscreen": "4.0.3",
+    "cordova-plugin-stripe": "1.5.3",
+    "cordova-plugin-swift-support": "3.1.1",
+    "cordova-plugin-whitelist": "1.3.2",
     "cordova-plugin-x-toast": "2.6.0",
     "ionic-plugin-keyboard": "2.2.1",
-    "cordova-plugin-stripe": "1.5.3",
-    "cordova-plugin-network-information": "1.3.3",
-    "cordova-plugin-whitelist": "1.3.2"
+    "phonegap-plugin-barcodescanner": "6.0.8",
+    "phonegap-plugin-push": "2.0.0"
 };
 // BOTTOM OF METADATA
 });

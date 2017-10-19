@@ -78502,7 +78502,7 @@ ion-navbar.no-border .toolbar-background {
 .hotel-bg .bg-filter {
   position: relative;
   height: 150px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.75);
 }
 
 .hotel-bg .bg-filter .bottom-info {
@@ -78794,6 +78794,106 @@ page-gallerie #map,
 
 page-home .top-menu,
 .home .top-menu {
+  border-top: 5rem solid #009687;
+}
+
+page-home .top-menu ion-grid,
+.home .top-menu ion-grid {
+  margin-top: -5rem;
+  border-radius: 5px;
+  background: #FFFFFF;
+  padding: 0;
+}
+
+page-home .top-menu ion-grid ion-row:first-child ion-col,
+.home .top-menu ion-grid ion-row:first-child ion-col {
+  border-bottom: 1px solid #EEEEEE;
+}
+
+page-home .top-menu ion-grid ion-row ion-col,
+.home .top-menu ion-grid ion-row ion-col {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1.6rem;
+  font-size: 1.6rem;
+}
+
+page-home .top-menu ion-grid ion-row ion-col:first-child,
+.home .top-menu ion-grid ion-row ion-col:first-child {
+  margin-left: 0;
+  border-right: 1px solid #EEEEEE;
+}
+
+page-home .top-menu ion-grid ion-row ion-col ion-icon,
+.home .top-menu ion-grid ion-row ion-col ion-icon {
+  margin-right: 1rem;
+  font-size: 2.5rem;
+  width: 2.5rem;
+}
+
+page-home ion-grid.list-hotels,
+.home ion-grid.list-hotels {
+  padding: 0;
+}
+
+page-home ion-grid.list-hotels ion-row ion-col:nth-child(5n + 1),
+.home ion-grid.list-hotels ion-row ion-col:nth-child(5n + 1) {
+  width: 100vw;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 100%;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+}
+
+page-home ion-grid.list-hotels ion-row ion-col:nth-child(5n + 1) h5,
+.home ion-grid.list-hotels ion-row ion-col:nth-child(5n + 1) h5 {
+  font-size: 2.2rem;
+}
+
+page-home ion-grid.list-hotels ion-row ion-col:nth-child(5n + 1) .rating-label,
+.home ion-grid.list-hotels ion-row ion-col:nth-child(5n + 1) .rating-label {
+  display: inline-block;
+}
+
+page-home ion-grid.list-hotels ion-row ion-col:nth-child(5n + 1) .origin-price,
+.home ion-grid.list-hotels ion-row ion-col:nth-child(5n + 1) .origin-price {
+  margin-top: 1.6rem;
+  line-height: 3rem;
+}
+
+page-home ion-grid.list-hotels ion-row ion-col:nth-child(5n + 1) .hide-lg,
+.home ion-grid.list-hotels ion-row ion-col:nth-child(5n + 1) .hide-lg {
+  display: none;
+}
+
+page-home ion-grid.list-hotels ion-row ion-col:nth-child(5n + 1) .hide-sm,
+.home ion-grid.list-hotels ion-row ion-col:nth-child(5n + 1) .hide-sm {
+  display: block;
+}
+
+page-home ion-grid.list-hotels ion-row ion-col .rating-label,
+.home ion-grid.list-hotels ion-row ion-col .rating-label {
+  display: none;
+}
+
+page-home ion-grid.list-hotels ion-row ion-col h5,
+.home ion-grid.list-hotels ion-row ion-col h5 {
+  font-size: 1.5rem;
+}
+
+page-home ion-grid.list-hotels ion-row ion-col .hide-sm,
+.home ion-grid.list-hotels ion-row ion-col .hide-sm {
+  display: none;
+}
+
+page-home .top-menu,
+.home .top-menu {
   padding: 1rem;
   border-top: 5rem solid #009687;
 }
@@ -78884,12 +78984,32 @@ page-phone-number .header-img {
 }
 
 page-phone-number .img {
-  display: block;
   position: absolute;
-  width: 100%;
-  height: 100%;
-  padding: 0;
+  z-index: 100px;
+  top: 40vw;
+  left: 30vw;
   margin: auto;
+  padding: auto;
+  width: 40vw;
+  height: 40vw;
+  -webkit-box-shadow: 0px 0px 10px 5px #888888;
+  box-shadow: 0px 0px 10px 5px #888888;
+  opacity: 1;
+}
+
+page-phone-number .video {
+  position: absolute;
+  z-index: 0;
+  background: url(mel.jpg) no-repeat;
+  background-size: 100vw 67vh;
+  top: 0px;
+  right: -30vw;
+  /* fixed to left. Replace it by right if you want.*/
+  min-width: 100vw;
+  max-height: 67vh;
+  width: auto;
+  height: auto;
+  opacity: 0.5;
 }
 
 page-phone-number .input {
@@ -78990,6 +79110,7 @@ page-phone-number .footer {
   height: 7vh;
   color: blue;
   font-size: 4vw;
+  background-color: white;
 }
 
 page-phone-number .visible {
@@ -79021,7 +79142,7 @@ page-phone-number .btn-circle {
 page-phone-number .btn-circle.btn-lg {
   position: fixed;
   right: 5vw;
-  top: 45vh;
+  top: 48vh;
   width: 50px;
   height: 50px;
   padding: 10px 16px;

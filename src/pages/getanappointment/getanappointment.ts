@@ -309,7 +309,7 @@ export class GetAnAppointmentPage {
     var title = (action == 'reservation') ? 'Confirmez votre réservation' : 'Confirmez votre annulation';
     let alert = this.alertCtrl.create({
       title: title,
-      subTitle: 'En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de Barber Me.',
+      subTitle: "En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de BarberMe. Vous disposez d'un délai de 30 minutes pour annuler votre rendez-vous.",
       buttons: [{
         text: 'Annuler',
         role: 'cancel',

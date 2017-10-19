@@ -10,9 +10,6 @@
         "com.telerik.plugins.nativepagetransitions": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
-        },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.ionic2booking330381"
         },

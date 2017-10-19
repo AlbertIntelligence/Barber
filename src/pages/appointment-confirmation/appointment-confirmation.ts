@@ -27,7 +27,7 @@ export class AppointmentConfirmationPage {
       this.confirmationMessage = 'Votre rendez-vous a été annulé.'
     } else {
       this.titleConfirmation = 'Réservation complétée !';
-      this.confirmationMessage = 'Votre rendez-vous est le ' + this.date + 'à ' + this.heure + '.';
+      this.confirmationMessage = 'Votre rendez-vous est le ' + this.date + ' à ' + this.heure + '.';
     }
   }
 
