@@ -82,48 +82,24 @@ exports.pushWaitingLineUpdate = functions.database.ref('/Users/{pushId}/waitingL
     }
 });
 
-/*
-exports.pushTicketListUpdate = functions.database.ref('TicketList/Users/{pushId}')
+
+exports.addAppointmentTimeStamp = functions.database.ref('Appointments/Users/{pushId}')
   .onCreate((event) => {
-  if (event.data.exists()) {
-    var newUserId = event.data.val().uid;
-    admin.database().ref('/Users').once('value').then((users) => {
-        var rawtokens = users.val();
-        var tokens = [];
-        var payloads = [];
+    if (event.data.exists()) {
+      var appt = event.data.val();
+      var date = appt.Date;
+      var hour = appt.Hour;
+      date = date.replace("-", " ");
 
-        processtokens(rawtokens).then((processedtokens) => {
+      var d = new Date(date);
+      d.setHours(hour.substring(0, 2), hour.substring(5, 7), 00);
+      var dateTimeStamp = d.getTime();
 
-          for (var token of processedtokens) {
-            var tokens = [];
-              if (token.deviceToken != undefined &&
-                  token.pushNotification == true &&
-                  token.UserId != newUserId) {
-                    tokens.push(token.deviceToken);
-                    var payload = {
-
-                            "notification":{
-                                "title":"Mario Perfect Cut",
-                                "body":"Nombre de clients avant vous dans la file d'attente: " + token.waitingLine,
-                                "sound":"default",
-                                },
-                            "data":{
-                                "sendername":"Mario Perfect Cut",
-                                "message":"Nombre de clients avant vous dans la file d'attente: " + token.waitingLine,
-                            }
-                    }
-
-                    admin.messaging().sendToDevice(tokens, payload).then((response) => {
-                        console.log('Pushed notifications');
-                    }).catch((err) => {
-                        console.log(err);
-                    });
-                  }
-          }
-        });
-    });
-  }
-});*/
+      return event.data.ref.update({
+        'dateTimeStamp': dateTimeStamp
+      });
+    }
+});
 
 function processtokens(rawtokens) {
     var promise = new Promise((resolve, reject) => {
