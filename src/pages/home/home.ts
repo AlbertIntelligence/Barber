@@ -110,26 +110,54 @@ export class HomePage {
   }
 
   ClientWaiting() {
-    //ticket list
-    const listOfUsers = firebase.database().ref('TicketList/Users/');
-    listOfUsers.on('value', function(snapshot) {
-      var numberClientWaitingTicketList = 0;
-      snapshot.forEach(function(childSnapshot) {
-        numberClientWaitingTicketList++;
-      }.bind(this));
-      this.numberClientWaitingTicketList = numberClientWaitingTicketList
-      this.numberClientWaiting = this.numberClientWaitingTicketList + this.numberClientWaitingStandByList;
-    }.bind(this));
+    var userId = firebase.auth().currentUser.uid;
+    var userFounded = false;
 
     //stand by list
     const users = firebase.database().ref('StandByList/Users/');
     users.on('value', function(snapshot) {
+      let standby = snapshot.val();
       var numberClientWaitingStandByList = 0;
-      snapshot.forEach(function(childSnapshot) {
-        numberClientWaitingStandByList++;
-      }.bind(this));
+      for (var property in standby) {
+         if (standby.hasOwnProperty(property)) {
+             if (standby[property].uid == userId) {
+               userFounded = true; break;
+             }
+            if (!userFounded)  numberClientWaitingStandByList++;
+         }
+      }
       this.numberClientWaitingStandByList = numberClientWaitingStandByList;
       this.numberClientWaiting = this.numberClientWaitingTicketList + this.numberClientWaitingStandByList;
+      var waitingLine = this.numberClientWaiting;
+
+      if (!userFounded) {
+        //ticket list
+        const listOfUsers = firebase.database().ref('TicketList/Users/');
+        listOfUsers.on('value', function(snapshot) {
+          let tickets = snapshot.val();
+          var numberClientWaitingTicketList = 0;
+          for (var property in tickets) {
+             if (tickets.hasOwnProperty(property)) {
+                 if (tickets[property].uid == userId) {
+                    break;
+                 } else {
+                   numberClientWaitingTicketList++;
+                 }
+             }
+          }
+          this.numberClientWaitingTicketList = numberClientWaitingTicketList
+          this.numberClientWaiting = this.numberClientWaitingTicketList + this.numberClientWaitingStandByList;
+          var waitingLine = this.numberClientWaiting;
+          firebase.database().ref().child('Users/' + userId).update({
+            waitingLine: waitingLine
+          });
+        }.bind(this));
+      } else {
+        firebase.database().ref().child('Users/' + userId).update({
+          waitingLine: waitingLine
+        });
+      }
+
     }.bind(this));
   }
 

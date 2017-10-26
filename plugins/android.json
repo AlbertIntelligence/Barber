@@ -13,9 +13,6 @@
         "cordova-plugin-app-update": {
             "PACKAGE_NAME": "com.codekl.barberme"
         },
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.codekl.barberme"
-        },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.codekl.barberme"
         },

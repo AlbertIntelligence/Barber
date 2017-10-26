@@ -22,7 +22,7 @@ export class GetaTicketPage {
   public userInfoPhoneNumber:any;
   public userInfoUserId:any;
   public userInfoRegistrationDate:any;
-  public currentPosition:any;
+  public currentPosition:any = "Aucun";
   public lastPosition:any;
   public userPosition:any;
   private dataSnapshot:Array<any> = [];
@@ -34,8 +34,12 @@ export class GetaTicketPage {
   private buttonColor:String = "primary";
   private buttonType:String = "add-circle";
   private ticketTimeStamp:any;
+  public numberClientWaiting = 0;
+  public numberClientWaitingStandByList = 0;
+  public numberClientWaitingTicketList = 0;
 
   constructor(public nav: NavController, private newAlert?: Alert,public ticketConfirmation?:TicketConfirmationPage) {
+    this.ClientWaiting();
     this.getCurrentClient();
     this.getLastClient();
     this.getUserInfo();
@@ -92,6 +96,7 @@ export class GetaTicketPage {
    Description: This function tells if a user is logged in
    *****************************************************************************/
   public getCurrentClient(){
+    this.currentPosition = "Aucun";
     const dbRefObject = firebase.database().ref('TicketList/Users/');
     dbRefObject.limitToFirst(1).on('value', function(snapshot) {
       const ids = [];
@@ -321,6 +326,51 @@ export class GetaTicketPage {
 
   hideTicketDiv(){
     $('#ticketPosition').hide();
+  }
+
+  ClientWaiting() {
+    var userId = firebase.auth().currentUser.uid;
+    var userFounded = false;
+    this.numberClientWaiting = 0;
+
+    //stand by list
+    const users = firebase.database().ref('StandByList/Users/');
+    users.on('value', function(snapshot) {
+      let standby = snapshot.val();
+      var numberClientWaitingStandByList = 0;
+      for (var property in standby) {
+         if (standby.hasOwnProperty(property)) {
+             if (standby[property].uid == userId) {
+               userFounded = true; break;
+             }
+             numberClientWaitingStandByList++;
+         }
+      }
+      /*
+      snapshot.forEach(function(childSnapshot) {
+        numberClientWaitingStandByList++;
+      }.bind(this));*/
+      this.numberClientWaitingStandByList = numberClientWaitingStandByList;
+      this.numberClientWaiting = this.numberClientWaitingTicketList + this.numberClientWaitingStandByList;
+
+      if (!userFounded) {
+        //ticket list
+        const listOfUsers = firebase.database().ref('TicketList/Users/');
+        listOfUsers.on('value', function(snapshot) {
+          let tickets = snapshot.val();
+          var numberClientWaitingTicketList = 0;
+          for (var property in tickets) {
+             if (tickets.hasOwnProperty(property)) {
+                 if (tickets[property].uid == userId) break;
+                 numberClientWaitingTicketList++;
+             }
+          }
+          this.numberClientWaitingTicketList = numberClientWaitingTicketList
+          this.numberClientWaiting = this.numberClientWaitingTicketList + this.numberClientWaitingStandByList;
+        }.bind(this));
+      }
+
+    }.bind(this));
   }
 
 }

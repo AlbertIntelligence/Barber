@@ -95,20 +95,84 @@ module.exports = [
         "id": "cordova-plugin-network-information.NetworkInfoProxy",
         "pluginId": "cordova-plugin-network-information",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/src/browser/SplashScreenProxy.js",
+        "id": "cordova-plugin-splashscreen.SplashScreenProxy",
+        "pluginId": "cordova-plugin-splashscreen",
+        "runs": true
+    },
+    {
+        "file": "plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js",
+        "id": "phonegap-plugin-barcodescanner.BarcodeScanner",
+        "pluginId": "phonegap-plugin-barcodescanner",
+        "clobbers": [
+            "cordova.plugins.barcodeScanner"
+        ]
+    },
+    {
+        "file": "plugins/phonegap-plugin-barcodescanner/src/browser/BarcodeScannerProxy.js",
+        "id": "phonegap-plugin-barcodescanner.BarcodeScannerProxy",
+        "pluginId": "phonegap-plugin-barcodescanner",
+        "runs": true
+    },
+    {
+        "file": "plugins/phonegap-plugin-push/www/push.js",
+        "id": "phonegap-plugin-push.PushNotification",
+        "pluginId": "phonegap-plugin-push",
+        "clobbers": [
+            "PushNotification"
+        ]
+    },
+    {
+        "file": "plugins/phonegap-plugin-push/www/browser/push.js",
+        "id": "phonegap-plugin-push.BrowserPush",
+        "pluginId": "phonegap-plugin-push",
+        "clobbers": [
+            "PushNotification"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-appversion/www/app-version.js",
+        "id": "cordova-plugin-appversion.RareloopAppVersion",
+        "pluginId": "cordova-plugin-appversion",
+        "clobbers": [
+            "AppVersion"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-app-update/www/AppUpdate.js",
+        "id": "cordova-plugin-app-update.AppUpdate",
+        "pluginId": "cordova-plugin-app-update",
+        "clobbers": [
+            "AppUpdate"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "com.telerik.plugins.nativepagetransitions": "0.6.5",
-    "cordova-plugin-console": "1.0.7",
     "cordova-plugin-device": "1.1.6",
     "cordova-plugin-inappbrowser": "1.7.1",
     "cordova-plugin-x-toast": "2.6.0",
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-plugin-stripe": "1.5.3",
     "cordova-plugin-network-information": "1.3.3",
-    "cordova-plugin-whitelist": "1.3.2"
+    "cordova-plugin-whitelist": "1.3.2",
+    "cordova-plugin-splashscreen": "4.0.3",
+    "phonegap-plugin-barcodescanner": "6.0.8",
+    "phonegap-plugin-push": "2.0.0",
+    "cordova-plugin-appversion": "1.0.0",
+    "cordova-plugin-app-update": "1.4.2"
 }
 // BOTTOM OF METADATA
 });

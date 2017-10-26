@@ -1,7 +1,7 @@
 
-<script>
+<!--script>
   this.hideTicketDiv();
-</script>
+</script!-->
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
@@ -14,19 +14,18 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding="false" class="common-bg">
-  <div style="">
+  <div style="margin-top: -5vh">
     <div style="">
-      <img color="primary" src="../../assets/img/ticket2.png" style="display: block; margin: auto; padding: 15vw;" />
-      <div style="font-size: 20px; margin-top: 10px" text-center>{{userInfoFirstName + " " + userInfoLastName }}</div>
-      <div style="font-size: 10px" text-center>
+      <img color="primary" src="assets/img/ticket.png" style="display: block; margin: auto; padding: 15vw;" />
+      <div style="font-size: 20px; margin-top: -5vh" text-center>{{userInfoFirstName + " " + userInfoLastName }}</div>
+      <div style="font-size: 10px; margin-top:5px" text-center>
         <ion-icon color="primary" style="" name="pin"></ion-icon>
         Montreal, Canada</div>
     </div>
 
-
     <div>
 
-      <div id="ticketPosition"  class="animated infinite bounce" >
+      <div id=""  class="infinite bounce" >
         <ion-grid style="margin-top: 15%">
           <ion-row>
             <ion-col col-6>
@@ -39,10 +38,10 @@
             </ion-col>
             <ion-col col-6>
               <ion-row>
-                <p style="margin:auto; font-size: 20px"><b>{{userPosition}}</b></p>
+                <p style="margin:auto; font-size: 20px"><b>{{numberClientWaiting}}</b></p>
               </ion-row>
               <ion-row>
-                <p style="margin:auto; font-size: 10px">VOTRE POSITION</p>
+                <p style="margin:auto; font-size: 10px">FILE D'ATTENTE</p>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -54,7 +53,7 @@
           <ion-icon (click)="confirmMessage()" color="{{ buttonColor }}" style="margin:auto; font-size: 50px;" name="{{ buttonType }}"></ion-icon>
         </ion-row>
 
-        <ion-row>
+        <ion-row style="margin-top: 5px">
           <p style="margin:auto; font-size: 10px">{{ buttonText }}</p>
         </ion-row>
       </ion-grid>

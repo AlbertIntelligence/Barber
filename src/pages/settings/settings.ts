@@ -48,8 +48,14 @@ export class SettingsPage {
   Return: None
   *****************************************************************************/
   logout() {
-    firebase.auth().signOut();
-    this.nav.setRoot(PhoneNumberPage);
+    let controller = this;
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      controller.nav.setRoot(PhoneNumberPage);
+    }, function(error) {
+      // An error happened.
+      console.log('Error during signing out');
+    });
   }
 
   /*****************************************************************************

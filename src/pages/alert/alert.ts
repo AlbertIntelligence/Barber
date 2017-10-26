@@ -1,9 +1,10 @@
- import { Component } from "@angular/core";
+import { Component } from "@angular/core";
 import { AlertController } from "ionic-angular/index";
 import {TicketConfirmationPage} from "../ticket-confirmation/ticket-confirmation";
- import {GetaTicketPage} from "../get-a-ticket/get-a-ticket";
+import {GetaTicketPage} from "../get-a-ticket/get-a-ticket";
 import {NavController,App} from "ionic-angular";
- import {Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
+
 @Component({
   selector: 'page-alert',
   templateUrl: 'alert.html'
@@ -33,7 +34,7 @@ export class Alert {
   presentAlert() {
     let alert = this.alertCtrl.create({
       title: 'Confirmez votre Ticket',
-      message: "En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de Barber Me.",
+      message: "En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de BarberMe. Vous disposez d'un délai de 30 minutes pour annuler votre ticket.",
       buttons: [
         {
           text: 'Annuler',
@@ -112,7 +113,7 @@ export class Alert {
   showCancellationConfirmation() {
     let alert = this.alertCtrl.create({
       title: 'Confirmez votre annulation',
-      message: "En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de Barber Me.",
+      message: "En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de BarberMe.",
       buttons: [
         {
           text: 'Annuler',
