@@ -4,21 +4,17 @@ import {MyApp} from "./app.component";
 import {BrowserModule} from '@angular/platform-browser';
 import {GalleryService} from "../services/gallery-service";
 import {BarberService} from "../services/barber-service";
-import {PricingPage} from "../pages/pricing/pricing";
 import {HomePage} from "../pages/home/home";
 import {BarberLocation} from "../pages/barber-location/barber-location";
-import {LoginPage} from "../pages/login/login";
 import {GetaTicketPage} from "../pages/get-a-ticket/get-a-ticket";
 import {TicketConfirmationPage} from "../pages/ticket-confirmation/ticket-confirmation";
 import {AppointmentConfirmationPage} from "../pages/appointment-confirmation/appointment-confirmation";
 import {CheckInConfirmationPage} from "../pages/checkin-confirmation/checkin-confirmation";
 import {TicketCancellationConfirmationPage} from "../pages/ticket-cancellation-confirmation/ticket-cancellation-confirmation";
-import {CreateUserPage} from "../pages/create-user/create-user";
 import {PhoneNumberPage} from "../pages/phone-number/phone-number";
 import {GalleryPage} from "../pages/gallery/gallery";
 import {SettingsPage} from "../pages/settings/settings";
 import {TermsAndConditionsPage} from "../pages/terms-and-conditions/terms-and-conditions";
-import {ProgressBarComponent} from "../pages/progress-bar/progress-bar";
 import { GetAnAppointmentPage, DateSelectorDirective } from '../pages/getanappointment/getanappointment';
 import { GetAnAppointmentModel } from '../pages/getanappointment/GetAnAppointmentModel';
 import {Alert} from '../pages/alert/alert';
@@ -47,9 +43,7 @@ const providers = [ ];
 @NgModule({
   declarations: [
     MyApp,
-    PricingPage,
     HomePage,
-    LoginPage,
     GetaTicketPage,
     TicketConfirmationPage,
     AppointmentConfirmationPage,
@@ -62,9 +56,7 @@ const providers = [ ];
     directives,
     BarberLocation,
     Alert,
-    CreateUserPage,
     PhoneNumberPage,
-    ProgressBarComponent,
     GetAnAppointmentModel,
 
   ],
@@ -81,9 +73,7 @@ const providers = [ ];
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    PricingPage,
     HomePage,
-    LoginPage,
     GetaTicketPage,
     TicketConfirmationPage,
     AppointmentConfirmationPage,
@@ -95,7 +85,6 @@ const providers = [ ];
     BarberLocation,
     components,
     Alert,
-    CreateUserPage,
     PhoneNumberPage,
   ],
   providers: [
@@ -110,7 +99,6 @@ const providers = [ ];
     SettingsPage,
     TermsAndConditionsPage,
     Alert,
-    CreateUserPage,
     PhoneNumberPage,
     Keyboard,
     Stripe,
@@ -119,7 +107,6 @@ const providers = [ ];
     BarcodeScanner,
     Push,
     providers,
-    ProgressBarComponent,
     AppUpdate
     /* import services */
   ]
@@ -127,12 +114,12 @@ const providers = [ ];
 export class AppModule {
   constructor() {
     firebase.initializeApp({
-      apiKey: "AIzaSyBShXmN6TIS7xy2Tnr65NkCJbAEXM51g7Q",
-      authDomain: "mpc-app-37f6f.firebaseapp.com",
-      databaseURL: "https://mpc-app-37f6f.firebaseio.com",
-      projectId: "mpc-app-37f6f",
-      storageBucket: "mpc-app-37f6f.appspot.com",
-      messagingSenderId: "351355658098"
+      apiKey: "AIzaSyActqu9p_osGQHbZQoELX5XyQ9mOzaxJFY",
+      authDomain: "barbermegeneric.firebaseapp.com",
+      databaseURL: "https://barbermegeneric.firebaseio.com",
+      projectId: "barbermegeneric",
+      storageBucket: "barbermegeneric.appspot.com",
+      messagingSenderId: "456698378380"
     });
   }
 }

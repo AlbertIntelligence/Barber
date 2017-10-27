@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
 import {NavController, Platform} from "ionic-angular";
 import {BarberService} from "../../services/barber-service";
-import {PricingPage} from "../pricing/pricing";
 
 declare var google: any;
 /*
@@ -68,15 +67,5 @@ export class BarberLocation {
     }, 300);
   }
 
-
-  /*****************************************************************************
-  Function: presentAlert
-  Description: Go to the pricing page
-  Parameters: None
-  Return: None
-  *****************************************************************************/
-  goToPricing() {
-    this.nav.push(PricingPage);
-  }
 
 }

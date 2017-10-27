@@ -26,9 +26,11 @@ export class SettingsPage {
   private pushNotification: Boolean;
   private emailNotification: Boolean;
   private smsNotification: Boolean;
+  private barberId:any;
 
   constructor(public nav: NavController, private network: Network, private alertCtrl: AlertController) {
     this.updateUserAccounts();
+    this.getbarberId();
 
     // watch network for a disconnect
     this.network.onDisconnect().subscribe(() => {
@@ -38,6 +40,21 @@ export class SettingsPage {
 
     this.network.onConnect().subscribe(() => {
      this.updateUserAccounts();
+    });
+  }
+
+  /*****************************************************************************
+   Function: getbarberId
+   Auteur(s): Koueni Deumeni
+   Date de creation: 2017-10-26
+   Date de modification:
+   Description: This function retrieves the barderId of user
+   *****************************************************************************/
+  getbarberId() {
+    var userId = firebase.auth().currentUser.uid;
+    let controller = this;
+    firebase.database().ref("Users/" + userId + "/").once("value", function(snap) {
+      controller.barberId = snap.val().barberId;
     });
   }
 
@@ -71,17 +88,17 @@ export class SettingsPage {
 
     //Update notification status in db
     if (type == "push") {
-      firebase.database().ref().child('/Users/' + userId).update({
+      firebase.database().ref().child(this.barberId + '/Users/' + userId).update({
         pushNotification: controller.pushNotification
       });
     }
     else if (type == "email") {
-      firebase.database().ref().child('/Users/' + userId).update({
+      firebase.database().ref().child(this.barberId + '/Users/' + userId).update({
         emailNotification: controller.emailNotification
       });
     }
     else if (type == "sms") {
-      firebase.database().ref().child('/Users/' + userId).update({
+      firebase.database().ref().child(this.barberId + '/Users/' + userId).update({
         smsNotification: controller.smsNotification
       });
     }
@@ -96,7 +113,7 @@ export class SettingsPage {
   updateUserAccounts() {
     var userId = firebase.auth().currentUser.uid;
     let controller = this;
-    firebase.database().ref('Users/')
+    firebase.database().ref(this.barberId + 'Users/')
      .on('value', function(snapshot) {
        let users = snapshot.val();
        for (var property in users) {

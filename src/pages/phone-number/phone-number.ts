@@ -7,7 +7,6 @@ import { Platform } from 'ionic-angular';
 import { HostListener } from '@angular/core';
 import firebase from 'firebase';
 import { AlertController } from 'ionic-angular';
-import {LoginPage} from "../login/login";
 import { Stripe } from '@ionic-native/stripe';
 import { Http, Headers } from '@angular/http';
 import { Network } from '@ionic-native/network';
@@ -39,6 +38,7 @@ export class PhoneNumberPage {
   private userExists:Boolean;
   private passwordToBeReset:Boolean = false;
   private disconnected:Boolean = false;
+  private barberId:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private splashScreen: SplashScreen,
      private keyboard: Keyboard, public platform: Platform, public alertCtrl: AlertController,
@@ -47,6 +47,7 @@ export class PhoneNumberPage {
 
       this.splashScreen.show();
       this.updateUserAccounts();
+      this.barberId = 'marioperfectcut';
        // watch network for a disconnect
       this.network.onDisconnect().subscribe(() => {
         this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.');
@@ -175,9 +176,6 @@ export class PhoneNumberPage {
   *****************************************************************************/
   gotohome() {
     this.navCtrl.setRoot(HomePage);
-  }
-  gotoLoginPage() {
-    this.navCtrl.push(LoginPage);
   }
 
   /*****************************************************************************
@@ -521,7 +519,8 @@ export class PhoneNumberPage {
   Return: None
   *****************************************************************************/
   createUser() {
-    var users = firebase.database().ref('Users/');
+    var users = firebase.database().ref(this.barberId + '/Users/');
+    var allUsers = firebase.database().ref('Users/');
     var firstName = this.firstName;
     var lastName = this.lastName;
     var customerId = this.customerId;
@@ -534,7 +533,7 @@ export class PhoneNumberPage {
       loginController.loginUser();
       var userId = firebase.auth().currentUser.uid;
 
-      //Create user instance in db
+      //Create user instance in barber db
       users.child(userId).set({
         UserId: userId,
         Date: Date(),
@@ -546,6 +545,13 @@ export class PhoneNumberPage {
         pushNotification: true,
         emailNotification: true,
         smsNotification: true
+      });
+
+      //Create user instance in db
+      allUsers.child(userId).set({
+        UserId: userId,
+        email: email,
+        barberId: loginController.barberId
       });
     }).catch(function (error) {
       console.log(error);
@@ -599,7 +605,7 @@ export class PhoneNumberPage {
   updateUserAccounts() {
     let controller = this;
     firebase.database().ref('Users/')
-     .on('value', function(snapshot) {
+     .once('value', function(snapshot) {
        let users = snapshot.val();
        controller.userAccounts = [];
        for (var property in users) {
@@ -706,7 +712,7 @@ export class PhoneNumberPage {
   *****************************************************************************/
   showTermsAndConditions() {
     let controller = this;
-    firebase.database().ref('TermsAndConditions/')
+    firebase.database().ref(this.barberId + '/TermsAndConditions/')
      .on('value', function(snapshot) {
        let termsAndConditions = snapshot.val().value;
        controller.showAlert('Termes et Conditions', termsAndConditions);

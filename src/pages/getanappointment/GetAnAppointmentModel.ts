@@ -8,6 +8,7 @@ export class GetAnAppointmentModel {
   private businessHours:Array<any> = [];
   private dataSnapshot:Array<any> = [];
   private userAccounts:Array<any> = [];
+  private barberId;
 
   constructor() {
     this.updateDataSnapshot();
@@ -49,6 +50,22 @@ export class GetAnAppointmentModel {
         'Closure': 17
       }
     ];
+    this.getbarberId();
+  }
+
+  /*****************************************************************************
+   Function: getbarberId
+   Auteur(s): Koueni Deumeni
+   Date de creation: 2017-10-26
+   Date de modification:
+   Description: This function retrieves the barderId of user
+   *****************************************************************************/
+  getbarberId() {
+    var userId = firebase.auth().currentUser.uid;
+    let controller = this;
+    firebase.database().ref("Users/" + userId + "/").once("value", function(snap) {
+      controller.barberId = snap.val().barberId;
+    });
   }
 
   /*****************************************************************************
@@ -69,7 +86,7 @@ export class GetAnAppointmentModel {
   *****************************************************************************/
   updateDataSnapshot() {
     let model = this;
-    firebase.database().ref('Appointments/Users')
+    firebase.database().ref(this.barberId + '/Appointments/Users')
      .on('value', function(snapshot) {
        let appointments = snapshot.val();
        model.dataSnapshot = [];
@@ -121,7 +138,7 @@ export class GetAnAppointmentModel {
   Return: None
   *****************************************************************************/
   createNew(date: String, hour: String) {
-    var appointments = firebase.database().ref('Appointments/Users');
+    var appointments = firebase.database().ref(this.barberId + '/Appointments/Users');
     var userId = firebase.auth().currentUser.uid;
     var timeStamp = new Date().getTime().toString();
     var user = this.userAccounts.find(item => item.UserId == userId);
@@ -142,7 +159,7 @@ export class GetAnAppointmentModel {
   *****************************************************************************/
   updateUserAccounts() {
     let controller = this;
-    firebase.database().ref('Users/')
+    firebase.database().ref(this.barberId + '/Users/')
      .on('value', function(snapshot) {
        let users = snapshot.val();
        controller.userAccounts = [];

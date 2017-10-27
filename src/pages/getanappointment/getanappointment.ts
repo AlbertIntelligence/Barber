@@ -85,6 +85,7 @@ export class GetAnAppointmentPage {
   private hasAnAppointment:Boolean = false;
   private buttonText:String = "RÉSERVER";
   private appointmentId:any;
+  private barberId;
 
   // A Map where key = 'DD-MMM-YYYY' and Value as the ViewChild Reference of the date element displayed in the
   // calendar view
@@ -97,11 +98,23 @@ export class GetAnAppointmentPage {
     this.appointments = new GetAnAppointmentModel();
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
-    //this.currentDate = this.today.clone();
-    //this.setDefaultHour();
     this.updateDataSnapshot();
-    //this.openingHour = this.appointments.getBusinessHours(this.currentDate).Opening + "h";
-    //this.closingHour = this.appointments.getBusinessHours(this.currentDate).Closure + "h";
+    this.getbarberId();
+  }
+
+  /*****************************************************************************
+   Function: getbarberId
+   Auteur(s): Koueni Deumeni
+   Date de creation: 2017-10-26
+   Date de modification:
+   Description: This function retrieves the barderId of user
+   *****************************************************************************/
+  getbarberId() {
+    var userId = firebase.auth().currentUser.uid;
+    let controller = this;
+    firebase.database().ref("Users/" + userId + "/").once("value", function(snap) {
+      controller.barberId = snap.val().barberId;
+    });
   }
 
   /*****************************************************************************
@@ -200,7 +213,7 @@ export class GetAnAppointmentPage {
     let controller = this;
     var userId = firebase.auth().currentUser.uid;
     var hasAppointment = false;
-    firebase.database().ref('Appointments/Users/')
+    firebase.database().ref(this.barberId + '/Appointments/Users/')
      .on('value', function(snapshot) {
        controller.verifyAvailibility();
        controller.appointments.getDaysBooked();
@@ -271,14 +284,8 @@ export class GetAnAppointmentPage {
   *****************************************************************************/
   cancelReservation() {
     var id = this.appointmentId;
-    /*firebase.database().ref('Appointments/Users/' + id).once('value').then(function(snapshot) {
-      var appointment = snapshot.val();
-      firebase.database().ref().child('AppointmentsArchive/Users/').update({
-        [id] : appointment
-      });
-    });*/
 
-    firebase.database().ref().child('Appointments/Users/' + id).remove();
+    firebase.database().ref().child(this.barberId + '/Appointments/Users/' + id).remove();
     this.goToAppointmentConfirmationPage('Cancellation', 'Cancellation');
     this.hasAnAppointment = false;
     this.buttonText = 'RÉSERVER';

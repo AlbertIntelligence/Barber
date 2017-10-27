@@ -36,14 +36,14 @@ export class MyApp {
       this.keyboard.disableScroll(true);
 
       //App url update
-      var updateUrl;
+      /*var updateUrl;
       let controller = this;
       firebase.database().ref('AppUpdate/')
        .on('value', function(snapshot) {
          let appUpdate = snapshot.val();
          if (appUpdate.hasAnUrl) updateUrl = appUpdate.url;
          controller.appUpdate.checkAppUpdate(updateUrl);
-       });
+       });*/
     });
   }
 

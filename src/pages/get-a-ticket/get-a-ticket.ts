@@ -37,6 +37,7 @@ export class GetaTicketPage {
   public numberClientWaiting = 0;
   public numberClientWaitingStandByList = 0;
   public numberClientWaitingTicketList = 0;
+  private barberId:any;
 
   constructor(public nav: NavController, private newAlert?: Alert,public ticketConfirmation?:TicketConfirmationPage) {
     this.ClientWaiting();
@@ -44,10 +45,26 @@ export class GetaTicketPage {
     this.getLastClient();
     this.getUserInfo();
     this.updateDataSnapshot();
+    this.getbarberId();
   }
 
   ionViewDidLoad() {
     this.hideTicketDiv();
+  }
+
+  /*****************************************************************************
+   Function: getbarberId
+   Auteur(s): Koueni Deumeni
+   Date de creation: 2017-10-26
+   Date de modification:
+   Description: This function retrieves the barderId of user
+   *****************************************************************************/
+  getbarberId() {
+    var userId = firebase.auth().currentUser.uid;
+    let controller = this;
+    firebase.database().ref("Users/" + userId + "/").once("value", function(snap) {
+      controller.barberId = snap.val().barberId;
+    });
   }
 
   public makeTransaction(){
@@ -78,7 +95,7 @@ export class GetaTicketPage {
     var Date ="";
     var userData;
     var userId = firebase.auth().currentUser.uid;
-    const userInfo = firebase.database().ref("Users/"+userId+"/");
+    const userInfo = firebase.database().ref(this.barberId + "/Users/"+userId+"/");
     userInfo.on('value' , snap =>  userData =   snap.val()  );
     this.userInfoFirstName = userData.firstName;
     this.userInfoLastName = userData.lastName;
@@ -97,7 +114,7 @@ export class GetaTicketPage {
    *****************************************************************************/
   public getCurrentClient(){
     this.currentPosition = "Aucun";
-    const dbRefObject = firebase.database().ref('TicketList/Users/');
+    const dbRefObject = firebase.database().ref(this.barberId + '/TicketList/Users/');
     dbRefObject.limitToFirst(1).on('value', function(snapshot) {
       const ids = [];
       snapshot.forEach(function(childSnapshot) {
@@ -116,7 +133,7 @@ export class GetaTicketPage {
    Description: This function tells if a user is logged in
    *****************************************************************************/
   public getLastClient(){
-    const dbRefObject = firebase.database().ref('TicketList/Users/');
+    const dbRefObject = firebase.database().ref(this.barberId + '/TicketList/Users/');
     dbRefObject.on('value', function(snapshot) {
       const ids = [];
       snapshot.forEach(function(childSnapshot) {
@@ -137,7 +154,7 @@ export class GetaTicketPage {
    *****************************************************************************/
   private addClientToList() {
     var timeStamp = new Date().getTime().toString();
-    const dbRefObject = firebase.database().ref().child('TicketList/Users/');
+    const dbRefObject = firebase.database().ref().child(this.barberId + '/TicketList/Users/');
     this.userPosition = Number(this.lastPosition) +1;
     var uPosition = this.userPosition;
     this.ticketConfirmation = uPosition;
@@ -157,7 +174,7 @@ export class GetaTicketPage {
     var userId = firebase.auth().currentUser.uid;
     let model = this;
 
-    firebase.database().ref('TicketList/Users/')
+    firebase.database().ref(this.barberId + '/TicketList/Users/')
       .on('value', function(snapshot) {
         model.hasTicket = false;
         let tickets = snapshot.val();
@@ -183,7 +200,7 @@ export class GetaTicketPage {
         }
       });
 
-    firebase.database().ref('StandByList/Users/')
+    firebase.database().ref(this.barberId + '/StandByList/Users/')
       .on('value', function(snapshot) {
         let tickets = snapshot.val();
         model.dataSnapshot = [];
@@ -254,38 +271,9 @@ export class GetaTicketPage {
   cancelTicket() {
     var id = this.ticketTimeStamp;
     var userId = firebase.auth().currentUser.uid;
-    /*firebase.database().ref('TicketList/Users/').once('value').then(function(snapshot) {
-      var tickets = snapshot.val();
-      var ticket;
-      for (var property in tickets) {
-         if (tickets.hasOwnProperty(property)) {
-             if (tickets[property].uid == userId) {
-               ticket = tickets[property];
-               firebase.database().ref().child('TicketsArchive/Users/').update({
-                 [id] : ticket
-               });
-             }
-         }
-      }
-    });
 
-    firebase.database().ref('StandByList/Users/').once('value').then(function(snapshot) {
-      var tickets = snapshot.val();
-      var ticket;
-      for (var property in tickets) {
-         if (tickets.hasOwnProperty(property)) {
-             if (tickets[property].uid == userId) {
-               ticket = tickets[property];
-               firebase.database().ref().child('TicketsArchive/Users/').update({
-                 [id] : ticket
-               });
-             }
-         }
-      }
-    });*/
-
-    if (this.ticketId != null) firebase.database().ref().child('TicketList/Users/' + this.ticketId).remove();
-    if (this.standbyTicketId != null) firebase.database().ref().child('StandByList/Users/' + this.standbyTicketId).remove();
+    if (this.ticketId != null) firebase.database().ref().child(this.barberId + '/TicketList/Users/' + this.ticketId).remove();
+    if (this.standbyTicketId != null) firebase.database().ref().child(this.barberId + '/StandByList/Users/' + this.standbyTicketId).remove();
 
     this.goToTicketCancellationPage();
   }
@@ -334,7 +322,7 @@ export class GetaTicketPage {
     this.numberClientWaiting = 0;
 
     //stand by list
-    const users = firebase.database().ref('StandByList/Users/');
+    const users = firebase.database().ref(this.barberId + '/StandByList/Users/');
     users.on('value', function(snapshot) {
       let standby = snapshot.val();
       var numberClientWaitingStandByList = 0;
@@ -355,7 +343,7 @@ export class GetaTicketPage {
 
       if (!userFounded) {
         //ticket list
-        const listOfUsers = firebase.database().ref('TicketList/Users/');
+        const listOfUsers = firebase.database().ref(this.barberId + '/TicketList/Users/');
         listOfUsers.on('value', function(snapshot) {
           let tickets = snapshot.val();
           var numberClientWaitingTicketList = 0;

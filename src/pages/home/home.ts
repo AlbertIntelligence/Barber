@@ -8,7 +8,6 @@ import {GetaTicketPage} from "../get-a-ticket/get-a-ticket";
 import {BarberLocation} from "../barber-location/barber-location";
 import {SettingsPage} from "../settings/settings";
 import firebase from 'firebase';
-import {ProgressBarComponent} from "../progress-bar/progress-bar";
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
@@ -36,10 +35,12 @@ export class HomePage {
   private reservation:any = "Aucune réservation";
   private ticketId:any;
   private appointmentId:any;
+  private barberId:any;
 
   constructor(public nav: NavController, public galleryService: GalleryService, public alertCtrl: AlertController,
-              private barcodeScanner: BarcodeScanner, public progress:ProgressBarComponent, public push: Push) {
+              private barcodeScanner: BarcodeScanner, public push: Push) {
 
+    this.getbarberId();
     this.updateIds();
     this.ClientWaiting();
     this.TotalReservation();
@@ -47,6 +48,21 @@ export class HomePage {
     this.calculateWaitingTime();
     this.getReservation();
     this.pushNotificationSetup();
+  }
+
+  /*****************************************************************************
+   Function: getbarberId
+   Auteur(s): Koueni Deumeni
+   Date de creation: 2017-10-26
+   Date de modification:
+   Description: This function retrieves the barderId of user
+   *****************************************************************************/
+  getbarberId() {
+    var userId = firebase.auth().currentUser.uid;
+    let controller = this;
+    firebase.database().ref("Users/" + userId + "/").once("value", function(snap) {
+      controller.barberId = snap.val().barberId;
+    });
   }
 
   /*****************************************************************************
@@ -114,7 +130,7 @@ export class HomePage {
     var userFounded = false;
 
     //stand by list
-    const users = firebase.database().ref('StandByList/Users/');
+    const users = firebase.database().ref(this.barberId + '/StandByList/Users/');
     users.on('value', function(snapshot) {
       let standby = snapshot.val();
       var numberClientWaitingStandByList = 0;
@@ -132,7 +148,7 @@ export class HomePage {
 
       if (!userFounded) {
         //ticket list
-        const listOfUsers = firebase.database().ref('TicketList/Users/');
+        const listOfUsers = firebase.database().ref(this.barberId + '/TicketList/Users/');
         listOfUsers.on('value', function(snapshot) {
           let tickets = snapshot.val();
           var numberClientWaitingTicketList = 0;
@@ -148,12 +164,12 @@ export class HomePage {
           this.numberClientWaitingTicketList = numberClientWaitingTicketList
           this.numberClientWaiting = this.numberClientWaitingTicketList + this.numberClientWaitingStandByList;
           var waitingLine = this.numberClientWaiting;
-          firebase.database().ref().child('Users/' + userId).update({
+          firebase.database().ref().child(this.barberId + '/Users/' + userId).update({
             waitingLine: waitingLine
           });
         }.bind(this));
       } else {
-        firebase.database().ref().child('Users/' + userId).update({
+        firebase.database().ref().child(this.barberId + '/Users/' + userId).update({
           waitingLine: waitingLine
         });
       }
@@ -162,7 +178,7 @@ export class HomePage {
   }
 
   TotalReservation() {
-    const listOfUsers = firebase.database().ref('Appointments/Users/');
+    const listOfUsers = firebase.database().ref(this.barberId + '/Appointments/Users/');
     listOfUsers.on('value', function(snapshot) {
       var numberClientWaitingReservation = 0;
       snapshot.forEach(function(childSnapshot) {
@@ -173,7 +189,7 @@ export class HomePage {
   }
 
   DirectMessages() {
-    const liveMessages = firebase.database().ref('Messages/live/');
+    const liveMessages = firebase.database().ref(this.barberId + '/Messages/live/');
     liveMessages.on('value' , snap =>  this.directMessages =   snap.val()  ).bind(this);
   }
 
@@ -222,14 +238,14 @@ export class HomePage {
     var timeStamp = new Date().getTime().toString();
 
     if (this.ticketId != undefined) {
-      firebase.database().ref().child('TicketList/Users/' + this.ticketId).update({
+      firebase.database().ref().child(this.barberId + '/TicketList/Users/' + this.ticketId).update({
         hasCheckedIn: true,
         checkInTime: timeStamp
       });
     }
 
     if (this.appointmentId != undefined) {
-      firebase.database().ref().child('Appointments/Users/' + this.appointmentId).update({
+      firebase.database().ref().child(this.barberId + '/Appointments/Users/' + this.appointmentId).update({
         hasCheckedIn: true,
         checkInTime: timeStamp
       });
@@ -245,7 +261,7 @@ export class HomePage {
   getReservation() {
     let controller = this;
     var userId = firebase.auth().currentUser.uid;
-    firebase.database().ref('Appointments/Users')
+    firebase.database().ref(this.barberId + '/Appointments/Users')
      .on('value', function(snapshot) {
        let appointments = snapshot.val();
        for (var property in appointments) {
@@ -265,7 +281,7 @@ export class HomePage {
   updateIds() {
     var userId = firebase.auth().currentUser.uid;
     let controller = this;
-    firebase.database().ref('Appointments/Users')
+    firebase.database().ref(this.barberId + '/Appointments/Users')
      .on('value', function(snapshot) {
        let appointments = snapshot.val();
        for (var property in appointments) {
@@ -275,7 +291,7 @@ export class HomePage {
        }
      });
 
-     firebase.database().ref('TicketList/Users')
+     firebase.database().ref(this.barberId + '/TicketList/Users')
       .on('value', function(snapshot) {
         let tickets = snapshot.val();
         for (var property in tickets) {
@@ -311,7 +327,7 @@ export class HomePage {
     var userId = firebase.auth().currentUser.uid;
     const options: PushOptions = {
        android: {
-         //senderID: '351355658098'
+
        },
        ios: {
            alert: 'true',
@@ -331,7 +347,7 @@ export class HomePage {
     });
 
     pushObject.on('registration').subscribe((registration: any) => {
-      firebase.database().ref().child('Users/' + userId).update({
+      firebase.database().ref().child(this.barberId + '/Users/' + userId).update({
         deviceToken : registration.registrationId
       });
     });
