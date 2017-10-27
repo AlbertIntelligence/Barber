@@ -11,6 +11,7 @@ import { Stripe } from '@ionic-native/stripe';
 import { Http, Headers } from '@angular/http';
 import { Network } from '@ionic-native/network';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 /**
  * Generated class for the CreateUserPage page.
@@ -38,16 +39,15 @@ export class PhoneNumberPage {
   private userExists:Boolean;
   private passwordToBeReset:Boolean = false;
   private disconnected:Boolean = false;
-  private barberId:any;
+  private barberId:any = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private splashScreen: SplashScreen,
      private keyboard: Keyboard, public platform: Platform, public alertCtrl: AlertController,
-     public stripe: Stripe, public http: Http, private network: Network) {
+     public stripe: Stripe, public http: Http, private network: Network, private barcodeScanner: BarcodeScanner) {
 
 
       this.splashScreen.show();
       this.updateUserAccounts();
-      this.barberId = 'marioperfectcut';
        // watch network for a disconnect
       this.network.onDisconnect().subscribe(() => {
         this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.');
@@ -287,8 +287,18 @@ export class PhoneNumberPage {
       this.translate($("#nameTitle"), "-100vw", "0px");
       this.translate($("#phoneNumberInput"), "0px", "0px");
       this.translate($("#nameInput"), "-100vw", "0px");
-      this.translate($("#termsAndConditions"), "0px", "0px");
+      //this.translate($("#termsAndConditions"), "0px", "0px");
       this.currentView = "name";
+    }
+
+    //back to the password confirmation view
+    else if (this.currentView == "barber") {
+      this.translate($("#barberTitle"), "0px", "0px");
+      this.translate($("#phoneNumberTitle"), "-100vw", "0px");
+      this.translate($("#barberInput"), "0px", "0px");
+      this.translate($("#phoneNumberInput"), "-100vw", "0px");
+      this.translate($("#termsAndConditions"), "0px", "0px");
+      this.currentView = "phoneNumber";
     }
 
     //back to the name view
@@ -397,36 +407,40 @@ export class PhoneNumberPage {
         }
         break;
 
-        //Go to credit card form
-        case "name":
-          if (this.disconnected) {this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.'); break;}
-          var firstName = $("#firstName").children().eq(0).val();
-          var lastName = $("#lastName").children().eq(0).val();
-          this.firstName = firstName; this.lastName = lastName;
-          if (firstName.length > 0 && lastName.length > 0) {
-            this.currentView = "phoneNumber";
-            $("#phoneNumberInput").css('border-bottom', '2px solid black');
+      //Go to credit card form
+      case "name":
+        if (this.disconnected) {this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.'); break;}
+        var firstName = $("#firstName").children().eq(0).val();
+        var lastName = $("#lastName").children().eq(0).val();
+        this.firstName = firstName; this.lastName = lastName;
+        if (firstName.length > 0 && lastName.length > 0) {
+          this.currentView = "phoneNumber";
+          $("#phoneNumberInput").css('border-bottom', '2px solid black');
 
-            this.translate($("#phoneNumberTitle"), "-100vw", "0px");
-            this.translate($("#nameTitle"), "-200vw", "0px");
-            this.translate($("#phoneNumberInput"), "-100vw", "0px");
-            this.translate($("#nameInput"), "-200vw", "0px");
-            this.translate($("#termsAndConditions"), "-100vw", "0px");
-          } else {
-            if (lastName.length == 0) {
-              $("#lastName").css('border-bottom', '2px solid red');
-            }
-            if (firstName.length == 0) {
-              $("#firstName").css('border-bottom', '2px solid red');
-            }
+          this.translate($("#phoneNumberTitle"), "-100vw", "0px");
+          this.translate($("#nameTitle"), "-200vw", "0px");
+          this.translate($("#phoneNumberInput"), "-100vw", "0px");
+          this.translate($("#nameInput"), "-200vw", "0px");
+        } else {
+          if (lastName.length == 0) {
+            $("#lastName").css('border-bottom', '2px solid red');
           }
-          break;
+          if (firstName.length == 0) {
+            $("#firstName").css('border-bottom', '2px solid red');
+          }
+        }
+        break;
 
-      //Go to enter select payment method
+      //Go to enter select barber
       case "phoneNumber":
         if (this.disconnected) {this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.'); break;}
         if ($("#input").val().length == 14) {
-          this.createUser();
+          this.currentView = "barber";
+          this.translate($("#barberTitle"), "-100vw", "0px");
+          this.translate($("#phoneNumberTitle"), "-200vw", "0px");
+          this.translate($("#barberInput"), "-100vw", "0px");
+          this.translate($("#phoneNumberInput"), "-200vw", "0px");
+          this.translate($("#termsAndConditions"), "-100vw", "0px");
           /*this.currentView = "paymentMethod";
           $("#nextBtn").hide();
           $("#firstName").children().eq(0).blur();
@@ -437,6 +451,24 @@ export class PhoneNumberPage {
           this.translate($("#nameInput"), "-200vw", "0px");*/
         } else {
           $("#phoneNumberInput").css('border-bottom', '2px solid red');
+        }
+        break;
+
+      //Go to enter select payment method
+      case "barber":
+        if (this.disconnected) {this.showAlert('Pas de connexion internet', 'Vérifiez votre connexion internet.'); break;}
+        if (this.barberId != "") {
+          let controller = this;
+          firebase.database().ref(this.barberId).once("value", function(snap) {
+            if (snap.val() != null) {
+              controller.createUser();
+            } else {
+              $("#barberInput").css('border-bottom', '2px solid red');
+              controller.showAlert('Erreur!', 'Coiffeur non répertorié.');
+            }
+          });
+        } else {
+          $("#barberInput").css('border-bottom', '2px solid red');
         }
         break;
 
@@ -712,11 +744,26 @@ export class PhoneNumberPage {
   *****************************************************************************/
   showTermsAndConditions() {
     let controller = this;
-    firebase.database().ref(this.barberId + '/TermsAndConditions/')
+    firebase.database().ref('TermsAndConditions/')
      .on('value', function(snapshot) {
        let termsAndConditions = snapshot.val().value;
        controller.showAlert('Termes et Conditions', termsAndConditions);
      });
+  }
+
+  /*****************************************************************************
+  Function: scanQrCode
+  Purpose: Scans the qr code to select the barber
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  scanQrCode() {
+    this.barcodeScanner.scan().then(barcodeData => {
+      this.barberId = barcodeData.text;
+      $("#barberInput").children().eq(0).val(this.barberId);
+    }).catch(function(error){
+        this.showAlert('Erreur!', error);
+    });;
   }
 
 }

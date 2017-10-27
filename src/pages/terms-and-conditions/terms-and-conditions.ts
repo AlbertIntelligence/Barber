@@ -35,7 +35,7 @@ export class TermsAndConditionsPage {
     firebase.database().ref("Users/" + userId + "/").once("value", function(snap) {
       controller.barberId = snap.val().barberId;
 
-      firebase.database().ref(controller.barberId + '/TermsAndConditions/')
+      firebase.database().ref('TermsAndConditions/')
        .on('value', function(snapshot) {
          let termsConditions = snapshot.val().value;
          controller.termsAndConditions = termsConditions;

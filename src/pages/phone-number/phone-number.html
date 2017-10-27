@@ -78,8 +78,18 @@
       <input id="input" maxlength="14" class="input" type="tel" placeholder="(514) 123-4567">
     </ion-row>
 
+    <!-- Enter your barber -->
+    <ion-row class="digitTitle" id="barberTitle">
+      <div>Votre coiffeur</div>
+    </ion-row>
+
+    <!-- Input for phone number -->
+    <ion-row id="barberInput" class="inputBloc">
+      <input (click)="scanQrCode()" class="input" placeholder="Scannez l'identifiant de votre coiffeur">
+    </ion-row>
+
     <!-- Terms and conditions reminder !-->
-    <ion-row id="termsAndConditions" class="inputBloc" style="margin-top: 20vh">
+    <ion-row id="termsAndConditions" class="inputBloc" style="margin-top: 20vh; padding-right: 25vw">
       <div style="font-size: 10px">En poursuivant, je confirme avoir lu et accepté les <a href="#" (click)="showTermsAndConditions()">Termes et Conditions</a> de Barber Me.</div>
     </ion-row>
 
