@@ -20,7 +20,7 @@
 
 <ion-content class=" common-bg">
   <!--list menu on the top-->
-  <div class="top-menu common-bg">
+  <div *ngIf="barberTypeIsTicketAppointment" class="top-menu common-bg">
     <ion-grid class="card">
       <ion-row>
         <ion-col (click)="getTicket()">
@@ -39,6 +39,52 @@
           <span style="font-size: 17px" ion-text color="dark">Confirmez votre présence ici</span>
         </ion-col>
       </ion-row>
+    </ion-grid>
+  </div>
+
+  <!--list menu on the top-->
+  <div *ngIf="barberTypeIsTicket" class="top-menu common-bg">
+    <ion-grid class="card">
+      <ion-row>
+        <ion-col (click)="getTicket()">
+          <ion-icon name="md-pricetag" color="green"></ion-icon>
+          <span ion-text color="dark">Prendre un ticket</span>
+        </ion-col>
+        <ion-col (click)="scanQrCode()">
+          <ion-icon ios="ios-pin" md="md-pin" color="green"></ion-icon>
+          <span ion-text color="dark">Confirmez votre présence ici</span>
+        </ion-col>
+      </ion-row>
+
+      <!--ion-row style="padding:auto" (click)="scanQrCode()">
+        <ion-col style="margin:auto; width: 100%">
+          <ion-icon ios="ios-pin" md="md-pin" pull-right color="green"></ion-icon>
+          <span style="font-size: 17px" ion-text color="dark">Confirmez votre présence ici</span>
+        </ion-col>
+      </ion-row!-->
+    </ion-grid>
+  </div>
+
+  <!--list menu on the top-->
+  <div *ngIf="barberTypeIsAppointment" class="top-menu common-bg">
+    <ion-grid class="card">
+      <ion-row>
+        <ion-col (click)="getAnAppointment()">
+          <ion-icon name="md-calendar" color="flight-color"></ion-icon>
+          <span ion-text color="dark">Prendre un rendez vous</span>
+        </ion-col>
+        <ion-col (click)="scanQrCode()">
+          <ion-icon ios="ios-pin" md="md-pin" color="green"></ion-icon>
+          <span ion-text color="dark">Confirmez votre présence ici</span>
+        </ion-col>
+      </ion-row>
+
+      <!--ion-row style="padding:auto" (click)="scanQrCode()">
+        <ion-col style="margin:auto; width: 100%">
+          <ion-icon ios="ios-pin" md="md-pin" pull-right color="green"></ion-icon>
+          <span style="font-size: 17px" ion-text color="dark">Confirmez votre présence ici</span>
+        </ion-col>
+      </ion-row!-->
     </ion-grid>
   </div>
 

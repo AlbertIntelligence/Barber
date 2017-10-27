@@ -36,11 +36,14 @@ export class HomePage {
   private ticketId:any;
   private appointmentId:any;
   private barberId:any;
+  private barberTypeIsTicket:Boolean = false;
+  private barberTypeIsAppointment:Boolean = false;
+  private barberTypeIsTicketAppointment:Boolean = false;
 
   constructor(public nav: NavController, public galleryService: GalleryService, public alertCtrl: AlertController,
               private barcodeScanner: BarcodeScanner, public push: Push) {
 
-    this.getbarberId();
+    this.getbarberIdAndType();
     this.updateIds();
     this.ClientWaiting();
     this.TotalReservation();
@@ -51,17 +54,27 @@ export class HomePage {
   }
 
   /*****************************************************************************
-   Function: getbarberId
+   Function: getbarberIdAndType
    Auteur(s): Koueni Deumeni
    Date de creation: 2017-10-26
    Date de modification:
    Description: This function retrieves the barderId of user
    *****************************************************************************/
-  getbarberId() {
+  getbarberIdAndType() {
     var userId = firebase.auth().currentUser.uid;
     let controller = this;
+
+    //get barber id
     firebase.database().ref("Users/" + userId + "/").once("value", function(snap) {
       controller.barberId = snap.val().barberId;
+
+      //get barber type
+      firebase.database().ref(controller.barberId + "/Infos").once("value", function(snap) {
+        var type = snap.val().type;
+        controller.barberTypeIsTicket = (type == "Ticket") ? true : false;
+        controller.barberTypeIsAppointment = (type == "Appointment") ? true : false;
+        controller.barberTypeIsTicketAppointment = (type == "Ticket Appointment") ? true : false;
+      });
     });
   }
 

@@ -29,7 +29,7 @@ export class SettingsPage {
   private barberId:any;
 
   constructor(public nav: NavController, private network: Network, private alertCtrl: AlertController) {
-    this.updateUserAccounts();
+
     this.getbarberId();
 
     // watch network for a disconnect
@@ -55,6 +55,8 @@ export class SettingsPage {
     let controller = this;
     firebase.database().ref("Users/" + userId + "/").once("value", function(snap) {
       controller.barberId = snap.val().barberId;
+
+      controller.updateUserAccounts();
     });
   }
 
@@ -113,7 +115,7 @@ export class SettingsPage {
   updateUserAccounts() {
     var userId = firebase.auth().currentUser.uid;
     let controller = this;
-    firebase.database().ref(this.barberId + 'Users/')
+    firebase.database().ref(this.barberId + '/Users/')
      .on('value', function(snapshot) {
        let users = snapshot.val();
        for (var property in users) {

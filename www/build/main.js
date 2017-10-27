@@ -11,7 +11,7 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__(539);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_stripe__ = __webpack_require__(548);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(549);
@@ -701,17 +701,18 @@ let PhoneNumberPage = class PhoneNumberPage {
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* HostListener */])('document:keyup', ['$event']),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [KeyboardEvent]),
     __metadata("design:returntype", void 0)
 ], PhoneNumberPage.prototype, "handleKeyboardEvent", null);
 PhoneNumberPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
         selector: 'page-phone-number',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\BarberMe\src\pages\phone-number\phone-number.html"*/'<div no-bounce ion-fixed class="content" style="margin:0; padding:0">\n\n  <!-- Header image -->\n\n  <ion-row id="headerImg" class="header-img">\n\n\n\n    <video autoplay loop class="video" autoplay="autoplay" webkit-playsinline="webkit-playsinline" muted requestFullScreen>\n\n      <source src="assets/img/HomeVideo.mp4" type=\'video/mp4\' >\n\n    </video>\n\n\n\n    <img src="assets/img/homeLogo.png" class="img"/>\n\n\n\n  </ion-row>\n\n\n\n  <!--body of page !-->\n\n  <ion-row id="main" class="main">\n\n    <!-- Title -->\n\n    <ion-row style="display: none" class="backbtn hidden" id="backBtn">\n\n      <ion-icon (click)="goBack()" style="font-size: 12vw; color: black;padding:0;margin:0" name="ios-arrow-round-back"></ion-icon>\n\n    </ion-row>\n\n\n\n    <!-- Title -->\n\n    <ion-row class="title" id="title">\n\n      <div>Coiffez vous avec Barber Me</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for phone number -->\n\n    <ion-row id="emailInput" class="email">\n\n       <ion-icon ios="ios-mail" style="font-size: 7vw; color: gray; margin: auto; padding: auto; margin-left: 0; padding-left: 0; margin-right: 0; padding-right: 0;" md="md-mail"></ion-icon>\n\n      <input id="email" (focus)="enterYourEmail()" class="input" [(ngModel)]="email" type="email" placeholder="Entrez votre adresse courriel">\n\n    </ion-row>\n\n\n\n    <!-- Enter your password -->\n\n    <ion-row class="digitTitle" id="passwordTitle">\n\n      <div>Créez votre mot de passe</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for password -->\n\n    <ion-row id="passwordInput" class="inputBloc">\n\n      <input class="input" type="password" placeholder="6 caractères minimum">\n\n    </ion-row>\n\n\n\n    <!-- Enter your password confirmation -->\n\n    <ion-row class="digitTitle" id="passwordConfirmationTitle">\n\n      <div>Confirmez votre mot de passe</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for password confirmation -->\n\n    <ion-row id="passwordConfirmationInput" class="inputBloc">\n\n      <input class="input" type="password" placeholder="6 caractères minimum">\n\n    </ion-row>\n\n\n\n    <!-- Enter your name -->\n\n    <ion-row class="digitTitle" id="nameTitle">\n\n      <div>Comment vous appelez-vous ?</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for name -->\n\n    <ion-row id="nameInput" class="inputBloc">\n\n      <ion-grid style="margin:0; padding:0">\n\n        <ion-row style="margin:0; padding:0">\n\n          <ion-col id="firstName" col-5 style="margin-left:0px">\n\n            <input class="nameInput" type="text" placeholder="Prénom">\n\n          </ion-col>\n\n\n\n          <ion-col id="lastName" col-5 style="margin-left:10px">\n\n            <input (focus)="onFocus(\'lastName\')" class="nameInput" type="text" placeholder="Nom">\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </ion-row>\n\n\n\n    <!-- Enter your phone number -->\n\n    <ion-row class="digitTitle" id="phoneNumberTitle">\n\n      <div>Numéro de téléphone</div>\n\n    </ion-row>\n\n\n\n    <!-- Input for phone number -->\n\n    <ion-row id="phoneNumberInput" class="inputBloc">\n\n      <input id="input" maxlength="14" class="input" type="tel" placeholder="(514) 123-4567">\n\n    </ion-row>\n\n\n\n    <!-- Terms and conditions reminder !-->\n\n    <ion-row id="termsAndConditions" class="inputBloc" style="margin-top: 20vh">\n\n      <div style="font-size: 10px">En poursuivant, je confirme avoir lu et accepté les <a href="#" (click)="showTermsAndConditions()">Termes et Conditions</a> de Barber Me.</div>\n\n    </ion-row>\n\n\n\n    <!-- Select your payment method -->\n\n    <!--ion-row class="digitTitle" id="paymentTitle">\n\n      <div>Sélectionnez votre moyen de paiement préféré</div>\n\n    </ion-row!-->\n\n\n\n    <!-- List of payment methods -->\n\n    <!--ion-list (click)="selectCreditCard()" id="paymentList" class="digitBloc" style="padding:0; margin-top: 50px">\n\n      <ion-item (click)="selectCreditCard()" style="padding:0">\n\n        <ion-icon name="card" style="margin-left:7vw; margin-right:5vw"></ion-icon>\n\n          Carte de crédit\n\n        <ion-icon name="arrow-forward" style="position:absolute; right:5vw"></ion-icon>\n\n      </ion-item>\n\n    </ion-list!-->\n\n\n\n    <!-- Enter your credit card -->\n\n    <!--ion-row class="digitTitle" id="creditCardTitle" style="top: 10%">\n\n      <div>Ajouter la carte</div>\n\n    </ion-row!-->\n\n\n\n    <!-- Inputs for credit card -->\n\n    <!--ion-row id="creditCartInputs" class="digitBloc" style="top: 4%; padding-right: 3vw"!-->\n\n      <!-- Credit card name -->\n\n      <!--ion-row><ion-label color="#F2F2F2" stacked></ion-label></ion-row!-->\n\n      <!--ion-row id="cardName" style="padding:auto; margin:auto; margin-left:0; width:95%; margin-top:50px">\n\n        <ion-icon style="font-size:7vw; margin-right: 10px" name="contact"></ion-icon>\n\n        <input class="input" type="text" style="width:85%" placeholder="Nom sur la carte">\n\n      </ion-row!-->\n\n\n\n      <!-- Credit card number -->\n\n      <!--ion-row id="cardNumber" style="padding:auto; margin:auto; margin-left:0; width:95%; margin-top: 50px">\n\n        <ion-icon name="card" style="font-size:7vw; margin-right: 10px"></ion-icon>\n\n        <input maxlength="16" class="input" type="tel" style="width:85%" placeholder="Numéro de carte">\n\n      </ion-row!-->\n\n\n\n      <!-- Exp date / CVV -->\n\n      <!--ion-grid style="margin:0; margin-top:50px; padding:0">\n\n        <ion-row style="margin:0; padding:0">\n\n          <ion-col id="expirationDate" col-6 style="margin-left:0px; padding-left:0">\n\n            <input maxlength="5" class="nameInput" style="width:100%" type="text" placeholder="Date d\'exp.">\n\n          </ion-col>\n\n\n\n          <ion-col id="cvv" col-5 style="margin-left:10px">\n\n            <input maxlength="3" class="nameInput" style="width:100%" type="text" placeholder="CVV">\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid!-->\n\n\n\n      <!-- country -->\n\n      <!--ion-label color="#F2F2F2" style="width: 100vw; margin-top: 40px" stacked>Pays</ion-label!-->\n\n      <!--ion-row id="country" style="padding:0; margin:0; margin-right: 5vw; width: 100vw">\n\n        <span class="flag-icon flag-icon-ca" style="font-size: 5vw; margin-right:2vw;"></span>\n\n        <div style="font-size: 5vw; font-family: Verdana, Geneva, sans-serif; margin: auto; padding: auto; width: 55vw">Canada</div>\n\n        <ion-icon name="md-arrow-dropdown" style="font-size:8vw; color: gray; margin: auto; padding: auto"></ion-icon>\n\n      </ion-row!-->\n\n\n\n      <!-- Postal Code -->\n\n      <!--ion-row id="phoneNumber" style="padding:auto; margin:auto; margin-left:0; margin-top:50px;">\n\n        <input id="input" maxlength="14" class="input" style="width:80vw; padding-left:0; margin-left:0; padding-bottom: 5px" type="tel" placeholder="Numéro de téléphone">\n\n      </ion-row!-->\n\n\n\n      <!--sign out button-->\n\n      <!--ion-row id="continueBtn" style="width: 100vw; padding:auto; margin:auto; margin-left:0; margin-top:10px;">\n\n        <button ion-button class="round" color="black" full (click)="createUser()" style="margin-top: 5vh; background-color: black">CONTINUER</button>\n\n      </ion-row!-->\n\n\n\n    <!--/ion-row!-->\n\n\n\n  </ion-row>\n\n\n\n  <!-- Link to login page -->\n\n  <ion-row class="footer" id="link">\n\n    <span (click)="enterYourEmail(\'reset password\')" ion-text color="black" style="margin-top: auto; margin-bottom: auto;">Mot de passe oublié?</span>\n\n  </ion-row>\n\n\n\n  <button id="nextBtn" (click)="goToNext()" ion-button class="btn-circle btn-xl hidden"><ion-icon name="ios-arrow-round-forward" class="nextIcon"></ion-icon></button>\n\n\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\BarberMe\src\pages\phone-number\phone-number.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__ionic_native_stripe__["a" /* Stripe */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__ionic_native_stripe__["a" /* Stripe */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_8__ionic_native_network__["a" /* Network */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__ionic_native_network__["a" /* Network */]) === "function" && _j || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__["a" /* SplashScreen */],
+        __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_6__ionic_native_stripe__["a" /* Stripe */], __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_8__ionic_native_network__["a" /* Network */]])
 ], PhoneNumberPage);
 
-var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 //# sourceMappingURL=phone-number.js.map
 
 /***/ }),
@@ -770,7 +771,7 @@ GalleryService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ticket_confirmation_ticket_confirmation__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__alert_alert__ = __webpack_require__(538);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(539);
@@ -1184,7 +1185,7 @@ webpackEmptyAsyncContext.id = 211;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__get_a_ticket_get_a_ticket__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__barber_location_barber_location__ = __webpack_require__(541);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__settings_settings__ = __webpack_require__(543);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_firebase__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_barcode_scanner__ = __webpack_require__(546);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_push__ = __webpack_require__(547);
@@ -1229,7 +1230,10 @@ let HomePage = class HomePage {
         this.nbOfBarbers = 4;
         this.checkInMessage = "Mario Perfect Cut";
         this.reservation = "Aucune réservation";
-        this.getbarberId();
+        this.barberTypeIsTicket = false;
+        this.barberTypeIsAppointment = false;
+        this.barberTypeIsTicketAppointment = false;
+        this.getbarberIdAndType();
         this.updateIds();
         this.ClientWaiting();
         this.TotalReservation();
@@ -1239,17 +1243,25 @@ let HomePage = class HomePage {
         this.pushNotificationSetup();
     }
     /*****************************************************************************
-     Function: getbarberId
+     Function: getbarberIdAndType
      Auteur(s): Koueni Deumeni
      Date de creation: 2017-10-26
      Date de modification:
      Description: This function retrieves the barderId of user
      *****************************************************************************/
-    getbarberId() {
+    getbarberIdAndType() {
         var userId = __WEBPACK_IMPORTED_MODULE_9_firebase___default.a.auth().currentUser.uid;
         let controller = this;
+        //get barber id
         __WEBPACK_IMPORTED_MODULE_9_firebase___default.a.database().ref("Users/" + userId + "/").once("value", function (snap) {
             controller.barberId = snap.val().barberId;
+            //get barber type
+            __WEBPACK_IMPORTED_MODULE_9_firebase___default.a.database().ref(controller.barberId + "/Infos").once("value", function (snap) {
+                var type = snap.val().type;
+                controller.barberTypeIsTicket = (type == "Ticket") ? true : false;
+                controller.barberTypeIsAppointment = (type == "Appointment") ? true : false;
+                controller.barberTypeIsTicketAppointment = (type == "Ticket Appointment") ? true : false;
+            });
         });
     }
     /*****************************************************************************
@@ -1528,7 +1540,7 @@ let HomePage = class HomePage {
 };
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\BarberMe\src\pages\home\home.html"*/'<!--\n\n  Generated template for the ProfilePage page.\n\n\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header class="no-shadow">\n\n\n\n  <ion-navbar class="no-border" color="primary">\n\n    <ion-title>ACCUEIL</ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button (click)="goToSettings()">\n\n        <ion-icon name="more"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n\n\n<ion-content class=" common-bg">\n\n  <!--list menu on the top-->\n\n  <div class="top-menu common-bg">\n\n    <ion-grid class="card">\n\n      <ion-row>\n\n        <ion-col (click)="getTicket()">\n\n          <ion-icon name="md-pricetag" color="green"></ion-icon>\n\n          <span ion-text color="dark">Prendre un ticket</span>\n\n        </ion-col>\n\n        <ion-col (click)="getAnAppointment()">\n\n          <ion-icon name="md-calendar" color="flight-color"></ion-icon>\n\n          <span ion-text color="dark">Prendre un rendez vous</span>\n\n        </ion-col>\n\n      </ion-row>\n\n\n\n      <ion-row style="padding:auto" (click)="scanQrCode()">\n\n        <ion-col style="margin:auto; width: 100%">\n\n          <ion-icon ios="ios-pin" md="md-pin" pull-right color="green"></ion-icon>\n\n          <span style="font-size: 17px" ion-text color="dark">Confirmez votre présence ici</span>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n\n\n  <ion-grid class="card">\n\n    <ion-row>\n\n      <ion-col>\n\n        <ion-badge class="center square" color="primary" (click)="goToBarberLocation()">Contacts</ion-badge>\n\n      </ion-col>\n\n      <ion-col  >\n\n        <ion-badge class="center square" color="primary" (click)="viewGallery()">Photos</ion-badge>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <ion-grid class="list-hotels" style="margin-top: 10px">\n\n   <ion-row style="height:auto">\n\n     <ion-col col-12>\n\n       <div class="hotel-bg bg-filter" [ngStyle]="{\'background-image\': \'url(assets/img/waitingline.jpg)\', \'background-size\': \'100% auto\', \'background-repeat\': \'no-repeat\'}">\n\n         <div class="bg-filter" style="height:125px">\n\n\n\n           <div class="discount" style="font-size: 20px">{{numberClientWaiting}}</div>\n\n\n\n           <div class="bottom-info pull-left" style="height: auto">\n\n             <h5 ion-text color="light">Clients dans la file d\'attente</h5>\n\n           </div>\n\n\n\n         </div>\n\n       </div>\n\n     </ion-col>\n\n   </ion-row>\n\n </ion-grid>\n\n\n\n<ion-grid class="list-hotels" style="margin-top: 15px">\n\n <ion-row style="height:auto">\n\n   <ion-col col-12>\n\n     <div class="hotel-bg bg-filter" [ngStyle]="{\'background-image\': \'url(assets/img/reservation.jpg)\', \'background-size\': \'100% auto\', \'background-repeat\': \'no-repeat\'}">\n\n       <div class="bg-filter" style="height:125px">\n\n         <div class="bottom-info pull-left" style="height: auto;">\n\n           <h5 ion-text color="light">Votre réservation: </h5>\n\n           <h5 ion-text color="light">{{ reservation }}</h5>\n\n         </div>\n\n       </div>\n\n     </div>\n\n   </ion-col>\n\n </ion-row>\n\n</ion-grid>\n\n\n\n<ion-grid class="list-hotels" style="margin-top: 15px">\n\n <ion-row style="height:auto">\n\n   <ion-col col-12>\n\n     <div class="hotel-bg bg-filter" [ngStyle]="{\'background-image\': \'url(assets/img/livemessage.jpg)\', \'background-size\': \'100% auto\', \'background-repeat\': \'no-repeat\'}">\n\n       <div class="bg-filter" style="height:125px">\n\n         <div class="bottom-info pull-left" style="height: auto;">\n\n           <h5 ion-text color="light">Messages en direct: </h5>\n\n           <h5 ion-text color="light">{{directMessages}}</h5>\n\n         </div>\n\n\n\n       </div>\n\n     </div>\n\n   </ion-col>\n\n </ion-row>\n\n</ion-grid>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\BarberMe\src\pages\home\home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\BarberMe\src\pages\home\home.html"*/'<!--\n\n  Generated template for the ProfilePage page.\n\n\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header class="no-shadow">\n\n\n\n  <ion-navbar class="no-border" color="primary">\n\n    <ion-title>ACCUEIL</ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button (click)="goToSettings()">\n\n        <ion-icon name="more"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n\n\n<ion-content class=" common-bg">\n\n  <!--list menu on the top-->\n\n  <div *ngIf="barberTypeIsTicketAppointment" class="top-menu common-bg">\n\n    <ion-grid class="card">\n\n      <ion-row>\n\n        <ion-col (click)="getTicket()">\n\n          <ion-icon name="md-pricetag" color="green"></ion-icon>\n\n          <span ion-text color="dark">Prendre un ticket</span>\n\n        </ion-col>\n\n        <ion-col (click)="getAnAppointment()">\n\n          <ion-icon name="md-calendar" color="flight-color"></ion-icon>\n\n          <span ion-text color="dark">Prendre un rendez vous</span>\n\n        </ion-col>\n\n      </ion-row>\n\n\n\n      <ion-row style="padding:auto" (click)="scanQrCode()">\n\n        <ion-col style="margin:auto; width: 100%">\n\n          <ion-icon ios="ios-pin" md="md-pin" pull-right color="green"></ion-icon>\n\n          <span style="font-size: 17px" ion-text color="dark">Confirmez votre présence ici</span>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n\n\n  <!--list menu on the top-->\n\n  <div *ngIf="barberTypeIsTicket" class="top-menu common-bg">\n\n    <ion-grid class="card">\n\n      <ion-row>\n\n        <ion-col (click)="getTicket()">\n\n          <ion-icon name="md-pricetag" color="green"></ion-icon>\n\n          <span ion-text color="dark">Prendre un ticket</span>\n\n        </ion-col>\n\n        <ion-col (click)="scanQrCode()">\n\n          <ion-icon ios="ios-pin" md="md-pin" color="green"></ion-icon>\n\n          <span ion-text color="dark">Confirmez votre présence ici</span>\n\n        </ion-col>\n\n      </ion-row>\n\n\n\n      <!--ion-row style="padding:auto" (click)="scanQrCode()">\n\n        <ion-col style="margin:auto; width: 100%">\n\n          <ion-icon ios="ios-pin" md="md-pin" pull-right color="green"></ion-icon>\n\n          <span style="font-size: 17px" ion-text color="dark">Confirmez votre présence ici</span>\n\n        </ion-col>\n\n      </ion-row!-->\n\n    </ion-grid>\n\n  </div>\n\n\n\n  <!--list menu on the top-->\n\n  <div *ngIf="barberTypeIsAppointment" class="top-menu common-bg">\n\n    <ion-grid class="card">\n\n      <ion-row>\n\n        <ion-col (click)="getAnAppointment()">\n\n          <ion-icon name="md-calendar" color="flight-color"></ion-icon>\n\n          <span ion-text color="dark">Prendre un rendez vous</span>\n\n        </ion-col>\n\n        <ion-col (click)="scanQrCode()">\n\n          <ion-icon ios="ios-pin" md="md-pin" color="green"></ion-icon>\n\n          <span ion-text color="dark">Confirmez votre présence ici</span>\n\n        </ion-col>\n\n      </ion-row>\n\n\n\n      <!--ion-row style="padding:auto" (click)="scanQrCode()">\n\n        <ion-col style="margin:auto; width: 100%">\n\n          <ion-icon ios="ios-pin" md="md-pin" pull-right color="green"></ion-icon>\n\n          <span style="font-size: 17px" ion-text color="dark">Confirmez votre présence ici</span>\n\n        </ion-col>\n\n      </ion-row!-->\n\n    </ion-grid>\n\n  </div>\n\n\n\n  <ion-grid class="card">\n\n    <ion-row>\n\n      <ion-col>\n\n        <ion-badge class="center square" color="primary" (click)="goToBarberLocation()">Contacts</ion-badge>\n\n      </ion-col>\n\n      <ion-col  >\n\n        <ion-badge class="center square" color="primary" (click)="viewGallery()">Photos</ion-badge>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <ion-grid class="list-hotels" style="margin-top: 10px">\n\n   <ion-row style="height:auto">\n\n     <ion-col col-12>\n\n       <div class="hotel-bg bg-filter" [ngStyle]="{\'background-image\': \'url(assets/img/waitingline.jpg)\', \'background-size\': \'100% auto\', \'background-repeat\': \'no-repeat\'}">\n\n         <div class="bg-filter" style="height:125px">\n\n\n\n           <div class="discount" style="font-size: 20px">{{numberClientWaiting}}</div>\n\n\n\n           <div class="bottom-info pull-left" style="height: auto">\n\n             <h5 ion-text color="light">Clients dans la file d\'attente</h5>\n\n           </div>\n\n\n\n         </div>\n\n       </div>\n\n     </ion-col>\n\n   </ion-row>\n\n </ion-grid>\n\n\n\n<ion-grid class="list-hotels" style="margin-top: 15px">\n\n <ion-row style="height:auto">\n\n   <ion-col col-12>\n\n     <div class="hotel-bg bg-filter" [ngStyle]="{\'background-image\': \'url(assets/img/reservation.jpg)\', \'background-size\': \'100% auto\', \'background-repeat\': \'no-repeat\'}">\n\n       <div class="bg-filter" style="height:125px">\n\n         <div class="bottom-info pull-left" style="height: auto;">\n\n           <h5 ion-text color="light">Votre réservation: </h5>\n\n           <h5 ion-text color="light">{{ reservation }}</h5>\n\n         </div>\n\n       </div>\n\n     </div>\n\n   </ion-col>\n\n </ion-row>\n\n</ion-grid>\n\n\n\n<ion-grid class="list-hotels" style="margin-top: 15px">\n\n <ion-row style="height:auto">\n\n   <ion-col col-12>\n\n     <div class="hotel-bg bg-filter" [ngStyle]="{\'background-image\': \'url(assets/img/livemessage.jpg)\', \'background-size\': \'100% auto\', \'background-repeat\': \'no-repeat\'}">\n\n       <div class="bg-filter" style="height:125px">\n\n         <div class="bottom-info pull-left" style="height: auto;">\n\n           <h5 ion-text color="light">Messages en direct: </h5>\n\n           <h5 ion-text color="light">{{directMessages}}</h5>\n\n         </div>\n\n\n\n       </div>\n\n     </div>\n\n   </ion-col>\n\n </ion-row>\n\n</ion-grid>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\BarberMe\src\pages\home\home.html"*/
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_gallery_service__["a" /* GalleryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_gallery_service__["a" /* GalleryService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_10__ionic_native_barcode_scanner__["a" /* BarcodeScanner */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__ionic_native_barcode_scanner__["a" /* BarcodeScanner */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_11__ionic_native_push__["a" /* Push */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_11__ionic_native_push__["a" /* Push */]) === "function" && _e || Object])
 ], HomePage);
@@ -1549,7 +1561,7 @@ var _a, _b, _c, _d, _e;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__GetAnAppointmentModel__ = __webpack_require__(523);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__appointment_confirmation_appointment_confirmation__ = __webpack_require__(535);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2044,7 +2056,7 @@ GetAnAppointmentPage = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GetAnAppointmentModel; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_firebase__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2718,7 +2730,7 @@ BarberService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__phone_number_phone_number__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__terms_and_conditions_terms_and_conditions__ = __webpack_require__(545);
@@ -2749,7 +2761,6 @@ let SettingsPage = class SettingsPage {
         this.nav = nav;
         this.network = network;
         this.alertCtrl = alertCtrl;
-        this.updateUserAccounts();
         this.getbarberId();
         // watch network for a disconnect
         this.network.onDisconnect().subscribe(() => {
@@ -2772,6 +2783,7 @@ let SettingsPage = class SettingsPage {
         let controller = this;
         __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref("Users/" + userId + "/").once("value", function (snap) {
             controller.barberId = snap.val().barberId;
+            controller.updateUserAccounts();
         });
     }
     /*****************************************************************************
@@ -2826,7 +2838,7 @@ let SettingsPage = class SettingsPage {
     updateUserAccounts() {
         var userId = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.auth().currentUser.uid;
         let controller = this;
-        __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref(this.barberId + 'Users/')
+        __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref(this.barberId + '/Users/')
             .on('value', function (snapshot) {
             let users = snapshot.val();
             for (var property in users) {
@@ -2871,9 +2883,10 @@ SettingsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
         selector: 'page-settings',template:/*ion-inline-start:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\BarberMe\src\pages\settings\settings.html"*/'<!--\n\n  Generated template for the Settings page.\n\n\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header class="no-shadow">\n\n\n\n  <ion-navbar class="no-border" color="primary">\n\n    <ion-title>PARAMÈTRES</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content class="common-bg">\n\n  <!--top information-->\n\n  <div class="top-info" padding>\n\n    <div padding-top>\n\n      <h5 ion-text color="white">{{ userFirstName + " " + userLastName }}</h5>\n\n      <span ion-text color="white">{{ userEmail }}</span>\n\n    </div>\n\n  </div>\n\n\n\n  <!--user settings-->\n\n    <ion-item-group style="margin-top: 10px">\n\n      <ion-item-divider color="bg-color">Notifications</ion-item-divider>\n\n      <ion-item>\n\n        <ion-label>Notification push</ion-label>\n\n        <ion-toggle [(ngModel)]="pushNotification" color="primary" checked="true" (ionChange)="changeNotification(\'push\')"></ion-toggle>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>Notification par courriel</ion-label>\n\n        <ion-toggle [(ngModel)]="emailNotification" color="primary" checked="true" (ionChange)="changeNotification(\'email\')"></ion-toggle>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label>Notification par SMS</ion-label>\n\n        <ion-toggle [(ngModel)]="smsNotification" color="primary" checked="true" (ionChange)="changeNotification(\'sms\')"></ion-toggle>\n\n      </ion-item>\n\n    </ion-item-group>\n\n\n\n\n\n    <ion-item-group style="margin-top: 10px">\n\n      <ion-item-divider color="bg-color">Informations légales</ion-item-divider>\n\n        <ion-list>\n\n          <button ion-item (click)="goToTermsAndConditions()">Termes et conditions</button>\n\n        </ion-list>\n\n      <ion-item-divider color="bg-color"></ion-item-divider>\n\n    </ion-item-group>\n\n\n\n    <!--sign out button-->\n\n    <div style="padding-left: 10%; padding-right: 10%">\n\n      <button ion-button class="round" color="orange" full (click)="logout()">SE DECONNECTER</button>\n\n    </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Surface\Desktop\CodeKL\Ionic\Projets\BarberMe\src\pages\settings\settings.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__["a" /* Network */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__["a" /* Network */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__["a" /* Network */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object])
 ], SettingsPage);
 
+var _a, _b, _c;
 //# sourceMappingURL=settings.js.map
 
 /***/ }),
@@ -2884,7 +2897,7 @@ SettingsPage = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TermsAndConditionsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_firebase__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2905,26 +2918,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 let TermsAndConditionsPage = class TermsAndConditionsPage {
     constructor() {
-        this.getbarberId();
+        this.getTermsAndConditions();
         let controller = this;
-        __WEBPACK_IMPORTED_MODULE_1_firebase___default.a.database().ref(this.barberId + '/TermsAndConditions/')
-            .on('value', function (snapshot) {
-            let termsConditions = snapshot.val().value;
-            controller.termsAndConditions = termsConditions;
-        });
     }
     /*****************************************************************************
-     Function: getbarberId
+     Function: getTermsAndConditions
      Auteur(s): Koueni Deumeni
      Date de creation: 2017-10-26
      Date de modification:
      Description: This function retrieves the barderId of user
      *****************************************************************************/
-    getbarberId() {
+    getTermsAndConditions() {
         var userId = __WEBPACK_IMPORTED_MODULE_1_firebase___default.a.auth().currentUser.uid;
         let controller = this;
         __WEBPACK_IMPORTED_MODULE_1_firebase___default.a.database().ref("Users/" + userId + "/").once("value", function (snap) {
             controller.barberId = snap.val().barberId;
+            __WEBPACK_IMPORTED_MODULE_1_firebase___default.a.database().ref(controller.barberId + '/TermsAndConditions/')
+                .on('value', function (snapshot) {
+                let termsConditions = snapshot.val().value;
+                controller.termsAndConditions = termsConditions;
+            });
         });
     }
 };
@@ -2981,7 +2994,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_getanappointment_getanappointment__ = __webpack_require__(407);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_getanappointment_GetAnAppointmentModel__ = __webpack_require__(523);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_alert_alert__ = __webpack_require__(538);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_firebase__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_firebase__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_keyboard__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__angular_http__ = __webpack_require__(549);
@@ -3194,10 +3207,10 @@ MyApp = __decorate([
             nav: new __WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */]('content')
         }
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_app_update__["a" /* AppUpdate */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_app_update__["a" /* AppUpdate */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_app_update__["a" /* AppUpdate */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
 ], MyApp);
 
-var _a, _b, _c, _d;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),

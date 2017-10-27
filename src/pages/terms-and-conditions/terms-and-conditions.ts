@@ -18,27 +18,28 @@ export class TermsAndConditionsPage {
   private barberId:any;
 
   constructor() {
-    this.getbarberId();
+    this.getTermsAndConditions();
     let controller = this;
-    firebase.database().ref(this.barberId + '/TermsAndConditions/')
-     .on('value', function(snapshot) {
-       let termsConditions = snapshot.val().value;
-       controller.termsAndConditions = termsConditions;
-     });
   }
 
   /*****************************************************************************
-   Function: getbarberId
+   Function: getTermsAndConditions
    Auteur(s): Koueni Deumeni
    Date de creation: 2017-10-26
    Date de modification:
    Description: This function retrieves the barderId of user
    *****************************************************************************/
-  getbarberId() {
+  getTermsAndConditions() {
     var userId = firebase.auth().currentUser.uid;
     let controller = this;
     firebase.database().ref("Users/" + userId + "/").once("value", function(snap) {
       controller.barberId = snap.val().barberId;
+
+      firebase.database().ref(controller.barberId + '/TermsAndConditions/')
+       .on('value', function(snapshot) {
+         let termsConditions = snapshot.val().value;
+         controller.termsAndConditions = termsConditions;
+       });
     });
   }
 
