@@ -44,6 +44,16 @@ export class HomePage {
               private barcodeScanner: BarcodeScanner, public push: Push) {
 
     this.getbarberIdAndType();
+  }
+
+  /*****************************************************************************
+   Function: initController
+   Auteur(s): Koueni Deumeni
+   Date de creation: 2017-10-26
+   Date de modification:
+   Description: This function executes routine functions
+   *****************************************************************************/
+  initController() {
     this.updateIds();
     this.ClientWaiting();
     this.TotalReservation();
@@ -74,6 +84,8 @@ export class HomePage {
         controller.barberTypeIsTicket = (type == "Ticket") ? true : false;
         controller.barberTypeIsAppointment = (type == "Appointment") ? true : false;
         controller.barberTypeIsTicketAppointment = (type == "Ticket Appointment") ? true : false;
+
+        controller.initController();
       });
     });
   }

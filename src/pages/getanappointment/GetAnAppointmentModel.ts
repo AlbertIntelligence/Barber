@@ -8,11 +8,10 @@ export class GetAnAppointmentModel {
   private businessHours:Array<any> = [];
   private dataSnapshot:Array<any> = [];
   private userAccounts:Array<any> = [];
-  private barberId;
+  private barberId:any;
 
   constructor() {
-    this.updateDataSnapshot();
-    this.updateUserAccounts();
+    this.getbarberId();
     this.businessHours = [
       {
         'Day': 'Monday',
@@ -50,7 +49,6 @@ export class GetAnAppointmentModel {
         'Closure': 17
       }
     ];
-    this.getbarberId();
   }
 
   /*****************************************************************************
@@ -65,6 +63,9 @@ export class GetAnAppointmentModel {
     let controller = this;
     firebase.database().ref("Users/" + userId + "/").once("value", function(snap) {
       controller.barberId = snap.val().barberId;
+
+      controller.updateDataSnapshot();
+      controller.updateUserAccounts();
     });
   }
 

@@ -85,7 +85,7 @@ export class GetAnAppointmentPage {
   private hasAnAppointment:Boolean = false;
   private buttonText:String = "RÉSERVER";
   private appointmentId:any;
-  private barberId;
+  private barberId:any;
 
   // A Map where key = 'DD-MMM-YYYY' and Value as the ViewChild Reference of the date element displayed in the
   // calendar view
@@ -95,11 +95,10 @@ export class GetAnAppointmentPage {
   // calendar view
   @ViewChildren(DateSelectorDirective) dateSelectors:QueryList<DateSelectorDirective>;
   constructor(public alertCtrl: AlertController, private nav: NavController,) {
+    this.getbarberId();
     this.appointments = new GetAnAppointmentModel();
     this.weekNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
     this.today = moment();
-    this.updateDataSnapshot();
-    this.getbarberId();
   }
 
   /*****************************************************************************
@@ -114,6 +113,7 @@ export class GetAnAppointmentPage {
     let controller = this;
     firebase.database().ref("Users/" + userId + "/").once("value", function(snap) {
       controller.barberId = snap.val().barberId;
+      controller.updateDataSnapshot();
     });
   }
 

@@ -17,7 +17,6 @@ import {SettingsPage} from "../pages/settings/settings";
 import {TermsAndConditionsPage} from "../pages/terms-and-conditions/terms-and-conditions";
 import { GetAnAppointmentPage, DateSelectorDirective } from '../pages/getanappointment/getanappointment';
 import { GetAnAppointmentModel } from '../pages/getanappointment/GetAnAppointmentModel';
-import {Alert} from '../pages/alert/alert';
 import * as firebase from "firebase";
 import { Keyboard } from '@ionic-native/keyboard';
 import { HttpModule } from '@angular/http';
@@ -55,7 +54,6 @@ const providers = [ ];
     components,
     directives,
     BarberLocation,
-    Alert,
     PhoneNumberPage,
     GetAnAppointmentModel,
 
@@ -84,7 +82,6 @@ const providers = [ ];
     TermsAndConditionsPage,
     BarberLocation,
     components,
-    Alert,
     PhoneNumberPage,
   ],
   providers: [
@@ -98,7 +95,6 @@ const providers = [ ];
     GalleryPage,
     SettingsPage,
     TermsAndConditionsPage,
-    Alert,
     PhoneNumberPage,
     Keyboard,
     Stripe,

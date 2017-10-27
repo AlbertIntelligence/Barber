@@ -1,8 +1,7 @@
 import {Component} from "@angular/core";
-import {NavController} from "ionic-angular";
+import {NavController, AlertController} from "ionic-angular";
 import {TicketConfirmationPage} from "../ticket-confirmation/ticket-confirmation";
 import firebase from 'firebase';
-import {Alert} from "../alert/alert";
 import * as $ from 'jquery';
 import {TicketCancellationConfirmationPage} from "../ticket-cancellation-confirmation/ticket-cancellation-confirmation";
 
@@ -39,13 +38,23 @@ export class GetaTicketPage {
   public numberClientWaitingTicketList = 0;
   private barberId:any;
 
-  constructor(public nav: NavController, private newAlert?: Alert,public ticketConfirmation?:TicketConfirmationPage) {
+  constructor(public nav: NavController, public alertCtrl: AlertController, public ticketConfirmation?:TicketConfirmationPage) {
+    this.getbarberId();
+  }
+
+  /*****************************************************************************
+   Function: initController
+   Auteur(s): Koueni Deumeni
+   Date de creation: 2017-10-26
+   Date de modification:
+   Description: This function executes routine functions
+   *****************************************************************************/
+  initController() {
     this.ClientWaiting();
     this.getCurrentClient();
     this.getLastClient();
     this.getUserInfo();
     this.updateDataSnapshot();
-    this.getbarberId();
   }
 
   ionViewDidLoad() {
@@ -64,11 +73,12 @@ export class GetaTicketPage {
     let controller = this;
     firebase.database().ref("Users/" + userId + "/").once("value", function(snap) {
       controller.barberId = snap.val().barberId;
+
+      controller.initController();
     });
   }
 
   public makeTransaction(){
-
     if( this.startTransaction ) {
         this.addClientToList();
         this.nav.push(TicketConfirmationPage);
@@ -95,14 +105,16 @@ export class GetaTicketPage {
     var Date ="";
     var userData;
     var userId = firebase.auth().currentUser.uid;
-    const userInfo = firebase.database().ref(this.barberId + "/Users/"+userId+"/");
-    userInfo.on('value' , snap =>  userData =   snap.val()  );
-    this.userInfoFirstName = userData.firstName;
-    this.userInfoLastName = userData.lastName;
-    this.userInfoEmailName = userData.email;
-    this.userInfoPhoneNumber = userData.phoneNumber;
-    this.userInfoUserId = userId;
-    this.userInfoRegistrationDate = userData.Date;
+    let controller = this;
+    firebase.database().ref(this.barberId + "/Users/" + userId + "/").once("value", function(snap) {
+      let userData = snap.val();
+      controller.userInfoFirstName = userData.firstName;
+      controller.userInfoLastName = userData.lastName;
+      controller.userInfoEmailName = userData.email;
+      controller.userInfoPhoneNumber = userData.phoneNumber;
+      controller.userInfoUserId = userId;
+      controller.userInfoRegistrationDate = userData.Date;
+    });
   }
 
   /*****************************************************************************
@@ -281,15 +293,15 @@ export class GetaTicketPage {
   public confirmMessage() {
     if (this.buttonText == "PRENDRE UN NUMÉRO") {
       if(this.isAvailable()) {
-        this.newAlert.presentAlert();
+        this.presentAlert();
       }
       else
-        this.newAlert.ticketExist();
+        this.ticketExist();
     } else {
       if (this.canCancel()) {
-        this.newAlert.showCancellationConfirmation();
+        this.showCancellationConfirmation();
       } else {
-        this.newAlert.cannotCancel();
+        this.cannotCancel();
       }
     }
   }
@@ -359,6 +371,119 @@ export class GetaTicketPage {
       }
 
     }.bind(this));
+  }
+
+/********************************************************************************************************
+  ALERT SECTION
+********************************************************************************************************/
+
+  /*****************************************************************************
+  Function: presentAlert
+  Description: This function display a warning on pop-up
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Confirmez votre Ticket',
+      message: "En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de BarberMe. Vous disposez d'un délai de 30 minutes pour annuler votre ticket.",
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+            this.startTransaction=false;
+          }
+        },
+        {
+          text: 'Confirmer',
+            handler: data => {
+              //this.nav.push(TicketConfirmationPage);
+              this.startTransaction=true;
+              this.makeTransaction();
+
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  /*****************************************************************************
+   Function: presentAlert
+   Description: This function display a warning on pop-up
+   Parameters: None
+   Return: None
+   *****************************************************************************/
+  ticketExist() {
+    let alert = this.alertCtrl.create({
+      title: 'Erreur.',
+      message: "Vous avez déjà un ticket.",
+      buttons: [
+        {
+          text: 'Ok',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  /*****************************************************************************
+   Function: cannotCancel
+   Description: This function display a warning on pop-up
+   Parameters: None
+   Return: None
+   *****************************************************************************/
+  cannotCancel() {
+    let alert = this.alertCtrl.create({
+      title: 'Annulation Impossible !',
+      message: "Vous ne pouvez plus annuler votre ticket.",
+      buttons: [
+        {
+          text: 'OK',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  /*****************************************************************************
+  Function: showCancellationConfirmation
+  Description: This function display a warning on pop-up
+  Parameters: None
+  Return: None
+  *****************************************************************************/
+  showCancellationConfirmation() {
+    let alert = this.alertCtrl.create({
+      title: 'Confirmez votre annulation',
+      message: "En cliquant sur Confirmer, je confirme avoir lu et accepté les Termes et Conditions et la Politique de Confidentialité de BarberMe.",
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Confirmer',
+            handler: data => {
+              this.cancelTicket();
+
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }
