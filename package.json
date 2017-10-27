@@ -37,9 +37,7 @@
         "@ionic/storage": "2.0.1",
         "body-parser": "^1.18.2",
         "com.telerik.plugins.nativepagetransitions": "^0.6.5",
-        "cordova-android": "^6.2.3",
         "cordova-browser": "^4.1.0",
-        "cordova-ios": "^4.4.0",
         "cordova-plugin-app-update": "^1.4.2",
         "cordova-plugin-appversion": "^1.0.0",
         "cordova-plugin-compat": "^1.0.0",
@@ -76,6 +74,7 @@
         "@ionic/cli-plugin-cordova": "1.6.2",
         "@ionic/cli-plugin-ionic-angular": "1.4.1",
         "ionic": "3.10.3",
+        "ionic-minify": "^2.0.10",
         "typescript": "2.3.3"
     },
     "description": "CodeKL_Barber: Barber booking system",
@@ -103,7 +102,6 @@
             "cordova-plugin-app-update": {}
         },
         "platforms": [
-            "android",
             "browser"
         ]
     }

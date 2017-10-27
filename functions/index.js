@@ -5,7 +5,7 @@ const admin = require('firebase-admin');
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
 
-
+/*
 admin.initializeApp(functions.config().firebase);
 var wrotedata;
 exports.Pushtrigger = functions.database.ref('/Messages/live').onWrite((event) => {
@@ -153,7 +153,7 @@ exports.archiveDeletedTickets = functions.database.ref('TicketList/Users/{pushId
             }
           });
       });*/
-
+/*
       event.data.ref.parent.parent.parent.child('TicketsArchive/')
       .child('Users').update({
         [event.data.previous.val().timeStamp]: event.data.previous.val()
@@ -171,3 +171,4 @@ exports.archiveDeletedAppointments = functions.database.ref('Appointments/Users/
       });
     }
   });
+/*
